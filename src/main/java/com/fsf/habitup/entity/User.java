@@ -1,8 +1,8 @@
 package com.fsf.habitup.entity;
 
-import java.util.Collection;
+//import java.util.Collection;
 
-import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,30 +13,29 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-    @ Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UserId", unique = true, nullable = false)
-    private Long user_id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "UserId", unique = true, nullable = false)
+	private Long user_id;
 
-    @Column(name = "Email", unique = true, nullable = false)
-    public String email;
+	@Column(name = "Email", unique = true, nullable = false)
+	public String email;
 
-    @Column(name = "Name", unique = false, nullable = false)
-    public String name;
+	@Column(name = "Name", unique = false, nullable = false)
+	public String name;
 
-    @Column(name = "Password", nullable = false)
-    public String password;
+	@Column(name = "Password", nullable = false)
+	public String password;
 
-    @Column(name = "DOB", nullable = false)
-    public String dob;
+	@Column(name = "DOB", nullable = false)
+	public String dob;
 
-    @Column(name = "JoinDate", nullable = false)
-    public String joinDate;
+	@Column(name = "JoinDate", nullable = false)
+	public String joinDate;
 
 	public Long getUser_id() {
 		return user_id;
@@ -86,16 +85,19 @@ public class User {
 		this.joinDate = joinDate;
 	}
 
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+	public User orElseThrow(Object object) {
+
+		throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
 	}
 
-	public static Object withUsername(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-	
-	
+	// public Collection<? extends GrantedAuthority> getAuthorities() {
+	//
+	// return null;
+	// }
+
+	// public static Object withUsername(String string) {
+	//
+	// return null;
+	// }
+
 }
