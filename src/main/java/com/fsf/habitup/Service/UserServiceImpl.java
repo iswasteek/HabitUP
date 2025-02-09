@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public String registerUser(RegisterRequest request) {
         User newUser = userRepository.findByEmail(request.getEmail());
 
-        if (newUser != null && newUser.getEmail().equals(request.getEmail())) { // Check for duplicate email
+        if (newUser != null && newUser.getEmail().equals(request.getEmail())) {
             throw new ApiException("This user is already registered");
         }
 

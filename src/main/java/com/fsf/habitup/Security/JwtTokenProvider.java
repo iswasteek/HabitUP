@@ -30,8 +30,8 @@ public class JwtTokenProvider {
             throw new IllegalArgumentException("Email cannot be null or empty");
         }
 
-        Instant now = Instant.now(); // Use Instant
-        Instant expiry = now.plusMillis(jwtExpirationMs); // Set expiration time
+        Instant now = Instant.now();
+        Instant expiry = now.plusMillis(jwtExpirationMs);
 
         String token = Jwts.builder()
                 .subject(email)

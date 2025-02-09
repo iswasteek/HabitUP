@@ -30,7 +30,7 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder()); // Uses BCrypt for password hashing
+        provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
 
