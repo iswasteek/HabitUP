@@ -1,5 +1,7 @@
 package com.fsf.habitup.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,14 +30,13 @@ public class User {
 	public String password;
 
 	@Column(name = "DOB", nullable = false)
-	public String dob;
+	public Date dob;
 
-
-	public String getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 
@@ -46,7 +47,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getName() {
 		return name;

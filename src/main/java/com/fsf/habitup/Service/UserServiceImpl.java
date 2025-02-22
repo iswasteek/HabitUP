@@ -20,11 +20,11 @@ public class UserServiceImpl implements UserService {
 
     private final AuthenticationManager authenticationManager;
 
-    public UserServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository,
-            PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
+            UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
-        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-//        user.setJoinDate(null);
+        // user.setJoinDate(null);
         user.setDob(request.getDateOfBirth());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 

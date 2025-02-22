@@ -1,11 +1,13 @@
 package com.fsf.habitup.DTO;
 
+import java.util.Date;
+
 public class RegisterRequest {
 
     private String name;
     private String email; // New field for email
     private String password;
-    private String dateOfBirth;
+    private Date dateOfBirth;
 
     public String getName() {
         return name;
@@ -19,7 +21,7 @@ public class RegisterRequest {
         return password;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -35,7 +37,7 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }
