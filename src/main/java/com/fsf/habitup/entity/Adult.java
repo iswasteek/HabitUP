@@ -1,23 +1,19 @@
 package com.fsf.habitup.entity;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 //import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
 //import jakarta.persistence.GeneratedValue;
 //import jakarta.persistence.GenerationType;
 //import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-
 
 
 @Entity
 //@DiscriminatorValue("adult")
-//@Table(name="adult")
+@Table(name="adult")
 public class Adult extends User {
 	//@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "adultid", unique = true, nullable = false)
+    @Column(name = "adultId", unique = true, nullable = false)
     private Long adultId;
 
     public Long getAdultId() {

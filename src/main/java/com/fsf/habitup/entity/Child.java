@@ -1,17 +1,11 @@
 package com.fsf.habitup.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
-// @DiscriminatorValue("child")
-// @Table(name="child")
+@Table(name="child")
 public class Child extends User {
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "childId", unique = true, nullable = false)
 	private Long childId;
 
@@ -22,50 +16,49 @@ public class Child extends User {
 	private String subscriptionType;
 
 	@Column(name = "ProfilePhoto", nullable = false)
-	public String profilephoto;
+	public String profilePhoto;
 
 	@OneToOne
 	@JoinColumn(name = "userId", referencedColumnName = "userId", unique = true)
 	private User user;
 
-	public Long getChildId() {
-		return childId;
-	}
-
 	public String getAccountStatus() {
 		return accountStatus;
-	}
-
-	public String getSubscriptionType() {
-		return subscriptionType;
-	}
-
-	public String getProfilephoto() {
-		return profilephoto;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setChildId(Long childId) {
-		this.childId = childId;
 	}
 
 	public void setAccountStatus(String accountStatus) {
 		this.accountStatus = accountStatus;
 	}
 
+	public Long getChildId() {
+		return childId;
+	}
+
+	public void setChildId(Long childId) {
+		this.childId = childId;
+	}
+
+	public String getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
+
+	public String getSubscriptionType() {
+		return subscriptionType;
+	}
+
 	public void setSubscriptionType(String subscriptionType) {
 		this.subscriptionType = subscriptionType;
 	}
 
-	public void setProfilephoto(String profilephoto) {
-		this.profilephoto = profilephoto;
+	public User getUser() {
+		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 }

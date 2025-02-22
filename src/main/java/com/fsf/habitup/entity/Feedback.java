@@ -21,7 +21,7 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feedbackId", nullable = false, unique = true)
-    private Long feedback_id;
+    private Long feedbackId;
 
     @ManyToOne
     @JoinColumn(name = "programId", nullable = false)
@@ -40,88 +40,51 @@ public class Feedback {
     @Column(name = "Feedback_Date", nullable = false, unique = false)
     private Date feedbackDate;
 
-    /**
-     * @return Long return the feedback_id
-     */
-    public Long getFeedback_id() {
-        return feedback_id;
-    }
-
-    /**
-     * @param feedback_id the feedback_id to set
-     */
-    public void setFeedback_id(Long feedback_id) {
-        this.feedback_id = feedback_id;
-    }
-
-    /**
-     * @return Program return the program
-     */
-    public Program getProgram() {
-        return program;
-    }
-
-    /**
-     * @param program the program to set
-     */
-    public void setProgram(Program program) {
-        this.program = program;
-    }
-
-    /**
-     * @return List<User> return the user
-     */
-    public List<User> getUser() {
-        return user;
-    }
-
-    /**
-     * @param user the user to set
-     */
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
-
-    /**
-     * @return float return the ratings
-     */
-    public float getRatings() {
-        return ratings;
-    }
-
-    /**
-     * @param ratings the ratings to set
-     */
-    public void setRatings(float ratings) {
-        this.ratings = ratings;
-    }
-
-    /**
-     * @return String return the Comment
-     */
     public String getComment() {
         return Comment;
     }
 
-    /**
-     * @param Comment the Comment to set
-     */
-    public void setComment(String Comment) {
-        this.Comment = Comment;
+    public void setComment(String comment) {
+        Comment = comment;
     }
 
-    /**
-     * @return Date return the feedbackDate
-     */
     public Date getFeedbackDate() {
         return feedbackDate;
     }
 
-    /**
-     * @param feedbackDate the feedbackDate to set
-     */
     public void setFeedbackDate(Date feedbackDate) {
         this.feedbackDate = feedbackDate;
     }
 
+    public Long getFeedbackId() {
+        return feedbackId;
+    }
+
+    public void setFeedbackId(Long feedbackId) {
+        this.feedbackId = feedbackId;
+    }
+
+    public float getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(float ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
 }

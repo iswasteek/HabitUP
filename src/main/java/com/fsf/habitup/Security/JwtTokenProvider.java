@@ -1,9 +1,13 @@
 package com.fsf.habitup.Security;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Date;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,36 +15,52 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+import javax.crypto.SecretKey;
+
 @Component("jwtTokenProvider")
 public class JwtTokenProvider {
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+    private final SecretKey secretKey;
+    private final long expirationTime;
 
-    @Value("${jwt.expiration}")
-    private long jwtExpirationMs;
-
-    private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
+    public JwtTokenProvider(
+            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.expiration}") long expirationTime) {
+        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        this.expirationTime = expirationTime;
     }
 
+    // Generate Token
     public String generateToken(String email) {
-
-        if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null or empty");
-        }
-
-        Instant now = Instant.now();
-        Instant expiry = now.plusMillis(jwtExpirationMs);
-
-        String token = Jwts.builder()
-                .subject(email)
-                .issuedAt(Date.from(now))
-                .expiration(Date.from(expiry))
-                .signWith(getSigningKey())
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+                .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
+    }
 
-        System.out.println("JWT successfully generated: " + token);
-        return token;
+    // Validate Token
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (JwtException e) {
+            System.out.println("Invalid token: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Extract Username from Token
+    public String getEmailFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
     }
 }
