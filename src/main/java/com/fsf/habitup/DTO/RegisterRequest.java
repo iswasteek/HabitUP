@@ -8,6 +8,16 @@ public class RegisterRequest {
     private String email; // New field for email
     private String password;
     private Date dateOfBirth;
+    private Long phoneNo;
+
+    public Long getPhoneNumber() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(Long phoneNo) {
+        this.phoneNo = phoneNo;
+
+    }
 
     public String getName() {
         return name;
