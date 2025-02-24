@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fsf.habitup.DTO.LoginRequest;
 import com.fsf.habitup.DTO.RegisterRequest;
+import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Enums.SubscriptionType;
+import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.entity.User;
 
@@ -38,4 +41,13 @@ public interface UserService {
     public default User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    boolean updateUserType(Long userId, UserType userType);
+
+    boolean updateProfilePhoto(Long userId, String newProfilePhoto);
+
+    boolean updateAccountStatus(Long userId, AccountStatus accountStatus);
+
+    boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus);
+
 }
