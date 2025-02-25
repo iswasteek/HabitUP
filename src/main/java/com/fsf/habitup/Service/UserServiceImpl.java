@@ -1,12 +1,17 @@
 package com.fsf.habitup.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +23,9 @@ import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Exception.ApiException;
+import com.fsf.habitup.Repository.PasswordResetTokenRepository;
 import com.fsf.habitup.Repository.UserRepository;
+import com.fsf.habitup.entity.PasswordResetToken;
 import com.fsf.habitup.entity.User;
 
 @Service
@@ -29,12 +36,20 @@ public class UserServiceImpl implements UserService {
 
     private final AuthenticationManager authenticationManager;
 
-    public UserServiceImpl(AuthenticationManager auth, PasswordEncoder passwordEncoder,
-            UserRepository userRepo) {
-        this.authenticationManager = auth;
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepo;
+    @Autowired
+    private final PasswordResetTokenRepository tokenRepository;
 
+    @Autowired
+    private final JavaMailSender mailSender;
+
+    public UserServiceImpl(AuthenticationManager authenticationManager, JavaMailSender mailSender,
+            PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository,
+            UserRepository userRepository) {
+        this.authenticationManager = authenticationManager;
+        this.mailSender = mailSender;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenRepository = tokenRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -52,6 +67,11 @@ public class UserServiceImpl implements UserService {
         user.setDob(request.getDateOfBirth());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNo(request.getPhoneNumber());
+        user.setSubscriptionType(null);
+        user.setAccountStatus(request.getAccountStatus());
+        user.setProfilePhoto(null);
+        user.setGender(request.getGender());
+        user.setUserType(request.getUserType());
 
         userRepository.save(user);
 
@@ -115,13 +135,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUserPassword(String email, String newPassword) {
-        User existingUser = userRepository.findByEmail(email);
-        if (existingUser == null) {
-            return false;
+    public boolean sendPasswordResetToken(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return false; // User not found
         }
-        existingUser.setPassword(newPassword);
-        userRepository.save(existingUser);
+
+        // Generate a unique token and store it
+        String token = UUID.randomUUID().toString();
+        LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(15);
+
+        PasswordResetToken resetToken = new PasswordResetToken(token, user, expiryDate);
+        tokenRepository.save(resetToken);
+
+        // Send email with the token
+        String resetLink = "http://localhost:8080/user/reset-password?token=" + token;
+        sendEmail(user.getEmail(), resetLink);
+
+        return true;
+    }
+
+    private void sendEmail(String recipientEmail, String resetLink) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject("Password Reset Request");
+        message.setText("Click the link below to reset your password:\n" + resetLink);
+        mailSender.send(message);
+    }
+
+    @Override
+    public boolean resetPassword(String token, String newPassword) {
+        PasswordResetToken resetToken = tokenRepository.findByToken(token);
+        if (resetToken == null || resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+            return false; // Token invalid or expired
+        }
+
+        User user = resetToken.getUser();
+        user.setPassword(passwordEncoder.encode(newPassword)); // Encrypt password
+        userRepository.save(user);
+
+        // Remove the token after successful reset
+        tokenRepository.delete(resetToken);
         return true;
     }
 

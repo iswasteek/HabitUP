@@ -30,7 +30,7 @@ public interface UserService {
 
     public List<User> getAllUsers();
 
-    public boolean updateUserPassword(String email, String newPassword);
+    public boolean sendPasswordResetToken(String email);
 
     public boolean updateUserPhoneNo(String email, Long newPhoneNo);
 
@@ -41,6 +41,8 @@ public interface UserService {
     public default User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    public boolean resetPassword(String token, String newPassword);
 
     boolean updateUserType(Long userId, UserType userType);
 

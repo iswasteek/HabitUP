@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Enums.Gender;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
 
@@ -56,6 +57,18 @@ public class User {
 	@Column(name = "userType", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
+
+	@Column(name = "gender", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
 	/**
 	 * @return Long return the userId

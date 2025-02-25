@@ -69,13 +69,22 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PutMapping("/{email}/password")
-    public ResponseEntity<String> updateUserPassword(@PathVariable String email, @RequestBody String newPassword) {
-        boolean updated = userService.updateUserPassword(email, newPassword);
-        if (!updated) {
-            return ResponseEntity.notFound().build();
+    @PutMapping("/{email}/send-mail")
+    public ResponseEntity<String> sendPasswordResetEmail(@PathVariable String email) {
+        boolean emailSent = userService.sendPasswordResetToken(email);
+        if (!emailSent) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found or email not sent.");
         }
-        return ResponseEntity.ok("Password updated successfully.");
+        return ResponseEntity.ok("Password reset email sent successfully.");
+    }
+
+    @PutMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody String newPassword) {
+        boolean isReset = userService.resetPassword(token, newPassword);
+        if (!isReset) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired token.");
+        }
+        return ResponseEntity.ok("Password has been reset successfully.");
     }
 
     @PutMapping("/{email}/phoneno")

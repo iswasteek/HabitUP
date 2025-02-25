@@ -1,10 +1,14 @@
 package com.fsf.habitup.entity;
 
 import java.util.Date;
-import java.util.List;
+
+import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Enums.UserType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +21,7 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "doctorId", nullable = false, unique = true)
-    private Long doctor_Id;
+    private Long doctorId;
 
     @Column(name = "doctorName", nullable = false, unique = false)
     private String doctorName;
@@ -44,20 +48,33 @@ public class Doctor {
     private int consultationFee;
 
     @Column(name = "ratings", nullable = false, unique = false)
-    private int ratings;
-
-    @Column(name = "appointmentList", nullable = false, unique = false)
-    private List<String> appointmentList;
+    private float ratings;
 
     @Column(name = "status", nullable = false, unique = false)
     private String status;
 
-    public List<String> getAppointmentList() {
-        return appointmentList;
+    @Column(name = "userType", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
+
+    @Column(name = "AccountStatus", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
     }
 
-    public void setAppointmentList(List<String> appointmentList) {
-        this.appointmentList = appointmentList;
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public Date getAvailabilitySchedule() {
@@ -76,12 +93,12 @@ public class Doctor {
         this.consultationFee = consultationFee;
     }
 
-    public Long getDoctor_Id() {
-        return doctor_Id;
+    public Long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_Id(Long doctor_Id) {
-        this.doctor_Id = doctor_Id;
+    public void setDoctor_Id(Long doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getDoctorName() {
@@ -116,11 +133,11 @@ public class Doctor {
         this.phoneNo = phoneNo;
     }
 
-    public int getRatings() {
+    public float getRatings() {
         return ratings;
     }
 
-    public void setRatings(int ratings) {
+    public void setRatings(float ratings) {
         this.ratings = ratings;
     }
 

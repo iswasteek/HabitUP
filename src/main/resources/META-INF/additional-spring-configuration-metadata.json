@@ -13,5 +13,10 @@
     "name": "net.bytebuddy.agent.silent",
     "type": "java.lang.String",
     "description": "A description for 'net.bytebuddy.agent.silent'"
+  },
+  {
+    "name": "app.token.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'app.token.expiration'"
   }
 ]}
