@@ -1,6 +1,5 @@
 package com.fsf.habitup.Service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +31,6 @@ public interface UserService {
 
     public boolean sendPasswordResetToken(String email);
 
-    public boolean updateUserPhoneNo(String email, Long newPhoneNo);
-
-    public boolean updateUserDob(String email, Date newDob);
-
-    public boolean updateUserName(String email, String Name);
-
     public default User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -45,8 +38,6 @@ public interface UserService {
     public boolean resetPassword(String token, String newPassword);
 
     boolean updateUserType(Long userId, UserType userType);
-
-    boolean updateProfilePhoto(Long userId, String newProfilePhoto);
 
     boolean updateAccountStatus(Long userId, AccountStatus accountStatus);
 

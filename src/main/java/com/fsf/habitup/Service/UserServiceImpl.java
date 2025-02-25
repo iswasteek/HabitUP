@@ -6,7 +6,6 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,10 +67,8 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNo(request.getPhoneNumber());
         user.setSubscriptionType(null);
-        user.setAccountStatus(request.getAccountStatus());
         user.setProfilePhoto(null);
         user.setGender(request.getGender());
-        user.setUserType(request.getUserType());
 
         userRepository.save(user);
 
@@ -101,10 +98,11 @@ public class UserServiceImpl implements UserService {
         }
 
         existingUser.setName(updateUser.getName());
-        existingUser.setEmail(updateUser.getEmail());
         existingUser.setPassword(updateUser.getPassword());
         existingUser.setDob(updateUser.getDob());
         existingUser.setPhoneNo(updateUser.getPhoneNumber());
+        existingUser.setGender(updateUser.getGender());
+        existingUser.setProfilePhoto(updateUser.getEmail());
 
         String message = "updated successfully!!";
         System.out.println(message);
@@ -180,43 +178,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUserPhoneNo(String email, Long newPhoneNo) {
-        User existingUser = userRepository.findByEmail(email);
-        if (existingUser == null) {
-            return false;
-        }
-        existingUser.setPhoneNo(newPhoneNo);
-        userRepository.save(existingUser);
-        return true;
-    }
-
-    @Override
-    public boolean updateUserDob(String email, Date newDob) {
-        User existingUser = userRepository.findByEmail(email);
-        if (existingUser == null) {
-            return false;
-        }
-        existingUser.setDob(newDob);
-        userRepository.save(existingUser);
-        return true;
-    }
-
-    @Override
-    public boolean updateUserName(String email, String Name) {
-        User existingUser = userRepository.findByEmail(email);
-        if (existingUser == null) {
-            return false;
-        }
-        existingUser.setName(Name);
-        userRepository.save(existingUser);
-        return true;
-    }
-
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    @Override
     public boolean updateUserType(Long userId, UserType userType) {
         return userRepository.findById(userId).map(user -> {
             Date dobDate = user.getDob(); // Get Date type DOB
@@ -241,18 +202,6 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             return true;
         }).orElse(false);
-    }
-
-    @Override
-    public boolean updateProfilePhoto(Long userId, String newProfilePhoto) {
-        Optional<User> userOp = userRepository.findById(userId);
-        if (userOp.isPresent()) {
-            User user = userOp.get();
-            user.setProfilePhoto(newProfilePhoto);
-            userRepository.save(user);
-            return true;
-        }
-        return false;
     }
 
     @Override

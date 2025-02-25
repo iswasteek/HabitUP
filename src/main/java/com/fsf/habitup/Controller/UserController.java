@@ -87,15 +87,6 @@ public class UserController {
         return ResponseEntity.ok("Password has been reset successfully.");
     }
 
-    @PutMapping("/{email}/phoneno")
-    public ResponseEntity<String> updateUserPhoneNo(@PathVariable String email, @RequestBody Long phoneNo) {
-        boolean updated = userService.updateUserPhoneNo(email, phoneNo);
-        if (!updated) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok("Phone Number updated successfully.");
-    }
-
     @PutMapping("/update-user-type/{userId}")
     public ResponseEntity<String> updateUserType(@PathVariable Long userId) {
         boolean updated = userService.updateUserType(userId, null);
@@ -120,13 +111,6 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid account status provided.");
         }
-    }
-
-    @PutMapping("/update-photo/{userId}")
-    public ResponseEntity<String> updateProfilePhoto(@PathVariable Long userId, @RequestBody String newProfilePhoto) {
-        boolean updated = userService.updateProfilePhoto(userId, newProfilePhoto);
-        return updated ? ResponseEntity.ok("Profile photo updated successfully.")
-                : ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
     }
 
 }
