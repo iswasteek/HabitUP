@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.OtpVerificationReuest;
 import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
@@ -43,4 +44,5 @@ public interface UserService {
 
     boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus);
 
+    public String verifyOtpAndCreateUser(OtpVerificationReuest request);
 }

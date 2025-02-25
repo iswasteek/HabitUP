@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.OtpVerificationReuest;
 import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
@@ -29,6 +30,8 @@ import com.fsf.habitup.entity.User;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private final OtpService otpService;
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -42,10 +45,11 @@ public class UserServiceImpl implements UserService {
     private final JavaMailSender mailSender;
 
     public UserServiceImpl(AuthenticationManager authenticationManager, JavaMailSender mailSender,
-            PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository,
+            OtpService otpService, PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository,
             UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
         this.mailSender = mailSender;
+        this.otpService = otpService;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
         this.userRepository = userRepository;
@@ -53,17 +57,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String registerUser(RegisterRequest request) {
-        User newUser = userRepository.findByEmail(request.getEmail());
-
-        if (newUser != null && newUser.getEmail().equals(request.getEmail())) {
+        if (userRepository.findByEmail(request.getEmail()) != null) {
             throw new ApiException("This user is already registered");
         }
 
+        // Generate and send OTP
+        otpService.generateAndSendOtp(request.getEmail());
+        return "OTP sent to " + request.getEmail() + ". Please verify before completing registration.";
+    }
+
+    @Override
+    public String verifyOtpAndCreateUser(OtpVerificationReuest request) {
+        if (!otpService.validateOtp(request.getEmail(), request.getOtp())) {
+            return "Invalid or expired OTP";
+        }
+
+        // Create and save user
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setJoinDate(null);
-        user.setDob(request.getDateOfBirth());
+        user.setJoinDate(LocalDateTime.now());
+        user.setDob(request.getDob());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNo(request.getPhoneNumber());
         user.setSubscriptionType(null);
@@ -71,8 +85,7 @@ public class UserServiceImpl implements UserService {
         user.setGender(request.getGender());
 
         userRepository.save(user);
-
-        return "Registration successful! Check your email to verify.";
+        return "Registration successful!";
     }
 
     @Override
@@ -98,11 +111,10 @@ public class UserServiceImpl implements UserService {
         }
 
         existingUser.setName(updateUser.getName());
-        existingUser.setPassword(updateUser.getPassword());
         existingUser.setDob(updateUser.getDob());
         existingUser.setPhoneNo(updateUser.getPhoneNumber());
         existingUser.setGender(updateUser.getGender());
-        existingUser.setProfilePhoto(updateUser.getEmail());
+        existingUser.setProfilePhoto(updateUser.getProfilePhoto());
 
         String message = "updated successfully!!";
         System.out.println(message);
@@ -136,17 +148,15 @@ public class UserServiceImpl implements UserService {
     public boolean sendPasswordResetToken(String email) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
-            return false; // User not found
+            return false;
         }
 
-        // Generate a unique token and store it
         String token = UUID.randomUUID().toString();
         LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(15);
 
         PasswordResetToken resetToken = new PasswordResetToken(token, user, expiryDate);
         tokenRepository.save(resetToken);
 
-        // Send email with the token
         String resetLink = "http://localhost:8080/user/reset-password?token=" + token;
         sendEmail(user.getEmail(), resetLink);
 

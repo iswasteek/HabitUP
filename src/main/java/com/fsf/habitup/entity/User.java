@@ -189,8 +189,4 @@ public class User {
 		this.joinDate = joinDate;
 	}
 
-	public User() {
-		this.joinDate = LocalDateTime.now(); // Automatically set when a new user is created
-	}
-
 }

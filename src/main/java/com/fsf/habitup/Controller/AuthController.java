@@ -1,6 +1,7 @@
 package com.fsf.habitup.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsf.habitup.DTO.AuthResponse;
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.OtpVerificationReuest;
 import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.Service.UserServiceImpl;
@@ -30,9 +32,18 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
-        String user = userService.registerUser(request);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<String> registerUser(@RequestBody RegisterRequest request) {
+        String response = userService.registerUser(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<String> verifyOtp(@RequestBody OtpVerificationReuest request) {
+        String response = userService.verifyOtpAndCreateUser(request);
+        if (response.equals("Invalid or expired OTP")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
