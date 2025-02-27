@@ -56,33 +56,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String registerUser(RegisterRequest request) {
-        if (userRepository.findByEmail(request.getEmail()) != null) {
+    public String sendOtp(String email) {
+        if (userRepository.findByEmail(email) != null) {
             throw new ApiException("This user is already registered");
         }
 
         // Generate and send OTP
-        otpService.generateAndSendOtp(request.getEmail());
-        return "OTP sent to " + request.getEmail() + ". Please verify before completing registration.";
+        otpService.generateAndSendOtp(email);
+        return "OTP sent to " + email + ". Please verify before completing registration.";
     }
 
     @Override
-    public String verifyOtpAndCreateUser(OtpVerificationReuest request) {
-        if (!otpService.validateOtp(request.getEmail(), request.getOtp())) {
+    public String verifyOtpAndCreateUser(OtpVerificationReuest request1, RegisterRequest request2) {
+        if (!otpService.validateOtp(request1.getEmail(), request1.getOtp())) {
             return "Invalid or expired OTP";
         }
 
         // Create and save user
         User user = new User();
-        user.setName(request.getName());
-        user.setEmail(request.getEmail());
+        user.setName(request2.getName());
+        user.setEmail(request2.getEmail());
         user.setJoinDate(LocalDateTime.now());
-        user.setDob(request.getDob());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setPhoneNo(request.getPhoneNumber());
+        user.setDob(request2.getDateOfBirth());
+        user.setPassword(passwordEncoder.encode(request2.getPassword()));
+        user.setPhoneNo(request2.getPhoneNumber());
         user.setSubscriptionType(null);
         user.setProfilePhoto(null);
-        user.setGender(request.getGender());
+        user.setGender(request2.getGender());
 
         userRepository.save(user);
         return "Registration successful!";

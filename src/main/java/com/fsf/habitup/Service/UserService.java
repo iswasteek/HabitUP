@@ -18,7 +18,7 @@ public interface UserService {
     @Autowired
     UserRepository userRepository = null;
 
-    public String registerUser(RegisterRequest request);
+    public String sendOtp(String email);
 
     public String authenticateUser(LoginRequest request);
 
@@ -44,5 +44,5 @@ public interface UserService {
 
     boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus);
 
-    public String verifyOtpAndCreateUser(OtpVerificationReuest request);
+    public String verifyOtpAndCreateUser(OtpVerificationReuest request1, RegisterRequest request2);
 }

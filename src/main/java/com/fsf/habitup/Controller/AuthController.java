@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsf.habitup.DTO.AuthResponse;
@@ -31,15 +32,16 @@ public class AuthController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody RegisterRequest request) {
-        String response = userService.registerUser(request);
+    @PostMapping("/send-OTP")
+    public ResponseEntity<String> sendOtpToUserEmail(@RequestParam String email) {
+        String response = userService.sendOtp(email);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/verify-otp")
-    public ResponseEntity<String> verifyOtp(@RequestBody OtpVerificationReuest request) {
-        String response = userService.verifyOtpAndCreateUser(request);
+    @PostMapping("/verify-otp-and-register")
+    public ResponseEntity<String> verifyOtpAndRegister(@RequestBody OtpVerificationReuest request1,
+            @RequestBody RegisterRequest request2) {
+        String response = userService.verifyOtpAndCreateUser(request1, request2);
         if (response.equals("Invalid or expired OTP")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
