@@ -1,7 +1,13 @@
 package com.fsf.habitup.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class OtpRegisterRequest {
+
+    @JsonProperty("otpVerificationRequest")
     private OtpVerificationReuest otpVerificationReuest;
+
+    @JsonProperty("registerRequest")
     private RegisterRequest registerRequest;
 
     public OtpRegisterRequest(OtpVerificationReuest otpVerificationReuest, RegisterRequest registerRequest) {

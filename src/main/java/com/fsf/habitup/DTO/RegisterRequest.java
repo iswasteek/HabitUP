@@ -1,17 +1,18 @@
 package com.fsf.habitup.DTO;
 
-import java.util.Date;
 
 import com.fsf.habitup.Enums.Gender;
+import com.fsf.habitup.Enums.SubscriptionType;
 
 public class RegisterRequest {
 
     private String name;
     private String email; // New field for email
     private String password;
-    private Date dateOfBirth;
-    private Long phoneNo;
+    private String dateOfBirth;
+    private String phoneNo;
     private Gender gender;
+    private SubscriptionType subscriptionType;
 
     public Gender getGender() {
         return gender;
@@ -21,13 +22,20 @@ public class RegisterRequest {
         this.gender = gender;
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(Long phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
 
+    public SubscriptionType getSubscriptionType() {
+        return subscriptionType;
+    }
+
+    public void setSubscriptionType(SubscriptionType subscriptionType) {
+        this.subscriptionType = subscriptionType;
     }
 
     public String getName() {
@@ -42,7 +50,7 @@ public class RegisterRequest {
         return password;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -58,7 +66,7 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

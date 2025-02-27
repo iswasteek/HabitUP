@@ -19,7 +19,7 @@ public interface UserService {
 
     public String sendOtp(String email);
 
-    public String authenticateUser(LoginRequest request);
+    public User authenticateUser(LoginRequest request);
 
     public User updateUser(String email, User user);
 
@@ -36,8 +36,6 @@ public interface UserService {
     }
 
     public boolean resetPassword(String token, String newPassword);
-
-    boolean updateUserType(Long userId, UserType userType);
 
     boolean updateAccountStatus(Long userId, AccountStatus accountStatus);
 

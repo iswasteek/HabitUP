@@ -33,6 +33,7 @@ public class OtpService {
     private void sendOtpEmail(String email, String otp) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
+        message.setFrom("swastikproffesional@gmail.com");
         message.setSubject("Your OTP for Registration");
         message.setText("Your OTP is: " + otp + ". It is valid for 5 minutes.");
 

@@ -87,13 +87,6 @@ public class UserController {
         return ResponseEntity.ok("Password has been reset successfully.");
     }
 
-    @PutMapping("/update-user-type/{userId}")
-    public ResponseEntity<String> updateUserType(@PathVariable Long userId) {
-        boolean updated = userService.updateUserType(userId, null);
-        return updated ? ResponseEntity.ok("User type updated successfully.")
-                : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User type update failed.");
-    }
-
     @PutMapping("/update-subscription/{userId}")
     public ResponseEntity<String> updateSubscriptionType(@PathVariable Long userId, @RequestParam boolean isPaid) {
         boolean updated = userService.updateSubscriptionType(userId, null, isPaid);

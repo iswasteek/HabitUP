@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -61,7 +62,6 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByEmail(email) != null) {
             throw new ApiException("This user is already registered");
         }
-
         // Generate and send OTP
         otpService.generateAndSendOtp(email);
         return "OTP sent to " + email + ". Please verify before completing registration.";
@@ -75,33 +75,57 @@ public class UserServiceImpl implements UserService {
             return "Invalid or expired OTP";
         }
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         // Create and save user
         User user = new User();
         user.setName(registerRequest.getName());
         user.setEmail(registerRequest.getEmail());
-        user.setJoinDate(LocalDateTime.now());
-        user.setDob(registerRequest.getDateOfBirth());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setPhoneNo(registerRequest.getPhoneNumber());
-        user.setSubscriptionType(null);
-        user.setProfilePhoto(null);
-        user.setGender(registerRequest.getGender());
+        String joinDate = LocalDate.now().format(formatter);
+        user.setJoinDate(joinDate);
+        String dobString = registerRequest.getDateOfBirth();
+        user.setDob(dobString);
+        // Convert dobString to LocalDate for age calculation
+        LocalDate dob = LocalDate.parse(dobString, formatter);
+        int age = Period.between(dob, LocalDate.now()).getYears();
 
+        // Set UserType based on age
+        if (age < 18) {
+            user.setUserType(UserType.Child);
+        } else if (age <= 60) {
+            user.setUserType(UserType.Adult);
+        } else {
+            user.setUserType(UserType.Elder);
+        }
+
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        user.setPhoneNo(registerRequest.getPhoneNo() != null ? Long.parseLong(registerRequest.getPhoneNo()) : null);
+        // Setting subscription type
+        if (registerRequest.getSubscriptionType() == null) {
+            user.setSubscriptionType(SubscriptionType.FREE); // Set default value
+        } else {
+            user.setSubscriptionType(registerRequest.getSubscriptionType());
+        }
+        user.setGender(registerRequest.getGender());
+        user.setAccountStatus(AccountStatus.ACTIVE);
         userRepository.save(user);
         return "Registration successful!";
     }
 
     @Override
-    public String authenticateUser(LoginRequest request) {
+    public User authenticateUser(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
 
         if (user == null) {
             throw new ApiException("User not found");
         }
-        authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-        return "Authentication successful!";
+        // Authenticate the user
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+        );
+
+        return user;
     }
 
     @Override
@@ -115,7 +139,7 @@ public class UserServiceImpl implements UserService {
 
         existingUser.setName(updateUser.getName());
         existingUser.setDob(updateUser.getDob());
-        existingUser.setPhoneNo(updateUser.getPhoneNumber());
+        existingUser.setPhoneNo(updateUser.getPhoneNo());
         existingUser.setGender(updateUser.getGender());
         existingUser.setProfilePhoto(updateUser.getProfilePhoto());
 
@@ -190,32 +214,6 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-    @Override
-    public boolean updateUserType(Long userId, UserType userType) {
-        return userRepository.findById(userId).map(user -> {
-            Date dobDate = user.getDob(); // Get Date type DOB
-            if (dobDate == null) {
-                return false; // Can't determine UserType without DOB
-            }
-
-            // Convert Date to LocalDate
-            LocalDate dob = dobDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            int age = Period.between(dob, LocalDate.now()).getYears();
-
-            UserType determinedType;
-            if (age < 18) {
-                determinedType = UserType.Child;
-            } else if (age < 60) {
-                determinedType = UserType.Adult;
-            } else {
-                determinedType = UserType.Elder;
-            }
-
-            user.setUserType(determinedType);
-            userRepository.save(user);
-            return true;
-        }).orElse(false);
-    }
 
     @Override
     public boolean updateAccountStatus(Long userId, AccountStatus accountStatus) {

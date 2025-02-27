@@ -49,15 +49,17 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         // Authenticate the user
-        userService.authenticateUser(request);
+        User user = userService.authenticateUser(request);
 
-        User user = new User();
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
 
         // Generate JWT token
         String token = jwtTokenProvider.generateToken(user.getEmail());
 
         // Create a response message
-        String message = "Login successful for user: " + user.getName();
+        String message = "Login successful for user: " + user.getName() +" with userId: "+user.getUserId();
 
         return ResponseEntity.ok(new AuthResponse(token, message));
     }
