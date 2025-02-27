@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.OtpRegisterRequest;
 import com.fsf.habitup.DTO.OtpVerificationReuest;
 import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
@@ -67,22 +68,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String verifyOtpAndCreateUser(OtpVerificationReuest request1, RegisterRequest request2) {
-        if (!otpService.validateOtp(request1.getEmail(), request1.getOtp())) {
+    public String verifyOtpAndCreateUser(OtpRegisterRequest request) {
+        OtpVerificationReuest otpRequest = request.getOtpVerificationReuest();
+        RegisterRequest registerRequest = request.getRegisterRequest();
+        if (!otpService.validateOtp(otpRequest.getEmail(), otpRequest.getOtp())) {
             return "Invalid or expired OTP";
         }
 
         // Create and save user
         User user = new User();
-        user.setName(request2.getName());
-        user.setEmail(request2.getEmail());
+        user.setName(registerRequest.getName());
+        user.setEmail(registerRequest.getEmail());
         user.setJoinDate(LocalDateTime.now());
-        user.setDob(request2.getDateOfBirth());
-        user.setPassword(passwordEncoder.encode(request2.getPassword()));
-        user.setPhoneNo(request2.getPhoneNumber());
+        user.setDob(registerRequest.getDateOfBirth());
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        user.setPhoneNo(registerRequest.getPhoneNumber());
         user.setSubscriptionType(null);
         user.setProfilePhoto(null);
-        user.setGender(request2.getGender());
+        user.setGender(registerRequest.getGender());
 
         userRepository.save(user);
         return "Registration successful!";
