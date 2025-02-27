@@ -100,12 +100,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setPhoneNo(registerRequest.getPhoneNo() != null ? Long.parseLong(registerRequest.getPhoneNo()) : null);
-        // Setting subscription type
-        if (registerRequest.getSubscriptionType() == null) {
-            user.setSubscriptionType(SubscriptionType.FREE); // Set default value
-        } else {
-            user.setSubscriptionType(registerRequest.getSubscriptionType());
-        }
+        user.setSubscriptionType(SubscriptionType.FREE);
         user.setGender(registerRequest.getGender());
         user.setAccountStatus(AccountStatus.ACTIVE);
         userRepository.save(user);
