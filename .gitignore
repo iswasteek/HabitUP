@@ -32,4 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
+# Ignore properties and env files
 src/main/resources/application.properties
+.env
+*.env
