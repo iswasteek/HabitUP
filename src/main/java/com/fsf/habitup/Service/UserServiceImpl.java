@@ -3,12 +3,11 @@ package com.fsf.habitup.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.fsf.habitup.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,10 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.fsf.habitup.DTO.LoginRequest;
-import com.fsf.habitup.DTO.OtpRegisterRequest;
-import com.fsf.habitup.DTO.OtpVerificationReuest;
-import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
@@ -35,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
     private final OtpService otpService;
     private final UserRepository userRepository;
+
 
     private final PasswordEncoder passwordEncoder;
 
@@ -58,14 +54,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String forgotPassword(ForgetPasswordRequest forgetPasswordRequest) {
+
+        if (!otpService.validateOtp(forgetPasswordRequest.getEmail(), forgetPasswordRequest.getOtp())) {
+            return "Invalid or expired OTP";
+        }
+
+        User user = userRepository.findByEmail(forgetPasswordRequest.getEmail());
+        if (user == null) {
+            return "User not found";
+        }
+        String hashedPassword = passwordEncoder.encode(forgetPasswordRequest.getPassword());
+        user.setPassword(hashedPassword);
+        userRepository.save(user);
+
+        return "Password reset successful!";
+    }
+
+    @Override
     public String sendOtp(String email) {
         if (userRepository.findByEmail(email) != null) {
-            throw new ApiException("This user is already registered");
+            throw new ApiException("This email is already registered");
         }
         // Generate and send OTP
         otpService.generateAndSendOtp(email);
         return "OTP sent to " + email + ". Please verify before completing registration.";
     }
+
+    @Override
+    public String SendOTPForForgotPassword(String email) {
+        if (userRepository.findByEmail(email) == null) {
+            throw new ApiException("Register Yourself first");
+        }
+
+        // Generate and send OTP
+        otpService.generateAndSendOtp(email);
+        return "OTP sent to " + email + ". Please use this OTP for password change.";
+
+    }
+
+
+
 
     @Override
     public String verifyOtpAndCreateUser(OtpRegisterRequest request) {

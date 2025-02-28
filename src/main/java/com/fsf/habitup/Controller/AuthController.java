@@ -1,5 +1,6 @@
 package com.fsf.habitup.Controller;
 
+import com.fsf.habitup.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fsf.habitup.DTO.AuthResponse;
-import com.fsf.habitup.DTO.LoginRequest;
-import com.fsf.habitup.DTO.OtpRegisterRequest;
 import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.Service.UserServiceImpl;
 import com.fsf.habitup.entity.User;
@@ -32,8 +30,21 @@ public class AuthController {
     }
 
     @PostMapping("/send-OTP")
-    public ResponseEntity<String> sendOtpToUserEmail(@RequestParam String email) {
+    public ResponseEntity<String> sendOtp(@RequestParam String email) {
         String response = userService.sendOtp(email);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/send-OTP-forgot-password")
+    public ResponseEntity<String> sendOtpToUserEmail(@RequestParam String email) {
+        String response = userService.SendOTPForForgotPassword(email);
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PostMapping("/forgot-password-otp")
+    public ResponseEntity<String> SendEmailForForgotPassword(@RequestBody ForgetPasswordRequest forgetPasswordRequest) {
+        String response = userService.forgotPassword(forgetPasswordRequest);
         return ResponseEntity.ok(response);
     }
 

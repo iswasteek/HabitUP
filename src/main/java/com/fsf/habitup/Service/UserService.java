@@ -2,6 +2,8 @@ package com.fsf.habitup.Service;
 
 import java.util.List;
 
+import com.fsf.habitup.DTO.ForgetPasswordRequest;
+import com.fsf.habitup.DTO.OtpVerificationReuest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fsf.habitup.DTO.LoginRequest;
@@ -17,7 +19,11 @@ public interface UserService {
     @Autowired
     UserRepository userRepository = null;
 
+    public String forgotPassword(ForgetPasswordRequest forgetPasswordRequest);
+
     public String sendOtp(String email);
+
+    public String SendOTPForForgotPassword(String email);
 
     public User authenticateUser(LoginRequest request);
 
