@@ -5,42 +5,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class OtpRegisterRequest {
 
     @JsonProperty("otpVerificationRequest")
-    private OtpVerificationReuest otpVerificationReuest;
+    private OtpVerificationReuest otpVerificationRequest;
 
     @JsonProperty("registerRequest")
     private RegisterRequest registerRequest;
 
     public OtpRegisterRequest(OtpVerificationReuest otpVerificationReuest, RegisterRequest registerRequest) {
-        this.otpVerificationReuest = otpVerificationReuest;
+        this.otpVerificationRequest = otpVerificationReuest;
         this.registerRequest = registerRequest;
     }
 
-    /**
-     * @return OtpVerificationReuest return the otpVerificationReuest
-     */
-    public OtpVerificationReuest getOtpVerificationReuest() {
-        return otpVerificationReuest;
+    public OtpVerificationReuest getOtpVerificationRequest() {
+        return otpVerificationRequest;
     }
 
-    /**
-     * @param otpVerificationReuest the otpVerificationReuest to set
-     */
-    public void setOtpVerificationReuest(OtpVerificationReuest otpVerificationReuest) {
-        this.otpVerificationReuest = otpVerificationReuest;
+    public void setOtpVerificationRequest(OtpVerificationReuest otpVerificationRequest) {
+        this.otpVerificationRequest = otpVerificationRequest;
     }
 
-    /**
-     * @return RegisterRequest return the registerRequest
-     */
     public RegisterRequest getRegisterRequest() {
         return registerRequest;
     }
 
-    /**
-     * @param registerRequest the registerRequest to set
-     */
     public void setRegisterRequest(RegisterRequest registerRequest) {
         this.registerRequest = registerRequest;
     }
-
 }

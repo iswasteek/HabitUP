@@ -68,11 +68,7 @@ public class AuthController {
 
         // Generate JWT token
         String token = jwtTokenProvider.generateToken(user.getEmail());
-
-        // Create a response message
-        String message = "Login successful for user: " + user.getName() +" with userId: "+user.getUserId();
-
-        return ResponseEntity.ok(new AuthResponse(token, message));
+        return ResponseEntity.ok(new AuthResponse(token, String.valueOf(user.getUserId())));
     }
 
 }

@@ -93,12 +93,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
-
-
     @Override
     public String verifyOtpAndCreateUser(OtpRegisterRequest request) {
-        OtpVerificationReuest otpRequest = request.getOtpVerificationReuest();
+        OtpVerificationReuest otpRequest = request.getOtpVerificationRequest();
         RegisterRequest registerRequest = request.getRegisterRequest();
         if (!otpService.validateOtp(otpRequest.getEmail(), otpRequest.getOtp())) {
             return "Invalid or expired OTP";

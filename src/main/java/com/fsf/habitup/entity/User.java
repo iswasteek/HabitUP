@@ -46,7 +46,7 @@ public class User {
 
 	@Column(name = "AccountStatus", nullable = false)
 	@Enumerated(EnumType.STRING)
-	private AccountStatus accountStatus = AccountStatus.ACTIVE;
+	private AccountStatus accountStatus;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
