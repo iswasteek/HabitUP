@@ -1089,60 +1089,63 @@
             <div class="modal-body">
                 <form id="signupForm">
                     <div class="row">
-                        <!-- Left Column -->
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="signupName" class="fw-semibold">Name</label>
+                                <label for="signupName">Name</label>
                                 <input class="form-control" id="signupName" minlength="3" required type="text" placeholder="Enter your full name">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="signupEmail" class="fw-semibold">Email</label>
-                                <input class="form-control" id="signupEmail" required type="email" placeholder="someone@email.com">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="signupPhone" class="fw-semibold">Phone Number</label>
-                                <input class="form-control" id="signupPhone" maxlength="10" minlength="10" required type="tel" placeholder="1234567890">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="signupDOB" class="fw-semibold">Date of Birth</label>
-                                <input class="form-control" id="signupDOB" max="" required type="date">
-                            </div>
                         </div>
-
-                        <!-- Right Column -->
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="signupPassword" class="fw-semibold">Password</label>
+                                <label for="signupEmail">Email</label>
+                                <input class="form-control" id="signupEmail" required type="email" placeholder="someone@email.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="signupPassword">Password</label>
                                 <input class="form-control" id="signupPassword" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$" required
                                        type="password" placeholder="Eg: Someone@123">
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="signupConfirmPassword" class="fw-semibold">Confirm Password</label>
+                                <label for="signupConfirmPassword">Confirm Password</label>
                                 <input class="form-control" id="signupConfirmPassword" required type="password" placeholder="Re-enter password">
                             </div>
-
-                            <!-- Password Rules Heading (Now Outside Box) -->
-                            <label class="fw-semibold">Password must contain:</label>
-                            <div class="password-rules p-3 rounded" style="background-color: #b2b8c2;">
-                                <ul class="list-unstyled mb-0">
-                                    <li><i class="bi bi-check-circle text-success"></i> At least 6 characters</li>
-                                    <li><i class="bi bi-check-circle text-success"></i> 1 uppercase letter</li>
-                                    <li><i class="bi bi-check-circle text-success"></i> 1 number</li>
-                                    <li><i class="bi bi-check-circle text-success"></i> 1 special character (!@#$%^&*)</li>
-                                </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="signupDOB">Date of Birth</label>
+                                <input class="form-control" id="signupDOB" max="" required type="date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="signupPhone">Phone Number</label>
+                                <input class="form-control" id="signupPhone" maxlength="10" minlength="10" required type="tel" placeholder="1234567890">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="signupGender">Gender</label>
+                                <select class="form-control" id="signupGender" required>
+                                    <option disabled selected value="">Select Gender</option>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
+                                    <option value="OTHER">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="form-group mb-3">
+                                <input id="acceptTerms" required type="checkbox">
+                                <label for="acceptTerms">I accept the <a class="terms-link" href="terms.html">Terms and Conditions</a></label>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Terms & Conditions + Send OTP (Centered Below) -->
-                    <div class="text-center mt-4">
-                        <div class="form-group mb-3">
-                            <input id="acceptTerms" required type="checkbox" class="me-2">
-                            <label for="acceptTerms">I accept the <a class="terms-link" href="terms.html">Terms and Conditions</a></label>
-                        </div>
-                        <button class="btn btn-primary" type="submit" style="width: 30%;">Send OTP</button>
-                    </div>
-                    <div class="message mt-2 text-center" id="signupMessage"></div>
+                    <div class="message" id="signupMessage"></div>
+                    <button class="btn btn-primary d-block mx-auto" style="width: 30%;" type="submit">Send OTP</button>
                 </form>
             </div>
         </div>
