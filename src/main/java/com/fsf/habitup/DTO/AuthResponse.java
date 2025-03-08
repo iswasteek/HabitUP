@@ -1,13 +1,15 @@
 package com.fsf.habitup.DTO;
 
+import com.fsf.habitup.entity.User;
+
 public class AuthResponse {
 
     private String token;
-    private String message;
+    private User user;
 
-    public AuthResponse(String token, String message) {
+    public AuthResponse(String token, User user) {
         this.token = token;
-        this.message = message;
+        this.user = user;
     }
 
     /**
@@ -25,17 +27,17 @@ public class AuthResponse {
     }
 
     /**
-     * @return String return the message
+     * @return User return the user
      */
-    public String getMessage() {
-        return message;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * @param message the message to set
+     * @param user the user to set
      */
-    public void setMessage(String message) {
-        this.message = message;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

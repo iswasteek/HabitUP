@@ -4,11 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.UUID;
 
-import com.fsf.habitup.DTO.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,12 +13,19 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.fsf.habitup.DTO.AuthResponse;
+import com.fsf.habitup.DTO.ForgetPasswordRequest;
+import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.OtpRegisterRequest;
+import com.fsf.habitup.DTO.OtpVerificationReuest;
+import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Exception.ApiException;
 import com.fsf.habitup.Repository.PasswordResetTokenRepository;
 import com.fsf.habitup.Repository.UserRepository;
+import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.entity.PasswordResetToken;
 import com.fsf.habitup.entity.User;
 
@@ -31,21 +35,20 @@ public class UserServiceImpl implements UserService {
     private final OtpService otpService;
     private final UserRepository userRepository;
 
-
     private final PasswordEncoder passwordEncoder;
 
     private final AuthenticationManager authenticationManager;
 
-    @Autowired
     private final PasswordResetTokenRepository tokenRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
     private final JavaMailSender mailSender;
 
-    public UserServiceImpl(AuthenticationManager authenticationManager, JavaMailSender mailSender,
-            OtpService otpService, PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository,
-            UserRepository userRepository) {
+    public UserServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
+            JavaMailSender mailSender, OtpService otpService, PasswordEncoder passwordEncoder,
+            PasswordResetTokenRepository tokenRepository, UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
         this.mailSender = mailSender;
         this.otpService = otpService;
         this.passwordEncoder = passwordEncoder;
@@ -134,7 +137,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User authenticateUser(LoginRequest request) {
+    public AuthResponse authenticateUser(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
 
         if (user == null) {
@@ -143,14 +146,28 @@ public class UserServiceImpl implements UserService {
 
         // Authenticate the user
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-        return user;
+        // Generate JWT Token
+        String token = jwtTokenProvider.generateToken(request.getEmail());
+
+        // Store token in the database
+        user.setToken(token);
+        userRepository.save(user);
+
+        return new AuthResponse(token, user);
     }
 
     @Override
-    public User updateUser(String email, User updateUser) {
+    public User updateUser(String email, User updateUser, String token) {
+
+        // Validate the token and extract the email
+        String tokenEmail = jwtTokenProvider.getEmailFromToken(token);
+
+        // Check if the user is authorized to update this profile
+        if (!tokenEmail.equals(email)) {
+            throw new ApiException("Unauthorized: Cannot update another user's details");
+        }
 
         User existingUser = userRepository.findByEmail(email);
 
@@ -170,11 +187,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User getUserByEmail(String email, String authHeader) {
+        String token = authHeader.substring(7);
+
+        // Extract email from the token
+        String tokenEmail = jwtTokenProvider.getEmailFromToken(token);
+
+        // Ensure the user is requesting their own profile
+        if (!tokenEmail.equals(email)) {
+            throw new ApiException("Unauthorized");
+        }
+
+        // Fetch user details
         User existingUser = userRepository.findByEmail(email);
         if (existingUser == null) {
-            throw new ApiException("user is not found!!");
+            throw new ApiException("User not found!");
         }
+
         return existingUser;
     }
 
@@ -185,11 +214,6 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.deleteByEmail(email);
         return true;
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
     }
 
     @Override
@@ -235,38 +259,50 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-
     @Override
-    public boolean updateAccountStatus(Long userId, AccountStatus accountStatus) {
-        return userRepository.findById(userId)
-                .map(user -> {
-                    if (user.getAccountStatus() == AccountStatus.ACTIVE && accountStatus == AccountStatus.INACTIVE) {
-                        user.setAccountStatus(AccountStatus.INACTIVE);
-                    } else if (user.getAccountStatus() == AccountStatus.INACTIVE
-                            && accountStatus == AccountStatus.ACTIVE) {
-                        user.setAccountStatus(AccountStatus.ACTIVE);
-                    } else {
-                        return false; // No change needed
-                    }
-                    userRepository.save(user);
-                    return true;
-                })
-                .orElse(false); // Return false if user not found
+    public boolean updateAccountStatus(Long userId, AccountStatus accountStatus, String authHeader) {
+        String token = authHeader.substring(7);
+        String requesterEmail = jwtTokenProvider.getEmailFromToken(token);
+        User requester = userRepository.findByEmail(requesterEmail);
+
+        // Ensure only admins can change account status
+        if (requester == null) {
+            throw new ApiException("Unauthorized: Only admins can update account status.");
+        }
+
+        // Fetch the user and update status
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ApiException("User not found!"));
+
+        if (user.getAccountStatus() == accountStatus) {
+            return false; // No change needed
+        }
+
+        user.setAccountStatus(accountStatus);
+        userRepository.save(user);
+        return true;
     }
 
     @Override
-    public boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus) {
+    public boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus,
+            String authHeader) {
+        String token = authHeader.substring(7);
+        String requesterEmail = jwtTokenProvider.getEmailFromToken(token);
+        User requester = userRepository.findByEmail(requesterEmail);
+
+        // Ensure the user can only update their own subscription or an admin can update
+        // any user
+        if (requester == null || (!requester.getUserId().equals(userId))) {
+            throw new ApiException("Unauthorized: You can only update your own subscription.");
+        }
+
         return userRepository.findById(userId)
                 .map(user -> {
-                    if (paymentStatus) {
-                        user.setSubscriptionType(SubscriptionType.PREMIUM);
-                    } else {
-                        user.setSubscriptionType(SubscriptionType.FREE);
-                    }
+                    user.setSubscriptionType(paymentStatus ? SubscriptionType.PREMIUM : SubscriptionType.FREE);
                     userRepository.save(user);
                     return true;
                 })
-                .orElse(false);
+                .orElseThrow(() -> new ApiException("User not found!"));
     }
 
 }

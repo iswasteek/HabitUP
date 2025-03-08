@@ -1,0 +1,28 @@
+2025-03-08T23:55:07.646+05:30  INFO 13896 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : Starting HabitupApplicationTests using Java 21.0.2 with PID 13896 (started by Souda in C:\Users\Souda\git\FullStackFlair)
+2025-03-08T23:55:07.650+05:30  INFO 13896 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-08T23:55:09.543+05:30  INFO 13896 --- [habitup] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-08T23:55:09.657+05:30  INFO 13896 --- [habitup] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 3 JPA repository interfaces.
+2025-03-08T23:55:11.091+05:30  INFO 13896 --- [habitup] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-08T23:55:11.267+05:30  INFO 13896 --- [habitup] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-08T23:55:11.352+05:30  INFO 13896 --- [habitup] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-08T23:55:12.033+05:30  INFO 13896 --- [habitup] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-08T23:55:12.103+05:30  INFO 13896 --- [habitup] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-08T23:55:12.785+05:30  INFO 13896 --- [habitup] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@20155dae
+2025-03-08T23:55:12.788+05:30  INFO 13896 --- [habitup] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-08T23:55:12.984+05:30  INFO 13896 --- [habitup] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-08T23:55:14.614+05:30  INFO 13896 --- [habitup] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-08T23:55:15.038+05:30  INFO 13896 --- [habitup] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T23:55:15.841+05:30  INFO 13896 --- [habitup] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-08T23:55:16.381+05:30  INFO 13896 --- [habitup] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-03-08T23:55:17.028+05:30  INFO 13896 --- [habitup] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-03-08T23:55:18.183+05:30  INFO 13896 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : Started HabitupApplicationTests in 11.066 seconds (process running for 12.976)
+2025-03-08T23:55:19.236+05:30  INFO 13896 --- [habitup] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T23:55:19.242+05:30  INFO 13896 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-08T23:55:19.262+05:30  INFO 13896 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

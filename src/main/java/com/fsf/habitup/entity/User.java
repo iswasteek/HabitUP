@@ -1,8 +1,5 @@
 package com.fsf.habitup.entity;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.Gender;
 import com.fsf.habitup.Enums.SubscriptionType;
@@ -16,7 +13,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -62,6 +58,9 @@ public class User {
 	@Column(name = "gender", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
+
+	@Column(name = "token", nullable = false, unique = true)
+	private String token;
 
 	public AccountStatus getAccountStatus() {
 		return accountStatus;
@@ -158,4 +157,19 @@ public class User {
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
+
+	/**
+	 * @return String return the token
+	 */
+	public String getToken() {
+		return token;
+	}
+
+	/**
+	 * @param token the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 }
