@@ -3,6 +3,8 @@ package com.fsf.habitup.entity;
 import java.util.Date;
 
 import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Enums.DocumentStatus;
+import com.fsf.habitup.Enums.Gender;
 import com.fsf.habitup.Enums.UserType;
 
 import jakarta.persistence.Column;
@@ -12,6 +14,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,7 +37,8 @@ public class Doctor {
     private Long phoneNo;
 
     @Column(name = "gender", nullable = false, unique = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "specialization", nullable = false, unique = false)
     private String specialization;
@@ -50,16 +55,21 @@ public class Doctor {
     @Column(name = "ratings", nullable = false, unique = false)
     private float ratings;
 
-    @Column(name = "status", nullable = false, unique = false)
-    private String status;
-
-    @Column(name = "userType", nullable = false)
+    @Column(name = "userType", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
     @Column(name = "AccountStatus", nullable = false)
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
+
+    @Column(name = "DocumentStatus", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus documentStatus;
+
+    @OneToOne
+    @JoinColumn(name = "userId", nullable = false, unique = true)
+    private User user;
 
     public AccountStatus getAccountStatus() {
         return accountStatus;
@@ -117,11 +127,11 @@ public class Doctor {
         this.emailId = emailId;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -149,19 +159,27 @@ public class Doctor {
         this.specialization = specialization;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public byte getYearsOfExperience() {
         return yearsOfExperience;
     }
 
     public void setYearsOfExperience(byte yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
+    }
+
+    public DocumentStatus getDocumentStatus() {
+        return documentStatus;
+    }
+
+    public void setDocumentStatus(DocumentStatus documentStatus) {
+        this.documentStatus = documentStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

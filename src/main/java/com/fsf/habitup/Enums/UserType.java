@@ -4,5 +4,6 @@ public enum UserType {
     Adult,
     Child,
     Elder,
-    Doctor
+    Doctor,
+    Admin
 }

@@ -51,7 +51,7 @@ public class User {
 	@Column(name = "ProfilePhoto")
 	private String profilePhoto;
 
-	@Column(name = "userType", nullable = false)
+	@Column(name = "userType", nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
 
