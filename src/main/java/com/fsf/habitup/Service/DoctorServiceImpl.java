@@ -22,14 +22,13 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
-    private final OtpService otpService;
 
     public DoctorServiceImpl(AuthenticationManager authenticationManager, DoctorRepository doctorRepository,
-            JwtTokenProvider jwtTokenProvider, OtpService otpService) {
+            JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.doctorRepository = doctorRepository;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.otpService = otpService;
+
     }
 
     @Override
@@ -100,7 +99,6 @@ public class DoctorServiceImpl implements DoctorService {
         String token = jwtTokenProvider.generateToken(request.getEmail());
 
         // Store token in the database
-        doctor.setToken(token);
         doctorRepository.save(doctor);
 
         return new AuthResponseDoctor(doctor, token);
@@ -113,9 +111,6 @@ public class DoctorServiceImpl implements DoctorService {
         if (doctor == null) {
             throw new ApiException("Doctor not found.");
         }
-
-        // Clear the stored JWT token
-        doctor.setToken(null);
 
         // Optional: Update status to INACTIVE
         doctor.setAccountStatus(AccountStatus.INACTIVE);

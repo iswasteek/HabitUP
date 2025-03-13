@@ -59,9 +59,6 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
-	@Column(name = "token", nullable = false, unique = true)
-	private String token;
-
 	public AccountStatus getAccountStatus() {
 		return accountStatus;
 	}
@@ -156,20 +153,6 @@ public class User {
 
 	public void setUserType(UserType userType) {
 		this.userType = userType;
-	}
-
-	/**
-	 * @return String return the token
-	 */
-	public String getToken() {
-		return token;
-	}
-
-	/**
-	 * @param token the token to set
-	 */
-	public void setToken(String token) {
-		this.token = token;
 	}
 
 }

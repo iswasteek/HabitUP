@@ -24,7 +24,6 @@ import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Exception.ApiException;
 import com.fsf.habitup.Repository.PasswordResetTokenRepository;
-import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.entity.PasswordResetToken;
 import com.fsf.habitup.entity.User;
@@ -33,7 +32,6 @@ import com.fsf.habitup.entity.User;
 public class UserServiceImpl implements UserService {
 
     private final OtpService otpService;
-    private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -46,14 +44,14 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
             JavaMailSender mailSender, OtpService otpService, PasswordEncoder passwordEncoder,
-            PasswordResetTokenRepository tokenRepository, UserRepository userRepository) {
+            PasswordResetTokenRepository tokenRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.mailSender = mailSender;
         this.otpService = otpService;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
-        this.userRepository = userRepository;
+
     }
 
     @Override
@@ -152,22 +150,13 @@ public class UserServiceImpl implements UserService {
         String token = jwtTokenProvider.generateToken(request.getEmail());
 
         // Store token in the database
-        user.setToken(token);
         userRepository.save(user);
 
         return new AuthResponse(token, user);
     }
 
     @Override
-    public User updateUser(String email, User updateUser, String token) {
-
-        // Validate the token and extract the email
-        String tokenEmail = jwtTokenProvider.getEmailFromToken(token);
-
-        // Check if the user is authorized to update this profile
-        if (!tokenEmail.equals(email)) {
-            throw new ApiException("Unauthorized: Cannot update another user's details");
-        }
+    public User updateUser(String email, User updateUser) {
 
         User existingUser = userRepository.findByEmail(email);
 
@@ -187,16 +176,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email, String authHeader) {
-        String token = authHeader.substring(7);
-
-        // Extract email from the token
-        String tokenEmail = jwtTokenProvider.getEmailFromToken(token);
-
-        // Ensure the user is requesting their own profile
-        if (!tokenEmail.equals(email)) {
-            throw new ApiException("Unauthorized");
-        }
+    public User getUserByEmail(String email) {
 
         // Fetch user details
         User existingUser = userRepository.findByEmail(email);
@@ -260,15 +240,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateAccountStatus(Long userId, AccountStatus accountStatus, String authHeader) {
-        String token = authHeader.substring(7);
-        String requesterEmail = jwtTokenProvider.getEmailFromToken(token);
-        User requester = userRepository.findByEmail(requesterEmail);
-
-        // Ensure only admins can change account status
-        if (requester == null) {
-            throw new ApiException("Unauthorized: Only admins can update account status.");
-        }
+    public boolean updateAccountStatus(Long userId, AccountStatus accountStatus) {
 
         // Fetch the user and update status
         User user = userRepository.findById(userId)
@@ -284,17 +256,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus,
-            String authHeader) {
-        String token = authHeader.substring(7);
-        String requesterEmail = jwtTokenProvider.getEmailFromToken(token);
-        User requester = userRepository.findByEmail(requesterEmail);
-
-        // Ensure the user can only update their own subscription or an admin can update
-        // any user
-        if (requester == null || (!requester.getUserId().equals(userId))) {
-            throw new ApiException("Unauthorized: You can only update your own subscription.");
-        }
+    public boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus) {
 
         return userRepository.findById(userId)
                 .map(user -> {
@@ -315,7 +277,6 @@ public class UserServiceImpl implements UserService {
         }
 
         // Clear the stored JWT token
-        user.setToken(null);
 
         // Update status to INACTIVE
         user.setAccountStatus(AccountStatus.INACTIVE);

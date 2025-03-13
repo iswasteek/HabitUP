@@ -24,11 +24,11 @@ public interface UserService {
 
     public AuthResponse authenticateUser(LoginRequest request);
 
-    public User updateUser(String email, User user, String token);
+    public User updateUser(String email, User user);
 
     public boolean deleteUser(String email);
 
-    public User getUserByEmail(String email, String authHeader);
+    public User getUserByEmail(String email);
 
     public boolean sendPasswordResetToken(String email);
 
@@ -38,10 +38,9 @@ public interface UserService {
 
     public boolean resetPassword(String token, String newPassword);
 
-    boolean updateAccountStatus(Long userId, AccountStatus accountStatus, String authHeader);
+    boolean updateAccountStatus(Long userId, AccountStatus accountStatus);
 
-    boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus,
-            String authHeader);
+    boolean updateSubscriptionType(Long userId, SubscriptionType subscriptionType, boolean paymentStatus);
 
     public String verifyOtpAndCreateUser(OtpRegisterRequest request);
 

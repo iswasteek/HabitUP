@@ -21,8 +21,6 @@ public interface DoctorService {
 
     public AuthResponseDoctor login(LoginRequest request);
 
-   
-
     public String Logout(String email);
 
 }
