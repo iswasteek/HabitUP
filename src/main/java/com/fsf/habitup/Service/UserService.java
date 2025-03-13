@@ -44,4 +44,6 @@ public interface UserService {
             String authHeader);
 
     public String verifyOtpAndCreateUser(OtpRegisterRequest request);
+
+    public String logout(String email);
 }

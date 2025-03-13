@@ -3300,3 +3300,59 @@ Caused by: java.sql.SQLException: Data truncated for column 'user_type' at row 1
 2025-03-09T19:37:36.500+05:30  INFO 2224 --- [habitup] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-03-09T19:37:36.503+05:30  INFO 2224 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-03-09T19:37:36.517+05:30  INFO 2224 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-13T10:50:55.558+05:30  INFO 19392 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : Starting HabitupApplicationTests using Java 21.0.2 with PID 19392 (started by Souda in C:\Users\Souda\git\FullStackFlair)
+2025-03-13T10:50:55.560+05:30  INFO 19392 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-13T10:50:57.611+05:30  INFO 19392 --- [habitup] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-13T10:50:57.753+05:30  INFO 19392 --- [habitup] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 5 JPA repository interfaces.
+2025-03-13T10:50:59.137+05:30  INFO 19392 --- [habitup] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-13T10:50:59.302+05:30  INFO 19392 --- [habitup] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-13T10:50:59.383+05:30  INFO 19392 --- [habitup] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-13T10:51:00.141+05:30  INFO 19392 --- [habitup] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-13T10:51:00.202+05:30  INFO 19392 --- [habitup] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-13T10:51:00.857+05:30  INFO 19392 --- [habitup] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@378c48c1
+2025-03-13T10:51:00.860+05:30  INFO 19392 --- [habitup] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-13T10:51:01.047+05:30  INFO 19392 --- [habitup] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-13T10:51:02.818+05:30  INFO 19392 --- [habitup] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-13T10:51:03.249+05:30  INFO 19392 --- [habitup] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-13T10:51:04.201+05:30  INFO 19392 --- [habitup] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-13T10:51:04.641+05:30  INFO 19392 --- [habitup] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-03-13T10:51:05.595+05:30  INFO 19392 --- [habitup] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-03-13T10:51:06.525+05:30  INFO 19392 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : Started HabitupApplicationTests in 11.524 seconds (process running for 13.239)
+2025-03-13T10:51:07.932+05:30  INFO 19392 --- [habitup] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-13T10:51:07.936+05:30  INFO 19392 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-13T10:51:07.950+05:30  INFO 19392 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-13T14:25:33.502+05:30  INFO 12632 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : Starting HabitupApplicationTests using Java 21.0.2 with PID 12632 (started by Souda in C:\Users\Souda\git\FullStackFlair)
+2025-03-13T14:25:33.506+05:30  INFO 12632 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-03-13T14:25:35.094+05:30  INFO 12632 --- [habitup] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-13T14:25:35.190+05:30  INFO 12632 --- [habitup] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 5 JPA repository interfaces.
+2025-03-13T14:25:36.350+05:30  INFO 12632 --- [habitup] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-13T14:25:36.471+05:30  INFO 12632 --- [habitup] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-13T14:25:36.542+05:30  INFO 12632 --- [habitup] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-13T14:25:37.073+05:30  INFO 12632 --- [habitup] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-13T14:25:37.119+05:30  INFO 12632 --- [habitup] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-13T14:25:37.713+05:30  INFO 12632 --- [habitup] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f3a6091
+2025-03-13T14:25:37.716+05:30  INFO 12632 --- [habitup] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-13T14:25:37.868+05:30  INFO 12632 --- [habitup] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-13T14:25:39.192+05:30  INFO 12632 --- [habitup] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-13T14:25:39.666+05:30  INFO 12632 --- [habitup] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-13T14:25:40.503+05:30  INFO 12632 --- [habitup] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-13T14:25:40.924+05:30  INFO 12632 --- [habitup] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-03-13T14:25:41.532+05:30  INFO 12632 --- [habitup] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-03-13T14:25:42.624+05:30  INFO 12632 --- [habitup] [main] c.fsf.habitup.HabitupApplicationTests    : Started HabitupApplicationTests in 9.518 seconds (process running for 11.106)
+2025-03-13T14:25:44.019+05:30  INFO 12632 --- [habitup] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-13T14:25:44.024+05:30  INFO 12632 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-13T14:25:44.040+05:30  INFO 12632 --- [habitup] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

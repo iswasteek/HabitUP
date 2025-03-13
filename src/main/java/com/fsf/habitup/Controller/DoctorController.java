@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fsf.habitup.DTO.AuthResponseDoctor;
+import com.fsf.habitup.DTO.LoginRequest;
 import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Exception.ApiException;
 import com.fsf.habitup.Service.DoctorServiceImpl;
 import com.fsf.habitup.entity.Doctor;
 
@@ -68,26 +71,31 @@ public class DoctorController {
         return ResponseEntity.ok(updatedDoctor);
     }
 
-    @PostMapping("/login/{doctorId}")
-    public ResponseEntity<String> doctorLogin(@PathVariable Long doctorId) {
-        boolean updated = doctorServiceImpl.updateStatus(doctorId, AccountStatus.ACTIVE);
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponseDoctor> doctorLogin(@RequestBody LoginRequest request) {
 
-        if (!updated) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
+        AuthResponseDoctor authResponse = doctorServiceImpl.login(request);
+
+        boolean statusUpdated = doctorServiceImpl.updateStatus(request.getEmail(), AccountStatus.ACTIVE);
+
+        if (!statusUpdated) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-        return ResponseEntity.ok("Doctor logged in. Status set to ACTIVE.");
+        // Return successful response with JWT token
+        return ResponseEntity.ok(authResponse);
     }
 
-    @PostMapping("/logout/{doctorId}")
-    public ResponseEntity<String> doctorLogout(@PathVariable Long doctorId) {
-        boolean updated = doctorServiceImpl.updateStatus(doctorId, AccountStatus.INACTIVE);
-
-        if (!updated) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
+    @PostMapping("/logout/{email}")
+    public ResponseEntity<String> doctorLogout(@PathVariable String email) {
+        try {
+            String response = doctorServiceImpl.Logout(email);
+            return ResponseEntity.ok(response);
+        } catch (ApiException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
         }
-
-        return ResponseEntity.ok("Doctor logged out. Status set to INACTIVE.");
     }
 
 }

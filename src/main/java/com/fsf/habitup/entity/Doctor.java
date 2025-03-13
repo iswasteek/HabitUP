@@ -71,6 +71,9 @@ public class Doctor {
     @JoinColumn(name = "userId", nullable = false, unique = true)
     private User user;
 
+    @Column(name = "token", nullable = false, unique = true)
+    private String token;
+
     public AccountStatus getAccountStatus() {
         return accountStatus;
     }
@@ -181,5 +184,13 @@ public class Doctor {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

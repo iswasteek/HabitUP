@@ -7,5 +7,5 @@ import com.fsf.habitup.entity.Doctor;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-
+    public Doctor findByEmailId(String emailId);
 }

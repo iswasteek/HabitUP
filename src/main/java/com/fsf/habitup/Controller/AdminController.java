@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsf.habitup.DTO.AdminRequest;
@@ -55,6 +56,12 @@ public class AdminController {
             // response
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PostMapping("/send-verification-OTP")
+    public ResponseEntity<String> sendOtp(@RequestParam String email) {
+        String response = adminService.sendOtp(email);
+        return ResponseEntity.ok(response);
     }
 
 }

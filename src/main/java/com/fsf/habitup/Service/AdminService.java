@@ -9,4 +9,6 @@ public interface AdminService {
 
     Admin addAdmin(AdminRequest request);
 
+    public String sendOtp(String email);
+
 }

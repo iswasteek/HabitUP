@@ -3,6 +3,7 @@ package com.fsf.habitup.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.fsf.habitup.DTO.AuthResponse;
 import com.fsf.habitup.DTO.ForgetPasswordRequest;
 import com.fsf.habitup.DTO.LoginRequest;
 import com.fsf.habitup.DTO.OtpRegisterRequest;
+import com.fsf.habitup.Exception.ApiException;
 import com.fsf.habitup.Service.UserServiceImpl;
 
 @RestController
@@ -60,4 +62,19 @@ public class AuthController {
         return ResponseEntity.ok(authResponse);
 
     }
+
+    @PostMapping("/logout/{email}")
+    public ResponseEntity<String> logout(@PathVariable String email) {
+        try {
+            // Call the logout method from the user service
+            String response = userService.logout(email);
+            return ResponseEntity.ok(response);
+        } catch (ApiException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
+
+    }
+
 }

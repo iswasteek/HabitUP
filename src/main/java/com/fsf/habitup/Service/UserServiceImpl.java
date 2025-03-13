@@ -305,4 +305,25 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ApiException("User not found!"));
     }
 
+    @Override
+    public String logout(String email) {
+        // Find the user by email
+        User user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            throw new ApiException("User not found.");
+        }
+
+        // Clear the stored JWT token
+        user.setToken(null);
+
+        // Update status to INACTIVE
+        user.setAccountStatus(AccountStatus.INACTIVE);
+
+        // Save the updated user entity
+        userRepository.save(user);
+
+        return "User logged out successfully.";
+    }
+
 }

@@ -118,4 +118,11 @@ public class AdminServiceImpl implements AdminService {
         System.out.println("New admin created successfully: " + savedAdmin.getEmail());
         return savedAdmin;
     }
+
+    @Override
+    public String sendOtp(String email) {
+        otpService.generateAndSendOtp(email);
+        return "OTP sent to " + email + ". Please Verify";
+    }
+
 }
