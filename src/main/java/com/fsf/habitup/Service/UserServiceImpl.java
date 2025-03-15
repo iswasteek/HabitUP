@@ -6,6 +6,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import com.fsf.habitup.Repository.UserRepository;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,6 +34,8 @@ public class UserServiceImpl implements UserService {
 
     private final OtpService otpService;
 
+    private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final AuthenticationManager authenticationManager;
@@ -43,12 +46,13 @@ public class UserServiceImpl implements UserService {
     private final JavaMailSender mailSender;
 
     public UserServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
-            JavaMailSender mailSender, OtpService otpService, PasswordEncoder passwordEncoder,
-            PasswordResetTokenRepository tokenRepository) {
+                           JavaMailSender mailSender, OtpService otpService, UserRepository userRepository, PasswordEncoder passwordEncoder,
+                           PasswordResetTokenRepository tokenRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.mailSender = mailSender;
         this.otpService = otpService;
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
 
