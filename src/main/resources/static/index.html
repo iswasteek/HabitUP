@@ -264,7 +264,7 @@
 
         /* Button Width for Send OTP */
         #signupForm button[type="submit"] {
-            width: 150px;
+            width: 50px;
             margin: 0 auto;
             display: block;
         }
@@ -1047,7 +1047,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Sign Up</h5>
+                <h5 class="modal-title">Register Yourself</h5>
                 <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <div class="modal-body">
@@ -1057,13 +1057,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupName">Name</label>
-                                <input class="form-control" id="signupName" minlength="3" required type="text">
+                                <input class="form-control" id="signupName" minlength="3" required type="text" placeholder="Enter your full name">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupEmail">Email</label>
-                                <input class="form-control" id="signupEmail" required type="email">
+                                <input class="form-control" id="signupEmail" required type="email" placeholder="Enter your email">
                             </div>
                         </div>
 
@@ -1072,36 +1072,32 @@
                             <div class="form-group">
                                 <label for="signupPassword">Password</label>
                                 <input class="form-control" id="signupPassword" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$" required
-                                       type="password">
-                                <small class="form-text text-muted">Password must contain at least 1 uppercase letter, 1
-                                    number, and 1 special character.</small>
+                                       type="password" placeholder="eg: Abc@123">
+<!--                                <small class="form-text text-muted">Password must contain at least 1 uppercase letter, 1-->
+<!--                                    number, and 1 special character.</small>-->
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupConfirmPassword">Confirm Password</label>
-                                <input class="form-control" id="signupConfirmPassword" required type="password">
+                                <input class="form-control" id="signupConfirmPassword" required type="password" placeholder="Re-enter password">
                             </div>
                         </div>
 
-                        <!-- Date of Birth and Phone Number -->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="signupDOB">Date of Birth</label>
-                                <input class="form-control" id="signupDOB" max="" required type="date">
-                            </div>
-                        </div>
+                        <!-- Phone on One Side, DOB & Gender on the Other -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupPhone">Phone Number</label>
                                 <input class="form-control" id="signupPhone" maxlength="10" minlength="10" required
-                                       type="tel">
+                                       type="tel" placeholder="Enter your phone number">
                             </div>
                         </div>
-
-                        <!-- Gender and Terms -->
-                        <div class="col-md-6">
-                            <div class="form-group">
+                        <div class="col-md-6 d-flex gap-3">
+                            <div class="form-group flex-fill">
+                                <label for="signupDOB">Date of Birth</label>
+                                <input class="form-control" id="signupDOB" max="" required type="date">
+                            </div>
+                            <div class="form-group flex-fill">
                                 <label for="signupGender">Gender</label>
                                 <select class="form-control" id="signupGender" required>
                                     <option disabled selected value="">Select Gender</option>
@@ -1111,8 +1107,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
+
+                        <!-- Message  -->
+                        <div class="col-md-12">
+                            <div class="message" id="signupMessage"></div>
+                        </div>
+
+                        <!-- Consent Checkbox -->
+                        <div class="col-md-12 text-center">
+                            <div class="form-group d-inline-block">
                                 <input id="acceptTerms" required type="checkbox">
                                 <label for="acceptTerms">I accept the <a class="terms-link" href="terms.html">Terms and
                                     Conditions</a></label>
@@ -1120,16 +1123,17 @@
                         </div>
 
                         <!-- CAPTCHA -->
-<!--                        <div class="col-md-12">-->
-<!--                            <div class="form-group">-->
-<!--                                <div class="g-recaptcha" data-sitekey="your site key"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                    </div>
+                        <!-- <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="your site key"></div>
+                            </div>
+                        </div> -->
 
-                    <!-- Message and Submit Button -->
-                    <div class="message" id="signupMessage"></div>
-                    <button class="btn btn-primary btn-block w-100 mt-3" type="submit">Send OTP</button>
+                        <!-- Submit Button -->
+                        <div class="col-md-12 text-center mt-2">
+                            <button class="btn btn-primary w-auto px-4" type="submit">Send OTP</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -1160,7 +1164,7 @@
                     </div>
                     <button class="btn btn-primary d-block mx-auto" style="width: 30%;" type="submit">Sign Up</button>
                     <div class="text-center mt-3">
-                        <a href="#" id="backToSignupLink">Back to Sign Up</a>
+                        <a href="#" id="backToSignupLink">Back</a>
                     </div>
                 </form>
             </div>
