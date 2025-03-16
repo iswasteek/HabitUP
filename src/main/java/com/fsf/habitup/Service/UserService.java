@@ -28,13 +28,11 @@ public interface UserService {
 
     public boolean deleteUser(String email);
 
-    public User getUserByEmail(String email);
+    public User findUserByEmail(String email);
 
     public boolean sendPasswordResetToken(String email);
 
-    public default User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+
 
     public boolean resetPassword(String token, String newPassword);
 

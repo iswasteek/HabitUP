@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import com.fsf.habitup.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,6 +46,7 @@ public class UserServiceImpl implements UserService {
 
     private final JavaMailSender mailSender;
 
+    @Autowired
     public UserServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
                            JavaMailSender mailSender, OtpService otpService, UserRepository userRepository, PasswordEncoder passwordEncoder,
                            PasswordResetTokenRepository tokenRepository) {
@@ -180,7 +182,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User findUserByEmail(String email) {
 
         // Fetch user details
         User existingUser = userRepository.findByEmail(email);

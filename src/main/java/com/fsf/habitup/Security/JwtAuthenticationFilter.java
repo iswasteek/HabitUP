@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collections;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -33,24 +34,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String authorizationHeader = request.getHeader("Authorization");
+        System.out.println("🔹 Authorization Header: " + authorizationHeader);
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String token = authorizationHeader.substring(7);
+            System.out.println("🔹 Extracted Token: " + token);
 
             if (jwtTokenProvider.validateToken(token)) {
                 String email = jwtTokenProvider.getEmailFromToken(token);
+                System.out.println(" Valid Token for User: " + email);
 
                 User userDetails = userDetailsService.findUserByEmail(email);
+                System.out.println("🔹 Retrieved User from DB: " + userDetails.getEmail());
 
-                // No need to get password from request, as it's already authenticated when the JWT was created
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, null); // userDetails.getAuthorities() for roles
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, Collections.emptyList()); // Fix: use userDetails.getAuthorities()
 
-                // Set the authentication object in the security context
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } else {
-                System.out.println("Token validation failed");
+                System.out.println(" Token validation failed");
             }
+        } else {
+            System.out.println("❌ No valid Authorization header found");
         }
 
         filterChain.doFilter(request, response);

@@ -43,7 +43,7 @@ public class UserController {
 
     @GetMapping("/show-a-user/{email}")
     public ResponseEntity<User> showUser(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
+        User user = userService.findUserByEmail(email);
 
         if (user == null) {
             return ResponseEntity.notFound().build();
