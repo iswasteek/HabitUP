@@ -387,7 +387,7 @@
                 <div class="col-lg-6 position-relative order-lg-last" data-aos="fade-up" data-aos-delay="200">
                     <img alt="About us picture" class="img-fluid" src="img/We3.png">
                     <a class="glightbox pulsating-play-btn"
-                       href="https://youtu.be/0VwgpYJ4q38?si=SKuPjQ71-RTgskgf&t=70"></a>
+                       href="https://youtu.be/W8x6Dwyj0-A?si=-phtxYJmLbHkycgq" ></a>
                 </div>
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                     <h3>About Us</h3>
@@ -1267,331 +1267,410 @@
 <!-- Js for modals -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // DOM Elements
-        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-        const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-        const forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
-        const otpVerificationModal = new bootstrap.Modal(document.getElementById('otpVerificationModal'));
-        const otpRegistrationModal = new bootstrap.Modal(document.getElementById('otpRegistrationModal'));
+    // DOM Elements
+    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+    const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
+    const forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+    const otpVerificationModal = new bootstrap.Modal(document.getElementById('otpVerificationModal'));
+    const otpRegistrationModal = new bootstrap.Modal(document.getElementById('otpRegistrationModal'));
 
-        const loginForm = document.getElementById('loginForm');
-        const signupForm = document.getElementById('signupForm');
-        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
-        const otpVerificationForm = document.getElementById('otpVerificationForm');
-        const otpRegistrationForm = document.getElementById('otpRegistrationForm');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    const otpVerificationForm = document.getElementById('otpVerificationForm');
+    const otpRegistrationForm = document.getElementById('otpRegistrationForm');
 
-        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
-        const createAccountLink = document.getElementById('createAccountLink');
-        const backToLoginLink = document.getElementById('backToLoginLink');
-        const backToSignupLink = document.getElementById('backToSignupLink');
-        const resendOtpLink = document.getElementById('resendOtpLink');
-        const resendTimer = document.getElementById('resendTimer');
-        const resendOtpLinkRegistration = document.getElementById('resendOtpLinkRegistration');
-        const resendTimerRegistration = document.getElementById('resendTimerRegistration');
-        const backToLoginLinkPassword = document.getElementById('backToLoginLinkPassword');
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+    const createAccountLink = document.getElementById('createAccountLink');
+    const backToLoginLink = document.getElementById('backToLoginLink');
+    const backToSignupLink = document.getElementById('backToSignupLink');
+    const resendOtpLink = document.getElementById('resendOtpLink');
+    const resendTimer = document.getElementById('resendTimer');
+    const resendOtpLinkRegistration = document.getElementById('resendOtpLinkRegistration');
+    const resendTimerRegistration = document.getElementById('resendTimerRegistration');
+    const backToLoginLinkPassword = document.getElementById('backToLoginLinkPassword');
 
-        const loginMessage = document.getElementById('loginMessage');
-        const signupMessage = document.getElementById('signupMessage');
-        const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
-        const otpMessage = document.getElementById('otpMessage');
-        const otpMessageRegistration = document.getElementById('otpMessageRegistration');
+    const loginMessage = document.getElementById('loginMessage');
+    const signupMessage = document.getElementById('signupMessage');
+    const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
+    const otpMessage = document.getElementById('otpMessage');
+    const otpMessageRegistration = document.getElementById('otpMessageRegistration');
 
-        let currentEmail = ''; // Store email for OTP resend
-        let resendTimeout = null; // Timer for resend OTP
+    const otpBoxes = document.querySelectorAll('.otp-box');
 
-        // Loader HTML
-        const loaderHTML = `
-            <div class="dot-loader">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        `;
+    let currentEmail = ''; // Store email for OTP resend
+    let resendTimeout = null; // Timer for resend OTP
 
-        // Set max date for Date of Birth (today's date)
-        const signupDOB = document.getElementById('signupDOB');
-        const today = new Date().toISOString().split('T')[0];
-        signupDOB.setAttribute('max', today);
+    // Loader HTML
+    const loaderHTML = `
+        <div class="dot-loader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    `;
 
-        // Modal Transitions
-        forgotPasswordLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            loginModal.hide();
-            forgotPasswordModal.show();
-        });
+    // Set max date for Date of Birth (today's date)
+    const signupDOB = document.getElementById('signupDOB');
+    const today = new Date().toISOString().split('T')[0];
+    signupDOB.setAttribute('max', today);
 
-        createAccountLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            loginModal.hide();
-            signupModal.show();
-        });
+    // Modal Transitions
+    forgotPasswordLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        loginModal.hide();
+        forgotPasswordModal.show();
+    });
 
-        backToLoginLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            forgotPasswordModal.hide();
-            loginModal.show();
-        });
+    createAccountLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        loginModal.hide();
+        signupModal.show();
+    });
 
-        backToLoginLinkPassword.addEventListener('click', function (e) {
-            e.preventDefault();
-            otpVerificationModal.hide();
-            loginModal.show();
-        });
+    backToLoginLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        forgotPasswordModal.hide();
+        loginModal.show();
+    });
 
-        backToSignupLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            otpRegistrationModal.hide();
-            signupModal.show();
-        });
+    backToLoginLinkPassword.addEventListener('click', function (e) {
+        e.preventDefault();
+        otpVerificationModal.hide();
+        loginModal.show();
+    });
 
-        // OTP Input Handling
-        const otpBoxes = document.querySelectorAll('.otp-box');
-        otpBoxes.forEach((box, index) => {
-            box.addEventListener('input', function () {
-                if (box.value.length === 1 && index < otpBoxes.length - 1) {
-                    otpBoxes[index + 1].focus();
-                }
-            });
-        });
+    backToSignupLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        otpRegistrationModal.hide();
+        signupModal.show();
+    });
 
-        // Function to start the resend timer
-        function startResendTimer(seconds, resendTimerElement, resendOtpLinkElement) {
-            let remainingTime = seconds;
-
-            resendTimeout = setInterval(() => {
-                resendTimerElement.textContent = `Resend OTP in ${remainingTime} seconds`;
-                remainingTime--;
-
-                if (remainingTime < 0) {
-                    clearInterval(resendTimeout);
-                    resendTimerElement.textContent = '';
-                    resendOtpLinkElement.classList.remove('disabled');
-                }
-            }, 1000);
-        }
-
-        // Function to clear the resend timer
-        function clearResendTimer() {
-            if (resendTimeout) {
-                clearInterval(resendTimeout);
-                resendTimeout = null;
+    // OTP Input Handling
+    otpBoxes.forEach((box, index) => {
+        box.addEventListener('input', function () {
+            if (box.value.length === 1 && index < otpBoxes.length - 1) {
+                otpBoxes[index + 1].focus();
             }
-            resendTimer.textContent = '';
-            resendTimerRegistration.textContent = '';
-            resendOtpLink.classList.remove('disabled');
-            resendOtpLinkRegistration.classList.remove('disabled');
-        }
-
-        // Start the resend timer in the OTP verification modal
-        function startResendTimerInOTPModal(isForgotPassword = false) {
-            const resendTimerElement = isForgotPassword ? resendTimer : resendTimerRegistration;
-            const resendOtpLinkElement = isForgotPassword ? resendOtpLink : resendOtpLinkRegistration;
-
-            resendOtpLinkElement.classList.add('disabled');
-            startResendTimer(60, resendTimerElement, resendOtpLinkElement);
-        }
-
-        // Resend OTP for Registration
-        resendOtpLinkRegistration.addEventListener('click', async function (e) {
-            e.preventDefault();
-            if (resendTimeout) return; // Prevent multiple clicks
-
-            try {
-                // Show loader
-                otpMessageRegistration.innerHTML = loaderHTML;
-
-                await sendOTP(currentEmail, false); // Send OTP for registration
-                otpMessageRegistration.innerHTML = `<div class="alert alert-success">OTP sent to ${currentEmail}. Please verify before completing registration.</div>`;
-                startResendTimerInOTPModal(false); // Start 60-second timer
-            } catch (error) {
-                otpMessageRegistration.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-            }
-        });
-
-        // Resend OTP for Forgot Password
-        resendOtpLink.addEventListener('click', async function (e) {
-            e.preventDefault();
-            if (resendTimeout) return; // Prevent multiple clicks
-
-            try {
-                // Show loader
-                otpMessage.innerHTML = loaderHTML;
-
-                await sendOTP(currentEmail, true); // Send OTP for forgot password
-                otpMessage.innerHTML = `<div class="alert alert-success">OTP sent to ${currentEmail}. Please verify before resetting your password.</div>`;
-                startResendTimerInOTPModal(true); // Start 60-second timer
-            } catch (error) {
-                otpMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-            }
-        });
-
-        // Login Form Submission
-        loginForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                loginMessage.innerHTML = `<div class="alert alert-danger">Please fill in all fields.</div>`;
-                return;
-            }
-
-            try {
-                // Show loader
-                loginMessage.innerHTML = loaderHTML;
-
-                await login(email, password);
-                window.location.href = 'home.html'; // Redirect to home page after successful login
-            } catch (error) {
-                loginMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-                resetFormInputs(loginForm); // Reset inputs on failure
-            }
-        });
-
-        // Signup Form Submission
-        signupForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            const dob = document.getElementById('signupDOB').value;
-            const phone = document.getElementById('signupPhone').value;
-            const gender = document.getElementById('signupGender').value;
-
-            if (password !== confirmPassword) {
-                signupMessage.innerHTML = `<div class="alert alert-danger">Passwords do not match.</div>`;
-                return;
-            }
-
-            try {
-                // Show loader
-                signupMessage.innerHTML = loaderHTML;
-
-                await sendOTP(email, false); // Send OTP for registration
-                currentEmail = email; // Store email for OTP resend
-                signupModal.hide();
-                otpRegistrationModal.show();
-
-                // Start the resend timer in the OTP verification modal
-                startResendTimerInOTPModal(false);
-            } catch (error) {
-                signupMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-            }
-        });
-
-        // Forgot Password Form Submission
-        forgotPasswordForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const email = document.getElementById('forgotPasswordEmail').value;
-
-            try {
-                // Show loader
-                forgotPasswordMessage.innerHTML = loaderHTML;
-
-                await sendOTP(email, true); // Send OTP for forgot password
-                currentEmail = email; // Store email for OTP resend
-                forgotPasswordModal.hide();
-                otpVerificationModal.show();
-
-                // Start the resend timer in the OTP verification modal
-                startResendTimerInOTPModal(true);
-            } catch (error) {
-                forgotPasswordMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-            }
-        });
-
-        // Clear resend timer when modal is hidden
-        forgotPasswordModal._element.addEventListener('hidden.bs.modal', function () {
-            clearResendTimer();
-            forgotPasswordMessage.innerHTML = '';
-        });
-
-        signupModal._element.addEventListener('hidden.bs.modal', function () {
-            clearResendTimer();
-            signupMessage.innerHTML = '';
-        });
-
-        otpVerificationModal._element.addEventListener('hidden.bs.modal', function () {
-            clearResendTimer();
-            otpMessage.innerHTML = '';
-            otpBoxes.forEach(box => box.value = '');
-        });
-
-        otpRegistrationModal._element.addEventListener('hidden.bs.modal', function () {
-            clearResendTimer();
-            otpMessageRegistration.innerHTML = '';
-            otpBoxes.forEach(box => box.value = '');
         });
     });
 
-    // Helper Functions
-    async function sendOTP(email, isForgotPassword = false) {
-        const endpoint = isForgotPassword
-            ? `http://localhost:8080/habit/auth/send-OTP-forgot-password?email=${email}`
-            : `http://localhost:8080/habit/auth/send-OTP?email=${email}`;
+    // Function to start the resend timer
+    function startResendTimer(seconds, resendTimerElement, resendOtpLinkElement) {
+        let remainingTime = seconds;
 
-        const response = await fetch(endpoint, { method: 'POST' });
-        if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(errorData);
-        }
+        resendTimeout = setInterval(() => {
+            resendTimerElement.textContent = `Resend OTP in ${remainingTime} seconds`;
+            remainingTime--;
+
+            if (remainingTime < 0) {
+                clearInterval(resendTimeout);
+                resendTimerElement.textContent = '';
+                resendOtpLinkElement.classList.remove('disabled');
+            }
+        }, 1000);
     }
 
-    async function verifyOTPAndRegister(email, otp, userData) {
-        const endpoint = 'http://localhost:8080/habit/auth/verify-otp-and-register';
+    // Function to clear the resend timer
+    function clearResendTimer() {
+        if (resendTimeout) {
+            clearInterval(resendTimeout);
+            resendTimeout = null;
+        }
+        resendTimer.textContent = '';
+        resendTimerRegistration.textContent = '';
+        resendOtpLink.classList.remove('disabled');
+        resendOtpLinkRegistration.classList.remove('disabled');
+    }
+
+    // Start the resend timer in the OTP verification modal
+    function startResendTimerInOTPModal(isForgotPassword = false) {
+        const resendTimerElement = isForgotPassword ? resendTimer : resendTimerRegistration;
+        const resendOtpLinkElement = isForgotPassword ? resendOtpLink : resendOtpLinkRegistration;
+
+        resendOtpLinkElement.classList.add('disabled');
+        startResendTimer(60, resendTimerElement, resendOtpLinkElement);
+    }
+
+    // Resend OTP for Registration
+    resendOtpLinkRegistration.addEventListener('click', async function (e) {
+        e.preventDefault();
+        if (resendTimeout) return; // Prevent multiple clicks
+
+        try {
+            // Show loader
+            otpMessageRegistration.innerHTML = loaderHTML;
+
+            await sendOTP(currentEmail, false); // Send OTP for registration
+            otpMessageRegistration.innerHTML = `<div class="alert alert-success">OTP sent to ${currentEmail}. Please verify before completing registration.</div>`;
+            startResendTimerInOTPModal(false); // Start 60-second timer
+        } catch (error) {
+            otpMessageRegistration.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+    });
+
+    // Resend OTP for Forgot Password
+    resendOtpLink.addEventListener('click', async function (e) {
+        e.preventDefault();
+        if (resendTimeout) return; // Prevent multiple clicks
+
+        try {
+            // Show loader
+            otpMessage.innerHTML = loaderHTML;
+
+            await sendOTP(currentEmail, true); // Send OTP for forgot password
+            otpMessage.innerHTML = `<div class="alert alert-success">OTP sent to ${currentEmail}. Please verify before resetting your password.</div>`;
+            startResendTimerInOTPModal(true); // Start 60-second timer
+        } catch (error) {
+            otpMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+    });
+
+    // Login Form Submission
+    loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if (!email || !password) {
+            loginMessage.innerHTML = `<div class="alert alert-danger">Please fill in all fields.</div>`;
+            return;
+        }
+
+        try {
+            // Show loader
+            loginMessage.innerHTML = loaderHTML;
+
+            await login(email, password);
+            window.location.href = 'home.html'; // Redirect to home page after successful login
+        } catch (error) {
+            loginMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+            resetFormInputs(loginForm); // Reset inputs on failure
+        }
+    });
+
+    // Signup Form Submission
+    signupForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('signupConfirmPassword').value;
+        const dob = document.getElementById('signupDOB').value;
+        const phone = document.getElementById('signupPhone').value;
+        const gender = document.getElementById('signupGender').value;
+
+        if (password !== confirmPassword) {
+            signupMessage.innerHTML = `<div class="alert alert-danger">Passwords do not match.</div>`;
+            return;
+        }
+
+        try {
+            // Show loader
+            signupMessage.innerHTML = loaderHTML;
+
+            await sendOTP(email, false); // Send OTP for registration
+            currentEmail = email; // Store email for OTP resend
+            signupModal.hide();
+            otpRegistrationModal.show();
+
+            // Start the resend timer in the OTP verification modal
+            startResendTimerInOTPModal(false);
+        } catch (error) {
+            signupMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+    });
+
+    // OTP Verification for Registration
+    otpRegistrationForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const otp = Array.from(otpBoxes)
+            .map(box => box.value)
+            .join('');
+
+        const userData = {
+            name: document.getElementById('signupName').value,
+            email: document.getElementById('signupEmail').value,
+            dateOfBirth: document.getElementById('signupDOB').value,
+            password: document.getElementById('signupPassword').value,
+            phoneNo: document.getElementById('signupPhone').value,
+            gender: document.getElementById('signupGender').value,
+        };
+
+        const requestBody = {
+            otpVerificationRequest: {
+                email: userData.email,
+                otp: otp,
+            },
+            registerRequest: userData,
+        };
+
+        try {
+            // Show loader
+            otpMessageRegistration.innerHTML = loaderHTML;
+
+            const response = await verifyOTPAndRegister(requestBody);
+            otpMessageRegistration.innerHTML = `<div class="alert alert-success">${response.message}</div>`;
+            setTimeout(() => {
+                window.location.href = "login.html"; // Redirect to login page after successful registration
+            }, 2000); // Redirect after 2 seconds
+        } catch (error) {
+            otpMessageRegistration.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+    });
+
+    // Forgot Password Form Submission
+    forgotPasswordForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = document.getElementById('forgotPasswordEmail').value;
+
+        try {
+            // Show loader
+            forgotPasswordMessage.innerHTML = loaderHTML;
+
+            await sendOTP(email, true); // Send OTP for forgot password
+            currentEmail = email; // Store email for OTP resend
+            forgotPasswordModal.hide();
+            otpVerificationModal.show();
+
+            // Start the resend timer in the OTP verification modal
+            startResendTimerInOTPModal(true);
+        } catch (error) {
+            forgotPasswordMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+    });
+
+    // OTP Verification for Forgot Password
+    otpVerificationForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const otp = Array.from(otpBoxes)
+            .map(box => box.value)
+            .join('');
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+        if (newPassword !== confirmNewPassword) {
+            otpMessage.innerHTML = `<div class="alert alert-danger">Passwords do not match.</div>`;
+            return;
+        }
+
+        try {
+            // Show loader
+            otpMessage.innerHTML = loaderHTML;
+
+            await resetPassword(currentEmail, otp, newPassword);
+            otpMessage.innerHTML = `<div class="alert alert-success">Password reset successful! Please log in.</div>`;
+            otpVerificationModal.hide();
+            loginModal.show();
+        } catch (error) {
+            otpMessage.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+    });
+
+    // Clear resend timer when modal is hidden
+    forgotPasswordModal._element.addEventListener('hidden.bs.modal', function () {
+        clearResendTimer();
+        forgotPasswordMessage.innerHTML = '';
+    });
+
+    signupModal._element.addEventListener('hidden.bs.modal', function () {
+        clearResendTimer();
+        signupMessage.innerHTML = '';
+    });
+
+    otpVerificationModal._element.addEventListener('hidden.bs.modal', function () {
+        clearResendTimer();
+        otpMessage.innerHTML = '';
+        otpBoxes.forEach(box => box.value = '');
+    });
+
+    otpRegistrationModal._element.addEventListener('hidden.bs.modal', function () {
+        clearResendTimer();
+        otpMessageRegistration.innerHTML = '';
+        otpBoxes.forEach(box => box.value = '');
+    });
+});
+
+// Helper Functions
+async function sendOTP(email, isForgotPassword = false) {
+    const endpoint = isForgotPassword
+        ? `http://localhost:8080/habit/auth/send-OTP-forgot-password?email=${email}`
+        : `http://localhost:8080/habit/auth/send-OTP?email=${email}`;
+
+    const response = await fetch(endpoint, { method: 'POST' });
+    if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
+    }
+}
+
+async function verifyOTPAndRegister(requestBody) {
+    const endpoint = 'http://localhost:8080/habit/auth/verify-otp-and-register';
+    try {
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                otpVerificationRequest: { email, otp },
-                registerRequest: userData,
-            }),
+            body: JSON.stringify(requestBody),
         });
 
-        if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(errorData);
+        // Check if the response is JSON
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || data.message || "An unexpected error occurred");
+            }
+            return data;
+        } else {
+            // Handle plain text response
+            const text = await response.text();
+            if (!response.ok) {
+                throw new Error(text || "An unexpected error occurred");
+            }
+            return { message: text }; // Wrap plain text response in an object
         }
+    } catch (error) {
+        throw new Error(error.message || "An unexpected error occurred");
+    }
+}
+
+async function login(email, password) {
+    const endpoint = 'http://localhost:8080/habit/auth/login';
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
     }
 
-    async function login(email, password) {
-        const endpoint = 'http://localhost:8080/habit/auth/login';
-        const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-        });
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('userId', data.message);
+    localStorage.setItem('email', email);
+}
 
-        if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(errorData);
-        }
+async function resetPassword(email, otp, newPassword) {
+    const endpoint = 'http://localhost:8080/habit/auth/forgot-password-otp';
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp, password: newPassword }),
+    });
 
-        const data = await response.json();
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userId', data.message);
-        localStorage.setItem('email', email);
+    if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
     }
+}
 
-    async function resetPassword(email, otp, newPassword) {
-        const endpoint = 'http://localhost:8080/habit/auth/forgot-password-otp';
-        const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, otp, password: newPassword }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(errorData);
-        }
-    }
-
-    // Function to reset form inputs
-    function resetFormInputs(form) {
-        form.reset();
-    }
+// Function to reset form inputs
+function resetFormInputs(form) {
+    form.reset();
+}
 </script>
 
 </body>

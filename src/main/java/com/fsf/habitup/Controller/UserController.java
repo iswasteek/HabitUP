@@ -1,5 +1,6 @@
 package com.fsf.habitup.Controller;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,7 +77,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('RESET_USER_PASSWORDS')")
-    @PutMapping("/{email}/send-mail")
+    @PostMapping("/{email}/send-mail")
     public ResponseEntity<String> sendPasswordResetEmail(@PathVariable String email) {
         boolean emailSent = userService.sendPasswordResetToken(email);
         if (!emailSent) {
