@@ -20,6 +20,7 @@ import com.fsf.habitup.Service.UserServiceImpl;
 import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/user")
@@ -32,6 +33,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasAuthority('MANAGE_USERS')")
     @PutMapping("/updateuser/{email}")
     public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User updatedUser) {
 
@@ -46,6 +48,7 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
+    @PreAuthorize("hasAuthority('VIEW_USERS')")
     @GetMapping("/show-a-user/{email}")
     public ResponseEntity<User> showUser(@PathVariable String email) {
         User user = userService.findUserByEmail(email);
@@ -58,6 +61,8 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasAuthority('MANAGE_USERS')")
+    @Transactional
     @DeleteMapping("/{email}")
     public ResponseEntity<String> deleteUser(@PathVariable String email) {
 
@@ -70,6 +75,7 @@ public class UserController {
         return ResponseEntity.ok("User deleted successfully.");
     }
 
+    @PreAuthorize("hasAuthority('RESET_USER_PASSWORDS')")
     @PutMapping("/{email}/send-mail")
     public ResponseEntity<String> sendPasswordResetEmail(@PathVariable String email) {
         boolean emailSent = userService.sendPasswordResetToken(email);
@@ -79,6 +85,7 @@ public class UserController {
         return ResponseEntity.ok("Password reset email sent successfully.");
     }
 
+    @PreAuthorize("hasAuthority('RESET_USER_PASSWORDS')")
     @PutMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody String newPassword) {
         boolean isReset = userService.resetPassword(token, newPassword);
@@ -88,6 +95,7 @@ public class UserController {
         return ResponseEntity.ok("Password has been reset successfully.");
     }
 
+    @PreAuthorize("hasAuthority('MANAGE_SUBSCRIPTIONS')")
     @PutMapping("/update-subscription/{userId}")
     public ResponseEntity<String> updateSubscriptionType(@PathVariable Long userId, @RequestParam boolean isPaid) {
         boolean updated = userService.updateSubscriptionType(userId, null, isPaid);
@@ -98,6 +106,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasAuthority('ACTIVATE_USERS')")
     @PutMapping("/update-account-status/{userId}")
     public ResponseEntity<String> updateAccountStatus(@PathVariable Long userId,
             @RequestParam AccountStatus accountStatus) {
@@ -108,8 +117,8 @@ public class UserController {
 
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/user/logout")
-    @PreAuthorize("isAuthenticated()") // Requires authentication before logout
     public ResponseEntity<LogoutResponse> logout(@RequestParam String email, HttpServletResponse response) {
         LogoutResponse logoutResponse = userService.logout(email, response);
         return ResponseEntity.ok(logoutResponse);

@@ -1,8 +1,12 @@
 package com.fsf.habitup.Service;
 
-import java.security.Permission;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,11 +30,14 @@ import com.fsf.habitup.Exception.InvalidOtpException;
 import com.fsf.habitup.Repository.AdminRepository;
 import com.fsf.habitup.Repository.DoctorRepository;
 import com.fsf.habitup.Repository.DocumentsRepository;
+import com.fsf.habitup.Repository.PermissionRepository;
+import com.fsf.habitup.Repository.SystemSettingRepository;
 import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.entity.Admin;
 import com.fsf.habitup.entity.Doctor;
 import com.fsf.habitup.entity.Documents;
+import com.fsf.habitup.entity.SystemSetting;
 import com.fsf.habitup.entity.User;
 
 @Service
@@ -43,11 +50,15 @@ public class AdminServiceImpl implements AdminService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
+    private final PermissionRepository permissionRepository;
+    private final LogService logService;
+    private final SystemSettingRepository systemSettingRepository;
 
     public AdminServiceImpl(AdminRepository adminRepository, DoctorRepository doctorRepository,
             DocumentsRepository documentsRepository, OtpService otpService, PasswordEncoder passwordEncoder,
             UserRepository userRepository, JwtTokenProvider jwtTokenProvider,
-            AuthenticationManager authenticationManager) {
+            AuthenticationManager authenticationManager, PermissionRepository permissionRepository,
+            LogService logService, SystemSettingRepository systemSettingRepository) {
         this.adminRepository = adminRepository;
         this.doctorRepository = doctorRepository;
         this.documentsRepository = documentsRepository;
@@ -56,6 +67,9 @@ public class AdminServiceImpl implements AdminService {
         this.userRepository = userRepository;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
+        this.permissionRepository = permissionRepository;
+        this.logService = logService;
+        this.systemSettingRepository = systemSettingRepository;
     }
 
     @Override
@@ -245,102 +259,249 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean rejectDoctor(Long doctorId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // Fetch doctor by ID
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        // Fetch associated user
+        User user = doctor.getUser();
+        if (user == null) {
+            throw new RuntimeException("Doctor is not linked to any user");
+        }
+
+        // Fetch user's documents
+        List<Documents> documents = documentsRepository.findByUser_UserId(user.getUserId());
+
+        // Check if documents are invalid
+        if (areDocumentsValidated(documents)) {
+            throw new RuntimeException("Doctor's documents are already approved. Cannot reject.");
+        }
+
+        // Update doctor's document status to REJECTED
+        doctor.setDocumentStatus(DocumentStatus.REJECTED);
+        doctorRepository.save(doctor);
+
+        // Update user's userType back to default (e.g., User)
+        user.setUserType(UserType.Adult);
+        userRepository.save(user);
+
+        return true;
+
     }
 
-    @Override
-    public boolean addDoctor(Doctor doctor) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    // Helper method to validate documents
+    private boolean areDocumentsValidated(List<Documents> documents) {
+        return documents != null && documents.stream()
+                .allMatch(doc -> doc.getStatus() == DocumentStatus.APPROVED);
+
     }
 
     @Override
     public List<Documents> getPendingDocuments() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return documentsRepository.findByStatus(DocumentStatus.PENDING);
     }
 
     @Override
     public boolean updateDocumentStatus(Long documentId, DocumentStatus status) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        Documents document = documentsRepository.findById(documentId)
+                .orElseThrow(() -> new RuntimeException("Document not found"));
 
-    @Override
-    public boolean lockUserAccount(Long userId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        // Update document status
+        document.setStatus(status);
+        documentsRepository.save(document);
 
-    @Override
-    public boolean unlockUserAccount(Long userId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean resetPassword(Long userId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return true;
     }
 
     @Override
     public boolean grantPermissionToUser(Long userId, PermissionType permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Fetch the permission by name
+        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+        if (permission == null) {
+            throw new RuntimeException("Permission not found");
+        }
+
+        // Add permission to the user if not already present
+        if (!user.getPermissions().contains(permission)) {
+            user.getPermissions().add(permission);
+            userRepository.save(user);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public boolean revokePermissionFromUser(Long userId, PermissionType permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Fetch the permission by name
+        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+        if (permission == null) {
+            throw new RuntimeException("Permission not found");
+        }
+
+        // Remove permission from the user if present
+        if (user.getPermissions().contains(permission)) {
+            user.getPermissions().remove(permission);
+            userRepository.save(user);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public boolean grantPermissionToDoctor(Long doctorId, PermissionType permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // Fetch doctor by ID
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        // Fetch the permission by name
+        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+        if (permission == null) {
+            throw new RuntimeException("Permission not found");
+        }
+
+        // Add permission to the doctor if not already present
+        if (!doctor.getPermissions().contains(permission)) {
+            doctor.getPermissions().add(permission);
+            doctorRepository.save(doctor);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public boolean revokePermissionFromDoctor(Long doctorId, PermissionType permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        // Fetch the permission by name
+        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+        if (permission == null) {
+            throw new RuntimeException("Permission not found");
+        }
+
+        // Remove permission from the doctor if present
+        if (doctor.getPermissions().contains(permission)) {
+            doctor.getPermissions().remove(permission);
+            doctorRepository.save(doctor);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public List<Permission> getPermissionsForUser(Long userId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<com.fsf.habitup.entity.Permission> getPermissionsForUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<com.fsf.habitup.entity.Permission> permissions = new ArrayList<>(user.getPermissions());
+        return permissions;
     }
 
     @Override
-    public List<Permission> getPermissionsForDoctor(Long doctorId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<com.fsf.habitup.entity.Permission> getPermissionsForDoctor(Long doctorId) {
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        // Return the list of permissions
+        return new ArrayList<>(doctor.getPermissions());
     }
 
     @Override
     public boolean checkUserPermission(Long userId, PermissionType permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return user.getPermissions().stream()
+                .anyMatch(permission -> permission.getName().equals(permissionName));
     }
 
     @Override
     public boolean checkDoctorPermission(Long doctorId, PermissionType permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        return doctor.getPermissions().stream()
+                .anyMatch(permission -> permission.getName().equals(permissionName));
     }
 
     @Override
     public boolean hasPermission(Long adminId, String permissionName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Admin admin = adminRepository.findById(adminId)
+                .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        // Check if the admin has the given permission
+        return admin.getUser().getPermissions().stream()
+                .anyMatch(permission -> permission.getName().name().equals(permissionName));
     }
 
     @Override
-    public void viewSystemLogs() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<String> viewSystemLogs() {
+        return logService.readLogs();
     }
 
     @Override
-    public void viewErrorLogs() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<String> viewErrorLogs() {
+        return logService.readLogs().stream()
+                .filter(line -> line.contains("ERROR"))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void updateSystemSettings() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Optional<SystemSetting> optionalSettings = systemSettingRepository.findById(1L);
+
+        if (optionalSettings.isPresent()) {
+            SystemSetting settings = optionalSettings.get();
+            settings.setMaintenanceMode(!settings.isMaintenanceMode());
+            settings.setLogLevel(settings.getLogLevel().equals("INFO") ? "DEBUG" : "INFO");
+
+            systemSettingRepository.save(settings);
+            System.out.println(" System settings updated successfully.");
+        } else {
+            System.out.println(" System settings not found.");
+        }
+
     }
 
     @Override
     public void checkApplicationHealth() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println(" Checking application health...");
+
+        // Check database connection
+        try {
+            systemSettingRepository.count();
+            System.out.println(" Database connection: OK");
+        } catch (Exception e) {
+            System.err.println(" Database connection failed: " + e.getMessage());
+        }
+
+        // Check log file existence
+        Path logFile = logService.getLogFilePath();
+        if (Files.exists(logFile)) {
+            System.out.println(" Log file found: " + logFile);
+        } else {
+            System.out.println("Log file not found: " + logFile);
+        }
+
+        // Check memory usage
+        Runtime runtime = Runtime.getRuntime();
+        long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / (1024 *
+                1024);
+        long maxMemory = runtime.maxMemory() / (1024 * 1024);
+        System.out.println(" Memory usage: " + usedMemory + "MB / " + maxMemory +
+                "MB");
+
+        System.out.println(" Application health check completed.");
     }
 
     @Override

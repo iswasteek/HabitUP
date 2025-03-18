@@ -1,6 +1,5 @@
 package com.fsf.habitup.Service;
 
-import java.security.Permission;
 import java.util.List;
 
 import com.fsf.habitup.DTO.AdminRequest;
@@ -49,17 +48,9 @@ public interface AdminService {
 
     boolean rejectDoctor(Long doctorId);
 
-    boolean addDoctor(Doctor doctor);
-
     List<Documents> getPendingDocuments();
 
     boolean updateDocumentStatus(Long documentId, DocumentStatus status);
-
-    boolean lockUserAccount(Long userId);
-
-    boolean unlockUserAccount(Long userId);
-
-    boolean resetPassword(Long userId);
 
     boolean grantPermissionToUser(Long userId, PermissionType permissionName);
 
@@ -69,9 +60,9 @@ public interface AdminService {
 
     boolean revokePermissionFromDoctor(Long doctorId, PermissionType permissionName);
 
-    List<Permission> getPermissionsForUser(Long userId);
+    List<com.fsf.habitup.entity.Permission> getPermissionsForUser(Long userId);
 
-    List<Permission> getPermissionsForDoctor(Long doctorId);
+    List<com.fsf.habitup.entity.Permission> getPermissionsForDoctor(Long doctorId);
 
     boolean checkUserPermission(Long userId, PermissionType permissionName);
 
@@ -79,9 +70,9 @@ public interface AdminService {
 
     boolean hasPermission(Long adminId, String permissionName);
 
-    void viewSystemLogs();
+    List<String> viewSystemLogs();
 
-    void viewErrorLogs();
+    List<String> viewErrorLogs();
 
     void updateSystemSettings();
 

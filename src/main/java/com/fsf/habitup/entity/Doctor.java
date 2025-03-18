@@ -1,6 +1,12 @@
 package com.fsf.habitup.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.DocumentStatus;
@@ -15,12 +21,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "doctor")
-public class Doctor {
+public class Doctor implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,6 +78,10 @@ public class Doctor {
     @OneToOne
     @JoinColumn(name = "userId", nullable = false, unique = true)
     private User user;
+
+    @ManyToMany
+    @JoinTable(name = "doctor_permissions", joinColumns = @JoinColumn(name = "doctorId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
+    private Set<Permission> permissions = new HashSet<>();
 
     public AccountStatus getAccountStatus() {
         return accountStatus;
@@ -181,6 +193,38 @@ public class Doctor {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    @Override
+    public Set<GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+
+        // Add permissions for Doctor
+        for (Permission permission : permissions) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getName()));
+        }
+
+        // Add the ROLE_DOCTOR authority for all Doctors
+        authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getUsername() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

@@ -45,6 +45,23 @@ public enum PermissionType {
     ACCESS_API, // Permission to interact with external APIs
     EXPORT_DATA, // Permission to export user/system data
     IMPORT_DATA, // Permission to import external data
-    CUSTOMIZE_DASHBOARD // Permission to modify dashboard layout/settings
+    CUSTOMIZE_DASHBOARD, // Permission to modify dashboard layout/settings
+    ROLE_MANAGE_ADMIN,
+    ROLE_MANAGE_DOCTORS,
+    ROLE_SEND_NOTIFICATIONS,
+    ROLE_VIEW_ADMINS,
+    ROLE_MANAGE_ADMINS,
+    ROLE_ACTIVATE_USERS,
+    ROLE_LOCK_UNLOCK_USERS,
+    ROLE_VIEW_USERS,
+    ROLE_MANAGE_USERS,
+    ROLE_VIEW_DOCTORS,
+    ROLE_MANAGE_DOCUMENTS,
+    ROLE_MANAGE_PERMISSIONS,
+    ROLE_VIEW_PERMISSIONS,
+    ROLE_VIEW_LOGS,
+    ROLE_VIEW_ERROR_LOGS,
+    ROLE_MANAGE_SETTINGS,
+    ROLE_CHECK_HEALTH
 
 }

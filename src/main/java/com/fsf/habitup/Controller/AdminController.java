@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,15 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsf.habitup.DTO.AdminRequest;
 import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Enums.DocumentStatus;
+import com.fsf.habitup.Enums.PermissionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Service.AdminServiceImpl;
 import com.fsf.habitup.Service.DoctorServiceImpl;
 import com.fsf.habitup.entity.Admin;
 import com.fsf.habitup.entity.Doctor;
+import com.fsf.habitup.entity.Documents;
+import com.fsf.habitup.entity.Permission;
 import com.fsf.habitup.entity.User;
 
 @RestController
 @RequestMapping("/habit/admin")
+
 public class AdminController {
 
     private final AdminServiceImpl adminService;
@@ -36,6 +42,7 @@ public class AdminController {
         this.doctorService = doctorService;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_ADMIN')")
     @PostMapping("/add-admin")
     public ResponseEntity<Admin> addAdmin(@RequestBody AdminRequest request) {
         Admin admin = adminService.addAdmin(request); // Call the addAdmin method from the service
@@ -43,6 +50,7 @@ public class AdminController {
 
     }
 
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_DOCTORS')")
     @PostMapping("/{userId}/verify-as-doctor")
     public ResponseEntity<String> verifyUserForDoctor(@PathVariable Long userId) {
         try {
@@ -63,18 +71,21 @@ public class AdminController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ROLE_SEND_NOTIFICATIONS')")
     @PostMapping("/send-verification-OTP")
     public ResponseEntity<String> sendOtp(@RequestParam String email) {
         String response = adminService.sendOtp(email);
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_VIEW_ADMINS')")
     @GetMapping("/{adminId}")
     public ResponseEntity<Admin> getAdminById(@PathVariable Long adminId) {
         Admin admin = adminService.getAdminById(adminId);
         return ResponseEntity.ok(admin);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_VIEW_ADMINS')")
     @GetMapping("/all-admins")
     public ResponseEntity<List<Admin>> getAllAdmins() {
         List<Admin> admins = adminService.getAllAdmins();
@@ -82,7 +93,8 @@ public class AdminController {
     }
 
     @DeleteMapping("/remove/{adminId}")
-    // @PreAuthorize("hasAuthority('MANAGE_ADMINS')") // Ensures only authorized
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_ADMINS')")
+    // Ensures only authorized
     // users can remove admins
     public ResponseEntity<String> removeAdmin(@PathVariable Long adminId) {
         boolean isRemoved = adminService.removeAdmin(adminId);
@@ -94,6 +106,7 @@ public class AdminController {
     }
 
     @PutMapping("/update-account-status/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_ACTIVATE_USERS')")
     public ResponseEntity<String> updateAccountStatus(@PathVariable Long userId,
             @RequestParam AccountStatus status) {
         boolean isUpdated = adminService.updateAccountStatus(userId, status);
@@ -105,6 +118,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete-user/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_LOCK_UNLOCK_USERS')")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
         boolean isDeleted = adminService.deleteUser(userId);
         if (isDeleted) {
@@ -115,18 +129,21 @@ public class AdminController {
     }
 
     @GetMapping("/user/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_USERS')")
     public ResponseEntity<User> getUserDetails(@PathVariable Long userId) {
         User user = adminService.getUserDetails(userId);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/users")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_USERS')")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = adminService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/users/assign-type")
+    @PutMapping("/users/assign-type")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_USERS')")
     public ResponseEntity<String> assignUserType(@RequestParam Long userId, @RequestParam UserType userType) {
         boolean isAssigned = adminService.assignUserType(userId, userType);
         if (isAssigned) {
@@ -137,21 +154,167 @@ public class AdminController {
     }
 
     @GetMapping("/users/type")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_USERS')")
     public ResponseEntity<List<User>> getUsersByType(@RequestParam UserType userType) {
         List<User> users = adminService.getUsersByType(userType);
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/users/has-permission")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_USERS')")
     public ResponseEntity<Boolean> hasPermission(@RequestParam Long userId, @RequestParam UserType requiredUserType) {
         boolean hasPermission = adminService.hasPermission(userId, requiredUserType);
         return ResponseEntity.ok(hasPermission);
     }
 
     @GetMapping("/all-doctors")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_DOCTORS')")
     public ResponseEntity<List<Doctor>> getAllDoctors() {
         List<Doctor> doctors = doctorService.getAllDoctors();
         return ResponseEntity.ok(doctors);
+    }
+
+    @PutMapping("/reject-doctor/{doctorId}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_DOCTORS')")
+    public ResponseEntity<String> rejectDoctor(@PathVariable Long doctorId) {
+        boolean isRejected = adminService.rejectDoctor(doctorId);
+
+        if (isRejected) {
+            return ResponseEntity.ok("Doctor has been rejected successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Failed to reject the doctor.");
+        }
+    }
+
+    @GetMapping("/pending-documents")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_DOCUMENTS')")
+    public ResponseEntity<List<Documents>> getPendingDocuments() {
+        List<Documents> pendingDocuments = adminService.getPendingDocuments();
+
+        if (pendingDocuments.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+
+        return ResponseEntity.ok(pendingDocuments);
+    }
+
+    @PutMapping("/update-document-status/{documentId}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_DOCUMENTS')")
+    public ResponseEntity<String> updateDocumentStatus(
+            @PathVariable Long documentId,
+            @RequestParam DocumentStatus status) {
+
+        boolean isUpdated = adminService.updateDocumentStatus(documentId, status);
+
+        if (isUpdated) {
+            return ResponseEntity.ok("Document status updated successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Failed to update document status.");
+        }
+    }
+
+    @PostMapping("/grant/{userId}/{permissionType}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+    public ResponseEntity<String> grantPermissionToUser(
+            @PathVariable Long userId,
+            @PathVariable PermissionType permissionType) {
+        boolean success = adminService.grantPermissionToUser(userId, permissionType);
+
+        if (success) {
+            return ResponseEntity.ok("Permission granted successfully");
+        } else {
+            return ResponseEntity.badRequest().body("User already has this permission");
+        }
+    }
+
+    @DeleteMapping("/revoke/{userId}/{permissionType}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+    public ResponseEntity<String> revokePermissionFromUser(
+            @PathVariable Long userId,
+            @PathVariable PermissionType permissionType) {
+        boolean success = adminService.revokePermissionFromUser(userId, permissionType);
+
+        if (success) {
+            return ResponseEntity.ok("Permission revoked successfully");
+        } else {
+            return ResponseEntity.badRequest().body("User does not have this permission");
+        }
+    }
+
+    @PostMapping("/grant/{doctorId}/{permissionName}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+    public ResponseEntity<String> grantPermissionToDoctor(
+            @PathVariable Long doctorId,
+            @PathVariable PermissionType permissionName) {
+
+        boolean granted = adminService.grantPermissionToDoctor(doctorId, permissionName);
+        if (granted) {
+            return ResponseEntity.ok("Permission granted successfully.");
+        } else {
+            return ResponseEntity.badRequest().body("Doctor already has this permission.");
+        }
+    }
+
+    @DeleteMapping("/revoke/{doctorId}/{permissionName}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+    public ResponseEntity<String> revokePermissionFromDoctor(
+            @PathVariable Long doctorId,
+            @PathVariable PermissionType permissionName) {
+
+        boolean revoked = adminService.revokePermissionFromDoctor(doctorId, permissionName);
+        if (revoked) {
+            return ResponseEntity.ok("Permission revoked successfully.");
+        } else {
+            return ResponseEntity.badRequest().body("Doctor does not have this permission.");
+        }
+    }
+
+    @GetMapping("/user/permission/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_PERMISSIONS')")
+    public ResponseEntity<List<Permission>> getPermissionsForUser(@PathVariable Long userId) {
+        List<Permission> permissions = adminService.getPermissionsForUser(userId);
+        return ResponseEntity.ok(permissions);
+    }
+
+    // Get all permissions for a doctor
+    @GetMapping("/doctor/{doctorId}")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_PERMISSIONS')")
+    public ResponseEntity<List<Permission>> getPermissionsForDoctor(@PathVariable Long doctorId) {
+        List<Permission> permissions = adminService.getPermissionsForDoctor(doctorId);
+        return ResponseEntity.ok(permissions);
+    }
+
+    @GetMapping("/user/{userId}/check/{permissionName}")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_PERMISSIONS')")
+    public ResponseEntity<Boolean> checkUserPermission(
+            @PathVariable Long userId,
+            @PathVariable PermissionType permissionName) {
+
+        boolean hasPermission = adminService.checkUserPermission(userId, permissionName);
+        return ResponseEntity.ok(hasPermission);
+    }
+
+    // Check if a doctor has a specific permission
+    @GetMapping("/doctor/{doctorId}/check/{permissionName}")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_PERMISSIONS')")
+    public ResponseEntity<Boolean> checkDoctorPermission(
+            @PathVariable Long doctorId,
+            @PathVariable PermissionType permissionName) {
+
+        boolean hasPermission = adminService.checkDoctorPermission(doctorId, permissionName);
+        return ResponseEntity.ok(hasPermission);
+    }
+
+    @GetMapping("/{adminId}/has-permission/{permissionName}")
+    @PreAuthorize("hasAuthority('ROLE_VIEW_PERMISSIONS')")
+    public ResponseEntity<Boolean> hasPermission(
+            @PathVariable Long adminId,
+            @PathVariable String permissionName) {
+
+        boolean hasPermission = adminService.hasPermission(adminId, permissionName);
+        return ResponseEntity.ok(hasPermission);
     }
 
 }

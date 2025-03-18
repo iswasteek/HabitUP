@@ -1,6 +1,12 @@
 package com.fsf.habitup.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fsf.habitup.Enums.Gender;
 import com.fsf.habitup.Enums.UserType;
@@ -13,12 +19,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "admin")
-public class Admin {
+public class Admin implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adminId", nullable = false, unique = true)
@@ -47,6 +55,10 @@ public class Admin {
     @OneToOne
     @JoinColumn(name = "userId", unique = false)
     private User user;
+
+    @ManyToMany
+    @JoinTable(name = "admin_permissions", joinColumns = @JoinColumn(name = "adminId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
+    private Set<Permission> permissions = new HashSet<>();
 
     /**
      * @return Long return the adminId
@@ -152,6 +164,33 @@ public class Admin {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    @Override
+    public Set<GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+
+        // Iterate through permissions and create authorities
+        for (Permission permission : permissions) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getName()));
+        }
+
+        // Admins should also have the ROLE_ADMIN
+        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
