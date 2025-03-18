@@ -1122,13 +1122,6 @@
                             </div>
                         </div>
 
-                        <!-- CAPTCHA -->
-                        <!-- <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="your site key"></div>
-                            </div>
-                        </div> -->
-
                         <!-- Submit Button -->
                         <div class="col-md-12 text-center mt-2">
                             <button class="btn btn-primary w-auto px-4" type="submit">Send OTP</button>
@@ -1185,10 +1178,6 @@
                         <label for="forgotPasswordEmail">Email</label>
                         <input class="form-control" id="forgotPasswordEmail" required type="email">
                     </div>
-                    <!-- CAPTCHA -->
-<!--                    <div class="form-group mb-3">-->
-<!--                        <div class="g-recaptcha" data-sitekey="your site key"></div>-->
-<!--                    </div>-->
                     <div class="message" id="forgotPasswordMessage"></div>
                     <button class="btn btn-primary d-block mx-auto" style="width: 30%;" type="submit">Send OTP</button>
                     <div class="text-center mt-3">
@@ -1317,34 +1306,50 @@
 
     // Modal Transitions
     forgotPasswordLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        loginModal.hide();
-        forgotPasswordModal.show();
+    e.preventDefault();
+    loginModal.hide();
+    setTimeout(() => forgotPasswordModal.show(), 300);
     });
 
     createAccountLink.addEventListener('click', function (e) {
         e.preventDefault();
         loginModal.hide();
-        signupModal.show();
+        setTimeout(() => signupModal.show(), 300);
     });
 
     backToLoginLink.addEventListener('click', function (e) {
         e.preventDefault();
         forgotPasswordModal.hide();
-        loginModal.show();
+        setTimeout(() => loginModal.show(), 300);
     });
 
     backToLoginLinkPassword.addEventListener('click', function (e) {
         e.preventDefault();
         otpVerificationModal.hide();
-        loginModal.show();
+        setTimeout(() => loginModal.show(), 300);
     });
 
     backToSignupLink.addEventListener('click', function (e) {
         e.preventDefault();
         otpRegistrationModal.hide();
-        signupModal.show();
+        setTimeout(() => signupModal.show(), 300);
     });
+
+    //new
+
+    createAccountLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    closeAllModals();
+    setTimeout(() => signupModal.show(), 300);
+    });
+
+    forgotPasswordLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        closeAllModals();
+        setTimeout(() => forgotPasswordModal.show(), 300);
+    });
+
+
 
     // OTP Input Handling
     otpBoxes.forEach((box, index) => {
@@ -1482,42 +1487,43 @@
     });
 
     // OTP Verification for Registration
-    otpRegistrationForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const otp = Array.from(otpBoxes)
-            .map(box => box.value)
-            .join('');
+   otpRegistrationForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-        const userData = {
-            name: document.getElementById('signupName').value,
-            email: document.getElementById('signupEmail').value,
-            dateOfBirth: document.getElementById('signupDOB').value,
-            password: document.getElementById('signupPassword').value,
-            phoneNo: document.getElementById('signupPhone').value,
-            gender: document.getElementById('signupGender').value,
-        };
+    const otp = Array.from(otpBoxes).map(box => box.value).join('');
 
-        const requestBody = {
-            otpVerificationRequest: {
-                email: userData.email,
-                otp: otp,
-            },
-            registerRequest: userData,
-        };
+    const userData = {
+        name: document.getElementById('signupName').value,
+        email: document.getElementById('signupEmail').value,
+        dateOfBirth: document.getElementById('signupDOB').value,
+        password: document.getElementById('signupPassword').value,
+        phoneNo: document.getElementById('signupPhone').value,
+        gender: document.getElementById('signupGender').value,
+    };
 
-        try {
-            // Show loader
-            otpMessageRegistration.innerHTML = loaderHTML;
+    const requestBody = {
+        otpVerificationRequest: { email: userData.email, otp: otp },
+        registerRequest: userData,
+    };
 
-            const response = await verifyOTPAndRegister(requestBody);
-            otpMessageRegistration.innerHTML = `<div class="alert alert-success">${response.message}</div>`;
-            setTimeout(() => {
-                window.location.href = "login.html"; // Redirect to login page after successful registration
-            }, 2000); // Redirect after 2 seconds
-        } catch (error) {
-            otpMessageRegistration.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-        }
-    });
+    const otpMessageElement = document.getElementById('otpMessageRegistration');
+    if (!otpMessageElement) {
+        console.error("Error: otpMessageRegistration element not found.");
+        return;
+    }
+
+    try {
+        otpMessageElement.innerHTML = loaderHTML;
+
+        const response = await verifyOTPAndRegister(requestBody);
+
+        otpMessageElement.innerHTML = `<div class="alert alert-success">${response.message || "Registration successful!"}</div>`;
+
+    } catch (error) {
+        otpMessageElement.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+    }
+});
+
 
     // Forgot Password Form Submission
     forgotPasswordForm.addEventListener('submit', async function (e) {
@@ -1606,6 +1612,7 @@ async function sendOTP(email, isForgotPassword = false) {
 
 async function verifyOTPAndRegister(requestBody) {
     const endpoint = 'http://localhost:8080/habit/auth/verify-otp-and-register';
+
     try {
         const response = await fetch(endpoint, {
             method: 'POST',
@@ -1613,24 +1620,59 @@ async function verifyOTPAndRegister(requestBody) {
             body: JSON.stringify(requestBody),
         });
 
-        // Check if the response is JSON
+        let message;
         const contentType = response.headers.get('content-type');
+
         if (contentType && contentType.includes('application/json')) {
             const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.error || data.message || "An unexpected error occurred");
-            }
-            return data;
+            message = data.message || "Unexpected response";
         } else {
-            // Handle plain text response
-            const text = await response.text();
-            if (!response.ok) {
-                throw new Error(text || "An unexpected error occurred");
-            }
-            return { message: text }; // Wrap plain text response in an object
+            message = await response.text();
         }
+
+        if (!response.ok) {
+            throw new Error(message);
+        }
+
+        console.log("Registration successful:", message);
+
+        const otpMessageElement = document.getElementById('otpMessageRegistration');
+        if (otpMessageElement) {
+            otpMessageElement.innerHTML = `<div class="alert alert-success">${message}</div>`;
+        } else {
+            console.error("Error: otpMessageRegistration element not found.");
+        }
+
+        setTimeout(() => {
+            const otpModal = bootstrap.Modal.getInstance(document.getElementById('otpRegistrationModal'));
+            if (otpModal) otpModal.hide();
+
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+            document.getElementById('loginEmail').value = requestBody.registerRequest.email;
+        }, 2000);
+
+        return { message }; // Return message as object
+
     } catch (error) {
-        throw new Error(error.message || "An unexpected error occurred");
+        console.error("Error in verifyOTPAndRegister:", error);
+
+        const otpMessageElement = document.getElementById('otpMessageRegistration');
+        if (otpMessageElement) {
+            otpMessageElement.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        }
+
+        if (error.message.includes("already registered")) {
+            setTimeout(() => {
+                const otpModal = bootstrap.Modal.getInstance(document.getElementById('otpRegistrationModal'));
+                if (otpModal) otpModal.hide();
+
+                const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
+                signupModal.show();
+            }, 2000);
+        }
+
+        return { message: error.message };
     }
 }
 
@@ -1667,10 +1709,18 @@ async function resetPassword(email, otp, newPassword) {
     }
 }
 
-// Function to reset form inputs
-function resetFormInputs(form) {
-    form.reset();
+   // Function to reset form inputs
+    function resetFormInputs(form) {
+        form.reset();
+    }
+
+    function closeAllModals() {
+    document.querySelectorAll('.modal.show').forEach(modalElement => {
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) modalInstance.hide();
+    });
 }
+
 </script>
 
 </body>

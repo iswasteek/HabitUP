@@ -108,9 +108,18 @@ public class UserServiceImpl implements UserService {
     public String verifyOtpAndCreateUser(OtpRegisterRequest request) {
         OtpVerificationReuest otpRequest = request.getOtpVerificationRequest();
         RegisterRequest registerRequest = request.getRegisterRequest();
+
         if (!otpService.validateOtp(otpRequest.getEmail(), otpRequest.getOtp())) {
             return "Invalid or expired OTP";
         }
+
+        if (userRepository.findByEmail(registerRequest.getEmail()) != null) {
+            return "This email is already registered. Please log in.";
+        }
+        if (userRepository.existsByPhoneNo(Long.parseLong(registerRequest.getPhoneNo()))) {
+            return "This phone number is already registered. Please use another number.";
+        }
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -118,12 +127,11 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(registerRequest.getName());
         user.setEmail(registerRequest.getEmail());
-        String joinDate = LocalDate.now().format(formatter);
-        user.setJoinDate(joinDate);
-        String dobString = registerRequest.getDateOfBirth();
-        user.setDob(dobString);
+        user.setJoinDate(LocalDate.now().format(formatter));
+        user.setDob(registerRequest.getDateOfBirth());
+
         // Convert dobString to LocalDate for age calculation
-        LocalDate dob = LocalDate.parse(dobString, formatter);
+        LocalDate dob = LocalDate.parse(registerRequest.getDateOfBirth(), formatter);
         int age = Period.between(dob, LocalDate.now()).getYears();
 
         // Set UserType based on age
@@ -136,13 +144,16 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setPhoneNo(registerRequest.getPhoneNo() != null ? Long.parseLong(registerRequest.getPhoneNo()) : null);
+        user.setPhoneNo(Long.parseLong(registerRequest.getPhoneNo()));
         user.setSubscriptionType(SubscriptionType.FREE);
         user.setGender(registerRequest.getGender());
         user.setAccountStatus(AccountStatus.ACTIVE);
+
+        // Save User
         userRepository.save(user);
         return "Registration successful!";
     }
+
 
     @Override
     public AuthResponse authenticateUser(LoginRequest request) {

@@ -28,6 +28,81 @@
 2025-03-19 00:31:23 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-03-19 00:31:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-03-19 00:31:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 01:15:29 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 9932 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 01:15:29 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 01:15:29 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 01:15:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 01:15:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 129 ms. Found 8 JPA repository interfaces.
+2025-03-19 01:15:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 01:15:32 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 01:15:32 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 01:15:32 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 01:15:32 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3121 ms
+2025-03-19 01:15:32 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 01:15:33 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 01:15:33 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 01:15:33 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 01:15:33 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 01:15:33 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 01:15:34 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b841e7d
+2025-03-19 01:15:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 01:15:34 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 01:15:36 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 01:15:37 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 01:15:38 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 01:15:38 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 01:15:38 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'permissionInitializer': Invocation of init method failed
+2025-03-19 01:15:38 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 01:15:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 01:15:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 01:15:38 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-03-19 01:15:38 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-19 01:15:38 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'permissionInitializer': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.fsf.habitup.HabitupApplication.main(HabitupApplication.java:10)
+Caused by: org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.fsf.habitup.entity.User.permissions: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.PersistentSet.addAll(PersistentSet.java:237)
+	at com.fsf.habitup.Security.PermissionInitializer.initializeUserPermissions(PermissionInitializer.java:55)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219)
+	... 20 common frames omitted
 2025-03-19 00:36:33 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 22.0.2 with PID 5644 (C:\Users\Sidha\git\target\classes started by Sidha in C:\Users\Sidha\git)
 2025-03-19 00:36:33 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
 2025-03-19 00:36:33 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
@@ -798,3 +873,738 @@ Caused by: org.hibernate.LazyInitializationException: failed to lazily initializ
 2025-03-19 01:46:13 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
 2025-03-19 01:46:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
 2025-03-19 01:46:14 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 8.482 seconds (process running for 8.949)
+2025-03-19 01:50:31 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 17728 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 01:50:31 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 01:50:31 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 01:50:32 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 01:50:33 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 138 ms. Found 8 JPA repository interfaces.
+2025-03-19 01:50:34 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 01:50:34 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 01:50:34 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 01:50:34 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 01:50:34 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3142 ms
+2025-03-19 01:50:34 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 01:50:35 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 01:50:35 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 01:50:35 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 01:50:35 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 01:50:35 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 01:50:36 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75c77add
+2025-03-19 01:50:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 01:50:36 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 01:50:37 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 01:50:38 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 01:50:38 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 01:50:38 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 01:50:38 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 01:50:38 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-03-19 01:50:39 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 2 users.
+2025-03-19 01:50:39 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-03-19 01:50:39 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-03-19 01:50:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACCESS_API
+2025-03-19 01:50:39 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 01:50:39 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 01:50:39 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 01:50:40 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 01:50:40 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 01:50:40 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 01:50:40 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 10.151 seconds (process running for 10.663)
+2025-03-19 01:55:50 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m14s424ms484µs300ns).
+2025-03-19 02:03:27 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:03:27 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:03:27 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 18 ms
+2025-03-19 02:03:27 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:03:27 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:03:27 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:03:54 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:03:54 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:03:54 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:03:55 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:03:55 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:03:55 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:04:38 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:04:38 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:04:38 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:05:09 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:05:09 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:05:09 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:08:22 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 02:08:23 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 02:08:23 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:08:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 02:08:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 02:08:27 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 9840 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 02:08:27 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 02:08:27 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 02:08:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 02:08:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 103 ms. Found 8 JPA repository interfaces.
+2025-03-19 02:08:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 02:08:30 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 02:08:30 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 02:08:30 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 02:08:30 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2851 ms
+2025-03-19 02:08:31 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 02:08:31 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 02:08:31 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 02:08:31 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 02:08:31 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 02:08:32 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 02:08:32 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63a7af06
+2025-03-19 02:08:32 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 02:08:32 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 02:08:34 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 02:08:34 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:08:35 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 02:08:35 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 02:08:35 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 02:08:35 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 02:08:35 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 2 users.
+2025-03-19 02:08:35 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 02:08:35 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
+2025-03-19 02:08:35 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 02:08:35 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 02:08:35 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 02:08:36 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 02:08:36 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 02:08:36 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 02:08:37 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 02:08:37 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 10.358 seconds (process running for 10.882)
+2025-03-19 02:10:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:10:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:10:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+2025-03-19 02:10:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:10:02 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:10:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:10:13 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:10:13 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:10:13 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:10:41 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/verify-otp-and-register
+2025-03-19 02:10:41 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:10:41 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured OPTIONS /habit/auth/verify-otp-and-register
+2025-03-19 02:10:41 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:10:41 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:10:41 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:10:41 [http-nio-8080-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+2025-03-19 02:10:41 [http-nio-8080-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Duplicate entry '7735017771' for key 'user.UK4bgmpi98dylab6qdvf9xyaxu4'
+2025-03-19 02:12:13 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:12:13 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:12:13 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:12:41 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:12:41 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:12:41 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:18:32 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 02:18:33 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 02:18:33 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:18:33 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 02:18:33 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 02:18:36 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 13592 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 02:18:36 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 02:18:36 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 02:18:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 02:18:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 8 JPA repository interfaces.
+2025-03-19 02:18:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 02:18:39 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 02:18:39 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 02:18:39 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 02:18:39 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2785 ms
+2025-03-19 02:18:39 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 02:18:40 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 02:18:40 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 02:18:40 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 02:18:40 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 02:18:40 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 02:18:41 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c9cce17
+2025-03-19 02:18:41 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 02:18:41 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 02:18:42 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 02:18:45 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:18:45 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 02:18:45 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 02:18:45 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 02:18:45 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-03-19 02:18:46 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-03-19 02:18:46 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-03-19 02:18:46 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-03-19 02:18:46 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACCESS_API
+2025-03-19 02:18:46 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 02:18:46 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 02:18:46 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 02:18:46 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 02:18:47 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 02:18:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 02:18:47 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 11.562 seconds (process running for 12.084)
+2025-03-19 02:19:33 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:19:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:19:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-03-19 02:19:33 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 02:19:33 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:19:33 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 02:20:19 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:20:20 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:20:20 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:24:31 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:24:31 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:24:31 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:24:54 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:24:54 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:24:54 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:30:17 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 02:30:17 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 02:30:18 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:30:18 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 02:30:18 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 02:30:21 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 15020 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 02:30:21 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 02:30:21 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 02:30:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 02:30:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108 ms. Found 8 JPA repository interfaces.
+2025-03-19 02:30:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 02:30:23 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 02:30:23 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 02:30:24 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 02:30:24 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2593 ms
+2025-03-19 02:30:24 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 02:30:24 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 02:30:24 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 02:30:24 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 02:30:25 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 02:30:25 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 02:30:25 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@240f2efd
+2025-03-19 02:30:25 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 02:30:25 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 02:30:26 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 02:30:27 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:30:27 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 02:30:27 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 02:30:28 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 02:30:28 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 02:30:28 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 2 users.
+2025-03-19 02:30:28 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 02:30:28 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
+2025-03-19 02:30:28 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 02:30:28 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 02:30:28 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 02:30:28 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 02:30:29 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 02:30:29 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 02:30:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 02:30:29 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 9.043 seconds (process running for 9.542)
+2025-03-19 02:31:31 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:31:31 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:31:31 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2025-03-19 02:31:31 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:31:32 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:31:32 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=sidharthpradhan445@gmail.com
+2025-03-19 02:32:44 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:32:44 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:32:44 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:37:56 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 02:37:56 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 02:37:56 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:37:56 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 02:37:56 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 02:37:59 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 3120 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 02:37:59 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 02:37:59 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 02:38:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 02:38:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 103 ms. Found 8 JPA repository interfaces.
+2025-03-19 02:38:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 02:38:02 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 02:38:02 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 02:38:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 02:38:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2578 ms
+2025-03-19 02:38:02 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 02:38:02 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 02:38:02 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 02:38:03 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 02:38:03 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 02:38:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 02:38:03 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75c77add
+2025-03-19 02:38:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 02:38:03 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 02:38:05 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 02:38:07 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:38:08 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 02:38:08 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 02:38:08 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 02:38:08 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-03-19 02:38:08 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-03-19 02:38:08 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-03-19 02:38:08 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-03-19 02:38:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACCESS_API
+2025-03-19 02:38:08 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 02:38:08 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 02:38:09 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 02:38:09 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 02:38:09 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 02:38:10 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 02:38:10 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 11.391 seconds (process running for 12.143)
+2025-03-19 02:38:49 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:38:49 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:38:49 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2025-03-19 02:38:49 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:38:49 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:38:49 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:39:27 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:39:27 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:39:27 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:41:10 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:41:10 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:41:10 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:41:59 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 02:41:59 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:41:59 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 02:42:32 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/verify-otp-and-register
+2025-03-19 02:42:32 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:42:32 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured OPTIONS /habit/auth/verify-otp-and-register
+2025-03-19 02:42:32 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:42:32 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:42:32 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:46:42 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 02:46:42 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 02:46:42 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:46:42 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 02:46:42 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 02:46:45 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 6572 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 02:46:45 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 02:46:45 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 02:46:46 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 02:46:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 8 JPA repository interfaces.
+2025-03-19 02:46:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 02:46:48 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 02:46:48 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 02:46:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 02:46:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2761 ms
+2025-03-19 02:46:48 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 02:46:48 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 02:46:48 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 02:46:48 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 02:46:49 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 02:46:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 02:46:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d4b45b
+2025-03-19 02:46:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 02:46:49 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 02:46:51 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 02:46:53 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:46:54 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 02:46:54 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 02:46:54 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 02:46:54 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-03-19 02:46:55 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-03-19 02:46:55 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-03-19 02:46:55 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-03-19 02:46:55 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACCESS_API
+2025-03-19 02:46:55 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 02:46:55 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 02:46:55 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 02:46:55 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 02:46:55 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 02:46:56 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 02:46:56 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 11.744 seconds (process running for 12.463)
+2025-03-19 02:47:46 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:47:46 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:47:46 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-03-19 02:47:46 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 02:47:46 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:47:46 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 02:48:10 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:48:10 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:48:10 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:54:47 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:54:47 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:54:47 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:55:12 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:55:12 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:55:12 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 02:57:00 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 02:57:01 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 02:57:01 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:57:01 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 02:57:01 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 02:57:04 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 2744 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 02:57:04 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 02:57:04 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 02:57:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 02:57:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 113 ms. Found 8 JPA repository interfaces.
+2025-03-19 02:57:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 02:57:06 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 02:57:06 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 02:57:06 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 02:57:06 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2630 ms
+2025-03-19 02:57:07 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 02:57:07 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 02:57:07 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 02:57:07 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 02:57:07 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 02:57:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 02:57:08 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7eebb316
+2025-03-19 02:57:08 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 02:57:08 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 02:57:10 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 02:57:12 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 02:57:13 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 02:57:13 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 02:57:13 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 02:57:13 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-03-19 02:57:13 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-03-19 02:57:13 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-03-19 02:57:13 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-03-19 02:57:13 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACCESS_API
+2025-03-19 02:57:13 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 02:57:13 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 02:57:13 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 02:57:14 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 02:57:14 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 02:57:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 02:57:14 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 11.335 seconds (process running for 11.812)
+2025-03-19 02:57:50 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 02:57:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 02:57:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 15 ms
+2025-03-19 02:57:51 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:57:51 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:57:51 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 02:58:22 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 02:58:22 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 02:58:22 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:00:10 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:00:10 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:00:10 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:00:36 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:00:36 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:00:36 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:00:36 [http-nio-8080-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+2025-03-19 03:00:36 [http-nio-8080-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Duplicate entry '7735017771' for key 'user.UK4bgmpi98dylab6qdvf9xyaxu4'
+2025-03-19 03:16:24 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 03:16:24 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 03:16:24 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:16:24 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 03:16:24 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 03:16:28 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 11836 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 03:16:28 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 03:16:28 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 03:16:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 03:16:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 117 ms. Found 8 JPA repository interfaces.
+2025-03-19 03:16:31 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 03:16:31 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 03:16:31 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 03:16:31 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 03:16:31 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2752 ms
+2025-03-19 03:16:32 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 03:16:32 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 03:16:32 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 03:16:32 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 03:16:32 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 03:16:32 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 03:16:33 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c9cce17
+2025-03-19 03:16:33 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 03:16:33 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 03:16:34 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 03:16:35 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:16:35 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 03:16:35 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 03:16:36 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 03:16:36 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 03:16:37 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
+2025-03-19 03:16:37 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 03:16:37 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
+2025-03-19 03:16:37 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 03:16:37 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 03:16:37 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 03:16:37 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 03:16:39 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 03:16:39 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 03:16:40 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 03:16:40 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 12.505 seconds (process running for 12.973)
+2025-03-19 03:17:19 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 03:17:19 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 03:17:19 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-03-19 03:17:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 03:17:19 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:17:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 03:17:32 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:17:32 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:17:32 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:17:58 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/verify-otp-and-register
+2025-03-19 03:17:58 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:17:58 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured OPTIONS /habit/auth/verify-otp-and-register
+2025-03-19 03:17:58 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:17:58 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:17:58 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:21:12 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 03:21:13 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 03:21:13 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:21:13 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 03:21:13 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 03:21:16 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 5800 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 03:21:16 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 03:21:16 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 03:21:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 03:21:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 96 ms. Found 8 JPA repository interfaces.
+2025-03-19 03:21:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 03:21:19 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 03:21:19 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 03:21:19 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 03:21:19 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2635 ms
+2025-03-19 03:21:19 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 03:21:20 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 03:21:20 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 03:21:20 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 03:21:20 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 03:21:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 03:21:21 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@15c1b543
+2025-03-19 03:21:21 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 03:21:21 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 03:21:22 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 03:21:22 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:21:23 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 03:21:23 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 03:21:23 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 03:21:23 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 03:21:23 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
+2025-03-19 03:21:23 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 03:21:23 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
+2025-03-19 03:21:23 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 03:21:24 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 03:21:24 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 03:21:24 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 03:21:24 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 03:21:24 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 03:21:25 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 03:21:25 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 9.247 seconds (process running for 9.731)
+2025-03-19 03:22:03 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 03:22:03 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 03:22:03 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-03-19 03:22:03 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:22:03 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:22:03 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:22:28 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:22:28 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:22:28 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:26:58 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:26:58 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:26:58 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:27:18 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:27:18 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:27:18 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:27:39 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:27:39 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:27:39 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:28:20 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:28:20 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:28:20 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:28:33 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:28:33 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:28:33 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-03-19 03:29:01 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:29:01 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:29:01 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:38:26 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 03:38:27 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 03:38:27 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:38:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 03:38:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-19 03:38:30 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 10756 (C:\Users\swast\Downloads\FullStackFlair\target\classes started by swast in C:\Users\swast\Downloads\FullStackFlair)
+2025-03-19 03:38:30 [main] DEBUG com.fsf.habitup.HabitupApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-19 03:38:30 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-19 03:38:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-19 03:38:32 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 131 ms. Found 8 JPA repository interfaces.
+2025-03-19 03:38:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-19 03:38:33 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-19 03:38:33 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-19 03:38:33 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-19 03:38:33 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2727 ms
+2025-03-19 03:38:33 [main] DEBUG c.f.h.S.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-03-19 03:38:33 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-19 03:38:33 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-19 03:38:33 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-03-19 03:38:34 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-19 03:38:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-19 03:38:34 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@591a4d25
+2025-03-19 03:38:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-19 03:38:34 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-19 03:38:36 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-19 03:38:38 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:38:39 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-03-19 03:38:39 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-03-19 03:38:39 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-03-19 03:38:39 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-03-19 03:38:39 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-03-19 03:38:39 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-03-19 03:38:39 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-03-19 03:38:39 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACCESS_API
+2025-03-19 03:38:39 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-03-19 03:38:39 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-03-19 03:38:40 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-03-19 03:38:40 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-03-19 03:38:40 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-03-19 03:38:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-19 03:38:41 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 11.368 seconds (process running for 11.831)
+2025-03-19 03:39:21 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-19 03:39:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-19 03:39:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-03-19 03:39:21 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 03:39:21 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:39:21 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-03-19 03:39:48 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-03-19 03:39:48 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:39:48 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-03-19 03:40:14 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
+2025-03-19 03:40:14 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:40:14 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured OPTIONS /habit/auth/login
+2025-03-19 03:40:14 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
+2025-03-19 03:40:14 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:40:14 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
+2025-03-19 03:40:14 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-03-19 03:40:37 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
+2025-03-19 03:40:37 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:40:37 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
+2025-03-19 03:41:14 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
+2025-03-19 03:41:14 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:41:14 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
+2025-03-19 03:41:14 [http-nio-8080-exec-7] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-03-19 03:42:13 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP-forgot-password?email=swastikb97@gmail.com
+2025-03-19 03:42:13 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:42:13 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP-forgot-password?email=swastikb97@gmail.com
+2025-03-19 03:42:47 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/forgot-password-otp
+2025-03-19 03:42:47 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:42:47 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured OPTIONS /habit/auth/forgot-password-otp
+2025-03-19 03:42:47 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/forgot-password-otp
+2025-03-19 03:42:47 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:42:47 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/forgot-password-otp
+2025-03-19 03:42:56 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP-forgot-password?email=swastikb97@gmail.com
+2025-03-19 03:42:56 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:42:56 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP-forgot-password?email=swastikb97@gmail.com
+2025-03-19 03:43:26 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/forgot-password-otp
+2025-03-19 03:43:26 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:43:26 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/forgot-password-otp
+2025-03-19 03:43:39 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
+2025-03-19 03:43:39 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:43:39 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
+2025-03-19 03:43:39 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+2025-03-19 03:43:55 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
+2025-03-19 03:43:55 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-03-19 03:43:55 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
+2025-03-19 03:43:55 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-03-19 03:44:20 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-19 03:44:20 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-19 03:44:20 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-19 03:44:20 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-19 03:44:20 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
