@@ -3,7 +3,6 @@ package com.fsf.habitup.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsf.habitup.DTO.AuthResponse;
+import com.fsf.habitup.DTO.AuthResponseAdmin;
+import com.fsf.habitup.DTO.AuthResponseDoctor;
 import com.fsf.habitup.DTO.ForgetPasswordRequest;
 import com.fsf.habitup.DTO.LoginRequest;
 import com.fsf.habitup.DTO.OtpRegisterRequest;
-import com.fsf.habitup.Exception.ApiException;
+import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Service.AdminServiceImpl;
+import com.fsf.habitup.Service.DoctorServiceImpl;
 import com.fsf.habitup.Service.UserServiceImpl;
 
 @RestController
@@ -24,8 +27,15 @@ public class AuthController {
     @Autowired
     private final UserServiceImpl userService;
 
-    public AuthController(UserServiceImpl userService) {
+    private final DoctorServiceImpl doctorService;
+
+    private final AdminServiceImpl adminService;
+
+    public AuthController(UserServiceImpl userService, DoctorServiceImpl doctorService, AdminServiceImpl adminService) {
         this.userService = userService;
+        this.doctorService = doctorService;
+        this.adminService = adminService;
+
     }
 
     @PostMapping("/send-OTP")
@@ -63,18 +73,25 @@ public class AuthController {
 
     }
 
-    @PostMapping("/logout/{email}")
-    public ResponseEntity<String> logout(@PathVariable String email) {
-        try {
-            // Call the logout method from the user service
-            String response = userService.logout(email);
-            return ResponseEntity.ok(response);
-        } catch (ApiException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+    @PostMapping("/doctor/login")
+    public ResponseEntity<AuthResponseDoctor> doctorLogin(@RequestBody LoginRequest request) {
+
+        AuthResponseDoctor authResponse = doctorService.login(request);
+
+        boolean statusUpdated = doctorService.updateStatus(request.getEmail(), AccountStatus.ACTIVE);
+
+        if (!statusUpdated) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
+        // Return successful response with JWT token
+        return ResponseEntity.ok(authResponse);
+    }
+
+    @PostMapping("/admin/login")
+    public ResponseEntity<AuthResponseAdmin> adminLogin(@RequestBody LoginRequest request) {
+        AuthResponseAdmin response = adminService.AdminLogin(request);
+        return ResponseEntity.ok(response);
     }
 
 }

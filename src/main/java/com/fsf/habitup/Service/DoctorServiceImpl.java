@@ -2,12 +2,15 @@ package com.fsf.habitup.Service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.fsf.habitup.DTO.AuthResponseDoctor;
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Exception.ApiException;
 import com.fsf.habitup.Repository.DoctorRepository;
@@ -15,6 +18,8 @@ import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.entity.Doctor;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -99,13 +104,13 @@ public class DoctorServiceImpl implements DoctorService {
         String token = jwtTokenProvider.generateToken(request.getEmail());
 
         // Store token in the database
-        doctorRepository.save(doctor);
+        // doctorRepository.save(doctor);
 
         return new AuthResponseDoctor(doctor, token);
     }
 
     @Override
-    public String Logout(String email) {
+    public LogoutResponse Logout(String email, HttpServletResponse response) {
         Doctor doctor = doctorRepository.findByEmailId(email);
 
         if (doctor == null) {
@@ -118,7 +123,18 @@ public class DoctorServiceImpl implements DoctorService {
         // Save the updated doctor entity
         doctorRepository.save(doctor);
 
-        return "Doctor logged out successfully.";
+        // Clear security context
+        SecurityContextHolder.clearContext();
+
+        // Invalidate JWT token (if stored in a cookie)
+        Cookie jwtCookie = new Cookie("JWT-TOKEN", null);
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(true); // Only for HTTPS
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(0); // Expire immediately
+        response.addCookie(jwtCookie);
+
+        return new LogoutResponse("Doctor logged out successfully.", HttpStatus.OK.value());
     }
 
 }

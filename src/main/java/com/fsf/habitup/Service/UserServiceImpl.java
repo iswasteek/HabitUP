@@ -6,8 +6,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-import com.fsf.habitup.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.fsf.habitup.DTO.AuthResponse;
 import com.fsf.habitup.DTO.ForgetPasswordRequest;
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.DTO.OtpRegisterRequest;
 import com.fsf.habitup.DTO.OtpVerificationReuest;
 import com.fsf.habitup.DTO.RegisterRequest;
@@ -26,9 +26,13 @@ import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Exception.ApiException;
 import com.fsf.habitup.Repository.PasswordResetTokenRepository;
+import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.Security.JwtTokenProvider;
 import com.fsf.habitup.entity.PasswordResetToken;
 import com.fsf.habitup.entity.User;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -46,10 +50,10 @@ public class UserServiceImpl implements UserService {
 
     private final JavaMailSender mailSender;
 
-    @Autowired
     public UserServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
-                           JavaMailSender mailSender, OtpService otpService, UserRepository userRepository, PasswordEncoder passwordEncoder,
-                           PasswordResetTokenRepository tokenRepository) {
+            JavaMailSender mailSender, OtpService otpService, UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            PasswordResetTokenRepository tokenRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.mailSender = mailSender;
@@ -156,7 +160,7 @@ public class UserServiceImpl implements UserService {
         String token = jwtTokenProvider.generateToken(request.getEmail());
 
         // Store token in the database
-        userRepository.save(user);
+        // userRepository.save(user);
 
         return new AuthResponse(token, user);
     }
@@ -274,23 +278,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String logout(String email) {
-        // Find the user by email
+    public LogoutResponse logout(String email, HttpServletResponse response) {
         User user = userRepository.findByEmail(email);
 
         if (user == null) {
             throw new ApiException("User not found.");
         }
 
-        // Clear the stored JWT token
+        // Clear the JWT token by removing it from cookies
+        Cookie jwtCookie = new Cookie("Authorization", null);
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(true);
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(0); // Expire the cookie immediately
+        response.addCookie(jwtCookie);
 
-        // Update status to INACTIVE
+        // Optional: Update user account status to INACTIVE
         user.setAccountStatus(AccountStatus.INACTIVE);
-
-        // Save the updated user entity
         userRepository.save(user);
 
-        return "User logged out successfully.";
+        // Return logout response
+        return new LogoutResponse("User logged out successfully.", HttpStatus.OK.value());
     }
 
 }

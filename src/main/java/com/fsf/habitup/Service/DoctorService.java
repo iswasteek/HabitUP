@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.fsf.habitup.DTO.AuthResponseDoctor;
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.entity.Doctor;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface DoctorService {
 
@@ -21,6 +24,6 @@ public interface DoctorService {
 
     public AuthResponseDoctor login(LoginRequest request);
 
-    public String Logout(String email);
+    public LogoutResponse Logout(String email, HttpServletResponse response);
 
 }

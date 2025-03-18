@@ -1,6 +1,5 @@
 package com.fsf.habitup.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;

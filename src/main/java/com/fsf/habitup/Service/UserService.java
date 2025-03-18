@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fsf.habitup.DTO.AuthResponse;
 import com.fsf.habitup.DTO.ForgetPasswordRequest;
 import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.DTO.OtpRegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.entity.User;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface UserService {
 
@@ -32,8 +35,6 @@ public interface UserService {
 
     public boolean sendPasswordResetToken(String email);
 
-
-
     public boolean resetPassword(String token, String newPassword);
 
     boolean updateAccountStatus(Long userId, AccountStatus accountStatus);
@@ -42,5 +43,5 @@ public interface UserService {
 
     public String verifyOtpAndCreateUser(OtpRegisterRequest request);
 
-    public String logout(String email);
+    public LogoutResponse logout(String email, HttpServletResponse response);
 }

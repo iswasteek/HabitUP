@@ -5,20 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fsf.habitup.DTO.AuthResponseDoctor;
-import com.fsf.habitup.DTO.LoginRequest;
-import com.fsf.habitup.Enums.AccountStatus;
-import com.fsf.habitup.Exception.ApiException;
+import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.Service.DoctorServiceImpl;
 import com.fsf.habitup.entity.Doctor;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/doctor")
@@ -71,31 +72,11 @@ public class DoctorController {
         return ResponseEntity.ok(updatedDoctor);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthResponseDoctor> doctorLogin(@RequestBody LoginRequest request) {
-
-        AuthResponseDoctor authResponse = doctorServiceImpl.login(request);
-
-        boolean statusUpdated = doctorServiceImpl.updateStatus(request.getEmail(), AccountStatus.ACTIVE);
-
-        if (!statusUpdated) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-
-        // Return successful response with JWT token
-        return ResponseEntity.ok(authResponse);
-    }
-
-    @PostMapping("/logout/{email}")
-    public ResponseEntity<String> doctorLogout(@PathVariable String email) {
-        try {
-            String response = doctorServiceImpl.Logout(email);
-            return ResponseEntity.ok(response);
-        } catch (ApiException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
-        }
+    @PostMapping("/doctor/logout")
+    @PreAuthorize("isAuthenticated()") // Requires authentication before logout
+    public ResponseEntity<LogoutResponse> logout(@RequestParam String email, HttpServletResponse response) {
+        LogoutResponse logoutResponse = doctorServiceImpl.Logout(email, response);
+        return ResponseEntity.ok(logoutResponse);
     }
 
 }
