@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -158,24 +159,20 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+
     public AuthResponseAdmin AdminLogin(LoginRequest request) {
+        Admin admin = adminRepository.findByEmail(request.getEmail());
 
-        try {
-            // Authenticate admin using AuthenticationManager
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-
-            // Set authentication in security context
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            // Generate JWT token for authenticated admin
-            String token = jwtTokenProvider.generateToken(request.getEmail());
-
-            return new AuthResponseAdmin(token, adminRepository.findByEmail(request.getEmail()));
-        } catch (AuthenticationException e) {
+        // Generic authentication failure message (prevents user enumeration)
+        if (admin == null || admin.getPassword() == null || !passwordEncoder.matches(request.getPassword(), admin.getPassword())) {
             throw new BadCredentialsException("Invalid email or password");
         }
+        // Generate JWT token using the Admin ID (more secure)
+        String token = jwtTokenProvider.generateToken(String.valueOf(admin.getAdminId()));
+
+        return new AuthResponseAdmin(token, admin);
     }
+
 
     @Override
     public Admin getAdminById(Long adminId) {

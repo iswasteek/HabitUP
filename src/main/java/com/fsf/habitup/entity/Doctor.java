@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -81,6 +82,7 @@ public class Doctor implements UserDetails {
 
     @ManyToMany
     @JoinTable(name = "doctor_permissions", joinColumns = @JoinColumn(name = "doctorId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
+
     private Set<Permission> permissions = new HashSet<>();
 
     public AccountStatus getAccountStatus() {

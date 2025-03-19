@@ -3,17 +3,10 @@ package com.fsf.habitup.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fsf.habitup.Enums.PermissionType;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "permissions")
@@ -28,13 +21,16 @@ public class Permission {
     @Column(unique = true, nullable = false)
     private PermissionType name;
 
-    @ManyToMany(mappedBy = "permissions") // No @JoinTable here
+    @ManyToMany(mappedBy = "permissions")
+    // No @JoinTable here
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "permissions") // Correct bidirectional mapping
+    @ManyToMany(mappedBy = "permissions")
+     // Correct bidirectional mapping
     private Set<Doctor> doctors = new HashSet<>();
 
     @ManyToMany(mappedBy = "permissions")
+
     private Set<Admin> admins = new HashSet<>();
 
     // Constructors
