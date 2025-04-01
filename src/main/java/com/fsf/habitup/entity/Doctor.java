@@ -29,18 +29,22 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "doctor")
-public class Doctor implements UserDetails {
+public class Doctor  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "doctorId", nullable = false, unique = true)
     private Long doctorId;
 
+
+    @Column(name = "password", nullable = false)
+    public String password;
+
     @Column(name = "doctorName", nullable = false, unique = false)
     private String doctorName;
 
     @Column(name = "email", nullable = false, unique = true)
-    private String emailId;
+    private String email;
 
     @Column(name = "phoneNo", nullable = false, unique = true)
     private Long phoneNo;
@@ -82,7 +86,6 @@ public class Doctor implements UserDetails {
 
     @ManyToMany
     @JoinTable(name = "doctor_permissions", joinColumns = @JoinColumn(name = "doctorId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
-
     private Set<Permission> permissions = new HashSet<>();
 
     public AccountStatus getAccountStatus() {
@@ -133,13 +136,6 @@ public class Doctor implements UserDetails {
         this.doctorName = doctorName;
     }
 
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
 
     public Gender getGender() {
         return gender;
@@ -205,28 +201,23 @@ public class Doctor implements UserDetails {
         this.permissions = permissions;
     }
 
-    @Override
-    public Set<GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities = new HashSet<>();
-
-        // Add permissions for Doctor
-        for (Permission permission : permissions) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getName()));
-        }
-
-        // Add the ROLE_DOCTOR authority for all Doctors
-        authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
-        return authorities;
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
     }
 
-    @Override
     public String getPassword() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return password;
     }
 
-    @Override
-    public String getUsername() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

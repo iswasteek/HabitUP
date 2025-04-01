@@ -17,7 +17,7 @@ import com.fsf.habitup.Enums.UserType;
 
 @Entity
 @Table(name = "admin")
-public class Admin implements UserDetails {
+public class Admin  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adminId", nullable = false, unique = true)
@@ -166,23 +166,6 @@ public class Admin implements UserDetails {
         this.permissions = permissions;
     }
 
-    @Override
-    public Set<GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities = new HashSet<>();
 
-        // Iterate through permissions and create authorities
-        for (Permission permission : permissions) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getName()));
-        }
-
-        // Admins should also have the ROLE_ADMIN
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        return authorities;
-    }
-
-    @Override
-    public String getUsername() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 }

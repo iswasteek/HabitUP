@@ -1,11 +1,10 @@
 package com.fsf.habitup.Repository;
 
+import com.fsf.habitup.entity.Program;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.fsf.habitup.entity.Doctor;
-
 @Repository
-public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-    Doctor findByEmail(String email);
+public interface ProgramRepository extends JpaRepository<Program,Long> {
+
 }

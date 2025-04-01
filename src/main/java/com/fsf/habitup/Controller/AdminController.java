@@ -215,61 +215,61 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/grant/{userId}/{permissionType}")
-    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
-    public ResponseEntity<String> grantPermissionToUser(
-            @PathVariable Long userId,
-            @PathVariable PermissionType permissionType) {
-        boolean success = adminService.grantPermissionToUser(userId, permissionType);
-
-        if (success) {
-            return ResponseEntity.ok("Permission granted successfully");
-        } else {
-            return ResponseEntity.badRequest().body("User already has this permission");
-        }
-    }
-
-    @DeleteMapping("/revoke/{userId}/{permissionType}")
-    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
-    public ResponseEntity<String> revokePermissionFromUser(
-            @PathVariable Long userId,
-            @PathVariable PermissionType permissionType) {
-        boolean success = adminService.revokePermissionFromUser(userId, permissionType);
-
-        if (success) {
-            return ResponseEntity.ok("Permission revoked successfully");
-        } else {
-            return ResponseEntity.badRequest().body("User does not have this permission");
-        }
-    }
-
-    @PostMapping("/grant/{doctorId}/{permissionName}")
-    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
-    public ResponseEntity<String> grantPermissionToDoctor(
-            @PathVariable Long doctorId,
-            @PathVariable PermissionType permissionName) {
-
-        boolean granted = adminService.grantPermissionToDoctor(doctorId, permissionName);
-        if (granted) {
-            return ResponseEntity.ok("Permission granted successfully.");
-        } else {
-            return ResponseEntity.badRequest().body("Doctor already has this permission.");
-        }
-    }
-
-    @DeleteMapping("/revoke/{doctorId}/{permissionName}")
-    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
-    public ResponseEntity<String> revokePermissionFromDoctor(
-            @PathVariable Long doctorId,
-            @PathVariable PermissionType permissionName) {
-
-        boolean revoked = adminService.revokePermissionFromDoctor(doctorId, permissionName);
-        if (revoked) {
-            return ResponseEntity.ok("Permission revoked successfully.");
-        } else {
-            return ResponseEntity.badRequest().body("Doctor does not have this permission.");
-        }
-    }
+//    @PostMapping("/grant/{userId}/{permissionType}")
+//    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+//    public ResponseEntity<String> grantPermissionToUser(
+//            @PathVariable Long userId,
+//            @PathVariable PermissionType permissionType) {
+//        boolean success = adminService.grantPermissionToUser(userId, permissionType);
+//
+//        if (success) {
+//            return ResponseEntity.ok("Permission granted successfully");
+//        } else {
+//            return ResponseEntity.badRequest().body("User already has this permission");
+//        }
+//    }
+//
+//    @DeleteMapping("/revoke/{userId}/{permissionType}")
+//    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+//    public ResponseEntity<String> revokePermissionFromUser(
+//            @PathVariable Long userId,
+//            @PathVariable PermissionType permissionType) {
+//        boolean success = adminService.revokePermissionFromUser(userId, permissionType);
+//
+//        if (success) {
+//            return ResponseEntity.ok("Permission revoked successfully");
+//        } else {
+//            return ResponseEntity.badRequest().body("User does not have this permission");
+//        }
+//    }
+//
+//    @PostMapping("/grant/{doctorId}/{permissionName}")
+//    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+//    public ResponseEntity<String> grantPermissionToDoctor(
+//            @PathVariable Long doctorId,
+//            @PathVariable PermissionType permissionName) {
+//
+//        boolean granted = adminService.grantPermissionToDoctor(doctorId, permissionName);
+//        if (granted) {
+//            return ResponseEntity.ok("Permission granted successfully.");
+//        } else {
+//            return ResponseEntity.badRequest().body("Doctor already has this permission.");
+//        }
+//    }
+//
+//    @DeleteMapping("/revoke/{doctorId}/{permissionName}")
+//    @PreAuthorize("hasAuthority('ROLE_MANAGE_PERMISSIONS')")
+//    public ResponseEntity<String> revokePermissionFromDoctor(
+//            @PathVariable Long doctorId,
+//            @PathVariable PermissionType permissionName) {
+//
+//        boolean revoked = adminService.revokePermissionFromDoctor(doctorId, permissionName);
+//        if (revoked) {
+//            return ResponseEntity.ok("Permission revoked successfully.");
+//        } else {
+//            return ResponseEntity.badRequest().body("Doctor does not have this permission.");
+//        }
+//    }
 
     @GetMapping("/user/permission/{userId}")
     @PreAuthorize("hasAuthority('ROLE_VIEW_PERMISSIONS')")

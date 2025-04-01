@@ -59,7 +59,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public boolean updateStatus(String email, AccountStatus accountStatus) {
-        Doctor doctor = doctorRepository.findByEmailId(email);
+        Doctor doctor = doctorRepository.findByEmail(email);
 
         if (doctor == null) {
             return false;
@@ -90,7 +90,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public AuthResponseDoctor login(LoginRequest request) {
-        Doctor doctor = doctorRepository.findByEmailId(request.getEmail());
+        Doctor doctor = doctorRepository.findByEmail(request.getEmail());
 
         if (doctor == null) {
             throw new ApiException("User not found");
@@ -111,7 +111,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public LogoutResponse Logout(String email, HttpServletResponse response) {
-        Doctor doctor = doctorRepository.findByEmailId(email);
+        Doctor doctor = doctorRepository.findByEmail(email);
 
         if (doctor == null) {
             throw new ApiException("Doctor not found.");

@@ -3,6 +3,7 @@ package com.fsf.habitup.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fsf.habitup.Enums.PermissionType;
 
@@ -18,20 +19,20 @@ public class Permission {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(unique = true, nullable = false)
-    private PermissionType name;
+    @Column(name = "name", nullable = false, unique = true)
+    private PermissionType name;  // Make sure this exists
 
-    @ManyToMany(mappedBy = "permissions")
-    // No @JoinTable here
-    private Set<User> users = new HashSet<>();
-
-    @ManyToMany(mappedBy = "permissions")
-     // Correct bidirectional mapping
-    private Set<Doctor> doctors = new HashSet<>();
-
-    @ManyToMany(mappedBy = "permissions")
-
-    private Set<Admin> admins = new HashSet<>();
+//    @ManyToMany(mappedBy = "permissions")
+//    // No @JoinTable here
+//    private Set<User> users = new HashSet<>();
+//
+//    @ManyToMany(mappedBy = "permissions")
+//    // Correct bidirectional mapping
+//    private Set<Doctor> doctors = new HashSet<>();
+//
+//    @ManyToMany(mappedBy = "permissions")
+//
+//    private Set<Admin> admins = new HashSet<>();
 
     // Constructors
     public Permission() {
@@ -50,6 +51,9 @@ public class Permission {
         this.id = id;
     }
 
+
+
+
     public PermissionType getName() {
         return name;
     }
@@ -58,27 +62,27 @@ public class Permission {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Set<Doctor> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(Set<Doctor> doctors) {
-        this.doctors = doctors;
-    }
-
-    public Set<Admin> getAdmins() {
-        return admins;
-    }
-
-    public void setAdmins(Set<Admin> admins) {
-        this.admins = admins;
-    }
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
+//
+//    public Set<Doctor> getDoctors() {
+//        return doctors;
+//    }
+//
+//    public void setDoctors(Set<Doctor> doctors) {
+//        this.doctors = doctors;
+//    }
+//
+//    public Set<Admin> getAdmins() {
+//        return admins;
+//    }
+//
+//    public void setAdmins(Set<Admin> admins) {
+//        this.admins = admins;
+//    }
 }

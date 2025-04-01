@@ -1,5 +1,6 @@
 package com.fsf.habitup.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.fsf.habitup.Enums.HabitCompletionStatus;
@@ -44,13 +45,20 @@ public class HabitProgress {
     @Column(name = "habitScore", nullable = false)
     private int habitScore;
 
-    @Column(name = "progressStratingDate", nullable = false)
-    private Date progressStartingDate;
+    @Column(name = "progressStartingDate", nullable = false)
+    private LocalDate progressStartingDate;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
+
+    @Column(name = "notes")
+    private String notes; // Added notes field
+
+    @ManyToOne
+    @JoinColumn(name = "habitId", nullable = false)
+    private Habit habit;
     /**
      * @return Long return the progressId
      */
@@ -110,30 +118,7 @@ public class HabitProgress {
     /**
      * @return Date return the progressStratingDate
      */
-    public Date getProgressStratingDate() {
-        return progressStartingDate;
-    }
 
-    /**
-     * @param progressStratingDate the progressStratingDate to set
-     */
-    public void setProgressStratingDate(Date progressStartingDate) {
-        this.progressStartingDate = progressStartingDate;
-    }
-
-    /**
-     * @return Date return the progressStartingDate
-     */
-    public Date getProgressStartingDate() {
-        return progressStartingDate;
-    }
-
-    /**
-     * @param progressStartingDate the progressStartingDate to set
-     */
-    public void setProgressStartingDate(Date progressStartingDate) {
-        this.progressStartingDate = progressStartingDate;
-    }
 
     /**
      * @return User return the user
@@ -149,4 +134,27 @@ public class HabitProgress {
         this.user = user;
     }
 
+    public Habit getHabit() {
+        return habit;
+    }
+
+    public void setHabit(Habit habit) {
+        this.habit = habit;
+    }
+
+    public LocalDate getProgressStartingDate() {
+        return progressStartingDate;
+    }
+
+    public void setProgressStartingDate(LocalDate progressStartingDate) {
+        this.progressStartingDate = progressStartingDate;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

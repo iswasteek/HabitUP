@@ -60,6 +60,16 @@ public class PermissionService {
         addPermission(commonPermissions, PermissionType.RESET_USER_PASSWORDS);
         addPermission(commonPermissions, PermissionType.MANAGE_SUBSCRIPTIONS);
         addPermission(commonPermissions, PermissionType.ACTIVATE_USERS);
+        addPermission(commonPermissions, PermissionType.LOCK_UNLOCK_USERS);
+        addPermission(commonPermissions, PermissionType.RESET_USER_PASSWORDS);
+        addPermission(commonPermissions, PermissionType.VIEW_SUBSCRIPTIONS);
+        addPermission(commonPermissions, PermissionType.MANAGE_SUBSCRIPTIONS);
+        addPermission(commonPermissions, PermissionType.EXPORT_HABIT_PROGRESS);
+        addPermission(commonPermissions, PermissionType.MANAGE_FEEDBACK);
+        addPermission(commonPermissions, PermissionType.MANAGE_HABIT_PROGRESS);
+        addPermission(commonPermissions, PermissionType.VIEW_FEEDBACK);
+        addPermission(commonPermissions, PermissionType.IMPORT_HABIT_PROGRESS);
+        addPermission(commonPermissions, PermissionType.VIEW_THOUGHTS);
 
         for (User user : users) {
             user.getPermissions().addAll(commonPermissions);
@@ -91,7 +101,11 @@ public class PermissionService {
         Set<Permission> doctorPermissions = new HashSet<>();
         addPermission(doctorPermissions, PermissionType.MANAGE_DOCTORS);
         addPermission(doctorPermissions, PermissionType.VIEW_DOCTORS);
-        addPermission(doctorPermissions, PermissionType.ACCESS_API);
+        addPermission(doctorPermissions, PermissionType.VIEW_DOCUMENTS);
+        addPermission(doctorPermissions, PermissionType.MANAGE_DOCUMENTS);
+        addPermission(doctorPermissions, PermissionType.MANAGE_FEEDBACK);
+        addPermission(doctorPermissions, PermissionType.VIEW_FEEDBACK);
+        addPermission(doctorPermissions, PermissionType.VIEW_THOUGHTS);
 
         for (Doctor doctor : doctors) {
             doctor.getPermissions().addAll(doctorPermissions);

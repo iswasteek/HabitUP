@@ -55,6 +55,7 @@ public class SecurityConfig {
                                                                                                               // for JWT
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/habit/auth/**").permitAll()
+
                         .anyRequest().authenticated()) // Secure other endpoints
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
 

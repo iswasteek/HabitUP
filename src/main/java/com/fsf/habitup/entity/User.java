@@ -28,7 +28,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User implements UserDetails {
+public class User  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UserId", unique = true, nullable = false)
@@ -74,6 +74,27 @@ public class User implements UserDetails {
 	@ManyToMany
 	@JoinTable(name = "user_permissions", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
 	private Set<Permission> permissions = new HashSet<>();
+
+	public Set<Habit> getHabits() {
+		return habits;
+	}
+
+	public void setHabits(Set<Habit> habits) {
+		this.habits = habits;
+	}
+
+	@ManyToMany
+	@JoinTable(
+			name = "user_habits",
+			joinColumns = @JoinColumn(name = "userId"),
+			inverseJoinColumns = @JoinColumn(name = "habitId")
+	)
+	private Set<Habit> habits = new HashSet<>();
+
+	public void addHabit(Habit habit) {
+		this.habits.add(habit);
+		habit.getUsers().add(this);
+	}
 
 	public AccountStatus getAccountStatus() {
 		return accountStatus;
@@ -179,23 +200,6 @@ public class User implements UserDetails {
 		this.permissions = permissions;
 	}
 
-	@Override
-	public Set<GrantedAuthority> getAuthorities() {
-		Set<GrantedAuthority> authorities = new HashSet<>();
 
-		// Add permissions for User
-		for (Permission permission : permissions) {
-			authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getName()));
-		}
-
-		// Add the ROLE_USER authority for all Users
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		return authorities;
-	}
-
-	@Override
-	public String getUsername() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
 
 }

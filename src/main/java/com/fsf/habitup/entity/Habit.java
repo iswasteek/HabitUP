@@ -1,20 +1,15 @@
 package com.fsf.habitup.entity;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fsf.habitup.Enums.HabitCategory;
-import com.fsf.habitup.Enums.HabitDescription;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "habit")
@@ -25,15 +20,17 @@ public class Habit {
     @Column(name = "habitId", nullable = false, unique = true)
     private Long habitId;
 
-    @Column(name = "habitName", nullable = false)
+    @Column(name = "habitName", nullable = false, length = 50)
     private String habitName;
 
-    @Enumerated(EnumType.STRING)
+    @OneToMany(mappedBy = "progressId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HabitProgress> progressRecords = new ArrayList<>();
+
     @Column(name = "HabitDescription", nullable = false)
-    private HabitDescription habitDescription;
+    private String habitDescription;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "category", nullable = false)
+    @Column(name = "category", nullable = false, length = 50)
     private HabitCategory habitCategory;
 
     @Column(name = "habitDuration", nullable = false)
@@ -41,6 +38,45 @@ public class Habit {
 
     @OneToMany(mappedBy = "progressId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HabitProgress> habitProgress;
+
+    @ManyToMany(mappedBy = "habits")
+    private Set<User> users = new HashSet<>(); // Each habit belongs to one user
+
+    @Column(name = "reminderTime")
+    private LocalTime reminderTime;  // LocalTime for storing time like "08:00"
+
+    @Column(name = "total_completions", nullable = false)
+    private long totalCompletions = 0;
+
+    @Column(name = "current_streak", nullable = false)
+    private int currentStreak = 0;
+
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated;
+
+    public long getTotalCompletions() {
+        return totalCompletions;
+    }
+
+    public void setTotalCompletions(long totalCompletions) {
+        this.totalCompletions = totalCompletions;
+    }
+
+    public int getCurrentStreak() {
+        return currentStreak;
+    }
+
+    public void setCurrentStreak(int currentStreak) {
+        this.currentStreak = currentStreak;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
 
     /**
      * @return Long return the habitId
@@ -73,14 +109,14 @@ public class Habit {
     /**
      * @return HabitDescription return the habitDescription
      */
-    public HabitDescription getHabitDescription() {
+    public String getHabitDescription() {
         return habitDescription;
     }
 
     /**
      * @param habitDescription the habitDescription to set
      */
-    public void setHabitDescription(HabitDescription habitDescription) {
+    public void setHabitDescription(String habitDescription) {
         this.habitDescription = habitDescription;
     }
 
@@ -126,4 +162,27 @@ public class Habit {
         this.habitProgress = habitProgress;
     }
 
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public List<HabitProgress> getProgressRecords() {
+        return progressRecords;
+    }
+
+    public void setProgressRecords(List<HabitProgress> progressRecords) {
+        this.progressRecords = progressRecords;
+    }
+
+    public LocalTime getReminderTime() {
+        return reminderTime;
+    }
+
+    public void setReminderTime(LocalTime reminderTime) {
+        this.reminderTime = reminderTime;
+    }
 }

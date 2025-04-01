@@ -52,13 +52,13 @@ public interface AdminService {
 
     boolean updateDocumentStatus(Long documentId, DocumentStatus status);
 
-    boolean grantPermissionToUser(Long userId, PermissionType permissionName);
-
-    boolean revokePermissionFromUser(Long userId, PermissionType permissionName);
-
-    boolean grantPermissionToDoctor(Long doctorId, PermissionType permissionName);
-
-    boolean revokePermissionFromDoctor(Long doctorId, PermissionType permissionName);
+//    boolean grantPermissionToUser(Long userId, PermissionType permissionName);
+//
+//    boolean revokePermissionFromUser(Long userId, PermissionType permissionName);
+//
+//    boolean grantPermissionToDoctor(Long doctorId, PermissionType permissionName);
+//
+//    boolean revokePermissionFromDoctor(Long doctorId, PermissionType permissionName);
 
     List<com.fsf.habitup.entity.Permission> getPermissionsForUser(Long userId);
 

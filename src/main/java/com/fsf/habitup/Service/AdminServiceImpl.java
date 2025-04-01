@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.fsf.habitup.Exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -94,7 +95,7 @@ public class AdminServiceImpl implements AdminService {
         // Convert user to doctor
         Doctor doctor = new Doctor();
         doctor.setDoctorName(user.getName());
-        doctor.setEmailId(user.getEmail());
+        doctor.setEmail(user.getEmail());
         doctor.setPhoneNo(user.getPhoneNo());
         doctor.setGender(user.getGender());
         doctor.setSpecialization("General"); // Default, can be updated later
@@ -154,8 +155,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String sendOtp(String email) {
+        Admin admin = adminRepository.findByEmail(email);
+        if (admin == null) {
+            throw new ResourceNotFoundException("Admin not found with email: " + email);
+        }
+
+        // 2. Generate and send OTP
         otpService.generateAndSendOtp(email);
-        return "OTP sent to " + email + ". Please Verify";
+
+        // 3. Return success message
+        return "OTP sent to " + email;
     }
 
     @Override
@@ -310,90 +319,91 @@ public class AdminServiceImpl implements AdminService {
         return true;
     }
 
-    @Override
-    public boolean grantPermissionToUser(Long userId, PermissionType permissionName) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        // Fetch the permission by name
-        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
-        if (permission == null) {
-            throw new RuntimeException("Permission not found");
-        }
-
-        // Add permission to the user if not already present
-        if (!user.getPermissions().contains(permission)) {
-            user.getPermissions().add(permission);
-            userRepository.save(user);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean revokePermissionFromUser(Long userId, PermissionType permissionName) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        // Fetch the permission by name
-        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
-        if (permission == null) {
-            throw new RuntimeException("Permission not found");
-        }
-
-        // Remove permission from the user if present
-        if (user.getPermissions().contains(permission)) {
-            user.getPermissions().remove(permission);
-            userRepository.save(user);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean grantPermissionToDoctor(Long doctorId, PermissionType permissionName) {
-        // Fetch doctor by ID
-        Doctor doctor = doctorRepository.findById(doctorId)
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
-
-        // Fetch the permission by name
-        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
-        if (permission == null) {
-            throw new RuntimeException("Permission not found");
-        }
-
-        // Add permission to the doctor if not already present
-        if (!doctor.getPermissions().contains(permission)) {
-            doctor.getPermissions().add(permission);
-            doctorRepository.save(doctor);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean revokePermissionFromDoctor(Long doctorId, PermissionType permissionName) {
-        Doctor doctor = doctorRepository.findById(doctorId)
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
-
-        // Fetch the permission by name
-        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
-        if (permission == null) {
-            throw new RuntimeException("Permission not found");
-        }
-
-        // Remove permission from the doctor if present
-        if (doctor.getPermissions().contains(permission)) {
-            doctor.getPermissions().remove(permission);
-            doctorRepository.save(doctor);
-            return true;
-        }
-
-        return false;
-    }
+//    @Override
+//    public boolean grantPermissionToUser(Long userId, PermissionType permissionName) {
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        // Fetch the permission by name using Optional
+//        Optional<com.fsf.habitup.entity.Permission> permissionOptional = Optional.ofNullable(permissionRepository.findByName(permissionName));
+//
+//        // If the permission is not found, throw an exception
+//        com.fsf.habitup.entity.Permission permission = permissionOptional
+//                .orElseThrow(() -> new RuntimeException("Permission not found"));
+//
+//        // Add permission to the user if not already present
+//        if (!user.getPermissions().contains(permission)) {
+//            user.getPermissions().add(permission);
+//            userRepository.save(user);
+//            return true;
+//        }
+//
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean revokePermissionFromUser(Long userId, PermissionType permissionName) {
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        // Fetch the permission by name
+//        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+//        if (permission == null) {
+//            throw new RuntimeException("Permission not found");
+//        }
+//
+//        // Remove permission from the user if present
+//        if (user.getPermissions().contains(permission)) {
+//            user.getPermissions().remove(permission);
+//            userRepository.save(user);
+//            return true;
+//        }
+//
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean grantPermissionToDoctor(Long doctorId, PermissionType permissionName) {
+//        // Fetch doctor by ID
+//        Doctor doctor = doctorRepository.findById(doctorId)
+//                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+//
+//        // Fetch the permission by name
+//        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+//        if (permission == null) {
+//            throw new RuntimeException("Permission not found");
+//        }
+//
+//        // Add permission to the doctor if not already present
+//        if (!doctor.getPermissions().contains(permission)) {
+//            doctor.getPermissions().add(permission);
+//            doctorRepository.save(doctor);
+//            return true;
+//        }
+//
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean revokePermissionFromDoctor(Long doctorId, PermissionType permissionName) {
+//        Doctor doctor = doctorRepository.findById(doctorId)
+//                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+//
+//        // Fetch the permission by name
+//        com.fsf.habitup.entity.Permission permission = permissionRepository.findByName(permissionName);
+//        if (permission == null) {
+//            throw new RuntimeException("Permission not found");
+//        }
+//
+//        // Remove permission from the doctor if present
+//        if (doctor.getPermissions().contains(permission)) {
+//            doctor.getPermissions().remove(permission);
+//            doctorRepository.save(doctor);
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
     @Override
     public List<com.fsf.habitup.entity.Permission> getPermissionsForUser(Long userId) {

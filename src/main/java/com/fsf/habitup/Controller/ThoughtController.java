@@ -23,19 +23,24 @@ public class ThoughtController {
         this.dailyThoughtService = dailyThoughtService;
     }
 
+    @PreAuthorize("hasAuthority('MANAGE_THOUGHTS')")
     @PostMapping("/update-thought")
     public ResponseEntity<DailyThought> updateThought(@RequestParam String contentUrl,
-            @RequestParam String authorName) {
+                                                      @RequestParam String authorName) {
         DailyThought updatedThought = dailyThoughtService.updateThought(contentUrl, authorName);
         return ResponseEntity.ok(updatedThought);
     }
 
+    // Endpoint to show the daily thought
+    @PreAuthorize("hasAuthority('VIEW_THOUGHTS')")
     @GetMapping("/show-thought")
     public ResponseEntity<DailyThought> showThought() {
         DailyThought thought = dailyThoughtService.showThought();
         return ResponseEntity.ok(thought);
     }
 
+    // Endpoint to delete the thought
+    @PreAuthorize("hasAuthority('MANAGE_THOUGHTS')")
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteThought() {
         dailyThoughtService.deleteThought();

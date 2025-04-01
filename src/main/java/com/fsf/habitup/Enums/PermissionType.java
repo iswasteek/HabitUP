@@ -62,6 +62,23 @@ public enum PermissionType {
     ROLE_VIEW_LOGS,
     ROLE_VIEW_ERROR_LOGS,
     ROLE_MANAGE_SETTINGS,
-    ROLE_CHECK_HEALTH
+    ROLE_CHECK_HEALTH,
+
+    MANAGE_FEEDBACK, // Permission to create, update, or delete feedback
+    VIEW_FEEDBACK,   // Permission to view feedback
+    // Permissions for managing habit progress
+    MANAGE_HABIT_PROGRESS,
+
+    // Permissions for viewing habit progress
+    VIEW_HABIT_PROGRESS,
+
+    // Permissions for exporting habit progress data
+    EXPORT_HABIT_PROGRESS,
+
+    // Permissions for importing habit progress data
+    IMPORT_HABIT_PROGRESS,
+    MANAGE_THOUGHTS, // Permission to create, update, or delete daily thoughts
+    VIEW_THOUGHTS    // Permission to view the daily thoughts
+
 
 }

@@ -2,14 +2,8 @@ package com.fsf.habitup.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import com.fsf.habitup.Enums.SubscriptionType;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "subscription")
@@ -53,6 +47,18 @@ public class Subscription {
 
     @Column(name = "status", nullable = false, unique = false)
     private String status;
+
+    public SubscriptionType getSubscriptionType() {
+        return subscriptionType;
+    }
+
+    public void setSubscriptionType(SubscriptionType subscriptionType) {
+        this.subscriptionType = subscriptionType;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "subscriptionType", nullable = false)
+    private SubscriptionType subscriptionType;
 
     public Date getEndDate() {
         return endDate;
