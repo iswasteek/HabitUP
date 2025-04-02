@@ -34,6 +34,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain)
             throws ServletException, IOException {
 
+        String path = request.getRequestURI();
+        System.out.println("Request Path: " + path);
+
+        if (path.startsWith("/habit/auth/")) {
+            System.out.println("✅ Skipping JWT filter for path: " + path);
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        System.out.println("🔒 Processing JWT for path: " + path);
+
         String authorizationHeader = request.getHeader("Authorization");
         System.out.println("Authorization Header: " + authorizationHeader);
 
@@ -43,20 +54,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (jwtTokenProvider.validateToken(token)) {
                 String email = jwtTokenProvider.getEmailFromToken(token);
-                System.out.println(" Valid Token for User: " + email);
+                System.out.println("✅ Valid Token for User: " + email);
 
                 User userDetails = userDetailsService.findUserByEmail(email);
-                System.out.println(" Retrieved User from DB: " + userDetails.getEmail());
+                System.out.println("Retrieved User from DB: " + userDetails.getEmail());
 
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, Collections.emptyList()); // Fix: use userDetails.getAuthorities()
+                        userDetails, null, Collections.emptyList());
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } else {
-                System.out.println(" Token validation failed");
+                System.out.println("❌ Token validation failed");
             }
         } else {
-            System.out.println(" No valid Authorization header found");
+            System.out.println("❌ No valid Authorization header found");
         }
 
         filterChain.doFilter(request, response);

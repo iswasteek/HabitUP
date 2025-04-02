@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fsf.habitup.Enums.HabitCategory;
 
 import jakarta.persistence.*;
@@ -40,6 +41,7 @@ public class Habit {
     private List<HabitProgress> habitProgress;
 
     @ManyToMany(mappedBy = "habits")
+    @JsonBackReference
     private Set<User> users = new HashSet<>(); // Each habit belongs to one user
 
     @Column(name = "reminderTime")

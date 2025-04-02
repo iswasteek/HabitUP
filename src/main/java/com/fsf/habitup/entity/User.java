@@ -73,6 +73,7 @@ public class User  {
 
 	@ManyToMany
 	@JoinTable(name = "user_permissions", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
+	@JsonIgnore
 	private Set<Permission> permissions = new HashSet<>();
 
 	public Set<Habit> getHabits() {
@@ -89,6 +90,8 @@ public class User  {
 			joinColumns = @JoinColumn(name = "userId"),
 			inverseJoinColumns = @JoinColumn(name = "habitId")
 	)
+	@JsonManagedReference
+	@JsonIgnore
 	private Set<Habit> habits = new HashSet<>();
 
 	public void addHabit(Habit habit) {

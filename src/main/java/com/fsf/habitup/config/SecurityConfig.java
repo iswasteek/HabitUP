@@ -2,6 +2,7 @@ package com.fsf.habitup.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,6 +20,7 @@ import com.fsf.habitup.Security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@Order(1) // High priority
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
@@ -50,14 +52,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter)
             throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for APIs
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless
-                                                                                                              // for JWT
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/habit/auth/**").permitAll()
+                        .requestMatchers("/habit/auth/**").permitAll()  // Allow public access
+                        .anyRequest().authenticated()                  // Secure other endpoints
+                )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .anonymous(anonymous -> anonymous.disable())     // Disable anonymous auth
 
-                        .anyRequest().authenticated()) // Secure other endpoints
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
+                // Explicitly disable security for auth endpoints
+                .securityContext(securityContext -> securityContext.disable()) // Disable security context for auth
+                .requestCache(requestCache -> requestCache.disable());      // Disable request cache
 
         return http.build();
     }
