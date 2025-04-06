@@ -40,9 +40,6 @@
     <!-- AOS (Animate On Scroll) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
-    <!-- Google reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
     <!-- Main CSS File -->
     <link href="main.css" rel="stylesheet">
 
@@ -1087,7 +1084,7 @@
                         <!-- Phone on One Side, DOB & Gender on the Other -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="signupPhone">Phone Number</label>
+                                <label for="signupPhone">WhatsApp Number</label>
                                 <input class="form-control" id="signupPhone" maxlength="10" minlength="10" required
                                        type="tel" placeholder="Enter your phone number">
                             </div>
@@ -1690,9 +1687,21 @@ async function login(email, password) {
     }
 
     const data = await response.json();
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('userId', data.message);
-    localStorage.setItem('email', email);
+    const { token, user } = data;
+
+    // Save each property individually except password
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', user.userId);
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('name', user.name);
+    localStorage.setItem('joinDate', user.joinDate);
+    localStorage.setItem('dob', user.dob);
+    localStorage.setItem('phoneNo', user.phoneNo);
+    localStorage.setItem('accountStatus', user.accountStatus);
+    localStorage.setItem('subscriptionType', user.subscriptionType);
+    localStorage.setItem('profilePhoto', user.profilePhoto || ""); // Save as empty string if null
+    localStorage.setItem('userType', user.userType);
+    localStorage.setItem('gender', user.gender);
 }
 
 async function resetPassword(email, otp, newPassword) {

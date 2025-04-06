@@ -1,11 +1,17 @@
 package com.fsf.habitup.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import com.fsf.habitup.DTO.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,13 +20,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.fsf.habitup.DTO.AuthResponse;
-import com.fsf.habitup.DTO.ForgetPasswordRequest;
-import com.fsf.habitup.DTO.LoginRequest;
-import com.fsf.habitup.DTO.LogoutResponse;
-import com.fsf.habitup.DTO.OtpRegisterRequest;
-import com.fsf.habitup.DTO.OtpVerificationReuest;
-import com.fsf.habitup.DTO.RegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
@@ -33,6 +32,7 @@ import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -49,11 +49,18 @@ public class UserServiceImpl implements UserService {
     private final JwtTokenProvider jwtTokenProvider;
 
     private final JavaMailSender mailSender;
+    private final FileStorageService fileStorageService;
 
-    public UserServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
-            JavaMailSender mailSender, OtpService otpService, UserRepository userRepository,
+    public UserServiceImpl(
+            AuthenticationManager authenticationManager,
+            JwtTokenProvider jwtTokenProvider,
+            JavaMailSender mailSender,
+            OtpService otpService,
+            UserRepository userRepository,
             PasswordEncoder passwordEncoder,
-            PasswordResetTokenRepository tokenRepository) {
+            PasswordResetTokenRepository tokenRepository,
+            FileStorageService fileStorageService) {
+
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.mailSender = mailSender;
@@ -61,7 +68,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
-
+        this.fileStorageService = fileStorageService;
     }
 
     @Override
@@ -170,31 +177,34 @@ public class UserServiceImpl implements UserService {
         // Generate JWT Token
         String token = jwtTokenProvider.generateToken(request.getEmail());
 
-        // Store token in the database
-        // userRepository.save(user);
 
         return new AuthResponse(token, user);
     }
 
     @Override
-    public User updateUser(String email, User updateUser) {
-
+    public User updateUser(String email, UpdateUserDTO updatedUserDTO, MultipartFile profilePhoto) {
         User existingUser = userRepository.findByEmail(email);
 
         if (existingUser == null) {
-            throw new ApiException("user not found");
+            throw new ApiException("User not found");
         }
 
-        existingUser.setName(updateUser.getName());
-        existingUser.setDob(updateUser.getDob());
-        existingUser.setPhoneNo(updateUser.getPhoneNo());
-        existingUser.setGender(updateUser.getGender());
-        existingUser.setProfilePhoto(updateUser.getProfilePhoto());
+        // Only update allowed fields
+        existingUser.setName(updatedUserDTO.getName());
+        existingUser.setDob(updatedUserDTO.getDob());
+        existingUser.setPhoneNo(updatedUserDTO.getPhoneNo());
+        existingUser.setGender(updatedUserDTO.getGender());
 
-        String message = "updated successfully!!";
-        System.out.println(message);
-        return existingUser;
+        // Handle profile photo upload
+        if (profilePhoto != null && !profilePhoto.isEmpty()) {
+            String savedPath = fileStorageService.storeFile(profilePhoto, "profile_photos");
+            existingUser.setProfilePhoto(savedPath);
+        }
+
+        return userRepository.save(existingUser);
     }
+
+
 
     @Override
     public User findUserByEmail(String email) {

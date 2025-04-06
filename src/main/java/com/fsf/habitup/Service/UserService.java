@@ -1,18 +1,15 @@
 package com.fsf.habitup.Service;
 
+import com.fsf.habitup.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fsf.habitup.DTO.AuthResponse;
-import com.fsf.habitup.DTO.ForgetPasswordRequest;
-import com.fsf.habitup.DTO.LoginRequest;
-import com.fsf.habitup.DTO.LogoutResponse;
-import com.fsf.habitup.DTO.OtpRegisterRequest;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -27,7 +24,7 @@ public interface UserService {
 
     public AuthResponse authenticateUser(LoginRequest request);
 
-    public User updateUser(String email, User user);
+    public User updateUser(String email, UpdateUserDTO updatedUserDTO, MultipartFile profilePhoto);
 
     public boolean deleteUser(String email);
 

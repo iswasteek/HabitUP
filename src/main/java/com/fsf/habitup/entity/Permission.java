@@ -22,9 +22,10 @@ public class Permission {
     @Column(name = "name", nullable = false, unique = true)
     private PermissionType name;  // Make sure this exists
 
-//    @ManyToMany(mappedBy = "permissions")
-//    // No @JoinTable here
-//    private Set<User> users = new HashSet<>();
+@ManyToMany(mappedBy = "permissions")
+
+
+private Set<User> users = new HashSet<>();
 //
 //    @ManyToMany(mappedBy = "permissions")
 //    // Correct bidirectional mapping
@@ -60,6 +61,14 @@ public class Permission {
 
     public void setName(PermissionType name) {
         this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 //    public Set<User> getUsers() {

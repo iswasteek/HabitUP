@@ -50,6 +50,7 @@ public class Admin  {
     @ManyToMany
     @JoinTable(name = "admin_permissions", joinColumns = @JoinColumn(name = "adminId"), inverseJoinColumns = @JoinColumn(name = "permissionId"))
 
+    @JsonIgnore
     private Set<Permission> permissions = new HashSet<>();
 
     /**

@@ -1,19 +1,15 @@
 package com.fsf.habitup.Controller;
 
+import com.fsf.habitup.DTO.UpdateUserDTO;
+import com.fsf.habitup.Enums.Gender;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.Enums.AccountStatus;
@@ -21,7 +17,10 @@ import com.fsf.habitup.Service.UserServiceImpl;
 import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.transaction.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+
+
 
 @RestController
 @RequestMapping("/user")
@@ -35,19 +34,25 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")
-    @PutMapping("/updateuser/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User updatedUser) {
+    @PutMapping(value = "/updateuser/{email}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<User> updateUser(
+            @PathVariable String email,
+            @RequestParam("name") String name,
+            @RequestParam("dob") String dob,
+            @RequestParam("phoneNo") Long phoneNo,
+            @RequestParam("gender") Gender gender,
+            @RequestPart(value = "profilePhoto", required = false) MultipartFile profilePhoto) {
 
-        // Extract the token from "Bearer <token>"
+        UpdateUserDTO updatedUserDTO = new UpdateUserDTO();
+        updatedUserDTO.setName(name);
+        updatedUserDTO.setDob(dob);
+        updatedUserDTO.setPhoneNo(phoneNo);
+        updatedUserDTO.setGender(gender);
 
-        User savedUser = userService.updateUser(email, updatedUser);
-
-        if (savedUser == null) {
-            return ResponseEntity.notFound().build();
-        }
-
+        User savedUser = userService.updateUser(email, updatedUserDTO, profilePhoto);
         return ResponseEntity.ok(savedUser);
     }
+
 
     @PreAuthorize("hasAuthority('VIEW_USERS')")
     @GetMapping("/show-a-user/{email}")
