@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Our Services | HabitUP</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="img/HLogo.jpg" rel="icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        referrerpolicy="no-referrer" rel="stylesheet" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="nav.css" rel="stylesheet">
+  <style>
+    :root {
+      --heading-color: #223b51;
+      --default-color: #6c757d;
+      --accent-color: #4e9f3d;
+      --surface-color: #ffffff;
+      --dark-background: #1a1a2e;
+    }
+
+    /* Custom Services Page Styles */
+    .services-hero {
+      background: linear-gradient(rgba(34, 59, 81, 0.9), rgba(34, 59, 81, 0.9)), url('img/services-bg.jpg') center center no-repeat;
+      background-size: cover;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .services-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .services-hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+
+    .user-type-section {
+      padding: 80px 0;
+    }
+
+    .user-type-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .user-type-header h2 {
+      color: var(--heading-color);
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .user-type-header h2:after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-color);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .user-type-header p {
+      color: var(--default-color);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      background: var(--surface-color);
+      height: 100%;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(78, 159, 61, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-img {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-img img {
+      transform: scale(1.1);
+    }
+
+    .service-content {
+      padding: 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-content h3 {
+      color: var(--heading-color);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .service-card:hover .service-content h3 {
+      color: var(--accent-color);
+    }
+
+    .service-content p {
+      color: var(--default-color);
+      margin-bottom: 20px;
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .btn-service {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-service:hover {
+      background: color-mix(in srgb, var(--accent-color), transparent 20%);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-service::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .btn-service:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+
+    /* Admin Dashboard Cards */
+    .admin-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      background: white;
+      height: 100%;
+      position: relative;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .admin-card .card-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+
+    .admin-card .card-title {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+
+    .admin-card .card-text {
+      color: var(--default-color);
+    }
+
+    .admin-card .btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+    }
+
+    .admin-card .btn:hover {
+      background: color-mix(in srgb, var(--accent-color), black 10%);
+    }
+
+    /* Doctor Message Section */
+    .doctor-message-section {
+      background-color: #f8f9fa;
+      padding: 80px 0;
+    }
+
+    .message-card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      background: white;
+      height: 100%;
+      border: none;
+    }
+
+    .message-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .message-card .card-header {
+      background: var(--accent-color);
+      color: white;
+      border-radius: 15px 15px 0 0 !important;
+      font-weight: 600;
+    }
+
+    .message-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .message-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px;
+      transition: background 0.2s;
+    }
+
+    .message-item:hover {
+      background: #f8f9fa;
+    }
+
+    .message-item:last-child {
+      border-bottom: none;
+    }
+
+    .message-sender {
+      font-weight: 600;
+      color: var(--heading-color);
+    }
+
+    .message-time {
+      font-size: 0.8rem;
+      color: var(--default-color);
+    }
+
+    .message-preview {
+      color: var(--default-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .reply-section {
+      border-top: 1px solid #eee;
+      padding: 15px;
+    }
+
+    /* Different background colors for each user type section */
+    .children-section {
+      background-color: #f8f9fa;
+    }
+
+    .adults-section {
+      background-color: var(--surface-color);
+    }
+
+    .elders-section {
+      background-color: #f8f9fa;
+    }
+
+    /* Floating animation for cards */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating-card {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-card:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .floating-card:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    .floating-card:nth-child(4) {
+      animation-delay: 3s;
+    }
+
+    /* Glow effect for admin cards */
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(78, 159, 61, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(78, 159, 61, 0.8); }
+      100% { box-shadow: 0 0 5px rgba(78, 159, 61, 0.5); }
+    }
+
+    .glow-card {
+      animation: glow 3s infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .services-hero {
+        padding: 100px 0 60px;
+      }
+
+      .services-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .user-type-header h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="services-page">
+<!-- Header -->
+<header class="header d-flex align-items-center fixed-top" id="header">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <a class="logo d-flex align-items-center me-auto" href="index.html">
+      <h1 class="sitename">HabitUP</h1>
+      <span>.</span>
+    </a>
+    <nav class="navmenu" id="navmenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="active" href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+    <div class="dropdown ms-3">
+      <img src="img/SwastikTeam.png" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+        <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
+        <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Services Hero Section -->
+<section class="services-hero">
+  <div class="container" data-aos="fade-up">
+    <h1 id="hero-title">Our Transformative Services</h1>
+    <p id="hero-description">Discover personalized programs designed to nurture your mind, body, and spirit through ancient wisdom and modern practices.</p>
+    <a href="#services-section" class="btn btn-service">Explore Services</a>
+  </div>
+</section>
+
+<!-- Main Services Section -->
+<main id="services-section">
+  <!-- Content will be dynamically loaded based on user type -->
+</main>
+
+<!-- How It Works Section -->
+<section class="user-type-section" style="background-color: var(--surface-color);">
+  <div class="container">
+    <div class="user-type-header" data-aos="fade-up">
+      <h2>How Our Services Work</h2>
+      <p>Simple steps to transform your life through our guided programs</p>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="p-4">
+          <div class="service-icon mb-3">
+            <i class="bi bi-laptop" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3>1. Online Sessions</h3>
+          <p>All sessions are conducted live through Google Meet with our expert mentors.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="p-4">
+          <div class="service-icon mb-3">
+            <i class="bi bi-calendar-check" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3>2. Flexible Scheduling</h3>
+          <p>Choose time slots that fit your schedule with options for morning and evening sessions.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="p-4">
+          <div class="service-icon mb-3">
+            <i class="bi bi-people" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3>3. Personalized Attention</h3>
+          <p>Small group sizes ensure individual attention and personalized guidance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="contact.html" class="btn btn-service btn-lg px-4 py-2">Get Started Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer dark-background" id="footer">
+  <div class="container">
+    <h3 class="sitename">HabitUP</h3>
+    <p>Your personalized path to better habits</p>
+    <div class="social-links d-flex justify-content-center">
+      <a href=""><i class="bi bi-twitter-x"></i></a>
+      <a href=""><i class="bi bi-facebook"></i></a>
+      <a href=""><i class="bi bi-instagram"></i></a>
+      <a href=""><i class="bi bi-skype"></i></a>
+      <a href=""><i class="bi bi-linkedin"></i></a>
+    </div>
+    <div class="copyright">
+      <span>Copyright</span> <strong class="px-1 sitename">&copy; HabitUP</strong> <span>All Rights
+                    Reserved</span>
+    </div>
+    <div class="credits">
+      Designed by <a href="#">FullStackFlair</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll Top -->
+<a class="scroll-top d-flex align-items-center justify-content-center" href="#" id="scroll-top"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- PreLoader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  // Initialize AOS animation
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true
+  });
+
+  // Add smooth scrolling to all links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Logout button functionality
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    // Add your logout logic here
+    alert('Logging out...');
+    // window.location.href = 'logout.html';
+  });
+
+  // Load content based on user type
+  document.addEventListener('DOMContentLoaded', function() {
+    const userType = localStorage.getItem('userType') || 'Adult'; // Default to Adult if not set
+    const mainSection = document.getElementById('services-section');
+    const heroTitle = document.getElementById('hero-title');
+    const heroDescription = document.getElementById('hero-description');
+
+    // Update hero section based on user type
+    switch(userType) {
+      case 'Child':
+        heroTitle.textContent = 'Fun & Engaging Programs for Kids';
+        heroDescription.textContent = 'Help your child develop healthy habits, focus, and creativity through our interactive sessions designed just for them.';
+        break;
+      case 'Elder':
+        heroTitle.textContent = 'Gentle & Nurturing Programs for Seniors';
+        heroDescription.textContent = 'Maintain vitality, peace of mind, and spiritual growth in your golden years with our specially designed programs.';
+        break;
+      case 'Doctor':
+        heroTitle.textContent = 'Doctor Dashboard';
+        heroDescription.textContent = 'Connect with and help your patients through our messaging platform.';
+        break;
+      case 'Admin':
+        heroTitle.textContent = 'Admin Dashboard';
+        heroDescription.textContent = 'Manage all aspects of the HabitUP platform with our comprehensive admin tools.';
+        break;
+      default: // Adult
+        heroTitle.textContent = 'Transformative Programs for Adults';
+        heroDescription.textContent = 'Comprehensive programs to manage stress, improve productivity, and find balance in modern life through time-tested techniques.';
+    }
+
+    // Load appropriate content
+    if (userType === 'Admin') {
+      loadAdminContent();
+    } else if (userType === 'Doctor') {
+      loadDoctorContent();
+    } else {
+      loadUserContent(userType);
+    }
+  });
+
+  function loadUserContent(userType) {
+    const mainSection = document.getElementById('services-section');
+
+    let sectionId = '';
+    let sectionTitle = '';
+    let sectionDescription = '';
+    let services = [];
+
+    // Set content based on user type
+    switch(userType) {
+      case 'Child':
+        sectionId = 'children';
+        sectionTitle = 'For Children (Ages 5-12)';
+        sectionDescription = 'Engaging programs designed to cultivate healthy habits, focus, and creativity in young minds through fun and interactive sessions.';
+        services = [
+          {
+            title: 'Balgopal Gita Chanting',
+            description: 'Introduce children to the divine wisdom of the Bhagavad Gita through simple chanting sessions with melodic tunes that make learning enjoyable and memorable.',
+            icon: 'bi-music-note-beamed',
+            img: 'https://images.unsplash.com/photo-1609010582033-0a1d3c9e1e1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Meditation & Yoga',
+            description: 'Child-friendly yoga poses and short meditation exercises to improve concentration, reduce anxiety, and promote physical flexibility and balance.',
+            icon: 'bi-tree',
+            img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Memory Hacks',
+            description: 'Fun techniques based on ancient Vedic memory methods to enhance learning capacity, recall ability, and academic performance.',
+            icon: 'bi-lightbulb',
+            img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Moral Story Telling',
+            description: 'Engaging stories from Indian scriptures that teach values, ethics, and life lessons through captivating narratives and interactive discussions.',
+            icon: 'bi-book',
+            img: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          }
+        ];
+        break;
+      case 'Elder':
+        sectionId = 'elders';
+        sectionTitle = 'For Elders (Ages 60+)';
+        sectionDescription = 'Gentle yet powerful programs to maintain vitality, peace of mind, and spiritual growth in the golden years.';
+        services = [
+          {
+            title: 'Gentle Yoga & Meditation',
+            description: 'Specially designed yoga sequences and meditation techniques for seniors to improve mobility, balance, and mental peace.',
+            icon: 'bi-tree',
+            img: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Gita Discourses',
+            description: 'In-depth exploration of the Bhagavad Gita\'s timeless wisdom, with practical applications for daily life in later years.',
+            icon: 'bi-chat-quote',
+            img: 'https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Scripture Study',
+            description: 'Guided study of sacred texts with emphasis on understanding, reflection, and application to modern life situations.',
+            icon: 'bi-book',
+            img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Lifestyle Balance',
+            description: 'Holistic approaches to manage age-related health concerns through diet, gentle movement, and stress reduction techniques.',
+            icon: 'bi-heart-pulse',
+            img: 'https://images.unsplash.com/photo-1530490125459-847a6d437825?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          }
+        ];
+        break;
+      default: // Adult
+        sectionId = 'adults';
+        sectionTitle = 'For Adults (Ages 18-60)';
+        sectionDescription = 'Comprehensive programs to manage stress, improve productivity, and find balance in modern life through time-tested techniques.';
+        services = [
+          {
+            title: 'Adolescent Psychology',
+            description: 'Guidance for parents and young adults on navigating the challenges of adolescence using principles from psychology and Vedic wisdom.',
+            icon: 'bi-people',
+            img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Aura Balancing',
+            description: 'Techniques to cleanse and strengthen your energy field, promoting emotional stability, mental clarity, and overall well-being.',
+            icon: 'bi-brightness-high',
+            img: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Gita in Yogic Practices',
+            description: 'Practical application of Bhagavad Gita teachings in daily life through yoga, meditation, and mindful living practices.',
+            icon: 'bi-heart',
+            img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          },
+          {
+            title: 'Stress Management',
+            description: 'Evidence-based techniques combining modern psychology with ancient Vedic practices to effectively manage and reduce stress.',
+            icon: 'bi-emoji-smile',
+            img: 'https://images.unsplash.com/photo-1530490125459-847a6d437825?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+          }
+        ];
+    }
+
+    // Generate HTML for the services section
+    let html = `
+      <section id="${sectionId}" class="user-type-section ${sectionId}-section">
+        <div class="container">
+          <div class="user-type-header" data-aos="fade-up">
+            <h2>${sectionTitle}</h2>
+            <p>${sectionDescription}</p>
+          </div>
+
+          <div class="row g-4">
+    `;
+
+    // Add service cards
+    services.forEach((service, index) => {
+      html += `
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+          <div class="service-card floating-card">
+            <div class="service-img">
+              <img src="${service.img}" alt="${service.title}">
+            </div>
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="bi ${service.icon}"></i>
+              </div>
+              <h3>${service.title}</h3>
+              <p>${service.description}</p>
+              <a href="#" class="btn btn-service">Learn More</a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `
+          </div>
+        </div>
+      </section>
+    `;
+
+    mainSection.innerHTML = html;
+  }
+
+  function loadDoctorContent() {
+    const mainSection = document.getElementById('services-section');
+
+    mainSection.innerHTML = `
+      <section class="doctor-message-section">
+        <div class="container">
+          <div class="user-type-header" data-aos="fade-up">
+            <h2>Patient Messages</h2>
+            <p>Connect with your patients and provide guidance through our secure messaging platform</p>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 mx-auto" data-aos="fade-up">
+              <div class="message-card">
+                <div class="card-header text-center py-3">
+                  <h3 class="mb-0">Your Messages</h3>
+                </div>
+                <div class="card-body p-0">
+                  <div class="message-list">
+                    <!-- Sample messages - these would be dynamically loaded in a real app -->
+                    <div class="message-item">
+                      <div class="d-flex justify-content-between">
+                        <span class="message-sender">Rahul Sharma</span>
+                        <span class="message-time">2 hours ago</span>
+                      </div>
+                      <p class="message-preview mt-2">I've been having trouble with my meditation practice. Can you suggest some techniques to improve focus?</p>
+                    </div>
+                    <div class="message-item">
+                      <div class="d-flex justify-content-between">
+                        <span class="message-sender">Priya Patel</span>
+                        <span class="message-time">1 day ago</span>
+                      </div>
+                      <p class="message-preview mt-2">Thank you for the breathing exercises! They've really helped with my anxiety.</p>
+                    </div>
+                    <div class="message-item">
+                      <div class="d-flex justify-content-between">
+                        <span class="message-sender">Amit Kumar</span>
+                        <span class="message-time">3 days ago</span>
+                      </div>
+                      <p class="message-preview mt-2">I'm not seeing much improvement in my sleep patterns. Should I adjust my routine?</p>
+                    </div>
+                  </div>
+
+                  <div class="reply-section">
+                    <h5 class="mb-3">Reply to Patient</h5>
+                    <div class="mb-3">
+                      <select class="form-select">
+                        <option selected>Select patient</option>
+                        <option>Rahul Sharma</option>
+                        <option>Priya Patel</option>
+                        <option>Amit Kumar</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <textarea class="form-control" rows="4" placeholder="Type your message here..."></textarea>
+                    </div>
+                    <button class="btn btn-service">Send Message</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function loadAdminContent() {
+    const mainSection = document.getElementById('services-section');
+
+    mainSection.innerHTML = `
+      <section class="user-type-section" style="background-color: #f8f9fa;">
+        <div class="container">
+          <div class="user-type-header" data-aos="fade-up">
+            <h2>Admin Dashboard</h2>
+            <p>Manage all aspects of the HabitUP platform</p>
+          </div>
+
+          <div class="row g-4">
+            <!-- User Management -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="admin-card glow-card">
+                <div class="card-body text-center p-4">
+                  <div class="card-icon">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <h3 class="card-title">User Management</h3>
+                  <p class="card-text">View, edit, and manage all user accounts and their permissions.</p>
+                  <a href="admin-users.html" class="btn btn-service mt-3">Manage Users</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Doctor Verification -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="admin-card glow-card">
+                <div class="card-body text-center p-4">
+                  <div class="card-icon">
+                    <i class="bi bi-file-earmark-medical"></i>
+                  </div>
+                  <h3 class="card-title">Doctor Verification</h3>
+                  <p class="card-text">Review and verify doctor applications and credentials.</p>
+                  <a href="admin-doctors.html" class="btn btn-service mt-3">Verify Doctors</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content Management -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="admin-card glow-card">
+                <div class="card-body text-center p-4">
+                  <div class="card-icon">
+                    <i class="bi bi-collection-play"></i>
+                  </div>
+                  <h3 class="card-title">Content Management</h3>
+                  <p class="card-text">Manage all platform content including articles, videos, and programs.</p>
+                  <a href="admin-content.html" class="btn btn-service mt-3">Manage Content</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Analytics -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="admin-card glow-card">
+                <div class="card-body text-center p-4">
+                  <div class="card-icon">
+                    <i class="bi bi-graph-up"></i>
+                  </div>
+                  <h3 class="card-title">Analytics Dashboard</h3>
+                  <p class="card-text">View platform usage statistics and user engagement metrics.</p>
+                  <a href="admin-analytics.html" class="btn btn-service mt-3">View Analytics</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="admin-card glow-card">
+                <div class="card-body text-center p-4">
+                  <div class="card-icon">
+                    <i class="bi bi-bell"></i>
+                  </div>
+                  <h3 class="card-title">Send Notifications</h3>
+                  <p class="card-text">Create and send announcements and notifications to users.</p>
+                  <a href="admin-notifications.html" class="btn btn-service mt-3">Send Notifications</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- System Settings -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="admin-card glow-card">
+                <div class="card-body text-center p-4">
+                  <div class="card-icon">
+                    <i class="bi bi-gear"></i>
+                  </div>
+                  <h3 class="card-title">System Settings</h3>
+                  <p class="card-text">Configure platform settings and manage system preferences.</p>
+                  <a href="admin-settings.html" class="btn btn-service mt-3">System Settings</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+</script>
+<script crossorigin="anonymous"
+        integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew=="
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
+<!-- Main JS File -->
+<script src="main.js"></script>
+
+</body>
+</html>

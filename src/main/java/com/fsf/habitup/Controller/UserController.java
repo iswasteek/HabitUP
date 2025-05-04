@@ -3,7 +3,6 @@ package com.fsf.habitup.Controller;
 import com.fsf.habitup.DTO.UpdateUserDTO;
 import com.fsf.habitup.Enums.Gender;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
