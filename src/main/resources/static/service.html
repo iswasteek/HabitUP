@@ -221,17 +221,6 @@
       animation: ripple 1s ease-out;
     }
 
-    @keyframes ripple {
-      0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(20, 20);
-        opacity: 0;
-      }
-    }
-
     /* Admin Dashboard Cards */
     .admin-card {
       border: none;
@@ -389,6 +378,17 @@
       animation: glow 3s infinite;
     }
 
+    /* Coming Soon Banner */
+    .coming-soon-banner {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .services-hero {
@@ -418,8 +418,8 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a class="active" href="services.html">Services</a></li>
-        <li><a href="team.html">Team</a></li>
+        <li><a class="active" href="service.html">Services</a></li>
+        <li><a href="blog.html">Blogs</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -450,8 +450,8 @@
   <!-- Content will be dynamically loaded based on user type -->
 </main>
 
-<!-- How It Works Section -->
-<section class="user-type-section" style="background-color: var(--surface-color);">
+<!-- How It Works Section (will be hidden for Doctor and Admin) -->
+<section class="user-type-section" style="background-color: var(--surface-color);" id="how-it-works-section">
   <div class="container">
     <div class="user-type-header" data-aos="fade-up">
       <h2>How Our Services Work</h2>
@@ -462,10 +462,10 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="p-4">
           <div class="service-icon mb-3">
-            <i class="bi bi-laptop" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-whatsapp" style="font-size: 2.5rem;"></i>
           </div>
-          <h3>1. Online Sessions</h3>
-          <p>All sessions are conducted live through Google Meet with our expert mentors.</p>
+          <h3>1. WhatsApp Details</h3>
+          <p>After registration, you'll receive mentor details and Google Meet link via WhatsApp.</p>
         </div>
       </div>
 
@@ -474,8 +474,8 @@
           <div class="service-icon mb-3">
             <i class="bi bi-calendar-check" style="font-size: 2.5rem;"></i>
           </div>
-          <h3>2. Flexible Scheduling</h3>
-          <p>Choose time slots that fit your schedule with options for morning and evening sessions.</p>
+          <h3>2. Session Timing</h3>
+          <p>Your session timing will be confirmed and shared through WhatsApp communication.</p>
         </div>
       </div>
 
@@ -484,14 +484,10 @@
           <div class="service-icon mb-3">
             <i class="bi bi-people" style="font-size: 2.5rem;"></i>
           </div>
-          <h3>3. Personalized Attention</h3>
-          <p>Small group sizes ensure individual attention and personalized guidance.</p>
+          <h3>3. Live Session</h3>
+          <p>Attend the live session with our expert mentor at the scheduled time via Google Meet.</p>
         </div>
       </div>
-    </div>
-
-    <div class="text-center mt-5" data-aos="fade-up">
-      <a href="contact.html" class="btn btn-service btn-lg px-4 py-2">Get Started Today</a>
     </div>
   </div>
 </section>
@@ -562,6 +558,12 @@
     const mainSection = document.getElementById('services-section');
     const heroTitle = document.getElementById('hero-title');
     const heroDescription = document.getElementById('hero-description');
+    const howItWorksSection = document.getElementById('how-it-works-section');
+
+    // Hide How It Works section for Doctor and Admin
+    if (userType === 'Doctor' || userType === 'Admin') {
+      howItWorksSection.style.display = 'none';
+    }
 
     // Update hero section based on user type
     switch(userType) {
@@ -615,7 +617,7 @@
             title: 'Balgopal Gita Chanting',
             description: 'Introduce children to the divine wisdom of the Bhagavad Gita through simple chanting sessions with melodic tunes that make learning enjoyable and memorable.',
             icon: 'bi-music-note-beamed',
-            img: 'https://images.unsplash.com/photo-1609010582033-0a1d3c9e1e1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+            img: 'https://images.unsplash.com/photo-1601682633965-6d2a91cc6f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
           },
           {
             title: 'Meditation & Yoga',
@@ -714,6 +716,39 @@
 
     // Add service cards
     services.forEach((service, index) => {
+      let learnMoreUrl = "#";
+      if (userType === 'Child') {
+        if (service.title === 'Balgopal Gita Chanting') {
+          learnMoreUrl = "https://www.iskcon.org/what-we-do/children/";
+        } else if (service.title === 'Meditation & Yoga') {
+          learnMoreUrl = "https://www.artofliving.org/in-en/yoga-for-kids";
+        } else if (service.title === 'Memory Hacks') {
+          learnMoreUrl = "https://www.vedantu.com/blog/memory-techniques-for-students";
+        } else if (service.title === 'Moral Story Telling') {
+          learnMoreUrl = "https://www.parentcircle.com/moral-stories-for-kids/article";
+        }
+      } else if (userType === 'Elder') {
+        if (service.title === 'Gentle Yoga & Meditation') {
+          learnMoreUrl = "https://www.artofliving.org/in-en/yoga/health-and-wellness/yoga-for-seniors";
+        } else if (service.title === 'Gita Discourses') {
+          learnMoreUrl = "https://www.gitadaily.com/";
+        } else if (service.title === 'Scripture Study') {
+          learnMoreUrl = "https://vedabase.io/en/";
+        } else if (service.title === 'Lifestyle Balance') {
+          learnMoreUrl = "https://www.ayurveda.com/";
+        }
+      } else { // Adult
+        if (service.title === 'Adolescent Psychology') {
+          learnMoreUrl = "https://www.apa.org/topics/teens";
+        } else if (service.title === 'Aura Balancing') {
+          learnMoreUrl = "https://chopra.com/articles/what-is-aura-cleansing";
+        } else if (service.title === 'Gita in Yogic Practices') {
+          learnMoreUrl = "https://www.bhagavad-gita.org/";
+        } else if (service.title === 'Stress Management') {
+          learnMoreUrl = "https://www.mayoclinic.org/healthy-lifestyle/stress-management/basics/stress-basics/hlv-20049495";
+        }
+      }
+
       html += `
         <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
           <div class="service-card floating-card">
@@ -726,7 +761,7 @@
               </div>
               <h3>${service.title}</h3>
               <p>${service.description}</p>
-              <a href="#" class="btn btn-service">Learn More</a>
+              <a href="${learnMoreUrl}" target="_blank" class="btn btn-service">Learn More</a>
             </div>
           </div>
         </div>
@@ -750,7 +785,7 @@
         <div class="container">
           <div class="user-type-header" data-aos="fade-up">
             <h2>Patient Messages</h2>
-            <p>Connect with your patients and provide guidance through our secure messaging platform</p>
+            <p>Connect with and help your patients through our messaging platform</p>
           </div>
 
           <div class="row">
@@ -764,7 +799,7 @@
                     <!-- Sample messages - these would be dynamically loaded in a real app -->
                     <div class="message-item">
                       <div class="d-flex justify-content-between">
-                        <span class="message-sender">Rahul Sharma</span>
+                        <span class="message-sender">Abhishek Padhi</span>
                         <span class="message-time">2 hours ago</span>
                       </div>
                       <p class="message-preview mt-2">I've been having trouble with my meditation practice. Can you suggest some techniques to improve focus?</p>
@@ -786,9 +821,10 @@
                   </div>
 
                   <div class="reply-section">
+                    <div class="coming-soon-banner">Messaging Feature Coming Soon!</div>
                     <h5 class="mb-3">Reply to Patient</h5>
                     <div class="mb-3">
-                      <select class="form-select">
+                      <select class="form-select" disabled>
                         <option selected>Select patient</option>
                         <option>Rahul Sharma</option>
                         <option>Priya Patel</option>
@@ -796,9 +832,9 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <textarea class="form-control" rows="4" placeholder="Type your message here..."></textarea>
+                      <textarea class="form-control" rows="4" placeholder="Type your message here..." disabled></textarea>
                     </div>
-                    <button class="btn btn-service">Send Message</button>
+                    <button class="btn btn-service" disabled>Send Message</button>
                   </div>
                 </div>
               </div>

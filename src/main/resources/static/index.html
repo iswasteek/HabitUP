@@ -1699,7 +1699,7 @@ async function login(email, password) {
     localStorage.setItem('phoneNo', user.phoneNo);
     localStorage.setItem('accountStatus', user.accountStatus);
     localStorage.setItem('subscriptionType', user.subscriptionType);
-    localStorage.setItem('profilePhoto', user.profilePhoto || ""); // Save as empty string if null
+    localStorage.setItem('profilePhoto', user.profilePhotoUrl || "/static/img/user.png"); // Save as empty string if null
     localStorage.setItem('userType', user.userType);
     localStorage.setItem('gender', user.gender);
 }

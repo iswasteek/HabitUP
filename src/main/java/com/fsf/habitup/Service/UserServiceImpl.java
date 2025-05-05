@@ -165,37 +165,29 @@ public class UserServiceImpl implements UserService {
     @Override
     public AuthResponse authenticateUser(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
-
         if (user == null) {
             throw new ApiException("User not found");
         }
 
-        // Authenticate the user
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-        // Generate JWT Token
         String token = jwtTokenProvider.generateToken(request.getEmail());
-
-
         return new AuthResponse(token, user);
     }
 
     @Override
     public User updateUser(String email, UpdateUserDTO updatedUserDTO, MultipartFile profilePhoto) {
         User existingUser = userRepository.findByEmail(email);
-
         if (existingUser == null) {
             throw new ApiException("User not found");
         }
 
-        // Only update allowed fields
         existingUser.setName(updatedUserDTO.getName());
         existingUser.setDob(updatedUserDTO.getDob());
         existingUser.setPhoneNo(updatedUserDTO.getPhoneNo());
         existingUser.setGender(updatedUserDTO.getGender());
 
-        // Handle profile photo upload
         if (profilePhoto != null && !profilePhoto.isEmpty()) {
             String savedPath = fileStorageService.storeFile(profilePhoto, "profile_photos");
             existingUser.setProfilePhoto(savedPath);
@@ -205,18 +197,15 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
     public User findUserByEmail(String email) {
-
-        // Fetch user details
         User existingUser = userRepository.findByEmail(email);
         if (existingUser == null) {
             throw new ApiException("User not found!");
         }
-
         return existingUser;
     }
+
 
     @Override
     public boolean deleteUser(String email) {

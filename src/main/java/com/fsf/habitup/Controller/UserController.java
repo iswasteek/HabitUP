@@ -1,6 +1,7 @@
 package com.fsf.habitup.Controller;
 
 import com.fsf.habitup.DTO.UpdateUserDTO;
+import com.fsf.habitup.DTO.UserResponseDTO;
 import com.fsf.habitup.Enums.Gender;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -34,7 +34,7 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")
     @PutMapping(value = "/updateuser/{email}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<User> updateUser(
+    public ResponseEntity<UserResponseDTO> updateUser(
             @PathVariable String email,
             @RequestParam("name") String name,
             @RequestParam("dob") String dob,
@@ -49,21 +49,18 @@ public class UserController {
         updatedUserDTO.setGender(gender);
 
         User savedUser = userService.updateUser(email, updatedUserDTO, profilePhoto);
-        return ResponseEntity.ok(savedUser);
+        return ResponseEntity.ok(new UserResponseDTO(savedUser));
     }
 
 
     @PreAuthorize("hasAuthority('VIEW_USERS')")
     @GetMapping("/show-a-user/{email}")
-    public ResponseEntity<User> showUser(@PathVariable String email) {
+    public ResponseEntity<UserResponseDTO> showUser(@PathVariable String email) {
         User user = userService.findUserByEmail(email);
-
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
-
-        return ResponseEntity.ok(user);
-
+        return ResponseEntity.ok(new UserResponseDTO(user));
     }
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")

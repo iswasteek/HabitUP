@@ -13,21 +13,19 @@ import java.util.UUID;
 
 @Service
 public class FileStorageService {
-
     @Value("${file.upload-dir}")
     private String uploadDir;
 
     public String storeFile(MultipartFile file, String subFolder) {
-        // Generate a unique name for the file
         String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-
-        // Create full path: uploadDir/profile_photos/filename.jpg
         Path filePath = Paths.get(uploadDir, subFolder, fileName);
 
         try {
-            Files.createDirectories(filePath.getParent()); // Make sure folder exists
+            Files.createDirectories(filePath.getParent());
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-            return filePath.toString(); // You can return just fileName or relative path if you prefer
+
+            // Return web-accessible path (no uploadDir, forward slashes)
+            return subFolder + "/" + fileName;
         } catch (IOException e) {
             throw new RuntimeException("Could not store file: " + fileName, e);
         }
