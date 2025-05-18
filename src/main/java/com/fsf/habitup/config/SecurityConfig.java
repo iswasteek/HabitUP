@@ -55,7 +55,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/habit/auth/**").permitAll()  // Allow public access
+                        .requestMatchers("/habit/auth/**").permitAll()
+                        .requestMatchers("/habit/admin/**").permitAll()// Allow public access
                         .anyRequest().authenticated()                  // Secure other endpoints
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

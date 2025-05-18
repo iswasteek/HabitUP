@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Our Services | HabitUP</title>
+  <title>Our Services</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -221,8 +221,8 @@
       animation: ripple 1s ease-out;
     }
 
-    /* Admin Dashboard Cards */
-    .admin-card {
+    /* Doctor Dashboard Cards */
+    .doctor-card {
       border: none;
       border-radius: 15px;
       overflow: hidden;
@@ -233,33 +233,33 @@
       position: relative;
     }
 
-    .admin-card:hover {
+    .doctor-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .admin-card .card-icon {
+    .doctor-card .card-icon {
       font-size: 2.5rem;
       color: var(--accent-color);
       margin-bottom: 15px;
     }
 
-    .admin-card .card-title {
+    .doctor-card .card-title {
       color: var(--heading-color);
       font-weight: 600;
     }
 
-    .admin-card .card-text {
+    .doctor-card .card-text {
       color: var(--default-color);
     }
 
-    .admin-card .btn {
+    .doctor-card .btn {
       background: var(--accent-color);
       color: white;
       border: none;
     }
 
-    .admin-card .btn:hover {
+    .doctor-card .btn:hover {
       background: color-mix(in srgb, var(--accent-color), black 10%);
     }
 
@@ -367,7 +367,7 @@
       animation-delay: 3s;
     }
 
-    /* Glow effect for admin cards */
+    /* Glow effect for doctor cards */
     @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(78, 159, 61, 0.5); }
       50% { box-shadow: 0 0 20px rgba(78, 159, 61, 0.8); }
@@ -416,16 +416,16 @@
     </a>
     <nav class="navmenu" id="navmenu">
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="home.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a class="active" href="service.html">Services</a></li>
         <li><a href="blog.html">Blogs</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="upcoming.html">Upcoming</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
     <div class="dropdown ms-3">
-      <img src="img/SwastikTeam.png" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="/static/img/user.png" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
         <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
         <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
@@ -450,7 +450,7 @@
   <!-- Content will be dynamically loaded based on user type -->
 </main>
 
-<!-- How It Works Section (will be hidden for Doctor and Admin) -->
+<!-- How It Works Section (will be hidden for Doctor) -->
 <section class="user-type-section" style="background-color: var(--surface-color);" id="how-it-works-section">
   <div class="container">
     <div class="user-type-header" data-aos="fade-up">
@@ -486,6 +486,153 @@
           </div>
           <h3>3. Live Session</h3>
           <p>Attend the live session with our expert mentor at the scheduled time via Google Meet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="user-type-section children-section">
+  <div class="container">
+    <div class="user-type-header" data-aos="fade-up">
+      <h2>What Our Users Say</h2>
+      <p>Hear from people who have transformed their lives with HabitUP</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-card">
+          <div class="service-content">
+            <div class="service-icon mb-3">
+              <i class="bi bi-quote"></i>
+            </div>
+            <p>"The meditation techniques I learned here have completely changed my daily routine. I'm more focused and peaceful than ever before."</p>
+            <div class="d-flex align-items-center mt-4">
+              <img src="/static/img/ElderBoyReview.jpg" alt="User" class="rounded-circle me-3" width="50">
+              <div>
+                <h5 class="mb-0" style="color: #476d40;">Priyansh Sharma</h5>
+                <small class="text-muted">Adult Program</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-card">
+          <div class="service-content">
+            <div class="service-icon mb-3">
+              <i class="bi bi-quote"></i>
+            </div>
+            <p>"My kids love the Balgopal sessions! They look forward to it every week and I can already see positive changes in their behavior."</p>
+            <div class="d-flex align-items-center mt-4">
+              <img src="/static/img/ChildBoyReview.jpg" alt="User" class="rounded-circle me-3" width="50">
+              <div>
+                <h5 class="mb-0" style="color: #476d40;">Rahul Verma</h5>
+                <small class="text-muted">Parent</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-card">
+          <div class="service-content">
+            <div class="service-icon mb-3">
+              <i class="bi bi-quote"></i>
+            </div>
+            <p>"As a senior citizen, I was skeptical at first, but the gentle yoga and meditation sessions have improved my mobility and peace of mind."</p>
+            <div class="d-flex align-items-center mt-4">
+              <img src="/static/img/ElderGirlReview.jpg" alt="User" class="rounded-circle me-3" width="50">
+              <div>
+                <h5 class="mb-0" style="color: #476d40;">Shanti Devi</h5>
+                <small class="text-muted">Elder Program</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="user-type-section">
+  <div class="container">
+    <div class="user-type-header" data-aos="fade-up">
+      <h2>Frequently Asked Questions</h2>
+      <p>Find answers to common questions about our services</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                How do I choose the right program for me?
+              </button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Our programs are designed for different age groups and needs. Simply select your user type (Child, Adult, or Elder) during registration, and we'll recommend the most suitable programs for you. You can always change or adjust your program later.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                What technology do I need to participate?
+              </button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                You'll need a smartphone or computer with internet access. We use WhatsApp for communication and Google Meet for live sessions. No special software is required beyond these free applications.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="300">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                Can I switch between different programs?
+              </button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes, you can switch programs at any time. Our mentors will help guide you to the most appropriate program based on your needs and progress. There's no additional charge for switching between programs.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="400">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                How are the mentors selected?
+              </button>
+            </h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                All our mentors undergo a rigorous selection process including background checks, verification of qualifications, and extensive training in our methodology. They are experienced practitioners who are passionate about helping others.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border-0 mb-3" data-aos="fade-up" data-aos-delay="500">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                What if I miss a live session?
+              </button>
+            </h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                While we encourage attending live sessions for the best experience, we understand that sometimes you might miss one. We provide session summaries and practice materials after each session, and you can schedule a catch-up with your mentor if needed.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -547,21 +694,42 @@
   // Logout button functionality
   document.getElementById('logoutBtn').addEventListener('click', function(e) {
     e.preventDefault();
-    // Add your logout logic here
-    alert('Logging out...');
-    // window.location.href = 'logout.html';
+    // Clear local storage
+    localStorage.clear();
+    // Redirect to login page
+    window.location.href = 'index.html';
+  });
+
+  // Load profile image from local storage
+  document.addEventListener('DOMContentLoaded', function() {
+     // Load profile picture from localStorage
+        const profileImg = document.getElementById('profileDropdown');
+        const storedProfilePhoto = localStorage.getItem('profilePhoto');
+
+        if (storedProfilePhoto) {
+            // Verify the image exists before setting it
+            const testImage = new Image();
+            testImage.onload = function() {
+                profileImg.src = storedProfilePhoto;
+            };
+            testImage.onerror = function() {
+                profileImg.src = '/static/img/user.png';
+            };
+            testImage.src = storedProfilePhoto;
+        }
   });
 
   // Load content based on user type
   document.addEventListener('DOMContentLoaded', function() {
+  checkAuth();
     const userType = localStorage.getItem('userType') || 'Adult'; // Default to Adult if not set
     const mainSection = document.getElementById('services-section');
     const heroTitle = document.getElementById('hero-title');
     const heroDescription = document.getElementById('hero-description');
     const howItWorksSection = document.getElementById('how-it-works-section');
 
-    // Hide How It Works section for Doctor and Admin
-    if (userType === 'Doctor' || userType === 'Admin') {
+    // Hide How It Works section for Doctor
+    if (userType === 'Doctor') {
       howItWorksSection.style.display = 'none';
     }
 
@@ -579,19 +747,13 @@
         heroTitle.textContent = 'Doctor Dashboard';
         heroDescription.textContent = 'Connect with and help your patients through our messaging platform.';
         break;
-      case 'Admin':
-        heroTitle.textContent = 'Admin Dashboard';
-        heroDescription.textContent = 'Manage all aspects of the HabitUP platform with our comprehensive admin tools.';
-        break;
       default: // Adult
         heroTitle.textContent = 'Transformative Programs for Adults';
         heroDescription.textContent = 'Comprehensive programs to manage stress, improve productivity, and find balance in modern life through time-tested techniques.';
     }
 
     // Load appropriate content
-    if (userType === 'Admin') {
-      loadAdminContent();
-    } else if (userType === 'Doctor') {
+    if (userType === 'Doctor') {
       loadDoctorContent();
     } else {
       loadUserContent(userType);
@@ -610,14 +772,14 @@
     switch(userType) {
       case 'Child':
         sectionId = 'children';
-        sectionTitle = 'For Children (Ages 5-12)';
+        sectionTitle = 'For Children';
         sectionDescription = 'Engaging programs designed to cultivate healthy habits, focus, and creativity in young minds through fun and interactive sessions.';
         services = [
           {
             title: 'Balgopal Gita Chanting',
             description: 'Introduce children to the divine wisdom of the Bhagavad Gita through simple chanting sessions with melodic tunes that make learning enjoyable and memorable.',
             icon: 'bi-music-note-beamed',
-            img: 'https://images.unsplash.com/photo-1601682633965-6d2a91cc6f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+            img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
           },
           {
             title: 'Meditation & Yoga',
@@ -641,7 +803,7 @@
         break;
       case 'Elder':
         sectionId = 'elders';
-        sectionTitle = 'For Elders (Ages 60+)';
+        sectionTitle = 'For Elders';
         sectionDescription = 'Gentle yet powerful programs to maintain vitality, peace of mind, and spiritual growth in the golden years.';
         services = [
           {
@@ -672,7 +834,7 @@
         break;
       default: // Adult
         sectionId = 'adults';
-        sectionTitle = 'For Adults (Ages 18-60)';
+        sectionTitle = 'For Adults';
         sectionDescription = 'Comprehensive programs to manage stress, improve productivity, and find balance in modern life through time-tested techniques.';
         services = [
           {
@@ -818,6 +980,20 @@
                       </div>
                       <p class="message-preview mt-2">I'm not seeing much improvement in my sleep patterns. Should I adjust my routine?</p>
                     </div>
+                    <div class="message-item">
+                      <div class="d-flex justify-content-between">
+                        <span class="message-sender">Neha Gupta</span>
+                        <span class="message-time">5 days ago</span>
+                      </div>
+                      <p class="message-preview mt-2">The techniques you suggested for my child have been very helpful. Thank you!</p>
+                    </div>
+                    <div class="message-item">
+                      <div class="d-flex justify-content-between">
+                        <span class="message-sender">Rajesh Singh</span>
+                        <span class="message-time">1 week ago</span>
+                      </div>
+                      <p class="message-preview mt-2">Could you recommend some additional resources for stress management?</p>
+                    </div>
                   </div>
 
                   <div class="reply-section">
@@ -826,9 +1002,11 @@
                     <div class="mb-3">
                       <select class="form-select" disabled>
                         <option selected>Select patient</option>
-                        <option>Rahul Sharma</option>
+                        <option>Abhishek Padhi</option>
                         <option>Priya Patel</option>
                         <option>Amit Kumar</option>
+                        <option>Neha Gupta</option>
+                        <option>Rajesh Singh</option>
                       </select>
                     </div>
                     <div class="mb-3">
@@ -842,101 +1020,50 @@
           </div>
         </div>
       </section>
-    `;
-  }
 
-  function loadAdminContent() {
-    const mainSection = document.getElementById('services-section');
-
-    mainSection.innerHTML = `
-      <section class="user-type-section" style="background-color: #f8f9fa;">
+      <section class="user-type-section">
         <div class="container">
           <div class="user-type-header" data-aos="fade-up">
-            <h2>Admin Dashboard</h2>
-            <p>Manage all aspects of the HabitUP platform</p>
+            <h2>Doctor Resources</h2>
+            <p>Tools and resources to help you serve your patients better</p>
           </div>
 
           <div class="row g-4">
-            <!-- User Management -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="admin-card glow-card">
+              <div class="doctor-card glow-card">
                 <div class="card-body text-center p-4">
                   <div class="card-icon">
-                    <i class="bi bi-people-fill"></i>
+                    <i class="bi bi-journal-medical"></i>
                   </div>
-                  <h3 class="card-title">User Management</h3>
-                  <p class="card-text">View, edit, and manage all user accounts and their permissions.</p>
-                  <a href="admin-users.html" class="btn btn-service mt-3">Manage Users</a>
+                  <h3 class="card-title">Patient Records</h3>
+                  <p class="card-text">Access your patients' progress records and session history.</p>
+                  <a href="#" class="btn btn-service mt-3 disabled">Coming Soon</a>
                 </div>
               </div>
             </div>
 
-            <!-- Doctor Verification -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="admin-card glow-card">
+              <div class="doctor-card glow-card">
                 <div class="card-body text-center p-4">
                   <div class="card-icon">
-                    <i class="bi bi-file-earmark-medical"></i>
+                    <i class="bi bi-calendar2-check"></i>
                   </div>
-                  <h3 class="card-title">Doctor Verification</h3>
-                  <p class="card-text">Review and verify doctor applications and credentials.</p>
-                  <a href="admin-doctors.html" class="btn btn-service mt-3">Verify Doctors</a>
+                  <h3 class="card-title">Appointment Schedule</h3>
+                  <p class="card-text">Manage your upcoming sessions and appointments.</p>
+                  <a href="#" class="btn btn-service mt-3 disabled">Coming Soon</a>
                 </div>
               </div>
             </div>
 
-            <!-- Content Management -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="admin-card glow-card">
+              <div class="doctor-card glow-card">
                 <div class="card-body text-center p-4">
                   <div class="card-icon">
-                    <i class="bi bi-collection-play"></i>
+                    <i class="bi bi-file-earmark-text"></i>
                   </div>
-                  <h3 class="card-title">Content Management</h3>
-                  <p class="card-text">Manage all platform content including articles, videos, and programs.</p>
-                  <a href="admin-content.html" class="btn btn-service mt-3">Manage Content</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Analytics -->
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="admin-card glow-card">
-                <div class="card-body text-center p-4">
-                  <div class="card-icon">
-                    <i class="bi bi-graph-up"></i>
-                  </div>
-                  <h3 class="card-title">Analytics Dashboard</h3>
-                  <p class="card-text">View platform usage statistics and user engagement metrics.</p>
-                  <a href="admin-analytics.html" class="btn btn-service mt-3">View Analytics</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Notifications -->
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="admin-card glow-card">
-                <div class="card-body text-center p-4">
-                  <div class="card-icon">
-                    <i class="bi bi-bell"></i>
-                  </div>
-                  <h3 class="card-title">Send Notifications</h3>
-                  <p class="card-text">Create and send announcements and notifications to users.</p>
-                  <a href="admin-notifications.html" class="btn btn-service mt-3">Send Notifications</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- System Settings -->
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="admin-card glow-card">
-                <div class="card-body text-center p-4">
-                  <div class="card-icon">
-                    <i class="bi bi-gear"></i>
-                  </div>
-                  <h3 class="card-title">System Settings</h3>
-                  <p class="card-text">Configure platform settings and manage system preferences.</p>
-                  <a href="admin-settings.html" class="btn btn-service mt-3">System Settings</a>
+                  <h3 class="card-title">Resources Library</h3>
+                  <p class="card-text">Access shared resources and materials for patient care.</p>
+                  <a href="#" class="btn btn-service mt-3 disabled">Coming Soon</a>
                 </div>
               </div>
             </div>
@@ -945,6 +1072,13 @@
       </section>
     `;
   }
+
+  function checkAuth() {
+      const authToken = localStorage.getItem('token');
+      if (!authToken) {
+        window.location.href = 'index.html';
+      }
+    }
 </script>
 <script crossorigin="anonymous"
         integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew=="
