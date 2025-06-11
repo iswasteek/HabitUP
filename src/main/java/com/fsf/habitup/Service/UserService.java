@@ -1,15 +1,20 @@
 package com.fsf.habitup.Service;
 
-import com.fsf.habitup.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fsf.habitup.DTO.AuthResponse;
+import com.fsf.habitup.DTO.ForgetPasswordRequest;
+import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.LogoutResponse;
+import com.fsf.habitup.DTO.OtpRegisterRequest;
+import com.fsf.habitup.DTO.UpdateUserDTO;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -41,4 +46,7 @@ public interface UserService {
     public String verifyOtpAndCreateUser(OtpRegisterRequest request);
 
     public LogoutResponse logout(String email, HttpServletResponse response);
+
+    // boolean sendDocumentsForAdminVerification(Long userId, List<MultipartFile>
+    // documents, List<String> documentTypes);
 }

@@ -1,17 +1,11 @@
 package com.fsf.habitup.Service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-import com.fsf.habitup.DTO.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,11 +13,21 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fsf.habitup.DTO.AuthResponse;
+import com.fsf.habitup.DTO.ForgetPasswordRequest;
+import com.fsf.habitup.DTO.LoginRequest;
+import com.fsf.habitup.DTO.LogoutResponse;
+import com.fsf.habitup.DTO.OtpRegisterRequest;
+import com.fsf.habitup.DTO.OtpVerificationReuest;
+import com.fsf.habitup.DTO.RegisterRequest;
+import com.fsf.habitup.DTO.UpdateUserDTO;
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Exception.ApiException;
+import com.fsf.habitup.Repository.DocumentsRepository;
 import com.fsf.habitup.Repository.PasswordResetTokenRepository;
 import com.fsf.habitup.Repository.UserRepository;
 import com.fsf.habitup.Security.JwtTokenProvider;
@@ -32,7 +36,6 @@ import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,28 +50,24 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordResetTokenRepository tokenRepository;
     private final JwtTokenProvider jwtTokenProvider;
+    private final DocumentsRepository documentsRepository;
 
     private final JavaMailSender mailSender;
     private final FileStorageService fileStorageService;
 
-    public UserServiceImpl(
-            AuthenticationManager authenticationManager,
-            JwtTokenProvider jwtTokenProvider,
-            JavaMailSender mailSender,
-            OtpService otpService,
-            UserRepository userRepository,
-            PasswordEncoder passwordEncoder,
-            PasswordResetTokenRepository tokenRepository,
-            FileStorageService fileStorageService) {
-
+    public UserServiceImpl(AuthenticationManager authenticationManager, DocumentsRepository documentsRepository,
+            FileStorageService fileStorageService, JwtTokenProvider jwtTokenProvider, JavaMailSender mailSender,
+            OtpService otpService, PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository,
+            UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
+        this.documentsRepository = documentsRepository;
+        this.fileStorageService = fileStorageService;
         this.jwtTokenProvider = jwtTokenProvider;
         this.mailSender = mailSender;
         this.otpService = otpService;
-        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
-        this.fileStorageService = fileStorageService;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -127,7 +126,6 @@ public class UserServiceImpl implements UserService {
             return "This phone number is already registered. Please use another number.";
         }
 
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // Create and save user
@@ -160,7 +158,6 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return "Registration successful!";
     }
-
 
     @Override
     public AuthResponse authenticateUser(LoginRequest request) {
@@ -196,7 +193,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(existingUser);
     }
 
-
     @Override
     public User findUserByEmail(String email) {
         User existingUser = userRepository.findByEmail(email);
@@ -205,7 +201,6 @@ public class UserServiceImpl implements UserService {
         }
         return existingUser;
     }
-
 
     @Override
     public boolean deleteUser(String email) {
@@ -310,5 +305,42 @@ public class UserServiceImpl implements UserService {
         // Return logout response
         return new LogoutResponse("User logged out successfully.", HttpStatus.OK.value());
     }
+
+    // @Override
+    // public boolean sendDocumentsForAdminVerification(Long userId,
+    // List<MultipartFile> documents,
+    // List<String> documentTypes) {
+    // User user = userRepository.findById(userId).orElseThrow(() -> new
+    // RuntimeException("User not found"));
+
+    // if (documents == null || documents.isEmpty() || documentTypes == null
+    // || documents.size() != documentTypes.size()) {
+    // throw new RuntimeException("Invalid documents or document types");
+    // }
+
+    // for (int i = 0; i < documents.size(); i++) {
+    // MultipartFile file = documents.get(i);
+    // String docType = documentTypes.get(i);
+
+    // String storedFileUrl = saveFileAndGetUrl(file); // Placeholder method
+
+    // Documents doc = new Documents();
+    // doc.setDocumentName(file.getOriginalFilename());
+    // doc.setDocumentType(docType);
+    // doc.setDocumentUrl(storedFileUrl);
+    // doc.setStatus(DocumentStatus.PENDING);
+    // doc.setUser(user);
+
+    // documentsRepository.save(doc);
+    // }
+    // return true;
+    // }
+
+    // // Placeholder for actual file storage logic (local/cloud)
+    // private String saveFileAndGetUrl(MultipartFile file) {
+    // // Implement your file saving here and return the file URL or path
+    // // For now, just returning the original filename as dummy URL
+    // return "/uploads/" + file.getOriginalFilename();
+    // }
 
 }
