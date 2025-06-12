@@ -4,11 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.DocumentStatus;
 import com.fsf.habitup.Enums.Gender;
@@ -29,13 +24,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "doctor")
-public class Doctor  {
+public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "doctorId", nullable = false, unique = true)
     private Long doctorId;
-
 
     @Column(name = "password", nullable = false)
     public String password;
@@ -53,19 +47,19 @@ public class Doctor  {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(name = "specialization", nullable = false, unique = false)
+    @Column(name = "specialization", nullable = true, unique = false)
     private String specialization;
 
-    @Column(name = "yearsOfExperience", nullable = false, unique = false)
-    private byte yearsOfExperience;
+    @Column(name = "yearsOfExperience", nullable = true, unique = false)
+    private int yearsOfExperience;
 
-    @Column(name = "availabilitySchedule", nullable = false, unique = false)
+    @Column(name = "availabilitySchedule", nullable = true, unique = false)
     private Date availabilitySchedule;
 
-    @Column(name = "consultationFee", nullable = false, unique = false)
+    @Column(name = "consultationFee", nullable = true, unique = false)
     private int consultationFee;
 
-    @Column(name = "ratings", nullable = false, unique = false)
+    @Column(name = "ratings", nullable = true, unique = false)
     private float ratings;
 
     @Column(name = "userType", nullable = false, length = 20)
@@ -136,7 +130,6 @@ public class Doctor  {
         this.doctorName = doctorName;
     }
 
-
     public Gender getGender() {
         return gender;
     }
@@ -169,11 +162,11 @@ public class Doctor  {
         this.specialization = specialization;
     }
 
-    public byte getYearsOfExperience() {
+    public int getYearsOfExperience() {
         return yearsOfExperience;
     }
 
-    public void setYearsOfExperience(byte yearsOfExperience) {
+    public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
 
