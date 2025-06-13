@@ -4,8 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import com.fsf.habitup.Repository.HabitRepo;
+import com.fsf.habitup.entity.Habit;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.http.HttpStatus;
@@ -57,11 +62,12 @@ public class UserServiceImpl implements UserService {
 
     private final JavaMailSender mailSender;
     private final FileStorageService fileStorageService;
+    private final HabitRepo habitRepo;
 
     public UserServiceImpl(AuthenticationManager authenticationManager, DocumentsRepository documentsRepository,
             FileStorageService fileStorageService, JwtTokenProvider jwtTokenProvider, JavaMailSender mailSender,
             OtpService otpService, PasswordEncoder passwordEncoder, PasswordResetTokenRepository tokenRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository, HabitRepo habitRepo) {
         this.authenticationManager = authenticationManager;
         this.documentsRepository = documentsRepository;
         this.fileStorageService = fileStorageService;
@@ -71,6 +77,7 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
         this.userRepository = userRepository;
+        this.habitRepo = habitRepo;
     }
 
     @Override
@@ -131,18 +138,15 @@ public class UserServiceImpl implements UserService {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        // Create and save user
         User user = new User();
         user.setName(registerRequest.getName());
         user.setEmail(registerRequest.getEmail());
         user.setJoinDate(LocalDate.now().format(formatter));
         user.setDob(registerRequest.getDateOfBirth());
 
-        // Convert dobString to LocalDate for age calculation
         LocalDate dob = LocalDate.parse(registerRequest.getDateOfBirth(), formatter);
         int age = Period.between(dob, LocalDate.now()).getYears();
 
-        // Set UserType based on age
         if (age < 18) {
             user.setUserType(UserType.Child);
         } else if (age <= 60) {
@@ -157,10 +161,26 @@ public class UserServiceImpl implements UserService {
         user.setGender(registerRequest.getGender());
         user.setAccountStatus(AccountStatus.ACTIVE);
 
-        // Save User
-        userRepository.save(user);
+        // ✅ Save the user first (so we can associate habits)
+        User savedUser = userRepository.save(user);
+
+        // ✅ Fetch user-specific and universal default habits
+        List<Habit> defaultHabits = habitRepo.findByIsDefaultTrueAndUserType(savedUser.getUserType());
+        List<Habit> universalHabits = habitRepo.findByIsDefaultTrueAndUserTypeIsNull();
+
+        // ✅ Add to user
+        Set<Habit> allHabits = new HashSet<>();
+        allHabits.addAll(defaultHabits);
+        allHabits.addAll(universalHabits);
+
+        savedUser.setHabits(allHabits);
+
+        // ✅ Save the user again with assigned habits
+        userRepository.save(savedUser);
+
         return "Registration successful!";
     }
+
 
     @Override
     public AuthResponse authenticateUser(LoginRequest request) {

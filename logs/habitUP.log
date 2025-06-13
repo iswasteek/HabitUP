@@ -1,100 +1,25 @@
-2025-06-13 00:51:21 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756081076
-2025-06-13 00:51:21 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756081076
-2025-06-13 00:53:22 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 00:53:22 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 00:53:22 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 00:53:23 [http-nio-8080-exec-7] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 00:53:29 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756209523
-2025-06-13 00:53:29 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756209523
-2025-06-13 00:54:59 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756299396
-2025-06-13 00:54:59 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756299396
-2025-06-13 00:58:18 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756498282
-2025-06-13 00:58:18 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756498282
-2025-06-13 00:58:39 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756519574
-2025-06-13 00:58:39 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756519574
-2025-06-13 00:59:03 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756543285
-2025-06-13 00:59:03 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756543285
-2025-06-13 01:00:22 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756622452
-2025-06-13 01:00:22 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756622452
-2025-06-13 01:01:50 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756710036
-2025-06-13 01:01:50 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756710036
-2025-06-13 01:03:04 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756784830
-2025-06-13 01:03:04 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756784830
-2025-06-13 01:04:43 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756883768
-2025-06-13 01:04:43 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756883768
-2025-06-13 01:04:50 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756890870
-2025-06-13 01:04:50 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756890870
-2025-06-13 01:05:07 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756907171
-2025-06-13 01:05:07 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/8d6e8c96-0d9e-471e-b990-a85ad8af30ba_Adobe Express - file.jpg?1749756907171
-2025-06-13 01:05:44 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 01:05:44 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 01:05:44 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 01:06:53 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:06:53 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:06:53 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:00 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:00 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:00 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:12 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:12 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:13 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/reset-password?token=c45f7da3-4680-496d-af0a-2edbb3ef8c2c
-2025-06-13 01:07:42 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 01:07:42 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /user/swastikproffesional@gmail.com
-2025-06-13 01:07:42 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /user/swastikproffesional@gmail.com
-2025-06-13 01:07:42 [http-nio-8080-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
-2025-06-13 01:07:42 [http-nio-8080-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`habit`.`password_reset_token`, CONSTRAINT `FK5lwtbncug84d4ero33v3cfxvl` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`))
-2025-06-13 01:07:48 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 01:07:48 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /user/swastikproffesional@gmail.com
-2025-06-13 01:07:48 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /user/swastikproffesional@gmail.com
-2025-06-13 01:07:48 [http-nio-8080-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
-2025-06-13 01:07:48 [http-nio-8080-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`habit`.`password_reset_token`, CONSTRAINT `FK5lwtbncug84d4ero33v3cfxvl` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`))
-2025-06-13 01:08:10 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 01:08:10 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 01:08:10 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 01:08:23 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 01:08:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 01:08:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 01:08:24 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 01:08:50 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 01:08:50 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 01:08:50 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 01:08:50 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/84b1c92e-5b22-41ab-b967-cc7ba5c81920_BlackMe.jpg?1749757130241
-2025-06-13 01:08:50 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/84b1c92e-5b22-41ab-b967-cc7ba5c81920_BlackMe.jpg?1749757130241
-2025-06-13 01:09:05 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 01:09:05 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /user/swastikproffesional@gmail.com
-2025-06-13 01:09:05 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /user/swastikproffesional@gmail.com
-2025-06-13 01:09:05 [http-nio-8080-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
-2025-06-13 01:09:05 [http-nio-8080-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`habit`.`password_reset_token`, CONSTRAINT `FK5lwtbncug84d4ero33v3cfxvl` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`))
-2025-06-13 01:09:18 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/84b1c92e-5b22-41ab-b967-cc7ba5c81920_BlackMe.jpg?1749757158179
-2025-06-13 01:09:18 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/84b1c92e-5b22-41ab-b967-cc7ba5c81920_BlackMe.jpg?1749757158179
-2025-06-13 01:09:24 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/84b1c92e-5b22-41ab-b967-cc7ba5c81920_BlackMe.jpg?1749757164022
-2025-06-13 01:09:24 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/84b1c92e-5b22-41ab-b967-cc7ba5c81920_BlackMe.jpg?1749757164022
-2025-06-13 01:09:40 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 01:09:40 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 01:09:40 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 01:09:41 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 01:10:25 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-13 01:10:25 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-06-13 01:10:25 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-13 01:10:25 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-06-13 01:10:25 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-06-13 11:58:34 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 8788 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
-2025-06-13 11:58:34 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-13 11:58:36 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-13 11:58:36 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 186 ms. Found 13 JPA repository interfaces.
-2025-06-13 11:58:38 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-06-13 11:58:38 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-06-13 11:58:38 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-06-13 11:58:38 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-06-13 11:58:38 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3896 ms
-2025-06-13 11:58:38 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-13 11:58:38 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-06-13 11:58:39 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-06-13 11:58:39 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-13 11:58:39 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-06-13 11:58:40 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@127d2aee
-2025-06-13 11:58:40 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-06-13 11:58:41 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+2025-06-14 00:40:13 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-14 00:40:14 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-14 00:40:14 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-14 00:40:14 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-14 00:40:14 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-14 00:40:19 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 3008 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
+2025-06-14 00:40:19 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-14 00:40:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-14 00:40:21 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 131 ms. Found 13 JPA repository interfaces.
+2025-06-14 00:40:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-14 00:40:22 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-14 00:40:22 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-14 00:40:22 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-14 00:40:22 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3015 ms
+2025-06-14 00:40:22 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-14 00:40:23 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-06-14 00:40:23 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-14 00:40:23 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-14 00:40:23 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-14 00:40:23 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5030997b
+2025-06-14 00:40:23 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-14 00:40:24 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0.39
@@ -102,239 +27,45 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-06-13 11:58:45 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-13 11:58:47 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-13 11:58:48 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2025-06-13 11:58:49 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-13 11:58:51 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
-2025-06-13 11:58:51 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
-2025-06-13 11:58:52 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
-2025-06-13 11:58:52 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
-2025-06-13 11:58:52 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
-2025-06-13 11:58:52 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
-2025-06-13 11:58:52 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
-2025-06-13 11:58:52 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
-2025-06-13 11:58:53 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2025-06-13 11:58:54 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2025-06-13 11:58:54 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-06-13 11:58:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-06-13 11:58:56 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 22.654 seconds (process running for 23.863)
-2025-06-13 12:03:00 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-06-13 12:03:00 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-06-13 12:03:00 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
-2025-06-13 12:03:00 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 12:03:00 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 12:03:01 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 12:03:19 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 12:03:20 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 12:07:07 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/reset-password?token=c059024b-c270-4cfa-bc55-c933d3f68225
-2025-06-13 12:07:07 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/reset-password?token=c059024b-c270-4cfa-bc55-c933d3f68225
-2025-06-13 12:07:52 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 12:07:52 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 12:07:52 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 12:08:35 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/reset-password?token=8f8c40da-24d6-4ab3-ab9a-da3a4a152aae
-2025-06-13 12:08:35 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/reset-password?token=8f8c40da-24d6-4ab3-ab9a-da3a4a152aae
-2025-06-13 12:08:35 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/reset-password?token=8f8c40da-24d6-4ab3-ab9a-da3a4a152aae
-2025-06-13 12:09:00 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 12:09:00 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /user/swastikproffesional@gmail.com
-2025-06-13 12:09:00 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /user/swastikproffesional@gmail.com
-2025-06-13 12:09:27 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 12:09:27 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 12:09:27 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 12:10:05 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
-2025-06-13 12:10:05 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
-2025-06-13 12:10:58 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/verify-otp-and-register
-2025-06-13 12:10:58 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
-2025-06-13 12:10:58 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
-2025-06-13 12:11:11 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 12:11:11 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 12:11:11 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 12:11:11 [http-nio-8080-exec-10] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 12:12:04 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 12:12:04 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 12:12:04 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 12:12:04 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/b9b66fb8-a9f9-4d21-a05d-c41824838cf0_MYdp.jpeg?1749796924579
-2025-06-13 12:12:04 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/b9b66fb8-a9f9-4d21-a05d-c41824838cf0_MYdp.jpeg?1749796924579
-2025-06-13 12:12:17 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/b9b66fb8-a9f9-4d21-a05d-c41824838cf0_MYdp.jpeg?1749796937348
-2025-06-13 12:12:17 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/b9b66fb8-a9f9-4d21-a05d-c41824838cf0_MYdp.jpeg?1749796937348
-2025-06-13 12:12:41 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 12:12:41 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 12:12:41 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 12:12:41 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 12:42:33 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s539ms953µs600ns).
-2025-06-13 13:26:29 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 13:26:29 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/swastikproffesional@gmail.com
-2025-06-13 13:26:29 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/swastikproffesional@gmail.com
-2025-06-13 13:26:38 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 13:26:38 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 13:26:38 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 13:27:56 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/reset-password?token=5d027bec-a510-45be-bb0b-e21e20931614
-2025-06-13 13:27:56 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/reset-password?token=5d027bec-a510-45be-bb0b-e21e20931614
-2025-06-13 13:27:56 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/reset-password?token=5d027bec-a510-45be-bb0b-e21e20931614
-2025-06-13 13:35:58 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 13:35:58 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/swastikproffesional@gmail.com
-2025-06-13 13:35:58 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/updateuser/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749801973890
-2025-06-13 13:36:13 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749801973890
-2025-06-13 13:36:13 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/swastikproffesional@gmail.com
-2025-06-13 13:36:13 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749801973953
-2025-06-13 13:36:13 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749801973953
-2025-06-13 13:37:15 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802035305
-2025-06-13 13:37:15 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802035305
-2025-06-13 13:37:23 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802043904
-2025-06-13 13:37:23 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 13:37:23 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802043904
-2025-06-13 13:37:23 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/swastikproffesional@gmail.com
-2025-06-13 13:37:23 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/swastikproffesional@gmail.com
-2025-06-13 13:37:24 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802044001
-2025-06-13 13:37:24 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802044001
-2025-06-13 13:37:26 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802046412
-2025-06-13 13:37:26 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749802046412
-2025-06-13 13:37:50 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:37:50 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:37:50 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:37:50 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
-2025-06-13 13:38:08 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:38:08 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:38:08 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:38:09 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
-2025-06-13 13:41:24 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:41:24 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:41:24 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:41:25 [http-nio-8080-exec-7] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
-2025-06-13 13:41:49 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:41:49 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:41:49 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:41:50 [http-nio-8080-exec-10] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
-2025-06-13 13:42:19 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:42:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:42:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:42:19 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
-2025-06-13 13:42:41 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:42:41 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:42:41 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:42:42 [http-nio-8080-exec-4] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
-2025-06-13 13:43:31 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP-forgot-password?email=swastikproffesional@gmail.com
-2025-06-13 13:43:31 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP-forgot-password?email=swastikproffesional@gmail.com
-2025-06-13 13:44:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/forgot-password-otp
-2025-06-13 13:44:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/forgot-password-otp
-2025-06-13 13:44:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/forgot-password-otp
-2025-06-13 13:44:24 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 13:44:24 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 13:44:24 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 13:44:24 [http-nio-8080-exec-7] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 13:44:34 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 13:44:34 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/swastikproffesional@gmail.com
-2025-06-13 13:44:34 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/swastikproffesional@gmail.com
-2025-06-13 13:58:01 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=57s425ms244µs700ns).
-2025-06-13 14:09:30 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:09:30 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:09:30 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:09:30 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803970976
-2025-06-13 14:09:30 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803970976
-2025-06-13 14:09:35 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803975624
-2025-06-13 14:09:35 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803975624
-2025-06-13 14:09:38 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:09:38 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803978854
-2025-06-13 14:09:38 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803978854
-2025-06-13 14:09:38 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:09:38 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:09:38 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803978997
-2025-06-13 14:09:38 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803978997
-2025-06-13 14:09:48 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803988359
-2025-06-13 14:09:48 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749803988359
-2025-06-13 14:10:18 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 14:10:18 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 14:10:18 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 14:10:18 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 14:10:23 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:10:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:10:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:10:23 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804023851
-2025-06-13 14:10:23 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804023851
-2025-06-13 14:10:33 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804033725
-2025-06-13 14:10:33 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804033725
-2025-06-13 14:10:39 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:10:39 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804039132
-2025-06-13 14:10:39 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804039132
-2025-06-13 14:10:39 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:10:39 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:10:39 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804039183
-2025-06-13 14:10:39 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804039183
-2025-06-13 14:10:56 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 14:10:56 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 14:10:56 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 14:10:56 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 14:10:56 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804056573
-2025-06-13 14:10:56 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804056573
-2025-06-13 14:12:24 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804144833
-2025-06-13 14:12:24 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804144833
-2025-06-13 14:13:35 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804215736
-2025-06-13 14:13:35 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804215736
-2025-06-13 14:13:53 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 14:13:53 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 14:13:53 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 14:13:53 [http-nio-8080-exec-9] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 14:13:53 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804233257
-2025-06-13 14:13:53 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804233257
-2025-06-13 14:14:02 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:14:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804242043
-2025-06-13 14:14:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804242043
-2025-06-13 14:14:02 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:14:02 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 14:14:02 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804242106
-2025-06-13 14:14:02 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /uploads/profile_photos/4256b343-d9c0-4414-939b-d3d52991c3ab_MYdp.jpeg?1749804242106
-2025-06-13 14:15:09 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 14:15:09 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 14:15:09 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /user/swastikproffesional@gmail.com/send-mail
-2025-06-13 14:15:53 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/reset-password?token=29d897c8-4c4d-41f3-a55d-164306dcd182
-2025-06-13 14:15:53 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/reset-password?token=29d897c8-4c4d-41f3-a55d-164306dcd182
-2025-06-13 14:15:53 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/reset-password?token=29d897c8-4c4d-41f3-a55d-164306dcd182
-2025-06-13 14:16:16 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/swastikproffesional@gmail.com
-2025-06-13 14:16:16 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /user/swastikproffesional@gmail.com
-2025-06-13 14:16:16 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /user/swastikproffesional@gmail.com
-2025-06-13 14:17:00 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 14:17:00 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 14:17:00 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 14:17:37 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
-2025-06-13 14:17:37 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
-2025-06-13 14:18:02 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/verify-otp-and-register
-2025-06-13 14:18:02 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
-2025-06-13 14:18:02 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
-2025-06-13 14:18:10 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 14:18:10 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 14:18:10 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 14:18:10 [http-nio-8080-exec-9] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 15:54:22 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h29m20s629ms329µs200ns).
-2025-06-13 16:03:06 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m39s179ms670µs400ns).
-2025-06-13 16:30:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=26m46s721ms437µs700ns).
-2025-06-13 16:34:59 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-13 16:35:00 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-06-13 16:35:00 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-13 16:35:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-06-13 16:35:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-06-13 21:21:30 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 3428 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
-2025-06-13 21:21:30 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-13 21:21:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-13 21:21:32 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 126 ms. Found 13 JPA repository interfaces.
-2025-06-13 21:21:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-06-13 21:21:33 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-06-13 21:21:33 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-06-13 21:21:33 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-06-13 21:21:33 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3219 ms
-2025-06-13 21:21:34 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-13 21:21:34 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-06-13 21:21:34 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-06-13 21:21:34 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-13 21:21:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-06-13 21:21:35 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c6b300a
-2025-06-13 21:21:35 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-06-13 21:21:35 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+2025-06-14 00:40:25 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-14 00:40:26 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-14 00:40:26 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-06-14 00:40:27 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-14 00:40:28 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-06-14 00:40:28 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-06-14 00:40:28 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
+2025-06-14 00:40:28 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-06-14 00:40:28 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
+2025-06-14 00:40:28 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-06-14 00:40:28 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-06-14 00:40:28 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-06-14 00:40:29 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-06-14 00:40:29 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-14 00:40:29 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-14 00:40:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-14 00:40:30 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 11.808 seconds (process running for 12.311)
+2025-06-14 00:40:30 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-14 00:40:30 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-14 00:40:30 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-14 00:40:30 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-14 00:40:30 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-14 00:40:47 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 12880 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
+2025-06-14 00:40:47 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-14 00:40:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-14 00:40:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 137 ms. Found 13 JPA repository interfaces.
+2025-06-14 00:40:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-14 00:40:50 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-14 00:40:50 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-14 00:40:50 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-14 00:40:50 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2930 ms
+2025-06-14 00:40:50 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-14 00:40:50 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-06-14 00:40:50 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-14 00:40:51 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-14 00:40:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-14 00:40:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5030997b
+2025-06-14 00:40:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-14 00:40:51 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0.39
@@ -342,80 +73,59 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-06-13 21:21:37 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-13 21:21:37 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-13 21:21:38 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2025-06-13 21:21:38 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-13 21:21:39 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
-2025-06-13 21:21:39 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
-2025-06-13 21:21:39 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
-2025-06-13 21:21:39 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
-2025-06-13 21:21:39 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
-2025-06-13 21:21:39 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
-2025-06-13 21:21:39 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
-2025-06-13 21:21:40 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
-2025-06-13 21:21:40 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2025-06-13 21:21:40 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2025-06-13 21:21:41 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-06-13 21:21:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-06-13 21:21:41 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 12.477 seconds (process running for 13.253)
-2025-06-13 21:22:21 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-06-13 21:22:21 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-06-13 21:22:21 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
-2025-06-13 21:22:21 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-13 21:22:21 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-13 21:22:21 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-13 21:22:22 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-13 21:22:38 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 21:22:38 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 21:22:38 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 22:12:11 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m35s433ms527µs1ns).
-2025-06-13 22:17:52 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 22:17:52 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 22:17:53 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/show-a-user/swastikproffesional@gmail.com
-2025-06-13 22:27:55 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-13 22:27:55 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-06-13 22:27:55 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-13 22:27:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-06-13 22:27:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-06-13 23:14:43 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 17660 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
-2025-06-13 23:14:43 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-13 23:14:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-13 23:14:46 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 169 ms. Found 13 JPA repository interfaces.
-2025-06-13 23:14:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-06-13 23:14:48 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-06-13 23:14:48 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-06-13 23:14:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-06-13 23:14:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4285 ms
-2025-06-13 23:14:49 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-13 23:14:49 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-06-13 23:14:49 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-06-13 23:14:50 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-13 23:14:50 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-06-13 23:14:50 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c9e74f3
-2025-06-13 23:14:50 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-06-13 23:14:51 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.39
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-06-13 23:14:52 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-13 23:14:53 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-13 23:14:54 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2025-06-13 23:14:54 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-13 23:14:55 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
-2025-06-13 23:14:55 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
-2025-06-13 23:14:56 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
-2025-06-13 23:14:56 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
-2025-06-13 23:14:56 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
-2025-06-13 23:14:56 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
-2025-06-13 23:14:56 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
-2025-06-13 23:14:56 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
-2025-06-13 23:14:56 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2025-06-13 23:14:57 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2025-06-13 23:14:57 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-06-13 23:14:57 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-06-13 23:14:57 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 14.83 seconds (process running for 15.634)
+2025-06-14 00:40:53 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-14 00:40:57 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-14 00:40:57 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-06-14 00:40:57 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-14 00:40:58 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-06-14 00:40:58 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: LOCK_UNLOCK_USERS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_SUBSCRIPTIONS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: EXPORT_HABIT_PROGRESS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_FEEDBACK
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_HABIT_PROGRESS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_FEEDBACK
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: IMPORT_HABIT_PROGRESS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_THOUGHTS
+2025-06-14 00:40:59 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-06-14 00:40:59 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-06-14 00:40:59 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCUMENTS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCUMENTS
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_FEEDBACK
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_FEEDBACK
+2025-06-14 00:40:59 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_THOUGHTS
+2025-06-14 00:40:59 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-06-14 00:40:59 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-06-14 00:40:59 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-06-14 00:40:59 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-14 00:40:59 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-14 00:41:00 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-14 00:41:00 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 14.117 seconds (process running for 14.612)
+2025-06-14 00:43:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-14 00:43:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-14 00:43:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-06-14 00:43:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-06-14 00:43:03 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/send-OTP?email=swastikproffesional@gmail.com
+2025-06-14 00:43:32 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/verify-otp-and-register
+2025-06-14 00:43:32 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/verify-otp-and-register
+2025-06-14 00:43:32 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/verify-otp-and-register
+2025-06-14 00:43:42 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
+2025-06-14 00:43:42 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
+2025-06-14 00:43:42 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
+2025-06-14 00:43:43 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-06-14 00:45:07 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-14 00:45:07 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-14 00:45:07 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-14 00:45:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-14 00:45:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
