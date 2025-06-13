@@ -61,6 +61,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/habit/auth/**").permitAll()
                         .requestMatchers("/habit/admin/**").permitAll()// Allow public access
                         .anyRequest().authenticated()                  // Secure other endpoints

@@ -6,9 +6,12 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -218,24 +221,49 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
+        // Delete existing token for this user (if any)
+        PasswordResetToken existingToken = tokenRepository.findByUser(user);
+        if (existingToken != null) {
+            tokenRepository.delete(existingToken);
+        }
+
         String token = UUID.randomUUID().toString();
         LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(15);
 
         PasswordResetToken resetToken = new PasswordResetToken(token, user, expiryDate);
         tokenRepository.save(resetToken);
-
-        String resetLink = "http://localhost:8080/user/reset-password?token=" + token;
-        sendEmail(user.getEmail(), resetLink);
+        sendEmail(user.getEmail(), token);
 
         return true;
     }
 
-    private void sendEmail(String recipientEmail, String resetLink) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(recipientEmail);
-        message.setSubject("Password Reset Request");
-        message.setText("Click the link below to reset your password:\n" + resetLink);
-        mailSender.send(message);
+
+    private void sendEmail(String recipientEmail, String token) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+            helper.setTo(recipientEmail);
+            helper.setSubject("Password Reset Request");
+
+            String htmlContent = "<html>" +
+                    "<body style='font-family: Arial, sans-serif;'>" +
+                    "<h2>Password Reset Token</h2>" +
+                    "<p>Use this token for new password generation:</p>" +
+                    "<div style='padding:10px; border:1px solid #ccc; display:inline-block; font-size:16px; color:#333; background-color:#f9f9f9;'><strong>" + token + "</strong></div>" +
+                    "<br><br>" +
+                    "<p>If you did not request this, please ignore this email.</p>" +
+                    "<br>" +
+                    "<p>Thanks,<br><strong>Team habitUp</strong></p>" +
+                    "</body></html>";
+
+            helper.setText(htmlContent, true); // true = isHtml
+
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            // handle error
+            e.printStackTrace();
+        }
     }
 
     @Override

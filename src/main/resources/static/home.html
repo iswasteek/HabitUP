@@ -595,33 +595,31 @@
             window.location.href = 'index.html';
         }
 
-        // Load profile picture from localStorage
-        const profileImg = document.querySelector('.profile-img');
-        const storedProfilePhoto = localStorage.getItem('profilePhoto');
-        if (storedProfilePhoto) {
-            // Verify the image exists before setting it
-            const testImage = new Image();
-            testImage.onload = function() {
-                profileImg.src = storedProfilePhoto;
-            };
-            testImage.onerror = function() {
-                profileImg.src = 'img/default-profile.png';
-            };
-            testImage.src = storedProfilePhoto;
-        }
+        const profileImage = document.getElementById('profileDropdown');
+        const savedImage = localStorage.getItem('profilePhotoUrl') || "/static/img/user.png";
+
+            const profilePhotoUrl = savedImage.startsWith('/uploads/')
+              ? `http://localhost:8080${savedImage}`
+              : savedImage;
+
+            const cacheBuster = `?${Date.now()}`;
+            profileImage.src = `${profilePhotoUrl}${cacheBuster}`;
 
         // Get user name from localStorage
         const userName = localStorage.getItem('name') || 'User';
         document.getElementById('welcomeMessage').textContent = `Welcome back, ${userName}!`;
 
-        // Complete logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            // Clear all localStorage items
-            localStorage.clear();
-
-            // Redirect to login page
-            window.location.href = 'index.html';
-        });
+        // Logout functionality
+      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Don't clear profile photo on logout
+        const profilePhotoUrl = localStorage.getItem('profilePhotoUrl');
+        localStorage.clear();
+        if (profilePhotoUrl) {
+          localStorage.setItem('profilePhotoUrl', profilePhotoUrl);
+        }
+        window.location.href = 'index.html';
+      });
 
         // Video data with your provided Google Drive embed links
         const videoData = [

@@ -243,6 +243,113 @@
           animation: float 6s ease-in-out infinite;
         }
 
+        /* Settings Panel */
+        .settings-panel {
+          background: white;
+          border-radius: 12px;
+          padding: 0;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+          margin-bottom: 30px;
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+
+        .settings-panel.expanded {
+          max-height: 1000px;
+          padding: 30px;
+          transition: max-height 0.5s ease-in, padding 0.5s ease-in;
+        }
+
+        .settings-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 15px 20px;
+          background-color: #223b51;
+          border-radius: 12px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+          margin-bottom: 20px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .settings-toggle:hover {
+          background-color: #5125ca;
+        }
+
+        .settings-toggle i {
+          transition: transform 0.3s ease;
+        }
+
+        .settings-toggle.expanded i {
+          transform: rotate(180deg);
+        }
+
+        .danger-zone {
+          border: 1px solid var(--danger-color);
+          border-radius: 12px;
+          padding: 20px;
+          margin-top: 20px;
+          background-color: rgba(214, 40, 57, 0.05);
+        }
+
+        .danger-zone h5 {
+          color: var(--danger-color);
+          margin-bottom: 15px;
+        }
+
+        .password-strength {
+          height: 5px;
+          width: 100%;
+          background-color: #e9ecef;
+          border-radius: 3px;
+          margin-top: 5px;
+          overflow: hidden;
+        }
+
+        .password-strength-bar {
+          height: 100%;
+          width: 0%;
+          transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .password-requirements {
+          margin-top: 10px;
+          font-size: 0.85rem;
+          color: var(--text-light);
+        }
+
+        .password-requirements ul {
+          padding-left: 20px;
+          margin-bottom: 0;
+        }
+
+        .password-requirements li {
+          margin-bottom: 5px;
+        }
+
+        .password-requirements li.valid {
+          color: var(--success-color);
+        }
+
+        .password-requirements li.valid::before {
+          content: "✓ ";
+        }
+
+        /* Loader Styles */
+        .reset-loader {
+          display: none;
+          margin: 10px 0;
+          text-align: center;
+        }
+
+        .reset-loader .spinner-border {
+          width: 1.5rem;
+          height: 1.5rem;
+          border-width: 0.2em;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
           .profile-title {
@@ -300,7 +407,7 @@
                 <div class="col-md-4 text-md-end">
                     <div class="float-animation" style="display: inline-block; width: auto;">
                         <div class="profile-detail-value" id="member-since">Member Since</div>
-                        <div class="profile-detail-label"  style="color: #fdc134;">Join Date</div>
+                        <div class="profile-detail-label" style="color: #fdc134;">Join Date</div>
                     </div>
                 </div>
             </div>
@@ -315,6 +422,7 @@
                     <div class="profile-img-container">
                         <img src="/static/img/user.png" alt="Profile Photo" class="profile-img-large" id="profile-photo-large">
                     </div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="profile-detail">
@@ -371,6 +479,90 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Settings Panel -->
+                <div class="settings-toggle" id="settingsToggle" style="color:Black;">
+                    <h5 class="mb-0"><i class="bi bi-gear-fill me-2" style="color:Gray;"></i>Account Settings</h5>
+                    <i class="bi bi-chevron-down" style="color:Gray;"></i>
+                </div>
+
+                <div class="settings-panel" id="settingsPanel">
+                    <!-- Password Reset Section -->
+                    <div class="mb-4">
+                        <h5 class="mb-3"><i class="bi bi-shield-lock me-2"></i>Password Reset</h5>
+                        <div id="passwordResetInitial">
+                            <p>To reset your password, click the button below. You'll receive an email with a reset token.</p>
+                            <button class="btn btn-primary" id="initiatePasswordReset">
+                                <i class="bi bi-envelope me-2"></i>Send Reset Email
+                            </button>
+                            <div class="reset-loader" id="resetLoader">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2">Sending reset email...</p>
+                            </div>
+                        </div>
+
+                        <div id="passwordResetForm" style="display: none;">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>We've sent a reset token to your email. Please check your inbox and enter the token below.
+                            </div>
+                            <form id="resetPasswordForm">
+                                <div class="mb-3">
+                                    <label for="resetToken" class="form-label">Reset Token</label>
+                                    <input type="text" class="form-control" id="resetToken" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="newPassword" required>
+                                    <div class="password-strength">
+                                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                                    </div>
+                                    <div class="password-requirements">
+                                        <p>Password must contain:</p>
+                                        <ul>
+                                            <li id="req-length">At least 6 characters</li>
+                                            <li id="req-uppercase">One uppercase letter</li>
+                                            <li id="req-lowercase">One lowercase letter</li>
+                                            <li id="req-number">One number</li>
+                                            <li id="req-special">One special character</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                    <div class="invalid-feedback" id="passwordMatchError">Passwords do not match</div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary" id="cancelReset">
+                                        <i class="bi bi-x-circle me-2"></i>Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" id="submitReset">
+                                        <i class="bi bi-check-circle me-2"></i>Reset Password
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="mt-3 text-center">
+                                <button class="btn btn-link" id="resendToken">
+                                    <i class="bi bi-arrow-repeat me-2"></i>Didn't receive token? Resend
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danger Zone -->
+                    <div class="danger-zone">
+                        <h5><i class="bi bi-exclamation-triangle me-2"></i>Danger Zone</h5>
+                        <p>These actions are irreversible. Please proceed with caution.</p>
+
+                        <div class="mb-3">
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                                <i class="bi bi-trash me-2"></i>Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -421,6 +613,34 @@
     </div>
 </div>
 
+<!-- Delete Account Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="deleteAccountModalLabel"><i class="bi bi-exclamation-triangle me-2"></i>Delete Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <strong>Warning:</strong> This action is irreversible. All your data will be permanently deleted.
+                </div>
+                <p>To confirm account deletion, please type your email address below:</p>
+                <div class="mb-3">
+                    <label for="confirmEmail" class="form-label">Enter your email to confirm</label>
+                    <input type="email" class="form-control" id="confirmEmail" placeholder="user@example.com">
+                    <div class="invalid-feedback" id="emailError">Email does not match</div>
+                </div>
+                <p class="small text-muted">You will need to type: <code id="userEmailToConfirm">user@example.com</code></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteAccount">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Success Toast -->
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -428,8 +648,8 @@
             <strong class="me-auto">Success</strong>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast-body">
-            Profile updated successfully!
+        <div class="toast-body" id="successToastMessage">
+            Operation completed successfully!
         </div>
     </div>
 </div>
@@ -442,7 +662,7 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body" id="errorToastMessage">
-            Failed to update profile. Please try again.
+            Failed to complete operation. Please try again.
         </div>
     </div>
 </div>
@@ -485,191 +705,554 @@
 
 <script>
     // Initialize AOS animation
-AOS.init({
-  duration: 800,
-  easing: 'ease-in-out',
-  once: true
-});
-
-// Load profile data from localStorage
-function loadProfileData() {
-  // Check authentication
-  const token = localStorage.getItem('token');
-  if (!token) {
-    window.location.href = 'index.html';
-    return;
-  }
-
-  // Load profile image - Modified to use the full URL from backend
-  const profileImage = document.getElementById('profileDropdown');
-  const profileImageLarge = document.getElementById('profile-photo-large');
-  const savedImage = localStorage.getItem('profilePhotoUrl') || "/static/img/user.png";
-
-  // Prepend base URL if the image is from uploads (not default image)
-  const profilePhotoUrl = savedImage.startsWith('/uploads/')
-      ? `http://localhost:8080${savedImage}`
-      : savedImage;
-
-  profileImage.src = profilePhotoUrl;
-  profileImageLarge.src = profilePhotoUrl;
-
-  // Load profile data
-  document.getElementById('profile-name').textContent = localStorage.getItem('name') || 'User';
-  document.getElementById('full-name').textContent = localStorage.getItem('name') || 'Not provided';
-  document.getElementById('email').textContent = localStorage.getItem('email') || 'Not provided';
-  document.getElementById('phone').textContent = localStorage.getItem('phoneNo') || 'Not provided';
-
-  // Format date of birth
-  const dob = localStorage.getItem('dob');
-  if (dob) {
-    const dobDate = new Date(dob);
-    document.getElementById('dob').textContent = dobDate.toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
-  } else {
-    document.getElementById('dob').textContent = 'Not provided';
-  }
-
-  // Format gender
-  const gender = localStorage.getItem('gender');
-  document.getElementById('gender').textContent = gender === 'MALE' ? 'Male' :
-                                                gender === 'FEMALE' ? 'Female' :
-                                                'Not specified';
-
-  // Format join date
-  const joinDate = localStorage.getItem('joinDate');
-  if (joinDate) {
-    const joinDateObj = new Date(joinDate);
-    document.getElementById('member-since').textContent = joinDateObj.toLocaleDateString('en-US', {
-      year: 'numeric', month: 'short'
-    });
-  }
-
-  // Account type
-  const accountType = localStorage.getItem('subscriptionType');
-  document.getElementById('account-type').textContent = accountType === 'FREE' ? 'Free' :
-                                                      accountType === 'PREMIUM' ? 'Premium' :
-                                                      'Unknown';
-
-  // User ID
-  const userId = localStorage.getItem('userId') || 'N/A';
-  document.getElementById('user-id').textContent = `HMQ2${userId}`;
-}
-
-// Populate update form with current data
-function populateUpdateForm() {
-  document.getElementById('updateName').value = localStorage.getItem('name') || '';
-  document.getElementById('userEmail').value = localStorage.getItem('email') || '';
-
-  const dob = localStorage.getItem('dob');
-  if (dob) {
-    document.getElementById('updateDob').value = dob.split('T')[0];
-  }
-
-  document.getElementById('updatePhone').value = localStorage.getItem('phoneNo') || '';
-  document.getElementById('updateGender').value = localStorage.getItem('gender') || 'MALE';
-}
-
-// Update profile function
-async function handleProfileUpdate(event) {
-  event.preventDefault();
-
-  const token = localStorage.getItem('token');
-  const email = localStorage.getItem('email');
-
-  if (!token || !email) {
-    showErrorToast('Authentication required. Please login again.');
-    return;
-  }
-
-  const form = document.getElementById('updateProfileForm');
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(`http://localhost:8080/user/updateuser/${encodeURIComponent(email)}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      body: formData
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to update profile');
+    // Load profile data from localStorage and server
+    async function loadProfileData() {
+      // Check authentication
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        // First try to load from local storage for quick display
+        loadProfileFromLocalStorage();
+
+        // Then refresh from server to ensure we have latest data
+        await refreshProfileFromServer();
+      } catch (error) {
+        console.error('Error loading profile data:', error);
+        // Fall back to local storage if server request fails
+        loadProfileFromLocalStorage();
+      }
     }
 
-    const updatedUser = await response.json();
+    // Load profile from local storage
+    function loadProfileFromLocalStorage() {
+      // Load profile image
+      const profileImage = document.getElementById('profileDropdown');
+      const profileImageLarge = document.getElementById('profile-photo-large');
+      const savedImage = localStorage.getItem('profilePhotoUrl') || "/static/img/user.png";
 
-    // Update local storage with new data
-    localStorage.setItem('name', updatedUser.name);
-    localStorage.setItem('dob', updatedUser.dob);
-    localStorage.setItem('phoneNo', updatedUser.phoneNo);
-    localStorage.setItem('gender', updatedUser.gender);
+      // Prepend base URL if the image is from uploads (not default image)
+      const profilePhotoUrl = savedImage.startsWith('/uploads/')
+          ? `http://localhost:8080${savedImage}`
+          : savedImage;
 
-    // Update profile photo URL if it was changed
-    if (updatedUser.profilePhotoUrl) {
-      localStorage.setItem('profilePhotoUrl', updatedUser.profilePhotoUrl);
+      // Add cache buster to prevent caching
+      const cacheBuster = `?${Date.now()}`;
+      profileImage.src = `${profilePhotoUrl}${cacheBuster}`;
+      profileImageLarge.src = `${profilePhotoUrl}${cacheBuster}`;
+
+      // Load other profile data
+      const userName = localStorage.getItem('name') || 'User';
+      const userEmail = localStorage.getItem('email') || 'user@example.com';
+
+      document.getElementById('profile-name').textContent = userName;
+      document.getElementById('full-name').textContent = userName;
+      document.getElementById('email').textContent = userEmail;
+      document.getElementById('phone').textContent = localStorage.getItem('phoneNo') || 'Not provided';
+      document.getElementById('userEmailToConfirm').textContent = userEmail;
+
+      // Format date of birth
+      const dob = localStorage.getItem('dob');
+      if (dob) {
+        const dobDate = new Date(dob);
+        document.getElementById('dob').textContent = dobDate.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        });
+      } else {
+        document.getElementById('dob').textContent = 'Not provided';
+      }
+
+      // Format gender
+      const gender = localStorage.getItem('gender');
+      document.getElementById('gender').textContent = gender === 'MALE' ? 'Male' :
+                                                    gender === 'FEMALE' ? 'Female' :
+                                                    'Not specified';
+
+      // Format join date
+      const joinDate = localStorage.getItem('joinDate');
+      if (joinDate) {
+        const joinDateObj = new Date(joinDate);
+        document.getElementById('member-since').textContent = joinDateObj.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'short'
+        });
+      }
+
+      // Account type
+      const accountType = localStorage.getItem('subscriptionType');
+      document.getElementById('account-type').textContent = accountType === 'FREE' ? 'Free' :
+                                                          accountType === 'PREMIUM' ? 'Premium' :
+                                                          'Unknown';
+
+      // User ID
+      const userId = localStorage.getItem('userId') || 'N/A';
+      document.getElementById('user-id').textContent = `HMQ2${userId}`;
     }
 
-    // Reload profile data to reflect changes
-    loadProfileData();
+    // Refresh profile data from server
+    async function refreshProfileFromServer() {
+      const token = localStorage.getItem('token');
+      const email = localStorage.getItem('email');
 
-    // Close modal and show success message
-    const modal = bootstrap.Modal.getInstance(document.getElementById('updateProfileModal'));
-    modal.hide();
+      if (!token || !email) {
+        return;
+      }
 
-    showSuccessToast();
-  } catch (error) {
-    console.error('Error updating profile:', error);
-    showErrorToast(error.message || 'Failed to update profile. Please try again.');
-  }
-}
+      try {
+        const response = await fetch(`http://localhost:8080/user/show-a-user/${encodeURIComponent(email)}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
 
-// Show success toast
-function showSuccessToast() {
-  const toast = new bootstrap.Toast(document.getElementById('successToast'));
-  toast.show();
-}
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile data');
+        }
 
-// Show error toast with custom message
-function showErrorToast(message) {
-  document.getElementById('errorToastMessage').textContent = message;
-  const toast = new bootstrap.Toast(document.getElementById('errorToast'));
-  toast.show();
-}
+        const userData = await response.json();
 
-// Logout functionality
-function setupLogout() {
-  document.getElementById('logoutBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    localStorage.clear();
-    window.location.href = 'index.html';
-  });
-}
+        // Update local storage with fresh data
+        localStorage.setItem('name', userData.name);
+        localStorage.setItem('email', userData.email);
+        localStorage.setItem('phoneNo', userData.phoneNo || '');
+        localStorage.setItem('dob', userData.dob || '');
+        localStorage.setItem('gender', userData.gender || '');
+        localStorage.setItem('profilePhotoUrl', userData.profilePhotoUrl || "/static/img/user.png");
+        localStorage.setItem('subscriptionType', userData.subscriptionType || 'FREE');
+        localStorage.setItem('joinDate', userData.joinDate || '');
+        localStorage.setItem('userId', userData.userId || '');
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  loadProfileData();
-  setupLogout();
+        // Update the UI with fresh data
+        loadProfileFromLocalStorage();
+      } catch (error) {
+        console.error('Error refreshing profile from server:', error);
+        throw error;
+      }
+    }
 
-  // Add click event for scroll top button
-  document.getElementById('scroll-top').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+    // Populate update form with current data
+    function populateUpdateForm() {
+      document.getElementById('updateName').value = localStorage.getItem('name') || '';
+      document.getElementById('userEmail').value = localStorage.getItem('email') || '';
+
+      const dob = localStorage.getItem('dob');
+      if (dob) {
+        document.getElementById('updateDob').value = dob.split('T')[0];
+      }
+
+      document.getElementById('updatePhone').value = localStorage.getItem('phoneNo') || '';
+      document.getElementById('updateGender').value = localStorage.getItem('gender') || 'MALE';
+    }
+
+    // Update profile function
+    async function handleProfileUpdate(event) {
+      event.preventDefault();
+
+      const token = localStorage.getItem('token');
+      const email = localStorage.getItem('email');
+
+      if (!token || !email) {
+        showErrorToast('Authentication required. Please login again.');
+        return;
+      }
+
+      const form = document.getElementById('updateProfileForm');
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(`http://localhost:8080/user/updateuser/${encodeURIComponent(email)}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to update profile');
+        }
+
+        const updatedUser = await response.json();
+
+        // Update local storage with new data
+        localStorage.setItem('name', updatedUser.name);
+        localStorage.setItem('dob', updatedUser.dob);
+        localStorage.setItem('phoneNo', updatedUser.phoneNo);
+        localStorage.setItem('gender', updatedUser.gender);
+
+        // Update profile photo URL if it was changed
+        if (updatedUser.profilePhotoUrl) {
+          localStorage.setItem('profilePhotoUrl', updatedUser.profilePhotoUrl);
+        }
+
+        // Reload profile data to reflect changes
+        loadProfileData();
+
+        // Close modal and show success message
+        const modal = bootstrap.Modal.getInstance(document.getElementById('updateProfileModal'));
+        modal.hide();
+
+        showSuccessToast('Profile updated successfully!');
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        showErrorToast(error.message || 'Failed to update profile. Please try again.');
+      }
+    }
+
+    // Show success toast
+    function showSuccessToast(message) {
+      document.getElementById('successToastMessage').textContent = message;
+      const toast = new bootstrap.Toast(document.getElementById('successToast'));
+      toast.show();
+    }
+
+    // Show error toast with custom message
+    function showErrorToast(message) {
+      document.getElementById('errorToastMessage').textContent = message;
+      const toast = new bootstrap.Toast(document.getElementById('errorToast'));
+      toast.show();
+    }
+
+    // Logout functionality
+    function setupLogout() {
+      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Don't clear profile photo on logout
+        const profilePhotoUrl = localStorage.getItem('profilePhotoUrl');
+        localStorage.clear();
+        if (profilePhotoUrl) {
+          localStorage.setItem('profilePhotoUrl', profilePhotoUrl);
+        }
+        window.location.href = 'index.html';
+      });
+    }
+
+    // Toggle settings panel
+    function setupSettingsToggle() {
+      const toggle = document.getElementById('settingsToggle');
+      const panel = document.getElementById('settingsPanel');
+
+      toggle.addEventListener('click', function() {
+        toggle.classList.toggle('expanded');
+        panel.classList.toggle('expanded');
+      });
+    }
+
+    // Password strength checker
+    function checkPasswordStrength(password) {
+      // Reset all requirements
+      document.querySelectorAll('.password-requirements li').forEach(li => {
+        li.classList.remove('valid');
+      });
+
+      // Check each requirement
+      const hasMinLength = password.length >= 6;
+      const hasUppercase = /[A-Z]/.test(password);
+      const hasLowercase = /[a-z]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+      // Update UI
+      if (hasMinLength) document.getElementById('req-length').classList.add('valid');
+      if (hasUppercase) document.getElementById('req-uppercase').classList.add('valid');
+      if (hasLowercase) document.getElementById('req-lowercase').classList.add('valid');
+      if (hasNumber) document.getElementById('req-number').classList.add('valid');
+      if (hasSpecial) document.getElementById('req-special').classList.add('valid');
+
+      // Calculate strength (0-100)
+      let strength = 0;
+      if (hasMinLength) strength += 20;
+      if (hasUppercase) strength += 20;
+      if (hasLowercase) strength += 20;
+      if (hasNumber) strength += 20;
+      if (hasSpecial) strength += 20;
+
+      // Update strength bar
+      const strengthBar = document.getElementById('passwordStrengthBar');
+      strengthBar.style.width = `${strength}%`;
+
+      // Change color based on strength
+      if (strength < 40) {
+        strengthBar.style.backgroundColor = '#dc3545'; // Red
+      } else if (strength < 80) {
+        strengthBar.style.backgroundColor = '#fd7e14'; // Orange
+      } else {
+        strengthBar.style.backgroundColor = '#28a745'; // Green
+      }
+
+      return strength === 100;
+    }
+
+    // Setup password reset functionality
+    function setupPasswordReset() {
+      const initiateBtn = document.getElementById('initiatePasswordReset');
+      const resetForm = document.getElementById('passwordResetForm');
+      const initialSection = document.getElementById('passwordResetInitial');
+      const cancelBtn = document.getElementById('cancelReset');
+      const resendBtn = document.getElementById('resendToken');
+      const resetPasswordForm = document.getElementById('resetPasswordForm');
+      const newPasswordInput = document.getElementById('newPassword');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const resetLoader = document.getElementById('resetLoader');
+      const submitResetBtn = document.getElementById('submitReset');
+
+      // Show password requirements as user types
+      newPasswordInput.addEventListener('input', function() {
+        checkPasswordStrength(this.value);
+      });
+
+      // Check password match
+      confirmPasswordInput.addEventListener('input', function() {
+        if (this.value !== newPasswordInput.value) {
+          this.classList.add('is-invalid');
+        } else {
+          this.classList.remove('is-invalid');
+        }
+      });
+
+      // Initiate password reset
+      initiateBtn.addEventListener('click', async function() {
+        const token = localStorage.getItem('token');
+        const email = localStorage.getItem('email');
+
+        if (!token || !email) {
+          showErrorToast('Authentication required. Please login again.');
+          return;
+        }
+
+        // Disable button and show loader
+        initiateBtn.disabled = true;
+        resetLoader.style.display = 'block';
+
+        try {
+          const response = await fetch(`http://localhost:8080/user/${encodeURIComponent(email)}/send-mail`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to send reset email');
+          }
+
+          initialSection.style.display = 'none';
+          resetForm.style.display = 'block';
+          showSuccessToast('Password reset email sent successfully!');
+        } catch (error) {
+          console.error('Error sending reset email:', error);
+          showErrorToast(error.message || 'Failed to send reset email. Please try again.');
+        } finally {
+          // Re-enable button and hide loader
+          initiateBtn.disabled = false;
+          resetLoader.style.display = 'none';
+        }
+      });
+
+      // Cancel reset
+      cancelBtn.addEventListener('click', function() {
+        resetForm.style.display = 'none';
+        initialSection.style.display = 'block';
+      });
+
+      // Resend token
+      resendBtn.addEventListener('click', async function() {
+        const token = localStorage.getItem('token');
+        const email = localStorage.getItem('email');
+
+        if (!token || !email) {
+          showErrorToast('Authentication required. Please login again.');
+          return;
+        }
+
+        // Disable button and show loader
+        resendBtn.disabled = true;
+        submitResetBtn.disabled = true;
+        submitResetBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+
+        try {
+          const response = await fetch(`http://localhost:8080/user/${encodeURIComponent(email)}/send-mail`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to resend reset email');
+          }
+
+          showSuccessToast('Password reset email resent successfully!');
+        } catch (error) {
+          console.error('Error resending reset email:', error);
+          showErrorToast(error.message || 'Failed to resend reset email. Please try again.');
+        } finally {
+          // Re-enable button
+          resendBtn.disabled = false;
+          submitResetBtn.disabled = false;
+          submitResetBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Reset Password';
+        }
+      });
+
+      // Submit reset form
+      resetPasswordForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const token = localStorage.getItem('token');
+        const resetToken = document.getElementById('resetToken').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (newPassword !== confirmPassword) {
+          showErrorToast('Passwords do not match');
+          return;
+        }
+
+        if (!checkPasswordStrength(newPassword)) {
+          showErrorToast('Password does not meet all requirements');
+          return;
+        }
+
+        // Disable button and show loading state
+        submitResetBtn.disabled = true;
+        submitResetBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+
+        try {
+          const response = await fetch(`http://localhost:8080/user/reset-password?token=${encodeURIComponent(resetToken)}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPassword)
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to reset password');
+          }
+
+          showSuccessToast('Password has been reset successfully!');
+          resetForm.style.display = 'none';
+          initialSection.style.display = 'block';
+          resetPasswordForm.reset();
+        } catch (error) {
+          console.error('Error resetting password:', error);
+          showErrorToast(error.message || 'Failed to reset password. Please try again.');
+        } finally {
+          // Re-enable button
+          submitResetBtn.disabled = false;
+          submitResetBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Reset Password';
+        }
+      });
+    }
+
+    // Setup account deletion
+    function setupAccountDeletion() {
+      const confirmBtn = document.getElementById('confirmDeleteAccount');
+      const confirmEmailInput = document.getElementById('confirmEmail');
+      const emailError = document.getElementById('emailError');
+
+      confirmEmailInput.addEventListener('input', function() {
+        const userEmail = localStorage.getItem('email');
+        if (this.value !== userEmail) {
+          this.classList.add('is-invalid');
+          emailError.style.display = 'block';
+        } else {
+          this.classList.remove('is-invalid');
+          emailError.style.display = 'none';
+        }
+      });
+
+      confirmBtn.addEventListener('click', async function() {
+        const token = localStorage.getItem('token');
+        const email = localStorage.getItem('email');
+        const confirmEmail = document.getElementById('confirmEmail').value;
+
+        if (confirmEmail !== email) {
+          showErrorToast('Email does not match');
+          return;
+        }
+
+        if (!confirm('Are you absolutely sure you want to delete your account? This cannot be undone!')) {
+          return;
+        }
+
+        // Show loading state
+        confirmBtn.disabled = true;
+        confirmBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Deleting...';
+
+        try {
+          const response = await fetch(`http://localhost:8080/user/${encodeURIComponent(email)}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete account');
+          }
+
+          // Close modal
+          const modal = bootstrap.Modal.getInstance(document.getElementById('deleteAccountModal'));
+          modal.hide();
+
+          // Clear storage and redirect
+          localStorage.clear();
+          showSuccessToast('User deleted successfully!');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+        } catch (error) {
+          console.error('Error deleting account:', error);
+          showErrorToast(error.message || 'Failed to delete account. Please try again.');
+        } finally {
+          // Reset button state
+          confirmBtn.disabled = false;
+          confirmBtn.innerHTML = 'Delete Account';
+        }
+      });
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProfileData();
+      setupLogout();
+      setupSettingsToggle();
+      setupPasswordReset();
+      setupAccountDeletion();
+
+      // Add click event for scroll top button
+      document.getElementById('scroll-top').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Initialize modal show event to populate form
+      document.getElementById('updateProfileModal').addEventListener('show.bs.modal', function() {
+        populateUpdateForm();
+      });
+
+      // Handle form submission
+      document.getElementById('updateProfileForm').addEventListener('submit', handleProfileUpdate);
     });
-  });
-
-  // Initialize modal show event to populate form
-  document.getElementById('updateProfileModal').addEventListener('show.bs.modal', function() {
-    populateUpdateForm();
-  });
-
-  // Handle form submission
-  document.getElementById('updateProfileForm').addEventListener('submit', handleProfileUpdate);
-});
 </script>
 
 </body>
