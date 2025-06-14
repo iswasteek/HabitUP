@@ -95,12 +95,13 @@ public class AdminServiceImpl implements AdminService {
         doctor.setEmail(user.getEmail());
         doctor.setPhoneNo(user.getPhoneNo());
         doctor.setGender(user.getGender());
-        doctor.setSpecialization(null);
+        doctor.setSpecialization("");
         doctor.setYearsOfExperience(0);
         doctor.setAvailabilitySchedule(new Date());
         doctor.setConsultationFee(0);
         doctor.setRatings(0.0f);
         doctor.setUserType(UserType.Doctor);
+        doctor.setAccountStatus(AccountStatus.ACTIVE);
         doctor.setDocumentStatus(DocumentStatus.APPROVED);
         doctor.setUser(user); // Link to user
 
