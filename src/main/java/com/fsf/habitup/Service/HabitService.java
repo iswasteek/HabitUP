@@ -10,4 +10,7 @@ public interface HabitService {
     Habit updateHabit(Long habitId, Habit updatedHabit);
     List<Habit> showAllHabits();
     Habit showHabitById(Long habitId);
+    List<Habit> getHabitsByUserId(Long userId);
+    Habit createHabit(Habit habit);
+    List<Habit> getUniversalDefaultHabits();
 }

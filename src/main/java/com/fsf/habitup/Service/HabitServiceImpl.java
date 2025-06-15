@@ -8,6 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 @Service
@@ -91,4 +92,22 @@ public class HabitServiceImpl implements HabitService {
         return habitRepository.findById(habitId)
                 .orElseThrow(() -> new EntityNotFoundException("Habit not found with id: " + habitId));
     }
+
+    @Override
+    public List<Habit> getHabitsByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return new ArrayList<>(user.getHabits());
+    }
+
+    @Override
+    public Habit createHabit(Habit habit) {
+        return habitRepository.save(habit);
+    }
+
+    @Override
+    public List<Habit> getUniversalDefaultHabits() {
+        return habitRepository.findByIsDefaultTrueAndUserTypeIsNull();
+    }
+
 }

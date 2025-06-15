@@ -171,7 +171,7 @@ public class UserServiceImpl implements UserService {
         // ✅ Add to user
         Set<Habit> allHabits = new HashSet<>();
         allHabits.addAll(defaultHabits);
-        allHabits.addAll(universalHabits);
+//        allHabits.addAll(universalHabits);
 
         savedUser.setHabits(allHabits);
 

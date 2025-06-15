@@ -63,6 +63,7 @@ public class HabitInitializer implements CommandLineRunner {
         habit.setHabitDescription(description);
         habit.setHabitDuration(duration);
         habit.setUserType(userType);
+        habit.setDefault(true);
         return habit;
     }
 }

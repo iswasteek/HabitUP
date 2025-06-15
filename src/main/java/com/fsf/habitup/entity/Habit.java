@@ -5,7 +5,6 @@ import com.fsf.habitup.Enums.HabitCategory;
 import com.fsf.habitup.Enums.UserType;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -42,9 +41,6 @@ public class Habit {
 
     @Column(name = "current_streak", nullable = false)
     private int currentStreak = 0;
-
-    @Column(name = "last_updated")
-    private LocalDateTime lastUpdated;
 
     @ManyToMany(mappedBy = "habits")
     @JsonBackReference
@@ -124,14 +120,6 @@ public class Habit {
 
     public void setCurrentStreak(int currentStreak) {
         this.currentStreak = currentStreak;
-    }
-
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 
     public Set<User> getUsers() {

@@ -57,4 +57,29 @@ public class HabitController {
         return ResponseEntity.ok(habit);
     }
 
+    // Get habits assigned to a user
+    @GetMapping("/user/{userId}")
+    @PreAuthorize("hasAuthority('MANAGE_USERS')")
+    public ResponseEntity<List<Habit>> getHabitsByUserId(@PathVariable Long userId) {
+        List<Habit> userHabits = habitService.getHabitsByUserId(userId);
+        return ResponseEntity.ok(userHabits);
+    }
+
+    // Create a new habit
+    @PostMapping
+    @PreAuthorize("hasAuthority('MANAGE_USERS')")
+    public ResponseEntity<Habit> createHabit(@RequestBody Habit habit) {
+        Habit createdHabit = habitService.createHabit(habit);
+        return ResponseEntity.ok(createdHabit);
+    }
+
+    @GetMapping("/universal-defaults")
+    @PreAuthorize("hasAuthority('MANAGE_USERS')")
+    public ResponseEntity<List<Habit>> getUniversalDefaultHabits() {
+        List<Habit> universalHabits = habitService.getUniversalDefaultHabits();
+        return ResponseEntity.ok(universalHabits);
+    }
+
+
+
 }
