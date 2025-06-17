@@ -1,35 +1,62 @@
 package com.fsf.habitup.Controller;
 
-import com.fsf.habitup.DTO.UpdateUserDTO;
-import com.fsf.habitup.DTO.UserResponseDTO;
-import com.fsf.habitup.Enums.Gender;
-import jakarta.transaction.Transactional;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fsf.habitup.DTO.LogoutResponse;
+import com.fsf.habitup.DTO.UpdateUserDTO;
+import com.fsf.habitup.DTO.UserResponseDTO;
 import com.fsf.habitup.Enums.AccountStatus;
+import com.fsf.habitup.Enums.Gender;
+import com.fsf.habitup.Service.DocumentService;
 import com.fsf.habitup.Service.UserServiceImpl;
 import com.fsf.habitup.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
-
-
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
+    private DocumentService documentService;
+    @Autowired
     private final UserServiceImpl userService;
 
     public UserController(UserServiceImpl userService) {
         this.userService = userService;
+    }
+
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> uploadDocument(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("userId") Long userId,
+            @RequestParam("type") String type) {
+
+        try {
+            documentService.uploadDocument(userId, file, type);
+            return ResponseEntity.ok("Document uploaded successfully and marked as PENDING.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Upload failed: " + e.getMessage());
+        }
     }
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")
@@ -51,7 +78,6 @@ public class UserController {
         User savedUser = userService.updateUser(email, updatedUserDTO, profilePhoto);
         return ResponseEntity.ok(new UserResponseDTO(savedUser));
     }
-
 
     @PreAuthorize("hasAuthority('VIEW_USERS')")
     @GetMapping("/show-a-user/{email}")

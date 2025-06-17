@@ -2,6 +2,7 @@ package com.fsf.habitup.Controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import com.fsf.habitup.Enums.PermissionType;
 import com.fsf.habitup.Enums.UserType;
 import com.fsf.habitup.Service.AdminServiceImpl;
 import com.fsf.habitup.Service.DoctorServiceImpl;
+import com.fsf.habitup.Service.DocumentService;
 import com.fsf.habitup.entity.Admin;
 import com.fsf.habitup.entity.Doctor;
 import com.fsf.habitup.entity.Documents;
@@ -34,6 +36,9 @@ import com.fsf.habitup.entity.User;
 public class AdminController {
 
     private final AdminServiceImpl adminService;
+
+    @Autowired
+    private DocumentService documentService;
 
     private final DoctorServiceImpl doctorService;
 
@@ -321,6 +326,12 @@ public class AdminController {
 
         boolean hasPermission = adminService.hasPermission(adminId, permissionName);
         return ResponseEntity.ok(hasPermission);
+    }
+
+    @GetMapping("/userdocuments/{userId}")
+    public ResponseEntity<List<Documents>> getDocumentsByUser(@PathVariable Long userId) {
+        List<Documents> documents = documentService.fetchDocumentsByUserId(userId);
+        return ResponseEntity.ok(documents);
     }
 
 }

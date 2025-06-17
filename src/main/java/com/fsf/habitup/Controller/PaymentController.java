@@ -59,8 +59,7 @@ public class PaymentController {
         }
     }
 
-    // Endpoint to handle Razorpay's webhook callback (e.g., for successful
-    // payments)
+    // Endpoint to handle Razorpay's webhook callback
     @PostMapping("/payment-callback")
     public ResponseEntity<String> handlePaymentCallback(@RequestBody String payload,
             @RequestHeader("X-Razorpay-Signature") String razorpaySignature) {

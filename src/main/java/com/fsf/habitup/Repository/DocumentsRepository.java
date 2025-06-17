@@ -13,4 +13,5 @@ public interface DocumentsRepository extends JpaRepository<Documents, Long> {
     List<Documents> findByUser_UserId(Long userId);
 
     List<Documents> findByStatus(DocumentStatus status);
+
 }
