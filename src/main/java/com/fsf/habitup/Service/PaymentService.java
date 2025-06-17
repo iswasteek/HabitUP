@@ -47,7 +47,7 @@ public class PaymentService {
         RazorpayClient razorpay = new RazorpayClient(razorpayConfig.getKeyId(), razorpayConfig.getKeySecret());
 
         JSONObject orderRequest = new JSONObject();
-        orderRequest.put("amount", amountInRupees * 100); // Convert to paise
+        orderRequest.put("amount", amountInRupees * 100);
         orderRequest.put("currency", "INR");
         orderRequest.put("receipt", "txn_" + System.currentTimeMillis());
         orderRequest.put("payment_capture", true);
