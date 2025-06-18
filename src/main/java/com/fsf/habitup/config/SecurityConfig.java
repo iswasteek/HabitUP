@@ -60,7 +60,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Allow static files from /static/, /css/, /js/, /images/, etc.
-                        .requestMatchers("/", "/index.html", "/favicon.ico", "/static/**", "/css/**", "/js/**", "/img/**", "/images/**", "/uploads/**").permitAll()
+                        .requestMatchers("/", "/index.html", "/favicon.ico", "/static/**", "/nav.css", "/main.js", "/img/**", "/images/**", "/uploads/**").permitAll()
 
                         // Publicly accessible APIs
                         .requestMatchers("/habit/auth/**", "/habit/admin/**").permitAll()
