@@ -61,7 +61,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/","/index.html", "/img/**","/main.js", "/main.css").permitAll()
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/habit/auth/**").permitAll()
                         .requestMatchers("/habit/admin/**").permitAll()// Allow public access
