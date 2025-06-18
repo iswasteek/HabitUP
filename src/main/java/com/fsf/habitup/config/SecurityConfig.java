@@ -1,5 +1,6 @@
 package com.fsf.habitup.config;
 
+import com.fsf.habitup.Security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,9 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.fsf.habitup.Security.JwtAuthenticationFilter;
-
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -61,10 +59,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/error").permitAll() // Public access to root & error
-                        .requestMatchers("/uploads/**").permitAll()
-                        .requestMatchers("/habit/auth/**").permitAll()
-                        .requestMatchers("/habit/admin/**").permitAll()
+                        // Allow static files from /static/, /css/, /js/, /images/, etc.
+                        .requestMatchers("/", "/index.html", "/favicon.ico", "/static/**", "/css/**", "/js/**", "/img/**", "/images/**", "/uploads/**").permitAll()
+
+                        // Publicly accessible APIs
+                        .requestMatchers("/habit/auth/**", "/habit/admin/**").permitAll()
+
+                        // Everything else requires authentication
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -76,11 +77,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of(
-                "http://localhost:63342",
-                "http://127.0.0.1:63342",
-                "https://your-frontend.onrender.com" // Optional: replace with your deployed frontend
-        ));
+        config.setAllowedOrigins(List.of("http://localhost:63342", "http://127.0.0.1:63342")); // frontend dev origins
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization"));
