@@ -79,12 +79,12 @@ public class SecurityConfig {
                                 "/nav.css",
                                 "/uploads/**",
                                 "/habit/auth/**",
-                                "/habit/admin/**",
+                                "/habit/admin/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                // .anonymous(anonymous -> anonymous.disable())
+                .anonymous(anonymous -> anonymous.disable())
                 .securityContext(securityContext -> securityContext.disable())
                 .requestCache(requestCache -> requestCache.disable());
 
