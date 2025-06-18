@@ -95,7 +95,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:63342", "http://127.0.0.1:63342")); // your frontend origins
+        config.setAllowedOrigins(List.of("http://localhost:63342", "https://habit-up-backend.onrender.com", "http://127.0.0.1:63342")); // your frontend origins
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // You can also restrict headers here
         config.setExposedHeaders(List.of("Authorization")); // Optional
