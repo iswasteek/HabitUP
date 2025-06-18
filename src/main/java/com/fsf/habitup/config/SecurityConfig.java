@@ -1,6 +1,5 @@
 package com.fsf.habitup.config;
 
-import com.fsf.habitup.Security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -16,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.fsf.habitup.Security.JwtAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -24,13 +25,14 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
+@Order(1) // High priority
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
     public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
+
     }
 
     @Bean
@@ -59,16 +61,18 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // Allow static files from /static/, /css/, /js/, /images/, etc.
-                        .requestMatchers("/", "/index.html", "/favicon.ico", "/static/**", "/nav.css", "/main.js", "/img/**", "/images/**", "/uploads/**").permitAll()
-
-                        // Publicly accessible APIs
-                        .requestMatchers("/habit/auth/**", "/habit/admin/**").permitAll()
-
-                        // Everything else requires authentication
-                        .anyRequest().authenticated()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/uploads/**").permitAll()
+                        .requestMatchers("/habit/auth/**").permitAll()
+                        .requestMatchers("/habit/admin/**").permitAll()// Allow public access
+                        .anyRequest().authenticated()                  // Secure other endpoints
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .anonymous(anonymous -> anonymous.disable())     // Disable anonymous auth
+
+                // Explicitly disable security for auth endpoints
+                .securityContext(securityContext -> securityContext.disable()) // Disable security context for auth
+                .requestCache(requestCache -> requestCache.disable());      // Disable request cache
 
         return http.build();
     }
@@ -77,13 +81,14 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:63342", "http://127.0.0.1:63342")); // frontend dev origins
+        config.setAllowedOrigins(List.of("http://localhost:63342", "http://127.0.0.1:63342")); // your frontend origins
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setExposedHeaders(List.of("Authorization"));
+        config.setAllowedHeaders(List.of("*")); // You can also restrict headers here
+        config.setExposedHeaders(List.of("Authorization")); // Optional
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
     }
+
 }
