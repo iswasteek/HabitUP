@@ -807,7 +807,7 @@
       }
 
       try {
-        const response = await fetch(`http://localhost:8080/user/show-a-user/${encodeURIComponent(email)}`, {
+        const response = await fetch(`https://habit-up-backend.onrender.com/user/show-a-user/${encodeURIComponent(email)}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -869,7 +869,7 @@
       const formData = new FormData(form);
 
       try {
-        const response = await fetch(`http://localhost:8080/user/updateuser/${encodeURIComponent(email)}`, {
+        const response = await fetch(`https://habit-up-backend.onrender.com/user/updateuser/${encodeURIComponent(email)}`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -1035,7 +1035,7 @@
         resetLoader.style.display = 'block';
 
         try {
-          const response = await fetch(`http://localhost:8080/user/${encodeURIComponent(email)}/send-mail`, {
+          const response = await fetch(`https://habit-up-backend.onrender.com/user/${encodeURIComponent(email)}/send-mail`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -1082,7 +1082,7 @@
         submitResetBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
 
         try {
-          const response = await fetch(`http://localhost:8080/user/${encodeURIComponent(email)}/send-mail`, {
+          const response = await fetch(`https://habit-up-backend.onrender.com/user/${encodeURIComponent(email)}/send-mail`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -1130,7 +1130,7 @@
         submitResetBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
 
         try {
-          const response = await fetch(`http://localhost:8080/user/reset-password?token=${encodeURIComponent(resetToken)}`, {
+          const response = await fetch(`https://habit-up-backend.onrender.com/user/reset-password?token=${encodeURIComponent(resetToken)}`, {
             method: 'PUT',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -1195,7 +1195,7 @@
         confirmBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Deleting...';
 
         try {
-          const response = await fetch(`http://localhost:8080/user/${encodeURIComponent(email)}`, {
+          const response = await fetch(`https://habit-up-backend.onrender.com/user/${encodeURIComponent(email)}`, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`

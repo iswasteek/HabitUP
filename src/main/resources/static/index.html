@@ -1666,8 +1666,8 @@
         // Helper Functions
         async function sendOTP(email, isForgotPassword = false) {
             const endpoint = isForgotPassword
-                ? `http://localhost:8080/habit/auth/send-OTP-forgot-password?email=${email}`
-                : `http://localhost:8080/habit/auth/send-OTP?email=${email}`;
+                ? `https://habit-up-backend.onrender.com/habit/auth/send-OTP-forgot-password?email=${email}`
+                : `https://habit-up-backend.onrender.com/habit/auth/send-OTP?email=${email}`;
 
             const response = await fetch(endpoint, { method: 'POST' });
             if (!response.ok) {
@@ -1677,7 +1677,7 @@
         }
 
         async function verifyOTPAndRegister(requestBody) {
-            const endpoint = 'http://localhost:8080/habit/auth/verify-otp-and-register';
+            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/verify-otp-and-register';
 
             try {
                 const response = await fetch(endpoint, {
@@ -1743,7 +1743,7 @@
         }
 
         async function login(email, password) {
-            const endpoint = 'http://localhost:8080/habit/auth/login';
+            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/login';
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1774,7 +1774,7 @@
         }
 
         async function adminLogin(email, password) {
-            const endpoint = 'http://localhost:8080/habit/auth/admin/login';
+            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/admin/login';
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1790,7 +1790,7 @@
         }
 
         async function resetPassword(email, otp, newPassword) {
-            const endpoint = 'http://localhost:8080/habit/auth/forgot-password-otp';
+            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/forgot-password-otp';
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
