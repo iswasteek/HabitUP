@@ -3254,3 +3254,8 @@ Caused by: java.net.ConnectException: Connection timed out: getsockopt
 	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
 	... 136 common frames omitted
+2025-06-18 20:36:32 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/admin/login
+2025-06-18 20:59:02 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/admin/login
+2025-06-18 21:02:36 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-06-18 21:02:36 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/send-OTP?email=swastikb97@gmail.com
+2025-06-18 21:12:37 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/admin/login
