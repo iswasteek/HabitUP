@@ -61,18 +61,32 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/index.html", "/img/**","/main.js", "/main.css").permitAll()
-                        .requestMatchers("/uploads/**").permitAll()
-                        .requestMatchers("/habit/auth/**").permitAll()
-                        .requestMatchers("/habit/admin/**").permitAll()// Allow public access
-                        .anyRequest().authenticated()                  // Secure other endpoints
+                        .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/about.html",
+                                "/dashboard.html",
+                                "/adminDashboard.html",
+                                "/blog.html",
+                                "/home.html",
+                                "/profile.html",
+                                "/service.html",
+                                "/new.html",
+                                "/upcoming.html",
+                                "/img/**",
+                                "/main.js",
+                                "/main.css",
+                                "/nav.css",
+                                "/uploads/**",
+                                "/habit/auth/**",
+                                "/habit/admin/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .anonymous(anonymous -> anonymous.disable())     // Disable anonymous auth
-
-                // Explicitly disable security for auth endpoints
-                .securityContext(securityContext -> securityContext.disable()) // Disable security context for auth
-                .requestCache(requestCache -> requestCache.disable());      // Disable request cache
+                .anonymous(anonymous -> anonymous.disable())
+                .securityContext(securityContext -> securityContext.disable())
+                .requestCache(requestCache -> requestCache.disable());
 
         return http.build();
     }
