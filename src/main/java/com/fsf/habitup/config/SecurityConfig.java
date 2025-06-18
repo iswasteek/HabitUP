@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fsf.habitup.Security.JwtAuthenticationFilter;
+
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,14 +26,13 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@Order(1) // High priority
+@Order(1)
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
     public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
-
     }
 
     @Bean
@@ -61,17 +61,13 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/error").permitAll() // Public access to root & error
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/habit/auth/**").permitAll()
-                        .requestMatchers("/habit/admin/**").permitAll()// Allow public access
-                        .anyRequest().authenticated()                  // Secure other endpoints
+                        .requestMatchers("/habit/admin/**").permitAll()
+                        .anyRequest().authenticated()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .anonymous(anonymous -> anonymous.disable())     // Disable anonymous auth
-
-                // Explicitly disable security for auth endpoints
-                .securityContext(securityContext -> securityContext.disable()) // Disable security context for auth
-                .requestCache(requestCache -> requestCache.disable());      // Disable request cache
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -80,14 +76,17 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:63342", "http://127.0.0.1:63342")); // your frontend origins
+        config.setAllowedOrigins(List.of(
+                "http://localhost:63342",
+                "http://127.0.0.1:63342",
+                "https://your-frontend.onrender.com" // Optional: replace with your deployed frontend
+        ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*")); // You can also restrict headers here
-        config.setExposedHeaders(List.of("Authorization")); // Optional
+        config.setAllowedHeaders(List.of("*"));
+        config.setExposedHeaders(List.of("Authorization"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
     }
-
 }
