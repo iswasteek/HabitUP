@@ -4,10 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import com.fsf.habitup.Repository.HabitRepo;
 import com.fsf.habitup.entity.Habit;
@@ -196,8 +193,7 @@ public class UserServiceImpl implements UserService {
         return new AuthResponse(token, user);
     }
 
-    @Override
-    public User updateUser(String email, UpdateUserDTO updatedUserDTO, MultipartFile profilePhoto) {
+    public User updateUser(String email, UpdateUserDTO updatedUserDTO, byte[] imageBytes) {
         User existingUser = userRepository.findByEmail(email);
         if (existingUser == null) {
             throw new ApiException("User not found");
@@ -208,9 +204,9 @@ public class UserServiceImpl implements UserService {
         existingUser.setPhoneNo(updatedUserDTO.getPhoneNo());
         existingUser.setGender(updatedUserDTO.getGender());
 
-        if (profilePhoto != null && !profilePhoto.isEmpty()) {
-            String savedPath = fileStorageService.storeFile(profilePhoto, "profile_photos");
-            existingUser.setProfilePhoto(savedPath);
+        if (imageBytes != null && imageBytes.length > 0) {
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            existingUser.setProfilePhoto(base64Image);
         }
 
         return userRepository.save(existingUser);

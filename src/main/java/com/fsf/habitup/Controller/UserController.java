@@ -2,6 +2,8 @@ package com.fsf.habitup.Controller;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fsf.habitup.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,8 @@ import com.fsf.habitup.entity.User;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 
+import static com.fsf.habitup.Service.UserService.userRepository;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -39,9 +43,12 @@ public class UserController {
     private DocumentService documentService;
     @Autowired
     private final UserServiceImpl userService;
+    @Autowired
+    private final UserRepository userRepository;
 
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -60,23 +67,37 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")
-    @PutMapping(value = "/updateuser/{email}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<UserResponseDTO> updateUser(
-            @PathVariable String email,
-            @RequestParam("name") String name,
-            @RequestParam("dob") String dob,
-            @RequestParam("phoneNo") Long phoneNo,
-            @RequestParam("gender") Gender gender,
-            @RequestPart(value = "profilePhoto", required = false) MultipartFile profilePhoto) {
+    @PutMapping("/updateUser")
+    public ResponseEntity<?> updateUserProfileByEmail(
+            @RequestParam String email,
+            @RequestParam("userDTO") String userDTOString, // JSON String of UpdateUserDTO
+            @RequestParam(value = "profilePhoto", required = false) MultipartFile profilePhoto) {
 
-        UpdateUserDTO updatedUserDTO = new UpdateUserDTO();
-        updatedUserDTO.setName(name);
-        updatedUserDTO.setDob(dob);
-        updatedUserDTO.setPhoneNo(phoneNo);
-        updatedUserDTO.setGender(gender);
+        ObjectMapper objectMapper = new ObjectMapper();
+        UpdateUserDTO userDTOObject;
 
-        User savedUser = userService.updateUser(email, updatedUserDTO, profilePhoto);
-        return ResponseEntity.ok(new UserResponseDTO(savedUser));
+        try {
+            userDTOObject = objectMapper.readValue(userDTOString, UpdateUserDTO.class);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error parsing userDTO: " + e.getMessage());
+        }
+
+        byte[] imageBytes = null;
+
+        if (profilePhoto != null && !profilePhoto.isEmpty()) {
+            try {
+                imageBytes = profilePhoto.getBytes();
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body("Error processing profile photo: " + e.getMessage());
+            }
+        }
+
+        try {
+            User updatedUser = userService.updateUser(email, userDTOObject, imageBytes);
+            return ResponseEntity.ok(new UserResponseDTO(updatedUser));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error updating user: " + e.getMessage());
+        }
     }
 
     @PreAuthorize("hasAuthority('VIEW_USERS')")
@@ -87,6 +108,24 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(new UserResponseDTO(user));
+    }
+
+    @PreAuthorize("hasAuthority('VIEW_PROFILE')")
+    @GetMapping("/profile-photo/{email}")
+    public ResponseEntity<?> getUserProfilePhoto(@PathVariable String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null || user.getProfilePhoto() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User or profile photo not found");
+        }
+
+        String base64Image = user.getProfilePhoto();
+
+        // Optional: Add data URI prefix if not already present
+        if (!base64Image.startsWith("data:image")) {
+            base64Image = "data:image/jpeg;base64," + base64Image; // or image/png
+        }
+
+        return ResponseEntity.ok(base64Image);
     }
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")

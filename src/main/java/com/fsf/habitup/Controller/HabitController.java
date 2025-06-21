@@ -80,6 +80,4 @@ public class HabitController {
         return ResponseEntity.ok(universalHabits);
     }
 
-
-
 }

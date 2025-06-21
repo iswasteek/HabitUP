@@ -29,7 +29,7 @@ public interface UserService {
 
     public AuthResponse authenticateUser(LoginRequest request);
 
-    public User updateUser(String email, UpdateUserDTO updatedUserDTO, MultipartFile profilePhoto);
+    public User updateUser(String email, UpdateUserDTO updatedUserDTO, byte[] imageBytes);
 
     public boolean deleteUser(String email);
 

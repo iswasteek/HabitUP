@@ -21,12 +21,14 @@ public class AdminSetUpRunner implements CommandLineRunner {
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
     private final PermissionRepository permissionRepository;
+    private final AdminProperties adminProperties;
 
     public AdminSetUpRunner(AdminRepository adminRepository, PasswordEncoder passwordEncoder,
-            PermissionRepository permissionRepository) {
+                            PermissionRepository permissionRepository, AdminProperties adminProperties) {
         this.adminRepository = adminRepository;
         this.passwordEncoder = passwordEncoder;
         this.permissionRepository = permissionRepository;
+        this.adminProperties = adminProperties;
     }
 
     @Override
@@ -35,9 +37,9 @@ public class AdminSetUpRunner implements CommandLineRunner {
         if (adminRepository.count() == 0) {
             // Create the first admin if no admins exist
             Admin admin = new Admin();
-            admin.setEmail("mbasudev022@gmail.com"); // Set the email
+            admin.setEmail(adminProperties.getEmail()); // Set the email
             admin.setName("Basudev Naik"); // Set your admin name
-            String encodedPassword = passwordEncoder.encode("Basudev@2004");
+            String encodedPassword = passwordEncoder.encode(adminProperties.getPassword());
             admin.setPassword(encodedPassword); // Set the password (make sure to hash it)
             admin.setGender(Gender.MALE); // Set the gender or other attributes as needed
             admin.setUserType(UserType.Admin); // Set the user type as ADMIN

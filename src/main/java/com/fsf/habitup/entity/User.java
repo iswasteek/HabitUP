@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,18 +14,6 @@ import com.fsf.habitup.Enums.AccountStatus;
 import com.fsf.habitup.Enums.Gender;
 import com.fsf.habitup.Enums.SubscriptionType;
 import com.fsf.habitup.Enums.UserType;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user")
@@ -60,7 +49,8 @@ public class User  {
 	@Column(nullable = false)
 	private SubscriptionType subscriptionType;
 
-	@Column(name = "ProfilePhoto")
+	@Lob
+	@Column(name = "ProfilePhoto", columnDefinition = "LONGTEXT")
 	private String profilePhoto;
 
 	@Column(name = "userType", nullable = false, length = 20)

@@ -12,7 +12,7 @@ public class UserResponseDTO {
     private Long phoneNo;
     private AccountStatus accountStatus;
     private SubscriptionType subscriptionType;
-    private String profilePhotoUrl;
+    private String profilePhoto;
     private UserType userType;
     private Gender gender;
 
@@ -30,7 +30,7 @@ public class UserResponseDTO {
 
         // Construct proper photo URL
         if (user.getProfilePhoto() != null && !user.getProfilePhoto().isEmpty()) {
-            this.profilePhotoUrl = "/uploads/" + user.getProfilePhoto();
+            this.profilePhoto = user.getProfilePhoto();
         }
     }
 
@@ -67,8 +67,8 @@ public class UserResponseDTO {
         return subscriptionType;
     }
 
-    public String getProfilePhotoUrl() {
-        return profilePhotoUrl;
+    public String getProfilePhoto() {
+        return profilePhoto;
     }
 
     public UserType getUserType() {
@@ -109,8 +109,8 @@ public class UserResponseDTO {
         this.phoneNo = phoneNo;
     }
 
-    public void setProfilePhotoUrl(String profilePhotoUrl) {
-        this.profilePhotoUrl = profilePhotoUrl;
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
     }
 
     public void setSubscriptionType(SubscriptionType subscriptionType) {
