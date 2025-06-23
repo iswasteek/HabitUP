@@ -81,3 +81,8 @@
 2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
 2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
 2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-06-22 04:11:50 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-22 04:11:50 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-22 04:11:51 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-22 04:11:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-22 04:11:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
