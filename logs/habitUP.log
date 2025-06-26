@@ -1,28 +1,118 @@
-2025-06-22 00:14:33 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h27m25s798ms743µs400ns).
-2025-06-22 00:58:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=40m39s400ms538µs900ns).
-2025-06-22 01:10:27 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-22 01:10:27 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-06-22 01:10:27 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-22 01:10:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-06-22 01:10:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-06-22 01:10:33 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 20084 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
-2025-06-22 01:10:33 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-22 01:10:34 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-22 01:10:34 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90 ms. Found 13 JPA repository interfaces.
-2025-06-22 01:10:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-06-22 01:10:36 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-06-22 01:10:36 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-06-22 01:10:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-06-22 01:10:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2874 ms
-2025-06-22 01:10:36 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-22 01:10:36 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-06-22 01:10:36 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-06-22 01:10:37 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-22 01:10:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-06-22 01:10:37 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1554eaa4
-2025-06-22 01:10:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-06-22 01:10:37 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-06-22 01:10:37 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+2025-06-25 21:48:26 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 2972 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
+2025-06-25 21:48:26 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-25 21:48:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-25 21:48:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 147 ms. Found 13 JPA repository interfaces.
+2025-06-25 21:48:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-25 21:48:30 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-25 21:48:30 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-25 21:48:30 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-25 21:48:30 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4131 ms
+2025-06-25 21:48:31 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-25 21:48:31 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-06-25 21:48:31 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-25 21:48:32 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-25 21:48:32 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-25 21:48:38 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c4c7e51
+2025-06-25 21:48:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-25 21:48:38 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-06-25 21:48:38 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-25 21:48:38 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-25 21:48:40 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-25 21:49:02 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25 21:49:03 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-06-25 21:49:04 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-25 21:49:05 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-06-25 21:49:05 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-06-25 21:49:06 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_USERS
+2025-06-25 21:49:06 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_USERS
+2025-06-25 21:49:06 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-06-25 21:49:06 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-06-25 21:49:07 [main] WARN  c.f.h.Service.PermissionService - Permission not found: ACTIVATE_USERS
+2025-06-25 21:49:07 [main] WARN  c.f.h.Service.PermissionService - Permission not found: LOCK_UNLOCK_USERS
+2025-06-25 21:49:07 [main] WARN  c.f.h.Service.PermissionService - Permission not found: RESET_USER_PASSWORDS
+2025-06-25 21:49:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_SUBSCRIPTIONS
+2025-06-25 21:49:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_SUBSCRIPTIONS
+2025-06-25 21:49:08 [main] WARN  c.f.h.Service.PermissionService - Permission not found: EXPORT_HABIT_PROGRESS
+2025-06-25 21:49:09 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_FEEDBACK
+2025-06-25 21:49:09 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_HABIT_PROGRESS
+2025-06-25 21:49:09 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_FEEDBACK
+2025-06-25 21:49:09 [main] WARN  c.f.h.Service.PermissionService - Permission not found: IMPORT_HABIT_PROGRESS
+2025-06-25 21:49:09 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_THOUGHTS
+2025-06-25 21:49:09 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 0 users.
+2025-06-25 21:49:09 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-06-25 21:49:10 [main] WARN  c.f.h.Service.PermissionService - No admins or permissions found. Skipping admin permission assignment.
+2025-06-25 21:49:10 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-06-25 21:49:11 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCTORS
+2025-06-25 21:49:11 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCTORS
+2025-06-25 21:49:11 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_DOCUMENTS
+2025-06-25 21:49:11 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_DOCUMENTS
+2025-06-25 21:49:12 [main] WARN  c.f.h.Service.PermissionService - Permission not found: MANAGE_FEEDBACK
+2025-06-25 21:49:12 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_FEEDBACK
+2025-06-25 21:49:12 [main] WARN  c.f.h.Service.PermissionService - Permission not found: VIEW_THOUGHTS
+2025-06-25 21:49:12 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-06-25 21:49:13 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-06-25 21:49:13 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-06-25 21:49:13 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-25 21:49:14 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-25 21:49:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-25 21:49:14 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 49.123 seconds (process running for 50.217)
+2025-06-25 21:49:37 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-25 21:49:37 [main] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: rawPassword cannot be null
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:107)
+	at com.fsf.habitup.config.AdminSetUpRunner.run(AdminSetUpRunner.java:42)
+	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:788)
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:82)
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:86)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:796)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787)
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:772)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:772)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.fsf.habitup.HabitupApplication.main(HabitupApplication.java:10)
+2025-06-25 21:49:37 [main] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-25 21:49:37 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-25 21:49:37 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25 21:49:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-25 21:49:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-25 22:05:49 [main] INFO  com.fsf.habitup.HabitupApplication - Starting HabitupApplication using Java 17.0.13 with PID 14876 (C:\Users\swast\Downloads\HabitUP\target\classes started by swast in C:\Users\swast\Downloads\HabitUP)
+2025-06-25 22:05:49 [main] INFO  com.fsf.habitup.HabitupApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-25 22:05:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-25 22:05:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 179 ms. Found 13 JPA repository interfaces.
+2025-06-25 22:05:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-25 22:05:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-25 22:05:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-25 22:05:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-25 22:05:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3790 ms
+2025-06-25 22:05:54 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-25 22:05:54 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-06-25 22:05:54 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-25 22:05:55 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-25 22:05:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-25 22:05:56 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4247093b
+2025-06-25 22:05:56 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-25 22:05:56 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-25 22:05:56 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0.39
@@ -30,59 +120,25 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-06-22 01:10:38 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-22 01:10:39 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-22 01:10:39 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2025-06-22 01:10:40 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-22 01:10:40 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
-2025-06-22 01:10:40 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
-2025-06-22 01:10:41 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
-2025-06-22 01:10:41 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
-2025-06-22 01:10:41 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
-2025-06-22 01:10:41 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
-2025-06-22 01:10:41 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
-2025-06-22 01:10:41 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
-2025-06-22 01:10:41 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2025-06-22 01:10:41 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2025-06-22 01:10:41 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-06-22 01:10:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-06-22 01:10:42 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 10.017 seconds (process running for 10.627)
-2025-06-22 01:10:51 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-06-22 01:10:51 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-06-22 01:10:51 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2025-06-22 01:10:51 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/updateUser
-2025-06-22 01:10:51 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/updateUser
-2025-06-22 01:12:06 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-22 01:12:06 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-22 01:12:06 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-22 01:12:06 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-22 01:13:03 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-22 01:13:03 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-22 01:13:03 [http-nio-8080-exec-8] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-22 01:16:26 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-22 01:16:26 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-22 01:16:26 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-22 01:16:26 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-22 01:30:15 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/updateUser
-2025-06-22 01:30:15 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/updateUser
-2025-06-22 01:30:15 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/updateUser
-2025-06-22 01:30:29 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/updateUser
-2025-06-22 01:30:29 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /user/updateUser
-2025-06-22 01:30:29 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /user/updateUser
-2025-06-22 01:37:23 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-22 01:37:23 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-22 01:37:23 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-22 01:37:23 [http-nio-8080-exec-10] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-22 02:16:36 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-22 02:16:36 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-22 02:16:36 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-22 02:16:36 [http-nio-8080-exec-7] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /habit/auth/login
-2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /habit/auth/login
-2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /habit/auth/login
-2025-06-22 03:48:29 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
-2025-06-22 04:11:50 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-22 04:11:50 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-06-22 04:11:51 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-22 04:11:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-06-22 04:11:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-25 22:05:58 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-25 22:05:59 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25 22:06:00 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-06-25 22:06:00 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-25 22:06:01 [main] INFO  c.f.h.Security.PermissionInitializer - Starting permission initialization...
+2025-06-25 22:06:01 [main] INFO  c.f.h.Service.PermissionService - Initializing user permissions...
+2025-06-25 22:06:01 [main] INFO  c.f.h.Service.PermissionService - User permissions assigned to 1 users.
+2025-06-25 22:06:01 [main] INFO  c.f.h.Service.PermissionService - Initializing admin permissions...
+2025-06-25 22:06:01 [main] INFO  c.f.h.Service.PermissionService - Admin permissions assigned to 1 admins.
+2025-06-25 22:06:01 [main] INFO  c.f.h.Service.PermissionService - Initializing doctor permissions...
+2025-06-25 22:06:01 [main] INFO  c.f.h.Service.PermissionService - Doctor permissions assigned to 0 doctors.
+2025-06-25 22:06:02 [main] INFO  c.f.h.Security.PermissionInitializer - Permission initialization completed successfully.
+2025-06-25 22:06:02 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-06-25 22:06:02 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-25 22:06:02 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-25 22:06:03 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-25 22:06:03 [main] INFO  com.fsf.habitup.HabitupApplication - Started HabitupApplication in 14.945 seconds (process running for 15.883)
+2025-06-25 22:13:58 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-25 22:13:58 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-25 22:13:58 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25 22:13:58 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-25 22:13:58 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
