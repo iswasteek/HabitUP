@@ -818,6 +818,23 @@ section,
   font-weight: 400;
 }
 
+.hero-subtitle {
+  font-size: 14px;
+  color: var(--accent-color); /* or use #fdc134 directly if preferred */
+  font-weight: 500;
+  font-family: var(--heading-font);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+@media (max-width: 576px) {
+  .hero-subtitle {
+    font-size: 12px;
+  }
+}
+
 .hero .btn-get-started {
   color: var(--contrast-color);
   background: var(--accent-color);
@@ -1416,4 +1433,5 @@ section,
 .contact .php-email-form button[type="submit"]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
+
 
