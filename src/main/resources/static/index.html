@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>HabitUP</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="HabitUP helps you build better habits with daily tracking, motivation, and progress insights. Start your self-improvement journey today!"
+          name="description">
+    <meta content="habit tracker, daily habits, personal growth, productivity, motivation, goal setting, HabitUP"
+          name="keywords">
 
     <!-- Favicons -->
     <link href="img/HLogo.jpg" rel="icon">
@@ -29,13 +31,13 @@
     <!-- Font Awesome -->
     <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-          referrerpolicy="no-referrer" rel="stylesheet" />
+          referrerpolicy="no-referrer" rel="stylesheet"/>
 
     <!-- GLightbox -->
     <link href="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/css/glightbox.min.css" rel="stylesheet">
 
     <!-- Swiper -->
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
 
     <!-- AOS (Animate On Scroll) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
@@ -313,14 +315,20 @@
 </head>
 
 <body class="index-page">
-
 <!-- Header -->
 <header class="header d-flex align-items-center fixed-top" id="header">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+        <!-- Logo -->
         <a class="logo d-flex align-items-center me-auto" href="index.html">
             <h1 class="sitename">HabitUP</h1>
             <span>.</span>
         </a>
+
+        <!-- Mobile Toggle Button -->
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+        <!-- Navigation -->
         <nav class="navmenu" id="navmenu">
             <ul>
                 <li><a class="active" href="#hero">Home</a></li>
@@ -329,16 +337,22 @@
                 <li><a href="#team">Team</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
-        <a class="btn-getstarted" data-bs-target="#loginModal" data-bs-toggle="modal" href="#">Login / Signup</a>
+
+        <!-- CTA Button -->
+        <a class="btn-getstarted d-xl-block" data-bs-target="#loginModal" data-bs-toggle="modal" href="#">Login /
+            Signup</a>
+
     </div>
+
+    <!-- Mobile Nav Backdrop -->
+    <div class="mobile-nav-backdrop"></div>
 </header>
 
 <!-- Main Content -->
 <main class="main">
 
-<!-- Hero section -->
+    <!-- Hero section -->
     <section class="hero section dark-background" id="hero">
         <div class="container">
             <div class="row gy-4">
@@ -347,7 +361,8 @@
                     <p class="hero-subtitle mb-3">( A unit of Sadhana Mandira Charitable Trust )</p>
                     <p>Daily simple habits, create a life with more time and peace</p>
                     <div class="d-flex">
-                        <a class="glightbox btn-get-started" data-gallery="none" href="https://www.youtube.com/embed/U_nzqnXWvSo">
+                        <a class="glightbox btn-get-started" data-gallery="none"
+                           href="https://www.youtube.com/embed/U_nzqnXWvSo">
                             Get Started <i class="fa-solid fa-circle-play fa-beat"></i>
                         </a>
                     </div>
@@ -393,94 +408,85 @@
                         <img alt="Sanchita Shetty" class="img-fluid quote-img" src="img/sanchita%20shetty%20qoute.png">
                     </div>
                     <div class="swiper-slide">
-                        <img alt="Smriti Kuchal" class="img-fluid quote-img" src="img/smriti%20kuchal%20new%20quote.png">
+                        <img alt="Smriti Kuchal" class="img-fluid quote-img"
+                             src="img/smriti%20kuchal%20new%20quote.png">
                     </div>
                     <div class="swiper-slide">
                         <img alt="Bendict Baba" class="img-fluid quote-img" src="img/Benedict%20baba%20quote.png">
                     </div>
                     <div class="swiper-slide">
-                        <img alt="Yogendra Singh Yadav" class="img-fluid quote-img" src="img/yogendra%20singh%20yadabv%20quote.png">
+                        <img alt="Yogendra Singh Yadav" class="img-fluid quote-img"
+                             src="img/yogendra%20singh%20yadabv%20quote.png">
                     </div>
                     <div class="swiper-slide">
-                        <img alt="Dr. Sidharth Nayak" class="img-fluid quote-img" src="img/Dr.%20sidhartha%20nayak%20quote.png">
+                        <img alt="Dr. Sidharth Nayak" class="img-fluid quote-img"
+                             src="img/Dr.%20sidhartha%20nayak%20quote.png">
                     </div>
                     <div class="swiper-slide">
                         <img alt="Victoria maa" class="img-fluid quote-img" src="img/victoria%20quote.png">
                     </div>
                     <div class="swiper-slide">
-                        <img alt="Dr. Dipak Ranjan Dash" class="img-fluid quote-img" src="img/Dr.%20dipak%20ranjan%20das%20quote.png">
+                        <img alt="Dr. Dipak Ranjan Dash" class="img-fluid quote-img"
+                             src="img/Dr.%20dipak%20ranjan%20das%20quote.png">
                     </div>
                     <div class="swiper-slide">
                         <img alt="Axel Baba" class="img-fluid quote-img" src="img/Axel%20quote.png">
                     </div>
                     <div class="swiper-slide">
-                        <img alt="Dr. Dibyadarshana Sahoo" class="img-fluid quote-img" src="img/dr.%20dibyadrashan%20sahoo%20quote.png">
+                        <img alt="Dr. Dibyadarshana Sahoo" class="img-fluid quote-img"
+                             src="img/dr.%20dibyadrashan%20sahoo%20quote.png">
                     </div>
                     <div class="swiper-slide">
-                        <img alt="Khameswari Agasti" class="img-fluid quote-img" src="img/Khemeswar%20agasti%20quote.png">
+                        <img alt="Khameswari Agasti" class="img-fluid quote-img"
+                             src="img/Khemeswar%20agasti%20quote.png">
                     </div>
                 </div>
             </div>
         </div>
     </section><!-- /Clients Section -->
 
-    <section class="container py-5" data-aos="fade-up" data-aos-delay="150">
-        <div class="text-center">
-            <img src="img/JagannathRathaYatra.png"
-                 alt="Donate for Rathayatra 2025 - Lord Jagannath"
-                 class="img-fluid rounded shadow-lg"
-                 style="border-radius: 20px; max-width: 100%; height: auto;">
-        </div>
-    </section>
-
     <!-- About Section -->
     <section class="about section" id="about">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-6 position-relative order-lg-last" data-aos="fade-up" data-aos-delay="200">
-                    <img alt="About us picture" class="img-fluid" src="img/We3.png">
-                    <a class="glightbox pulsating-play-btn"
-                       href="https://www.youtube.com/embed/MFzDaBzBlL0" ></a>
+                    <img alt="About us picture" class="img-fluid" src="img/MentorMouth.jpg">
                 </div>
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                     <h3>About Us</h3>
                     <p>
-                        We are a team of four passionate individuals dedicated to transforming lives through better
-                        habits. Our mission is to help people build lasting, positive changes in their daily
-                        routines. With HabitUp, we aim to make self-improvement accessible and achievable for
-                        everyone.
+                        The heart of our mission is the belief that the mind holds extraordinary power to transform
+                        lives. We tap into the immense potential of hypnosis and affirmations to help individuals build
+                        meaningful habits, overcome inner blocks, and unlock lasting change. By gently reprogramming the
+                        subconscious, we make personal growth not only possible but practical.
                     </p>
                     <ul>
                         <li>
                             <i class="bi bi-reception-4"></i>
                             <div>
-                                <h5>Empower your growth, one habit at a time</h5>
-                                <p>Small steps lead to big changes. HabitUp provides a structured approach to track
-                                    progress and stay motivated.
-                                </p>
+                                <h5>Science and Wisdom in Harmony</h5>
+                                <p>Rooted in both science and ancient wisdom, hypnosis allows us to access deeper layers
+                                    of the mind where true transformation begins. Whether it's for healing, focus, or
+                                    self-discovery, our approach empowers individuals to live more intentional,
+                                    balanced, and fulfilling lives—creating a ripple effect that uplifts both
+                                    individuals and the world around them.</p>
                             </div>
                         </li>
                         <li>
                             <i class="bi bi-person-heart"></i>
                             <div>
-                                <h5>Simplifying habit-building for everyone</h5>
-                                <p>Whether it's fitness, productivity, or mindfulness, our intuitive platform helps
-                                    you stay on track and achieve your goals.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="bi bi-signpost-fill"></i>
-                            <div>
-                                <h5>Your journey, your habits</h5>
-                                <p>We believe in progress over perfection. Start today, and let HabitUp guide you
-                                    toward a better version of yourself.</p>
+                                <h5>Reviving Ancient Healing</h5>
+                                <p>It is also an initiative to revive ancient healing practices rooted in Vedic wisdom
+                                    and the teachings of the Bhagavad Gita — guiding humanity toward the universal
+                                    science of meditation and nurturing noble qualities for a more harmonious world.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </section><!-- /About Section -->
+    </section>
+    <!-- /About Section -->
 
     <!-- Featured Services Section -->
     <section class="featured-services section" id="featured-services">
@@ -610,12 +616,17 @@
                 <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
                     <h3>DAILY MOTIVATION</h3>
                     <p class="fst-italic">
-                        Stay inspired with daily motivational quotes and progress reminders tailored to your habit journey.
+                        Stay inspired with daily motivational quotes and progress reminders tailored to your habit
+                        journey.
                     </p>
                     <ul>
-                        <li><i class="bi bi-check"></i><span> Personalized motivational content based on your habits</span></li>
-                        <li><i class="bi bi-check"></i> <span>Celebration of milestones and streaks to keep you engaged</span></li>
-                        <li><i class="bi bi-check"></i> <span>Encouraging notifications when you need them most</span></li>
+                        <li>
+                            <i class="bi bi-check"></i><span> Personalized motivational content based on your habits</span>
+                        </li>
+                        <li><i class="bi bi-check"></i>
+                            <span>Celebration of milestones and streaks to keep you engaged</span></li>
+                        <li><i class="bi bi-check"></i> <span>Encouraging notifications when you need them most</span>
+                        </li>
                     </ul>
                 </div>
             </div><!-- Features Item -->
@@ -644,11 +655,13 @@
                 </div>
                 <div class="col-md-7" data-aos="fade-up">
                     <h3>PROGRESS REPORTS</h3>
-                    <p>Visualize your habit journey with detailed analytics and progress tracking that shows your consistency and growth.</p>
+                    <p>Visualize your habit journey with detailed analytics and progress tracking that shows your
+                        consistency and growth.</p>
                     <ul>
                         <li><i class="bi bi-check"></i> <span>Weekly and monthly habit performance reports</span></li>
                         <li><i class="bi bi-check"></i><span> Streak counters to maintain motivation</span></li>
-                        <li><i class="bi bi-check"></i> <span>Customizable charts showing your habit evolution</span></li>
+                        <li><i class="bi bi-check"></i> <span>Customizable charts showing your habit evolution</span>
+                        </li>
                     </ul>
                 </div>
             </div><!-- Features Item -->
@@ -804,7 +817,7 @@
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                     <div class="team-member">
                         <div class="member-img">
-                            <img alt="Sashi bhusan Nayak" class="img-fluid" src="img/SashiSirTeam.jpeg">
+                            <img alt="Sashi bhusan Nayak" class="img-fluid" src="img/SashiSirTeam.png">
                             <div class="social">
                                 <a href="/static/sashi.html"><i class="bi bi-twitter-x"></i></a>
                                 <a href="/static/sashi.html"><i class="bi bi-facebook"></i></a>
@@ -813,7 +826,8 @@
                             </div>
                         </div>
                         <div class="member-info">
-                            <h4>Sashi Bhusan Nayak</h4>
+                            <h4>Dr. Sashi Bhusan Nayak</h4>
+                            <span>Mentor & Guide</span>
                             <span>Asst. Professor (Ravenshaw University)</span>
                         </div>
                     </div>
@@ -822,17 +836,20 @@
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="team-member">
                         <div class="member-img">
-                            <img alt="Basudev Naik" class="img-fluid" src="img/Basudev_Team.png">
+                            <img alt="Basudev Naik" class="img-fluid" src="img/BasudevProfile.jpeg">
                             <div class="social">
                                 <a href="https://x.com/basude"><i class="bi bi-twitter-x"></i></a>
                                 <a href="https://github.com/Basudev022"><i class="bi bi-github"></i></a>
-                                <a href="https://www.instagram.com/b_01.dev?igsh=bTcwdW5nemc4MTZ1"><i class="bi bi-instagram"></i></a>
-                                <a href="https://www.linkedin.com/in/basudev-naik-388484320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://www.instagram.com/b_01.dev?igsh=bTcwdW5nemc4MTZ1"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/basudev-naik-388484320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                                        class="bi bi-linkedin"></i></a>
                             </div>
                         </div>
                         <div class="member-info">
                             <h4>Basudev Naik</h4>
                             <span>Backend Developer</span>
+                            <span>Wisen Technology</span>
                         </div>
                     </div>
                 </div><!-- End Team Member -->
@@ -851,6 +868,7 @@
                         <div class="member-info">
                             <h4>Swastik Behera</h4>
                             <span>FullStack Developer</span>
+                            <span>Deloitte USI</span>
                         </div>
                     </div>
                 </div><!-- End Team Member -->
@@ -858,17 +876,20 @@
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                     <div class="team-member">
                         <div class="member-img">
-                            <img alt="Sidharth Pradhan" class="img-fluid" src="img/SidhuTeam.jpg">
+                            <img alt="Sidharth Pradhan" class="img-fluid" src="img/SidharthProfile.jpeg">
                             <div class="social">
                                 <a href="https://x.com/Sidhu45"><i class="bi bi-twitter-x"></i></a>
                                 <a href="https://github.com/Sidharth-45"><i class="bi bi-github"></i></a>
-                                <a href="https://www.instagram.com/__sidhu45__/?igsh=MWljMzAwdGp4MnEyYg%3D%3D#"><i class="bi bi-instagram"></i></a>
-                                <a href="https://www.linkedin.com/in/sidharth-pradhan-900b60200?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://www.instagram.com/__sidhu45__/?igsh=MWljMzAwdGp4MnEyYg%3D%3D#"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/sidharth-pradhan-900b60200?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                                        class="bi bi-linkedin"></i></a>
                             </div>
                         </div>
                         <div class="member-info">
                             <h4>Sidharth Pradhan</h4>
                             <span>Frontend Developer</span>
+                            <span>Infosys Limited</span>
                         </div>
                     </div>
                 </div><!-- End Team Member -->
@@ -893,14 +914,16 @@
                             <form id="adminLoginForm">
                                 <div class="form-group mb-3">
                                     <label for="adminEmail">Email</label>
-                                    <input type="email" class="form-control" id="adminEmail" required placeholder="Enter admin email">
+                                    <input class="form-control" id="adminEmail" placeholder="Enter admin email" required
+                                           type="email">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="adminPassword">Password</label>
-                                    <input type="password" class="form-control" id="adminPassword" required placeholder="Enter password">
+                                    <input class="form-control" id="adminPassword" placeholder="Enter password" required
+                                           type="password">
                                 </div>
                                 <div class="message" id="adminLoginMessage"></div>
-                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                                <button class="btn btn-primary w-100" type="submit">Login</button>
                             </form>
                         </div>
                     </div>
@@ -968,7 +991,8 @@
         <div class="social-links d-flex justify-content-center">
             <a href="https://x.com/habitupindia"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.instagram.com/habitup.india?igsh=amxoMjBhZ3UxMXRt"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/habitup-habitup-0a2ab4370?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSRGPY6S7QbqxKuhCA60kXQ%3D%3D"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/habitup-habitup-0a2ab4370?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSRGPY6S7QbqxKuhCA60kXQ%3D%3D"><i
+                    class="bi bi-linkedin"></i></a>
         </div>
         <div class="copyright">
             <span>Copyright</span> <strong class="px-1 sitename">&copy; HabitUP</strong> <span>All Rights
@@ -1008,8 +1032,8 @@
                     <div class="message" id="loginMessage"></div>
                     <button class="btn btn-primary d-block mx-auto" style="width: 30%;" type="submit">Login</button>
                     <div class="text-center mt-3">
-                        <a href="#" style="color:#fdc134; font-size:13px" id="forgotPasswordLink">Forgot Password?</a> |
-                        <a href="#" style="color:#fdc134; font-size:13px" id="createAccountLink">Create Account</a>
+                        <a href="#" id="forgotPasswordLink" style="color:#fdc134; font-size:13px">Forgot Password?</a> |
+                        <a href="#" id="createAccountLink" style="color:#fdc134; font-size:13px">Create Account</a>
                     </div>
                 </form>
             </div>
@@ -1032,13 +1056,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupName">Name</label>
-                                <input class="form-control" id="signupName" minlength="3" required type="text" placeholder="Enter your full name">
+                                <input class="form-control" id="signupName" minlength="3"
+                                       placeholder="Enter your full name" required
+                                       type="text">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupEmail">Email</label>
-                                <input class="form-control" id="signupEmail" required type="email" placeholder="Enter your email">
+                                <input class="form-control" id="signupEmail" placeholder="Enter your email" required
+                                       type="email">
                             </div>
                         </div>
 
@@ -1046,16 +1073,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupPassword">Password</label>
-                                <input class="form-control" id="signupPassword" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$" required
-                                       type="password" placeholder="eg: Abc@123">
-<!--                                <small class="form-text text-muted">Password must contain at least 1 uppercase letter, 1-->
-<!--                                    number, and 1 special character.</small>-->
+                                <input class="form-control" id="signupPassword"
+                                       pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$" placeholder="eg: Abc@123"
+                                       required type="password">
+                                <!--                                <small class="form-text text-muted">Password must contain at least 1 uppercase letter, 1-->
+                                <!--                                    number, and 1 special character.</small>-->
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupConfirmPassword">Confirm Password</label>
-                                <input class="form-control" id="signupConfirmPassword" required type="password" placeholder="Re-enter password">
+                                <input class="form-control" id="signupConfirmPassword" placeholder="Re-enter password"
+                                       required
+                                       type="password">
                             </div>
                         </div>
 
@@ -1063,8 +1093,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="signupPhone">WhatsApp Number</label>
-                                <input class="form-control" id="signupPhone" maxlength="10" minlength="10" required
-                                       type="tel" placeholder="Enter your phone number">
+                                <input class="form-control" id="signupPhone" maxlength="10" minlength="10"
+                                       placeholder="Enter your phone number"
+                                       required type="tel">
                             </div>
                         </div>
                         <div class="col-md-6 d-flex gap-3">
@@ -1183,7 +1214,8 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="newPassword">New Password</label>
-                        <input class="form-control" id="newPassword" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$" required
+                        <input class="form-control" id="newPassword"
+                               pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$" required
                                type="password">
                         <small class="form-text text-muted">Password must contain at least 1 uppercase letter, 1
                             number, and 1 special character.</small>
@@ -1219,10 +1251,12 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 
 <!-- Main JS File -->
 <script src="main.js"></script>
@@ -1590,8 +1624,8 @@
         // Helper Functions
         async function sendOTP(email, isForgotPassword = false) {
             const endpoint = isForgotPassword
-                ? `https://habit-up-backend.onrender.com/habit/auth/send-OTP-forgot-password?email=${email}`
-                : `https://habit-up-backend.onrender.com/habit/auth/send-OTP?email=${email}`;
+                ? `http://localhost:8080/habit/auth/send-OTP-forgot-password?email=${email}`
+                : `http://localhost:8080/habit/auth/send-OTP?email=${email}`;
 
             const response = await fetch(endpoint, { method: 'POST' });
             if (!response.ok) {
@@ -1601,7 +1635,7 @@
         }
 
         async function verifyOTPAndRegister(requestBody) {
-            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/verify-otp-and-register';
+            const endpoint = 'http://localhost:8080/habit/auth/verify-otp-and-register';
 
             try {
                 const response = await fetch(endpoint, {
@@ -1667,7 +1701,7 @@
         }
 
         async function login(email, password) {
-  const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/login';
+  const endpoint = 'http://localhost:8080/habit/auth/login';
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1705,7 +1739,7 @@
 }
 
         async function adminLogin(email, password) {
-            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/admin/login';
+            const endpoint = 'http://localhost:8080/habit/auth/admin/login';
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1721,7 +1755,7 @@
         }
 
         async function resetPassword(email, otp, newPassword) {
-            const endpoint = 'https://habit-up-backend.onrender.com/habit/auth/forgot-password-otp';
+            const endpoint = 'http://localhost:8080/habit/auth/forgot-password-otp';
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

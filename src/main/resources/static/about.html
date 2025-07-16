@@ -29,7 +29,7 @@
     <!-- Font Awesome -->
     <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-          referrerpolicy="no-referrer" rel="stylesheet" />
+          referrerpolicy="no-referrer" rel="stylesheet"/>
 
     <!-- AOS (Animate On Scroll) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
@@ -103,32 +103,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('img/wave-pattern.png') repeat;
+            background: url('img/wave-pattern.jpg') repeat;
             opacity: 0.05;
             z-index: 0;
         }
 
         .team-section {
-          padding: 100px 0;
-          background: white;
+            padding: 100px 0;
+            background: white;
         }
 
         .team-card {
-          background: white;
-          border-radius: 15px;
-          padding: 30px;
-          margin-bottom: 30px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-          transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-          position: relative;
-          overflow: hidden;
-          border: 1px solid rgba(0,0,0,0.05);
-          transform: translateY(0);
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transform: translateY(0);
+            height: 100%;
         }
 
         .team-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
         .team-img {
@@ -148,11 +148,11 @@
         }
 
         .team-role {
-          color: var(--secondary-color);
-          font-weight: 600;
-          margin-bottom: 15px;
-          position: relative;
-          display: inline-block;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
         }
 
         .team-role::after {
@@ -163,6 +163,13 @@
             width: 40px;
             height: 2px;
             background: var(--secondary-color);
+        }
+
+        .team-workplace {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: 500;
         }
 
         .achievement-section {
@@ -181,7 +188,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('img/dots-pattern-white.png') repeat;
+            background: url('img/dots-pattern-white.jpg') repeat;
             opacity: 0.1;
             z-index: 0;
         }
@@ -319,36 +326,47 @@
 </head>
 
 <body class="profile-page">
-<!-- Header -->
+<!-- Header (Keep original nav) -->
 <header class="header d-flex align-items-center fixed-top" id="header">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-        <a class="logo d-flex align-items-center me-auto" href="index.html">
+
+        <!-- Hamburger-->
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+        <a class="logo d-flex align-items-center me-auto" href="home.html">
             <h1 class="sitename">HabitUP</h1>
             <span>.</span>
         </a>
         <nav class="navmenu" id="navmenu">
             <ul>
                 <li><a href="home.html">Home</a></li>
-                <li><a class="active" href="about.html">About</a></li>
+                <li><a href="about.html" class="active">About</a></li>
                 <li><a href="service.html">Services</a></li>
                 <li><a href="blog.html">Blogs</a></li>
                 <li><a href="upcoming.html">Upcoming</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         <div class="dropdown ms-3">
-            <img src="/static/img/user.png" alt="Profile"
-                 class="profile-img dropdown-toggle"
+            <img alt="Profile" aria-expanded="false" class="profile-img dropdown-toggle" data-bs-toggle="dropdown"
                  id="profileDropdown"
-                 data-bs-toggle="dropdown" aria-expanded="false">
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
-                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                 src="img/user.png"
+                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; transition: var(--transition);">
+            <ul aria-labelledby="profileDropdown" class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a>
+                </li>
+                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" id="logoutBtn"><i
+                        class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
         </div>
     </div>
+
+    <!-- Backdrop for sliding drawer -->
+    <div class="mobile-nav-backdrop"></div>
 </header>
 
 <!-- Main Content -->
@@ -367,12 +385,17 @@
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <h2 style="color:var(--secondary-color);">Our Story</h2>
-                    <p>HabitUP was born out of a research project at Ravenshaw University, aiming to address the modern challenges of habit formation and personal development. Our team recognized that while many people want to build good habits, most struggle with consistency and motivation.</p>
-                    <p>What started as an academic project quickly evolved into a passion-driven initiative to create real change. We combined psychological research with cutting-edge technology to develop a system that actually works.</p>
+                    <p>HabitUP was born out of a research project at Ravenshaw University, aiming to address the modern
+                        challenges of habit formation and personal development. Our team recognized that while many
+                        people want to build good habits, most struggle with consistency and motivation.</p>
+                    <p>What started as an academic project quickly evolved into a passion-driven initiative to create
+                        real change. We combined psychological research with cutting-edge technology to develop a system
+                        that actually works.</p>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="ratio ratio-16x9">
-                        <iframe class="rounded" src="https://www.youtube.com/embed/U_nzqnXWvSo" title="YouTube video" allowfullscreen></iframe>
+                        <iframe allowfullscreen class="rounded" src="https://www.youtube.com/embed/U_nzqnXWvSo"
+                                title="YouTube video"></iframe>
                     </div>
                 </div>
             </div>
@@ -389,7 +412,8 @@
                             <i class="bi bi-bullseye"></i>
                         </div>
                         <h3 style="color:var(--secondary-color);">Our Mission</h3>
-                        <p>To empower individuals to transform their lives through sustainable habit formation, leveraging behavioral science and personalized technology to create lasting change.</p>
+                        <p>To empower individuals to transform their lives through sustainable habit formation,
+                            leveraging behavioral science and personalized technology to create lasting change.</p>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -398,7 +422,8 @@
                             <i class="bi bi-eye"></i>
                         </div>
                         <h3 style="color:var(--secondary-color);">Our Vision</h3>
-                        <p>A world where personal growth is accessible to everyone, where good habits are formed effortlessly, and where people consistently become the best versions of themselves.</p>
+                        <p>A world where personal growth is accessible to everyone, where good habits are formed
+                            effortlessly, and where people consistently become the best versions of themselves.</p>
                     </div>
                 </div>
             </div>
@@ -462,38 +487,43 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in">
-                    <div class="team-card text-center">
-                        <img src="img/SashiSirTeam.jpeg" alt="Dr. Sashi Bhusan Nayak" class="team-img">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in">
+                    <div class="team-card h-100 d-flex flex-column text-center">
+                        <img alt="Dr. Sashi Bhusan Nayak" class="team-img" src="img/SashiSirTeam.png">
                         <h3 style="color:var(--secondary-color);">Dr. Sashi Bhusan Nayak</h3>
                         <div class="team-role">Mentor & Research Guide</div>
-                        <p>Assistant Professor at Ravenshaw University with expertise in behavioral psychology and habit formation research.</p>
+                        <div class="team-workplace">Ravenshaw University</div>
+                        <p>Assistant Professor with expertise in behavioral psychology and habit formation research.</p>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="team-card text-center">
-                        <img src="img/Basudev_Team.png" alt="Basudev Naik" class="team-img">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="team-card h-100 d-flex flex-column text-center">
+                        <img alt="Basudev Naik" class="team-img" src="img/BasudevProfile.jpeg">
                         <h3 style="color:var(--secondary-color);">Basudev Naik</h3>
                         <div class="team-role">Backend Developer</div>
-                        <p>Architected the robust backend systems that power HabitUP's analytics and personalization engine.</p>
+                        <div class="team-workplace">Wisen Technology</div>
+                        <p>Architected the robust backend systems powering HabitUP's analytics and personalization
+                            engine.</p>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="team-card text-center">
-                        <img src="img/SwastikTeam.jpg" alt="Swastik Behera" class="team-img">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="team-card h-100 d-flex flex-column text-center">
+                        <img alt="Swastik Behera" class="team-img" src="img/SwastikTeam.jpg">
                         <h3 style="color:var(--secondary-color);">Swastik Behera</h3>
                         <div class="team-role">FullStack Developer</div>
+                        <div class="team-workplace">Deloitte USI</div>
                         <p>Led the technical implementation, bridging frontend and backend systems.</p>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="team-card text-center">
-                        <img src="img/SidhuTeam.jpg" alt="Sidharth Kumar Pradhan" class="team-img">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="team-card h-100 d-flex flex-column text-center">
+                        <img alt="Sidharth Kumar Pradhan" class="team-img" src="img/SidharthProfile.jpeg">
                         <h3 style="color:var(--secondary-color);">Sidharth Kumar Pradhan</h3>
                         <div class="team-role">Frontend Developer</div>
+                        <div class="team-workplace">Infosys Limited</div>
                         <p>Crafted the intuitive interface and visual design language of HabitUP.</p>
                     </div>
                 </div>
@@ -507,8 +537,10 @@
             <div data-aos="fade-up">
                 <h2>National Conference Recognition</h2>
                 <p class="lead">Our work was presented and honored at the National Conference on Behavioral Sciences</p>
-                <img src="img/NationalConferenceHabit.jpg" alt="Team receiving certificate at national conference" class="achievement-img" data-aos="zoom-in">
-                <p>This recognition validated our research approach and motivated us to develop HabitUP into a full-fledged platform.</p>
+                <img alt="Team receiving certificate at national conference" class="achievement-img"
+                     data-aos="zoom-in" src="img/NationalConferenceHabit.jpg">
+                <p>This recognition validated our research approach and motivated us to develop HabitUP into a
+                    full-fledged platform.</p>
             </div>
         </div>
     </section>
@@ -559,7 +591,8 @@
         <div class="social-links d-flex justify-content-center">
             <a href="https://x.com/habitupindia"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.instagram.com/habitup.india?igsh=amxoMjBhZ3UxMXRt"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/habitup-habitup-0a2ab4370?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSRGPY6S7QbqxKuhCA60kXQ%3D%3D"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/habitup-habitup-0a2ab4370?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSRGPY6S7QbqxKuhCA60kXQ%3D%3D"><i
+                    class="bi bi-linkedin"></i></a>
         </div>
         <div class="copyright">
             <span>Copyright</span> <strong class="px-1 sitename">&copy; HabitUP</strong> <span>All Rights
@@ -572,6 +605,7 @@
 </footer>
 
 <!-- Scroll Top -->
+
 <a class="scroll-top d-flex align-items-center justify-content-center" href="#" id="scroll-top"><i
         class="bi bi-arrow-up-short"></i></a>
 
@@ -592,33 +626,36 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
+      checkAuth();
 
-    checkAuth();
-        // Load profile picture from localStorage
-        const profileImg = document.getElementById('profileDropdown');
-        const storedProfilePhoto = localStorage.getItem('profilePhoto');
+      // Prevent horizontal scroll issues on load
+      document.body.style.overflowX = 'hidden';
 
-        if (storedProfilePhoto) {
-            // Verify the image exists before setting it
-            const testImage = new Image();
-            testImage.onload = function() {
-                profileImg.src = storedProfilePhoto;
-            };
-            testImage.onerror = function() {
-                profileImg.src = '/static/img/user.png';
-            };
-            testImage.src = storedProfilePhoto;
-        }
+      // Load profile picture from localStorage
+      const profileImg = document.getElementById('profileDropdown');
+      const storedProfilePhoto = localStorage.getItem('profilePhoto');
 
-        // Complete logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            // Clear all localStorage items
-            localStorage.clear();
-            // Redirect to login page
-            window.location.href = 'index.html';
+      if (profileImg && storedProfilePhoto) {
+        const testImage = new Image();
+        testImage.onload = function () {
+          profileImg.src = storedProfilePhoto;
+        };
+        testImage.onerror = function () {
+          profileImg.src = 'img/user.png';
+        };
+        testImage.src = storedProfilePhoto;
+      }
+
+      // Complete logout functionality
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          localStorage.clear();
+          window.location.href = 'index.html';
         });
+      }
     });
 
     function checkAuth() {
@@ -627,8 +664,6 @@
         window.location.href = 'index.html';
       }
     }
-
-
 </script>
 </body>
 </html>

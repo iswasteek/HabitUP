@@ -79,7 +79,6 @@ public class DoctorServiceImpl implements DoctorService {
         }
 
         existingDoctor.setDoctorName(updateDoctor.getDoctorName());
-        existingDoctor.setSpecialization(updateDoctor.getSpecialization());
         existingDoctor.setPhoneNo(updateDoctor.getPhoneNo());
         existingDoctor.setYearsOfExperience(updateDoctor.getYearsOfExperience());
         existingDoctor.setAvailabilitySchedule(updateDoctor.getAvailabilitySchedule());

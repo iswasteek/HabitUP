@@ -13,6 +13,7 @@
       !selectHeader.classList.contains("fixed-top")
     )
       return;
+
     window.scrollY > 100
       ? selectBody.classList.add("scrolled")
       : selectBody.classList.remove("scrolled");
@@ -22,39 +23,38 @@
   window.addEventListener("load", toggleScrolled);
 
   /**
-   * Mobile nav toggle
+   * Mobile nav toggle logic
    */
-  const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
+  const mobileToggle = document.querySelector(".mobile-nav-toggle");
+  const body = document.body;
+  const backdrop = document.querySelector(".mobile-nav-backdrop");
+  const navMenu = document.querySelector("#navmenu");
+  const btnGetStarted = document.querySelector(".btn-getstarted");
 
-  function mobileNavToogle() {
-    document.querySelector("body").classList.toggle("mobile-nav-active");
-    mobileNavToggleBtn.classList.toggle("bi-list");
-    mobileNavToggleBtn.classList.toggle("bi-x");
+  function toggleMobileNav() {
+    body.classList.toggle("mobile-nav-active");
+    mobileToggle.classList.toggle("bi-list");
+    mobileToggle.classList.toggle("bi-x");
   }
-  mobileNavToggleBtn.addEventListener("click", mobileNavToogle);
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll("#navmenu a").forEach((navmenu) => {
-    navmenu.addEventListener("click", () => {
-      if (document.querySelector(".mobile-nav-active")) {
-        mobileNavToogle();
-      }
-    });
-  });
+  if (mobileToggle && navMenu) {
+    // Toggle on icon click
+    mobileToggle.addEventListener("click", toggleMobileNav);
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
-    navmenu.addEventListener("click", function (e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle("active");
-      this.parentNode.nextElementSibling.classList.toggle("dropdown-active");
-      e.stopImmediatePropagation();
+    // Close on backdrop click
+    if (backdrop) {
+      backdrop.addEventListener("click", toggleMobileNav);
+    }
+
+    // Close on nav link click (for same-page links)
+    document.querySelectorAll("#navmenu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (body.classList.contains("mobile-nav-active")) {
+          toggleMobileNav();
+        }
+      });
     });
-  });
+  }
 
   /**
    * Preloader
@@ -67,9 +67,9 @@
   }
 
   /**
-   * Scroll top button
+   * Scroll to top button
    */
-  let scrollTop = document.querySelector(".scroll-top");
+  const scrollTop = document.querySelector(".scroll-top");
 
   function toggleScrollTop() {
     if (scrollTop) {
@@ -78,19 +78,22 @@
         : scrollTop.classList.remove("active");
     }
   }
-  scrollTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+
+  if (scrollTop) {
+    scrollTop.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     });
-  });
+  }
 
   window.addEventListener("load", toggleScrollTop);
   document.addEventListener("scroll", toggleScrollTop);
 
   /**
-   * Animation on scroll function and init
+   * Animation on scroll init
    */
   function aosInit() {
     AOS.init({
@@ -149,25 +152,19 @@
       );
     });
 
-    isotopeItem
-      .querySelectorAll(".isotope-filters li")
-      .forEach(function (filters) {
-        filters.addEventListener(
-          "click",
-          function () {
-            isotopeItem
-              .querySelector(".isotope-filters .filter-active")
-              .classList.remove("filter-active");
-            this.classList.add("filter-active");
-            initIsotope.arrange({
-              filter: this.getAttribute("data-filter"),
-            });
-            if (typeof aosInit === "function") {
-              aosInit();
-            }
-          },
-          false
-        );
+    isotopeItem.querySelectorAll(".isotope-filters li").forEach(function (filterItem) {
+      filterItem.addEventListener("click", function () {
+        isotopeItem
+          .querySelector(".isotope-filters .filter-active")
+          .classList.remove("filter-active");
+        this.classList.add("filter-active");
+
+        initIsotope.arrange({
+          filter: this.getAttribute("data-filter"),
+        });
+
+        if (typeof aosInit === "function") aosInit();
       });
+    });
   });
 })();

@@ -11,7 +11,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
         registry.addMapping("/**") // Allow all endpoints
-                .allowedOrigins("http://localhost:63342", "https://habit-up-backend.onrender.com", "https://www.habitup.in", "http://127.0.0.1:63342", "http://localhost:3000") // Allow only React frontend
+                .allowedOrigins("http://localhost:63342", "http://localhost:8080", "https://www.habitup.in", "http://127.0.0.1:63342", "http://localhost:3000") // Allow only React frontend
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
                 .allowedHeaders("*") // Allow all headers
                 .allowCredentials(true); // Allow credentials (cookies, authorization headers, etc.)

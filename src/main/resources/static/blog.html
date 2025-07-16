@@ -379,10 +379,14 @@
 </head>
 
 <body class="profile-page">
-<!-- Header (kept exactly as provided) -->
+<!-- Header (Keep original nav) -->
 <header class="header d-flex align-items-center fixed-top" id="header">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-        <a class="logo d-flex align-items-center me-auto" href="index.html">
+
+        <!-- Hamburger-->
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+        <a class="logo d-flex align-items-center me-auto" href="home.html">
             <h1 class="sitename">HabitUP</h1>
             <span>.</span>
         </a>
@@ -391,21 +395,31 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="service.html">Services</a></li>
-                <li><a class="active" href="blog.html">Blogs</a></li>
+                <li><a href="blog.html" class="active">Blogs</a></li>
                 <li><a href="upcoming.html">Upcoming</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         <div class="dropdown ms-3">
-            <img src="/static/img/user.png" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
-                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+            <img alt="Profile" aria-expanded="false" class="profile-img dropdown-toggle" data-bs-toggle="dropdown"
+                 id="profileDropdown"
+                 src="img/user.png"
+                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; transition: var(--transition);">
+            <ul aria-labelledby="profileDropdown" class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a>
+                </li>
+                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" id="logoutBtn"><i
+                        class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
         </div>
     </div>
+
+    <!-- Backdrop for sliding drawer -->
+    <div class="mobile-nav-backdrop"></div>
 </header>
 
 <!-- Main Content -->

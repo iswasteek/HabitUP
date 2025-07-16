@@ -47,9 +47,6 @@ public class Doctor {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(name = "specialization", nullable = true, unique = false)
-    private String specialization;
-
     @Column(name = "yearsOfExperience", nullable = true, unique = false)
     private int yearsOfExperience;
 
@@ -152,14 +149,6 @@ public class Doctor {
 
     public void setRatings(float ratings) {
         this.ratings = ratings;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
     }
 
     public int getYearsOfExperience() {

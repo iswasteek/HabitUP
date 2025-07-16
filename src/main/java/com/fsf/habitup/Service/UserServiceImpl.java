@@ -350,41 +350,4 @@ public class UserServiceImpl implements UserService {
         return new LogoutResponse("User logged out successfully.", HttpStatus.OK.value());
     }
 
-    // @Override
-    // public boolean sendDocumentsForAdminVerification(Long userId,
-    // List<MultipartFile> documents,
-    // List<String> documentTypes) {
-    // User user = userRepository.findById(userId).orElseThrow(() -> new
-    // RuntimeException("User not found"));
-
-    // if (documents == null || documents.isEmpty() || documentTypes == null
-    // || documents.size() != documentTypes.size()) {
-    // throw new RuntimeException("Invalid documents or document types");
-    // }
-
-    // for (int i = 0; i < documents.size(); i++) {
-    // MultipartFile file = documents.get(i);
-    // String docType = documentTypes.get(i);
-
-    // String storedFileUrl = saveFileAndGetUrl(file); // Placeholder method
-
-    // Documents doc = new Documents();
-    // doc.setDocumentName(file.getOriginalFilename());
-    // doc.setDocumentType(docType);
-    // doc.setDocumentUrl(storedFileUrl);
-    // doc.setStatus(DocumentStatus.PENDING);
-    // doc.setUser(user);
-
-    // documentsRepository.save(doc);
-    // }
-    // return true;
-    // }
-
-    // // Placeholder for actual file storage logic (local/cloud)
-    // private String saveFileAndGetUrl(MultipartFile file) {
-    // // Implement your file saving here and return the file URL or path
-    // // For now, just returning the original filename as dummy URL
-    // return "/uploads/" + file.getOriginalFilename();
-    // }
-
 }

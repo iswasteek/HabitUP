@@ -43,6 +43,7 @@
       --accent-color: #4e9f3d;
       --surface-color: #ffffff;
       --dark-background: #1a1a2e;
+      --premium-color: #ffc107;
     }
 
     /* Custom Services Page Styles */
@@ -389,6 +390,138 @@
       font-weight: bold;
     }
 
+    /* Meeting UI Styles */
+    .meeting-container {
+      background-color: #f8f9fa;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .meeting-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .meeting-header h2 {
+      color: var(--heading-color);
+      margin-bottom: 15px;
+    }
+
+    .meeting-header p {
+      color: var(--default-color);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .meeting-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .meeting-video-container {
+      background-color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 400px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .meeting-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .control-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .control-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .control-btn.end-call {
+      background-color: #dc3545;
+    }
+
+    .control-btn.screen-share {
+      background-color: var(--heading-color);
+    }
+
+    .meeting-participants {
+      margin-top: 30px;
+    }
+
+    .participant-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .meeting-ended-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 10;
+    }
+
+    .premium-badge {
+      background-color: var(--premium-color);
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .subscription-cta {
+      background: linear-gradient(135deg, rgba(78, 159, 61, 0.1), rgba(255, 255, 255, 0.1));
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      margin: 30px 0;
+      border: 2px dashed var(--accent-color);
+    }
+
+    .subscription-cta h3 {
+      color: var(--heading-color);
+      margin-bottom: 15px;
+    }
+
+    .subscription-cta p {
+      color: var(--default-color);
+      margin-bottom: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .services-hero {
@@ -401,6 +534,14 @@
 
       .user-type-header h2 {
         font-size: 2rem;
+      }
+
+      .meeting-video-container {
+        height: 250px;
+      }
+
+      .meeting-controls {
+        flex-wrap: wrap;
       }
     }
   </style>
@@ -425,7 +566,7 @@
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
     <div class="dropdown ms-3">
-      <img src="/static/img/user.png" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="img/user.png" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
         <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
         <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
@@ -462,10 +603,10 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="p-4">
           <div class="service-icon mb-3">
-            <i class="bi bi-whatsapp" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-envelope" style="font-size: 2.5rem;"></i>
           </div>
-          <h3>1. WhatsApp Details</h3>
-          <p>After registration, you'll receive mentor details and Google Meet link via WhatsApp.</p>
+          <h3 style="color: #223b51;">1. Mail Details</h3>
+          <p>After registration, you'll receive mentor details and Meeting link via Gmail.</p>
         </div>
       </div>
 
@@ -474,8 +615,8 @@
           <div class="service-icon mb-3">
             <i class="bi bi-calendar-check" style="font-size: 2.5rem;"></i>
           </div>
-          <h3>2. Session Timing</h3>
-          <p>Your session timing will be confirmed and shared through WhatsApp communication.</p>
+          <h3 style="color: #223b51;">2. Session Timing</h3>
+          <p>Your session timing will be confirmed and shared through mail communication.</p>
         </div>
       </div>
 
@@ -484,8 +625,8 @@
           <div class="service-icon mb-3">
             <i class="bi bi-people" style="font-size: 2.5rem;"></i>
           </div>
-          <h3>3. Live Session</h3>
-          <p>Attend the live session with our expert mentor at the scheduled time via Google Meet.</p>
+          <h3 style="color: #223b51;">3. Live Session</h3>
+          <p>Attend the live session with our expert mentor at the scheduled time via the meeting here.</p>
         </div>
       </div>
     </div>
@@ -509,7 +650,7 @@
             </div>
             <p>"The meditation techniques I learned here have completely changed my daily routine. I'm more focused and peaceful than ever before."</p>
             <div class="d-flex align-items-center mt-4">
-              <img src="/static/img/ElderBoyReview.jpg" alt="User" class="rounded-circle me-3" width="50">
+              <img src="img/ElderBoyReview.jpg" alt="User" class="rounded-circle me-3" width="50">
               <div>
                 <h5 class="mb-0" style="color: #476d40;">Priyansh Sharma</h5>
                 <small class="text-muted">Adult Program</small>
@@ -527,7 +668,7 @@
             </div>
             <p>"My kids love the Balgopal sessions! They look forward to it every week and I can already see positive changes in their behavior."</p>
             <div class="d-flex align-items-center mt-4">
-              <img src="/static/img/ChildBoyReview.jpg" alt="User" class="rounded-circle me-3" width="50">
+              <img src="img/ChildBoyReview.jpg" alt="User" class="rounded-circle me-3" width="50">
               <div>
                 <h5 class="mb-0" style="color: #476d40;">Rahul Verma</h5>
                 <small class="text-muted">Parent</small>
@@ -545,7 +686,7 @@
             </div>
             <p>"As a senior citizen, I was skeptical at first, but the gentle yoga and meditation sessions have improved my mobility and peace of mind."</p>
             <div class="d-flex align-items-center mt-4">
-              <img src="/static/img/ElderGirlReview.jpg" alt="User" class="rounded-circle me-3" width="50">
+              <img src="img/ElderGirlReview.jpg" alt="User" class="rounded-circle me-3" width="50">
               <div>
                 <h5 class="mb-0" style="color: #476d40;">Shanti Devi</h5>
                 <small class="text-muted">Elder Program</small>
@@ -702,31 +843,30 @@
 
   // Load profile image from local storage
   document.addEventListener('DOMContentLoaded', function() {
-     // Load profile picture from localStorage
-        const profileImg = document.getElementById('profileDropdown');
-        const storedProfilePhoto = localStorage.getItem('profilePhoto');
+    checkAuth();
+    // Load profile picture from localStorage
+    const profileImg = document.getElementById('profileDropdown');
+    const storedProfilePhoto = localStorage.getItem('profilePhoto');
 
-        if (storedProfilePhoto) {
-            // Verify the image exists before setting it
-            const testImage = new Image();
-            testImage.onload = function() {
-                profileImg.src = storedProfilePhoto;
-            };
-            testImage.onerror = function() {
-                profileImg.src = '/static/img/user.png';
-            };
-            testImage.src = storedProfilePhoto;
-        }
-  });
+    if (storedProfilePhoto) {
+      // Verify the image exists before setting it
+      const testImage = new Image();
+      testImage.onload = function() {
+        profileImg.src = storedProfilePhoto;
+      };
+      testImage.onerror = function() {
+        profileImg.src = 'img/user.png';
+      };
+      testImage.src = storedProfilePhoto;
+    }
 
-  // Load content based on user type
-  document.addEventListener('DOMContentLoaded', function() {
-  checkAuth();
     const userType = localStorage.getItem('userType') || 'Adult'; // Default to Adult if not set
     const mainSection = document.getElementById('services-section');
     const heroTitle = document.getElementById('hero-title');
     const heroDescription = document.getElementById('hero-description');
     const howItWorksSection = document.getElementById('how-it-works-section');
+    const subscriptionType = localStorage.getItem('subscriptionType') || 'free';
+    const userId = localStorage.getItem('userId');
 
     // Hide How It Works section for Doctor
     if (userType === 'Doctor') {
@@ -744,8 +884,8 @@
         heroDescription.textContent = 'Maintain vitality, peace of mind, and spiritual growth in your golden years with our specially designed programs.';
         break;
       case 'Doctor':
-        heroTitle.textContent = 'Doctor Dashboard';
-        heroDescription.textContent = 'Connect with and help your patients through our messaging platform.';
+        heroTitle.textContent = 'Coach Dashboard';
+        heroDescription.textContent = 'Connect with and guide your clients through our coaching platform.';
         break;
       default: // Adult
         heroTitle.textContent = 'Transformative Programs for Adults';
@@ -756,11 +896,11 @@
     if (userType === 'Doctor') {
       loadDoctorContent();
     } else {
-      loadUserContent(userType);
+      loadUserContent(userType, subscriptionType, userId);
     }
   });
 
-  function loadUserContent(userType) {
+  function loadUserContent(userType, subscriptionType, userId) {
     const mainSection = document.getElementById('services-section');
 
     let sectionId = '';
@@ -869,7 +1009,7 @@
       <section id="${sectionId}" class="user-type-section ${sectionId}-section">
         <div class="container">
           <div class="user-type-header" data-aos="fade-up">
-            <h2>${sectionTitle}</h2>
+            <h2>${sectionTitle} ${subscriptionType === 'premium' ? '<span class="premium-badge">PREMIUM</span>' : ''}</h2>
             <p>${sectionDescription}</p>
           </div>
 
@@ -936,7 +1076,292 @@
       </section>
     `;
 
+    // Add meeting UI for premium users or free users who are within 30 days
+    if (subscriptionType === 'premium') {
+      html += `
+        <section class="user-type-section">
+          <div class="container">
+            <div class="meeting-container" data-aos="fade-up">
+              <div class="meeting-header">
+                <h2>Join Your Coaching Session</h2>
+                <p>Connect with your coach through our premium video meeting platform</p>
+              </div>
+
+              <div id="meeting-ui">
+                <div class="meeting-form">
+                  <div class="mb-3">
+                    <label for="meetingId" class="form-label">Meeting ID</label>
+                    <input type="text" class="form-control" id="meetingId" placeholder="Enter meeting ID provided by your coach">
+                  </div>
+                  <button id="joinMeetingBtn" class="btn btn-service w-100">Join Meeting</button>
+                </div>
+
+                <div id="video-container" style="display: none;">
+                  <div class="meeting-video-container">
+                    <div id="remote-video"></div>
+                    <div id="local-video"></div>
+                    <div id="meeting-ended-overlay" class="meeting-ended-overlay" style="display: none;">
+                      <h3>Meeting Ended</h3>
+                      <p>The host has ended this meeting</p>
+                    </div>
+                  </div>
+
+                  <div class="meeting-controls">
+                    <button class="control-btn" id="muteBtn"><i class="bi bi-mic"></i></button>
+                    <button class="control-btn" id="videoBtn"><i class="bi bi-camera-video"></i></button>
+                    <button class="control-btn screen-share" id="screenShareBtn"><i class="bi bi-laptop"></i></button>
+                    <button class="control-btn end-call" id="endCallBtn"><i class="bi bi-telephone-x"></i></button>
+                  </div>
+
+                  <div class="meeting-participants" id="participants-list">
+                    <h5>Participants</h5>
+                    <div class="participant-card">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>Loading participants...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    } else {
+      // Check if free user is older than 30 days
+      checkUserEligibility(userId).then(isOlderThan30Days => {
+        if (!isOlderThan30Days) {
+          html += `
+            <section class="user-type-section">
+              <div class="container">
+                <div class="subscription-cta" data-aos="fade-up">
+                  <h3>Upgrade to Premium for Coaching Sessions</h3>
+                  <p>Your free trial period has ended. To continue accessing live coaching sessions, please upgrade to our premium subscription.</p>
+                  <a href="subscription.html" class="btn btn-service">Upgrade Now</a>
+                </div>
+              </div>
+            </section>
+          `;
+        } else {
+          html += `
+            <section class="user-type-section">
+              <div class="container">
+                <div class="meeting-container" data-aos="fade-up">
+                  <div class="meeting-header">
+                    <h2>Join Your Free Coaching Session</h2>
+                    <p>Connect with your coach through our video meeting platform (30-day free trial)</p>
+                  </div>
+
+                  <div id="meeting-ui">
+                    <div class="meeting-form">
+                      <div class="mb-3">
+                        <label for="meetingId" class="form-label">Meeting ID</label>
+                        <input type="text" class="form-control" id="meetingId" placeholder="Enter meeting ID provided in your mail">
+                      </div>
+                      <button id="joinMeetingBtn" class="btn btn-service w-100">Join Meeting</button>
+                    </div>
+
+                    <div id="video-container" style="display: none;">
+                      <div class="meeting-video-container">
+                        <div id="remote-video"></div>
+                        <div id="local-video"></div>
+                        <div id="meeting-ended-overlay" class="meeting-ended-overlay" style="display: none;">
+                          <h3>Meeting Ended</h3>
+                          <p>The host has ended this meeting</p>
+                        </div>
+                      </div>
+
+                      <div class="meeting-controls">
+                        <button class="control-btn" id="muteBtn"><i class="bi bi-mic"></i></button>
+                        <button class="control-btn" id="videoBtn"><i class="bi bi-camera-video"></i></button>
+                        <button class="control-btn screen-share" id="screenShareBtn"><i class="bi bi-laptop"></i></button>
+                        <button class="control-btn end-call" id="endCallBtn"><i class="bi bi-telephone-x"></i></button>
+                      </div>
+
+                      <div class="meeting-participants" id="participants-list">
+                        <h5>Participants</h5>
+                        <div class="participant-card">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <span>Loading participants...</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          `;
+        }
+        mainSection.innerHTML = html;
+        setupMeetingHandlers(userId);
+      });
+      return;
+    }
+
     mainSection.innerHTML = html;
+    if (subscriptionType === 'premium') {
+      setupMeetingHandlers(userId);
+    }
+  }
+
+  async function checkUserEligibility(userId) {
+    try {
+      const response = await fetch(`http://localhost:8080/users/user/is-older-than-30days/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to check user eligibility');
+      }
+
+      const data = await response.json();
+      return data; // Assuming the endpoint returns a boolean
+    } catch (error) {
+      console.error('Error checking user eligibility:', error);
+      return true; // Default to showing subscription CTA if there's an error
+    }
+  }
+
+  function setupMeetingHandlers(userId) {
+    const joinMeetingBtn = document.getElementById('joinMeetingBtn');
+    const meetingIdInput = document.getElementById('meetingId');
+    const meetingForm = document.querySelector('.meeting-form');
+    const videoContainer = document.getElementById('video-container');
+    const muteBtn = document.getElementById('muteBtn');
+    const videoBtn = document.getElementById('videoBtn');
+    const screenShareBtn = document.getElementById('screenShareBtn');
+    const endCallBtn = document.getElementById('endCallBtn');
+    const meetingEndedOverlay = document.getElementById('meeting-ended-overlay');
+    const participantsList = document.getElementById('participants-list');
+
+    if (joinMeetingBtn) {
+      joinMeetingBtn.addEventListener('click', async function() {
+        const meetingId = meetingIdInput.value.trim();
+        if (!meetingId) {
+          alert('Please enter a valid meeting ID');
+          return;
+        }
+
+        try {
+          // Join meeting
+          const joinResponse = await fetch(`http://localhost:8080/meetings/join?userId=${userId}&meetingId=${meetingId}`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+
+          if (!joinResponse.ok) {
+            throw new Error('Failed to join meeting');
+          }
+
+          const joinMessage = await joinResponse.text();
+          console.log(joinMessage);
+
+          // Get meeting details
+          const detailsResponse = await fetch(`http://localhost:8080/meetings/${meetingId}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+
+          if (!detailsResponse.ok) {
+            throw new Error('Failed to get meeting details');
+          }
+
+          const meetingDetails = await detailsResponse.json();
+          console.log('Meeting details:', meetingDetails);
+
+          // Show video UI
+          meetingForm.style.display = 'none';
+          videoContainer.style.display = 'block';
+
+          // Update participants list
+          updateParticipantsList(meetingDetails.participants);
+
+          // In a real app, you would initialize WebRTC here
+          // This is just a simulation
+          simulateMeetingConnection();
+
+        } catch (error) {
+          console.error('Error joining meeting:', error);
+          alert('Failed to join meeting. Please try again.');
+        }
+      });
+    }
+
+    if (endCallBtn) {
+      endCallBtn.addEventListener('click', function() {
+        // In a real app, you would disconnect from the meeting
+        meetingEndedOverlay.style.display = 'flex';
+        setTimeout(() => {
+          videoContainer.style.display = 'none';
+          meetingForm.style.display = 'block';
+          meetingEndedOverlay.style.display = 'none';
+        }, 3000);
+      });
+    }
+
+    if (muteBtn) {
+      muteBtn.addEventListener('click', function() {
+        this.classList.toggle('btn-danger');
+        const icon = this.querySelector('i');
+        if (this.classList.contains('btn-danger')) {
+          icon.classList.remove('bi-mic');
+          icon.classList.add('bi-mic-mute');
+        } else {
+          icon.classList.remove('bi-mic-mute');
+          icon.classList.add('bi-mic');
+        }
+      });
+    }
+
+    if (videoBtn) {
+      videoBtn.addEventListener('click', function() {
+        this.classList.toggle('btn-danger');
+        const icon = this.querySelector('i');
+        if (this.classList.contains('btn-danger')) {
+          icon.classList.remove('bi-camera-video');
+          icon.classList.add('bi-camera-video-off');
+        } else {
+          icon.classList.remove('bi-camera-video-off');
+          icon.classList.add('bi-camera-video');
+        }
+      });
+    }
+
+    function updateParticipantsList(participants) {
+      if (!participantsList) return;
+
+      participantsList.innerHTML = '<h5>Participants</h5>';
+
+      participants.forEach(participantId => {
+        const participantCard = document.createElement('div');
+        participantCard.className = 'participant-card';
+        participantCard.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center">
+            <span>User ${participantId}</span>
+            <span class="badge bg-success">Connected</span>
+          </div>
+        `;
+        participantsList.appendChild(participantCard);
+      });
+    }
+
+    function simulateMeetingConnection() {
+      // In a real app, this would initialize WebRTC
+      console.log('Simulating meeting connection...');
+
+      // Simulate participants joining
+      setTimeout(() => {
+        updateParticipantsList([userId, 456, 789]);
+      }, 1500);
+    }
   }
 
   function loadDoctorContent() {
@@ -946,15 +1371,15 @@
       <section class="doctor-message-section">
         <div class="container">
           <div class="user-type-header" data-aos="fade-up">
-            <h2>Patient Messages</h2>
-            <p>Connect with and help your patients through our messaging platform</p>
+            <h2>Coach Dashboard</h2>
+            <p>Guide and support your clients through our coaching platform</p>
           </div>
 
           <div class="row">
             <div class="col-lg-8 mx-auto" data-aos="fade-up">
               <div class="message-card">
                 <div class="card-header text-center py-3">
-                  <h3 class="mb-0">Your Messages</h3>
+                  <h3 class="mb-0">Client Messages</h3>
                 </div>
                 <div class="card-body p-0">
                   <div class="message-list">
@@ -980,39 +1405,10 @@
                       </div>
                       <p class="message-preview mt-2">I'm not seeing much improvement in my sleep patterns. Should I adjust my routine?</p>
                     </div>
-                    <div class="message-item">
-                      <div class="d-flex justify-content-between">
-                        <span class="message-sender">Neha Gupta</span>
-                        <span class="message-time">5 days ago</span>
-                      </div>
-                      <p class="message-preview mt-2">The techniques you suggested for my child have been very helpful. Thank you!</p>
-                    </div>
-                    <div class="message-item">
-                      <div class="d-flex justify-content-between">
-                        <span class="message-sender">Rajesh Singh</span>
-                        <span class="message-time">1 week ago</span>
-                      </div>
-                      <p class="message-preview mt-2">Could you recommend some additional resources for stress management?</p>
-                    </div>
                   </div>
 
                   <div class="reply-section">
-                    <div class="coming-soon-banner">Messaging Feature Coming Soon!</div>
-                    <h5 class="mb-3">Reply to Patient</h5>
-                    <div class="mb-3">
-                      <select class="form-select" disabled>
-                        <option selected>Select patient</option>
-                        <option>Abhishek Padhi</option>
-                        <option>Priya Patel</option>
-                        <option>Amit Kumar</option>
-                        <option>Neha Gupta</option>
-                        <option>Rajesh Singh</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <textarea class="form-control" rows="4" placeholder="Type your message here..." disabled></textarea>
-                    </div>
-                    <button class="btn btn-service" disabled>Send Message</button>
+                    <a href="doctorMessage.html" class="btn btn-service w-100">View All Messages</a>
                   </div>
                 </div>
               </div>
@@ -1024,8 +1420,8 @@
       <section class="user-type-section">
         <div class="container">
           <div class="user-type-header" data-aos="fade-up">
-            <h2>Doctor Resources</h2>
-            <p>Tools and resources to help you serve your patients better</p>
+            <h2>Coach Resources</h2>
+            <p>Tools and resources to help you serve your clients better</p>
           </div>
 
           <div class="row g-4">
@@ -1035,9 +1431,9 @@
                   <div class="card-icon">
                     <i class="bi bi-journal-medical"></i>
                   </div>
-                  <h3 class="card-title">Patient Records</h3>
-                  <p class="card-text">Access your patients' progress records and session history.</p>
-                  <a href="#" class="btn btn-service mt-3 disabled">Coming Soon</a>
+                  <h3 class="card-title">Client Records</h3>
+                  <p class="card-text">Access your clients' progress records and session history.</p>
+                  <a href="#" class="btn btn-service mt-3">View Records</a>
                 </div>
               </div>
             </div>
@@ -1048,9 +1444,9 @@
                   <div class="card-icon">
                     <i class="bi bi-calendar2-check"></i>
                   </div>
-                  <h3 class="card-title">Appointment Schedule</h3>
-                  <p class="card-text">Manage your upcoming sessions and appointments.</p>
-                  <a href="#" class="btn btn-service mt-3 disabled">Coming Soon</a>
+                  <h3 class="card-title">Schedule Sessions</h3>
+                  <p class="card-text">Schedule and manage upcoming coaching sessions.</p>
+                  <a href="#" class="btn btn-service mt-3">View Schedule</a>
                 </div>
               </div>
             </div>
@@ -1062,8 +1458,61 @@
                     <i class="bi bi-file-earmark-text"></i>
                   </div>
                   <h3 class="card-title">Resources Library</h3>
-                  <p class="card-text">Access shared resources and materials for patient care.</p>
-                  <a href="#" class="btn btn-service mt-3 disabled">Coming Soon</a>
+                  <p class="card-text">Access shared resources and materials for client care.</p>
+                  <a href="#" class="btn btn-service mt-3">Browse Resources</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="user-type-section">
+        <div class="container">
+          <div class="meeting-container" data-aos="fade-up">
+            <div class="meeting-header">
+              <h2>Start a Coaching Session</h2>
+              <p>Host live sessions with your clients through our video meeting platform</p>
+            </div>
+
+            <div id="doctor-meeting-ui">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="newMeetingId" class="form-label">Meeting ID</label>
+                    <input type="text" class="form-control" id="newMeetingId" placeholder="Enter a unique meeting ID">
+                  </div>
+                  <button id="startMeetingBtn" class="btn btn-service w-100">Start New Meeting</button>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="existingMeetingId" class="form-label">Or join existing meeting</label>
+                    <input type="text" class="form-control" id="existingMeetingId" placeholder="Enter meeting ID">
+                  </div>
+                  <button id="joinAsHostBtn" class="btn btn-service w-100">Join as Host</button>
+                </div>
+              </div>
+
+              <div id="doctor-video-container" style="display: none; margin-top: 30px;">
+                <div class="meeting-video-container">
+                  <div id="doctor-remote-video"></div>
+                  <div id="doctor-local-video"></div>
+                </div>
+
+                <div class="meeting-controls">
+                  <button class="control-btn" id="doctor-muteBtn"><i class="bi bi-mic"></i></button>
+                  <button class="control-btn" id="doctor-videoBtn"><i class="bi bi-camera-video"></i></button>
+                  <button class="control-btn screen-share" id="doctor-screenShareBtn"><i class="bi bi-laptop"></i></button>
+                  <button class="control-btn end-call" id="doctor-endCallBtn"><i class="bi bi-telephone-x"></i></button>
+                </div>
+
+                <div class="meeting-participants" id="doctor-participants-list">
+                  <h5>Participants</h5>
+                  <div class="participant-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span>No participants yet</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1071,14 +1520,91 @@
         </div>
       </section>
     `;
+
+    // Setup doctor meeting handlers
+    const startMeetingBtn = document.getElementById('startMeetingBtn');
+    const joinAsHostBtn = document.getElementById('joinAsHostBtn');
+    const newMeetingIdInput = document.getElementById('newMeetingId');
+    const existingMeetingIdInput = document.getElementById('existingMeetingId');
+    const doctorVideoContainer = document.getElementById('doctor-video-container');
+    const doctorMuteBtn = document.getElementById('doctor-muteBtn');
+    const doctorVideoBtn = document.getElementById('doctor-videoBtn');
+    const doctorScreenShareBtn = document.getElementById('doctor-screenShareBtn');
+    const doctorEndCallBtn = document.getElementById('doctor-endCallBtn');
+    const doctorParticipantsList = document.getElementById('doctor-participants-list');
+
+    if (startMeetingBtn) {
+      startMeetingBtn.addEventListener('click', function() {
+        const meetingId = newMeetingIdInput.value.trim();
+        if (!meetingId) {
+          alert('Please enter a valid meeting ID');
+          return;
+        }
+
+        // In a real app, you would create a new meeting on the server
+        console.log('Starting new meeting with ID:', meetingId);
+        document.getElementById('doctor-meeting-ui').style.display = 'none';
+        doctorVideoContainer.style.display = 'block';
+
+        // Simulate participants joining
+        setTimeout(() => {
+          updateDoctorParticipantsList([123, 456]);
+        }, 2000);
+      });
+    }
+
+    if (joinAsHostBtn) {
+      joinAsHostBtn.addEventListener('click', function() {
+        const meetingId = existingMeetingIdInput.value.trim();
+        if (!meetingId) {
+          alert('Please enter a valid meeting ID');
+          return;
+        }
+
+        // In a real app, you would join an existing meeting as host
+        console.log('Joining existing meeting as host with ID:', meetingId);
+        document.getElementById('doctor-meeting-ui').style.display = 'none';
+        doctorVideoContainer.style.display = 'block';
+
+        // Simulate participants already in meeting
+        updateDoctorParticipantsList([123, 456, 789]);
+      });
+    }
+
+    if (doctorEndCallBtn) {
+      doctorEndCallBtn.addEventListener('click', function() {
+        // In a real app, you would end the meeting for all participants
+        alert('Meeting ended successfully');
+        doctorVideoContainer.style.display = 'none';
+        document.getElementById('doctor-meeting-ui').style.display = 'block';
+      });
+    }
+
+    function updateDoctorParticipantsList(participants) {
+      if (!doctorParticipantsList) return;
+
+      doctorParticipantsList.innerHTML = '<h5>Participants</h5>';
+
+      participants.forEach(participantId => {
+        const participantCard = document.createElement('div');
+        participantCard.className = 'participant-card';
+        participantCard.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Client ${participantId}</span>
+            <span class="badge bg-success">Connected</span>
+          </div>
+        `;
+        doctorParticipantsList.appendChild(participantCard);
+      });
+    }
   }
 
   function checkAuth() {
-      const authToken = localStorage.getItem('token');
-      if (!authToken) {
-        window.location.href = 'index.html';
-      }
+    const authToken = localStorage.getItem('token');
+    if (!authToken) {
+      window.location.href = 'index.html';
     }
+  }
 </script>
 <script crossorigin="anonymous"
         integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew=="

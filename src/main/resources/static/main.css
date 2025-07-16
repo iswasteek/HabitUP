@@ -399,140 +399,120 @@ h6 {
   }
 }
 
-/* Navmenu - Mobile */
+/*=========================================
+=         MOBILE NAVIGATION MENU          =
+=========================================*/
+
 @media (max-width: 1199px) {
+  /* Mobile Toggle Icon */
   .mobile-nav-toggle {
-    color: var(--nav-color);
     font-size: 28px;
-    line-height: 0;
-    margin-right: 10px;
+    color: var(--nav-color);
     cursor: pointer;
-    transition: color 0.3s;
+    z-index: 10002;
+    transition: color 0.3s ease;
   }
 
+  /* Drawer Nav Menu */
   .navmenu {
-    padding: 0;
-    z-index: 9997;
-  }
-
-  .navmenu ul {
-    display: none;
-    list-style: none;
-    position: absolute;
-    inset: 60px 20px 20px 20px;
-    padding: 10px 0;
-    margin: 0;
-    border-radius: 6px;
-    background-color: var(--nav-mobile-background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--nav-bg, #ffffff);
+    padding: 30px 20px;
     overflow-y: auto;
-    transition: 0.3s;
-    z-index: 9998;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    transform: translateX(-100%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 10001;
   }
 
-  .navmenu a,
-  .navmenu a:focus {
-    color: var(--nav-dropdown-color);
-    padding: 10px 20px;
-    font-family: var(--nav-font);
-    font-size: 17px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
-    transition: 0.3s;
+  /* When Active */
+  .mobile-nav-active .navmenu {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
   }
 
-  .navmenu a i,
-  .navmenu a:focus i {
-    font-size: 12px;
-    line-height: 0;
-    margin-left: 5px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: 0.3s;
-    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
-  }
-
-  .navmenu a i:hover,
-  .navmenu a:focus i:hover {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-  }
-
-  .navmenu a:hover,
-  .navmenu .active,
-  .navmenu .active:focus {
-    color: var(--nav-dropdown-hover-color);
-  }
-
-  .navmenu .active i,
-  .navmenu .active:focus i {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-    transform: rotate(180deg);
-  }
-
-  .navmenu .dropdown ul {
-    position: static;
+  /* Backdrop Blur Overlay */
+  .mobile-nav-backdrop {
     display: none;
-    z-index: 99;
-    padding: 10px 0;
-    margin: 10px 20px;
-    background-color: var(--nav-dropdown-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    box-shadow: none;
-    transition: all 0.5s ease-in-out;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
   }
 
-  .navmenu .dropdown ul ul {
-    background-color: rgba(33, 37, 41, 0.1);
-  }
-
-  .navmenu .dropdown > .dropdown-active {
+  .mobile-nav-active .mobile-nav-backdrop {
     display: block;
-    background-color: rgba(33, 37, 41, 0.03);
   }
 
+  /* Lock scroll when nav open */
   .mobile-nav-active {
     overflow: hidden;
   }
 
-  .mobile-nav-active .mobile-nav-toggle {
-    color: #fff;
-    position: absolute;
-    font-size: 32px;
-    top: 15px;
-    right: 15px;
-    margin-right: 0;
-    z-index: 9999;
+  /* Nav Links */
+  .navmenu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 
-  .mobile-nav-active .navmenu {
-    position: fixed;
-    overflow: hidden;
-    inset: 0;
-    background: rgba(33, 37, 41, 0.8);
-    transition: 0.3s;
+  .navmenu li {
+    margin-bottom: 16px;
   }
 
-  .mobile-nav-active .navmenu > ul {
+  .navmenu a {
     display: block;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #245075;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: transparent;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .navmenu a:hover,
+  .navmenu .active {
+    background-color: var(--nav-hover-bg, #f0f0f0);
+    color: var(--nav-hover-color, #000);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hide CTA ONLY when mobile nav is open */
+  .mobile-nav-active .btn-getstarted {
+    display: none !important;
   }
 }
-
 /*--------------------------------------------------------------
   # Global Footer
   --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
-  background: url("../img/footer-bg.jpg") center center no-repeat;
+  background: url("img/FooterBG.png") center center no-repeat;
   background-size: cover;
   font-size: 14px;
   text-align: center;

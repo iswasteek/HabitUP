@@ -3,24 +3,48 @@ package com.fsf.habitup.DTO;
 import com.fsf.habitup.Enums.DocumentStatus;
 import com.fsf.habitup.entity.Documents;
 
+import java.time.LocalDateTime;
+
 public class DocumentDTO {
 
     private Long id;
-    private String documentName;
-    private String documentType;
-    private String documentUrl;
+
+    private String idProof;         // base64-encoded string
+    private String supportingDoc;   // base64-encoded string
+    private String optionalDoc;     // base64-encoded string (nullable)
+
+    private DocumentStatus status;
+
+    private LocalDateTime uploadDate;
+
     private Long userId;
 
-
+    // ====== Factory: Entity → DTO ======
     public static DocumentDTO fromEntity(Documents document) {
         DocumentDTO dto = new DocumentDTO();
         dto.setId(document.getId());
-        dto.setDocumentName(document.getDocumentName());
-        dto.setDocumentType(document.getDocumentType());
-        dto.setDocumentUrl(document.getDocumentUrl());
+        dto.setIdProof(document.getIdProof());
+        dto.setSupportingDoc(document.getSupportingDoc());
+        dto.setOptionalDoc(document.getOptionalDoc());
+        dto.setStatus(document.getStatus());
+        dto.setUploadDate(document.getUploadDate());
         dto.setUserId(document.getUser().getUserId());
         return dto;
     }
+
+    // ====== Optional: DTO → Entity (if needed) ======
+    public Documents toEntity() {
+        Documents doc = new Documents();
+        doc.setId(this.id);
+        doc.setIdProof(this.idProof);
+        doc.setSupportingDoc(this.supportingDoc);
+        doc.setOptionalDoc(this.optionalDoc);
+        doc.setStatus(this.status);
+        doc.setUploadDate(this.uploadDate);
+        return doc;
+    }
+
+    // ====== Getters and Setters ======
 
     public Long getId() {
         return id;
@@ -30,28 +54,44 @@ public class DocumentDTO {
         this.id = id;
     }
 
-    public String getDocumentName() {
-        return documentName;
+    public String getIdProof() {
+        return idProof;
     }
 
-    public void setDocumentName(String documentName) {
-        this.documentName = documentName;
+    public void setIdProof(String idProof) {
+        this.idProof = idProof;
     }
 
-    public String getDocumentType() {
-        return documentType;
+    public String getSupportingDoc() {
+        return supportingDoc;
     }
 
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
+    public void setSupportingDoc(String supportingDoc) {
+        this.supportingDoc = supportingDoc;
     }
 
-    public String getDocumentUrl() {
-        return documentUrl;
+    public String getOptionalDoc() {
+        return optionalDoc;
     }
 
-    public void setDocumentUrl(String documentUrl) {
-        this.documentUrl = documentUrl;
+    public void setOptionalDoc(String optionalDoc) {
+        this.optionalDoc = optionalDoc;
+    }
+
+    public DocumentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(DocumentStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(LocalDateTime uploadDate) {
+        this.uploadDate = uploadDate;
     }
 
     public Long getUserId() {

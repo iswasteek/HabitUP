@@ -2,9 +2,841 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a HabitUP Instructor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .back-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Instructor Benefits Section */
+        .benefits-section {
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .benefit-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            margin-bottom: 80px;
+        }
+
+        .process-container {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .process-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .process-step {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            margin: 0 20px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            border: 3px solid var(--primary);
+        }
+
+        .step-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex-grow: 1;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .step-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Chat Visualization */
+        .chat-visualization {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .chat-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: messageIn 0.5s ease;
+        }
+
+        .user-message {
+            align-self: flex-start;
+            background-color: #f1f3ff;
+            border-bottom-left-radius: 5px;
+        }
+
+        .instructor-message {
+            align-self: flex-end;
+            background-color: var(--primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .user-message .message-time {
+            text-align: left;
+        }
+
+        .instructor-message .message-time {
+            text-align: right;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-self: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Application Form */
+        .application-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-label.required::after {
+            content: ' *';
+            color: var(--warning);
+        }
+
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .file-upload:hover {
+            border-color: var(--accent);
+            background-color: #f8faff;
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .file-upload-text {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .file-upload input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-info {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: none;
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Documents Info */
+        .documents-info {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .documents-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .documents-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .documents-list {
+            list-style-type: none;
+        }
+
+        .documents-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .documents-list li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Response Message */
+        .response-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes messageIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .process-step, .process-step:nth-child(even) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-icon {
+                margin-bottom: 15px;
+            }
+
+            .application-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-Upcoming
+<div class="container">
+    <header>
+            <button class="back-btn" onclick="window.location.href='#apply_here'">
+                  Apply Here &nbsp;
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        <button class="back-btn" onclick="window.location.href='home.html'">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </button>
+    </header>
+
+    <h1>Become a HabitUP Instructor</h1>
+    <p class="subtitle">Join our team of certified habit transformation experts and help users build better lives through personalized guidance and support.</p>
+
+    <!-- Instructor Benefits Section -->
+    <section class="benefits-section">
+        <h2 class="section-title">Why Become a HabitUP Instructor?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3 class="benefit-title">Make a Real Impact</h3>
+                <p class="benefit-desc">Help individuals transform their lives by building positive habits and breaking negative ones through your expert guidance.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+                <h3 class="benefit-title">Flexible Schedule</h3>
+                <p class="benefit-desc">Work on your own time and set your availability to match your lifestyle while helping others.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="benefit-title">Growth Opportunities</h3>
+                <p class="benefit-desc">Access ongoing training, resources, and certification programs to enhance your coaching skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2 class="section-title">How HabitUP Instructors Help</h2>
+        <div class="process-container">
+            <div class="process-line"></div>
+
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">User Shares Their Challenge</h3>
+                    <p class="step-desc">Users describe their habit struggles, goals, and challenges through our secure messaging system.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Instructor Analyzes</h3>
+                    <p class="step-desc">You review the user's situation, identify patterns, and understand the root causes of their habit challenges.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Personalized Solution</h3>
+                    <p class="step-desc">You create a tailored action plan with practical steps, accountability measures, and motivational strategies.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Ongoing Support</h3>
+                    <p class="step-desc">You provide continuous guidance, adjust strategies as needed, and celebrate progress with the user.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Visualization -->
+    <section class="chat-visualization">
+        <div class="chat-header">
+            <h3 class="chat-title">Instructor-User Interaction</h3>
+        </div>
+
+        <div class="chat-messages">
+            <div class="message user-message">
+                <p>I've been trying to wake up at 6am for months but always end up hitting snooze until 7:30. I feel so unproductive!</p>
+                <span class="message-time">Today, 9:14 AM</span>
+            </div>
+
+            <div class="message instructor-message">
+                <p>I understand the struggle. Let's analyze your current routine. What time do you usually go to bed?</p>
+                <span class="message-time">Today, 9:16 AM</span>
+            </div>
+
+            <div class="message user-message">
+                <p>Around midnight, sometimes later. I know it's late but I can't seem to unwind earlier.</p>
+                <span class="message-time">Today, 9:18 AM</span>
+            </div>
+
+            <div class="message instructor-message">
+                <p>This makes sense. For a 6am wake-up, you need 7-8 hours sleep. Let's create a gradual wind-down routine starting at 10pm.</p>
+                <span class="message-time">Today, 9:20 AM</span>
+            </div>
+
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="application-section" id="apply_here">
+        <h2 class="section-title">Instructor Application</h2>
+
+        <div class="documents-info">
+            <h3 class="documents-title">
+                <i class="fas fa-file-alt"></i>
+                Required Documents
+            </h3>
+            <ul class="documents-list">
+                <li>Government-issued ID proof (front and back in one image)</li>
+                <li>Supporting document (certification, degree, or proof of experience in coaching/psychology/habit formation)</li>
+                <li>Optional: Additional documents that support your application (max 100KB each, PDF only)</li>
+            </ul>
+        </div>
+
+        <form id="instructorForm">
+            <div class="form-group">
+                <label class="form-label required">Government ID Proof</label>
+                <div class="file-upload" id="idProofUpload">
+                    <i class="fas fa-id-card"></i>
+                    <p class="file-upload-text">Click to upload your government ID (front and back)</p>
+                    <input type="file" id="idProof" name="idProof" accept=".pdf" required>
+                </div>
+                <p class="file-info" id="idProofInfo"></p>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">Supporting Document</label>
+                <div class="file-upload" id="supportingDocUpload">
+                    <i class="fas fa-certificate"></i>
+                    <p class="file-upload-text">Click to upload your supporting document</p>
+                    <input type="file" id="supportingDoc" name="supportingDoc" accept=".pdf" required>
+                </div>
+                <p class="file-info" id="supportingDocInfo"></p>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Optional Document (if any)</label>
+                <div class="file-upload" id="optionalDocUpload">
+                    <i class="fas fa-file-upload"></i>
+                    <p class="file-upload-text">Click to upload any additional supporting document</p>
+                    <input type="file" id="optionalDoc" name="optionalDoc" accept=".pdf">
+                </div>
+                <p class="file-info" id="optionalDocInfo"></p>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
+
+            <div class="response-message" id="responseMessage"></div>
+        </form>
+    </section>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    if (!userId || !token) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+        // File upload handling
+        const fileInputs = {
+            idProof: document.getElementById('idProof'),
+            supportingDoc: document.getElementById('supportingDoc'),
+            optionalDoc: document.getElementById('optionalDoc')
+        };
+
+        const fileInfoDisplays = {
+            idProof: document.getElementById('idProofInfo'),
+            supportingDoc: document.getElementById('supportingDocInfo'),
+            optionalDoc: document.getElementById('optionalDocInfo')
+        };
+
+        const fileUploadContainers = {
+            idProof: document.getElementById('idProofUpload'),
+            supportingDoc: document.getElementById('supportingDocUpload'),
+            optionalDoc: document.getElementById('optionalDocUpload')
+        };
+
+        // Add event listeners for each file input
+        for (const [field, input] of Object.entries(fileInputs)) {
+            input.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+
+                    // Check file size (100KB max)
+                    if (file.size > 100 * 1024) {
+                        alert('File size must be less than 100KB');
+                        this.value = '';
+                        fileInfoDisplays[field].textContent = '';
+                        fileInfoDisplays[field].style.display = 'none';
+                        return;
+                    }
+
+                    // Check file type
+                    if (file.type !== 'application/pdf') {
+                        alert('Only PDF files are allowed');
+                        this.value = '';
+                        fileInfoDisplays[field].textContent = '';
+                        fileInfoDisplays[field].style.display = 'none';
+                        return;
+                    }
+
+                    // Update UI
+                    fileInfoDisplays[field].textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(1)}KB)`;
+                    fileInfoDisplays[field].style.display = 'block';
+                    fileUploadContainers[field].style.borderColor = '#4361ee';
+                }
+            });
+        }
+
+        // Form submission
+       const form = document.getElementById('instructorForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const responseMessage = document.getElementById('responseMessage');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            if (!fileInputs.idProof.files[0] || !fileInputs.supportingDoc.files[0]) {
+                showResponse('Please upload ID proof and supporting document.', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('userId', userId);
+            formData.append('idProof', fileInputs.idProof.files[0]);
+            formData.append('supportingDoc', fileInputs.supportingDoc.files[0]);
+
+            if (fileInputs.optionalDoc.files.length > 0) {
+                formData.append('optionalDoc', fileInputs.optionalDoc.files[0]);
+            }
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                const response = await fetch('http://localhost:8080/documents/upload', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                        // DO NOT set Content-Type manually when using FormData
+                    },
+                    body: formData
+                });
+
+                const resultText = await response.text();
+
+                if (response.ok) {
+                    if (resultText.includes('successfully')) {
+                        showResponse(resultText, 'success');
+                    } else {
+                        showResponse(resultText, 'info');
+                    }
+                } else {
+                    showResponse(resultText || 'Document upload failed.', 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                showResponse('Network error. Please try again later.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            }
+        });
+
+        function showResponse(message, type) {
+            responseMessage.textContent = message;
+            responseMessage.className = `response-message ${type}`;
+            responseMessage.style.display = 'block';
+
+            // Scroll to response
+            responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Simulate typing animation
+        setTimeout(() => {
+            const typingIndicator = document.querySelector('.typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.style.display = 'none';
+
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message instructor-message';
+                newMessage.innerHTML = `
+                    <p>Here's a simple 3-step plan: 1) Start winding down at 10pm with no screens 2) Read a book until sleepy 3) Set alarm for 6:15am (we'll gradually move to 6am). How does this sound?</p>
+                    <span class="message-time">Today, 9:22 AM</span>
+                `;
+
+                document.querySelector('.chat-messages').appendChild(newMessage);
+            }
+        }, 3000);
+    });
+</script>
 </body>
 </html>

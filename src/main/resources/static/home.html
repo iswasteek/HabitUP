@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Home</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="Welcome to your HabitUP dashboard – track your progress, unlock exclusive content, and grow with expert guidance from Dr. Sashi Bhusan Nayak."
+          name="description">
+    <meta content="HabitUP dashboard, habit tracking, personal growth, premium habits, mentorship, Dr. Sashi Bhusan Nayak, daily motivation, habit mastery"
+          name="keywords">
 
     <!-- Favicons -->
     <link href="img/HLogo.jpg" rel="icon">
@@ -14,7 +16,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -27,11 +30,11 @@
     <!-- Font Awesome -->
     <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-          referrerpolicy="no-referrer" rel="stylesheet" />
+          referrerpolicy="no-referrer" rel="stylesheet"/>
 
     <!-- AOS (Animate On Scroll) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="nav.css" />
+    <link href="nav.css" rel="stylesheet"/>
 
     <!-- Main CSS File -->
     <style>
@@ -280,7 +283,7 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background: url('/static/img/PricingBG.png') center/cover no-repeat;
+          background: url('img/PricingBG.png') center/cover no-repeat;
           opacity: 0.03;
           z-index: 0;
         }
@@ -702,14 +705,32 @@
             font-size: 1.8rem;
           }
         }
+
+        #pro-member-section ul li {
+          list-style: none;
+          padding-left: 1.5rem;
+          position: relative;
+          margin-bottom: 0.75rem;
+        }
+
+        #pro-member-section ul li::before {
+          content: '⭐';
+          position: absolute;
+          left: 0;
+          color: gold;
+        }
     </style>
 </head>
 
 <body class="profile-page">
-<!-- Header (Original Nav) -->
+<!-- Header (Keep original nav) -->
 <header class="header d-flex align-items-center fixed-top" id="header">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-        <a class="logo d-flex align-items-center me-auto" href="index.html">
+
+        <!-- Hamburger-->
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+        <a class="logo d-flex align-items-center me-auto" href="home.html">
             <h1 class="sitename">HabitUP</h1>
             <span>.</span>
         </a>
@@ -721,18 +742,28 @@
                 <li><a href="blog.html">Blogs</a></li>
                 <li><a href="upcoming.html">Upcoming</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         <div class="dropdown ms-3">
-            <img src="" alt="Profile" class="profile-img dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
-                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+            <img alt="Profile" aria-expanded="false" class="profile-img dropdown-toggle" data-bs-toggle="dropdown"
+                 id="profileDropdown"
+                 src="img/user.png"
+                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; transition: var(--transition);">
+            <ul aria-labelledby="profileDropdown" class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a>
+                </li>
+                <li><a class="dropdown-item" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" id="logoutBtn"><i
+                        class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
         </div>
     </div>
+
+    <!-- Backdrop for sliding drawer -->
+    <div class="mobile-nav-backdrop"></div>
 </header>
 
 <main>
@@ -745,40 +776,64 @@
                     <h1 class="hero-title" id="welcome-title">Welcome Back, User!</h1>
                     <p class="hero-subtitle" id="welcome-subtitle">Your journey to better habits starts here</p>
                     <div class="d-flex gap-3">
-                        <a href="#learning" class="btn btn-light btn-lg px-4" style="border-radius: 50px; font-weight: 600;">Start Learning</a>
-                        <a href="#subscription" class="btn btn-outline-light btn-lg px-4" style="border-radius: 50px; font-weight: 600;">Go Premium</a>
+                        <a class="btn btn-light btn-lg px-4" href="#learning"
+                           style="border-radius: 50px; font-weight: 600;">Start Learning</a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="#subscription"
+                           style="border-radius: 50px; font-weight: 600;">Go Premium</a>
                     </div>
                 </div>
                 <div class="col-lg-5 d-none d-lg-block">
                     <div class="hero-illustration" data-aos="fade-left">
-                        <img src="img/HabitTracker.png" alt="Habit Tracker" class="img-fluid">
+                        <img alt="Habit Tracker" class="img-fluid" src="img/HabitTracker.png">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!--    Hypnotism-->
+    <section id="mentor-showcase" style="padding: 50px 0; background-color: #f9f9f9;">
+        <div class="container" style="max-width: 960px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; color:#6c5ce7;">Mentor Spotlight: Dr. Sashi Bhusan
+                Nayak</h2>
+            <p style="font-size: 1rem; margin-bottom: 30px;">
+                Watch as Dr. Nayak demonstrates live hypnotism at GIET University, Gunupur — inspiring young minds
+                through the power of focus and mental discipline.
+            </p>
+            <video controls id="mentorVideo" loop
+                   style="width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <source src="vid/InstantHypnosis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    <!--Hypnotism ends -->
+
     <!-- Video Learning Section -->
     <section class="container" id="learning">
         <h2 class="section-title text-center" data-aos="fade-up" style="color: #6c5ce7;">Habit Mastery Videos</h2>
-        <p class="text-center mb-5 mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Our expertly crafted video lessons will guide you through the science and practice of building lasting habits.</p>
+        <p class="text-center mb-5 mx-auto" data-aos="fade-up" data-aos-delay="100" style="max-width: 700px;">Our
+            expertly crafted video lessons will guide you through the science and practice of building lasting
+            habits.</p>
 
         <div class="row">
             <!-- Video 1 -->
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">1</div>
                     </div>
                     <div class="video-body">
                         <h5 class="video-title" style="color:#fdc134;">The Psychology of Habits</h5>
-                        <p class="video-desc">Understand how habits form in your brain and how to rewire them effectively.</p>
+                        <p class="video-desc">Understand how habits form in your brain and how to rewire them
+                            effectively.</p>
                         <div class="video-duration">
                             <i class="bi bi-clock"></i> 02:39
                         </div>
                     </div>
-                    <a href="https://drive.google.com/file/d/1t75UEcqnVnO9viGt90YtYRAOqRois5gg/preview" class="stretched-link" target="_blank"></a>
+                    <a class="stretched-link"
+                       href="https://drive.google.com/file/d/1t75UEcqnVnO9viGt90YtYRAOqRois5gg/preview" target="_blank"></a>
                 </div>
             </div>
 
@@ -786,17 +841,18 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">2</div>
                     </div>
                     <div class="video-body">
-                        <h5 class="video-title" style="color:#fdc134;">Morning Routine Design</h5>
-                        <p class="video-desc">Create a powerful morning routine that sets you up for daily success.</p>
+                        <h5 class="video-title" style="color:#fdc134;">Learning Hypnosis</h5>
+                        <p class="video-desc">Create a powerful mind using hypnosis for daily success.</p>
                         <div class="video-duration">
                             <i class="bi bi-clock"></i> 00:58
                         </div>
                     </div>
-                    <a href="https://drive.google.com/file/d/1peINiv5delayaRicbdwjklpdR6VQptPK/preview" class="stretched-link" target="_blank"></a>
+                    <a class="stretched-link"
+                       href="https://drive.google.com/file/d/1peINiv5delayaRicbdwjklpdR6VQptPK/preview" target="_blank"></a>
                 </div>
             </div>
 
@@ -804,7 +860,7 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">3</div>
                     </div>
                     <div class="video-body">
@@ -814,7 +870,8 @@
                             <i class="bi bi-clock"></i> 01:00
                         </div>
                     </div>
-                    <a href="https://drive.google.com/file/d/1poyMuq8YnE8UbCgla5kioz5Mj8Ckpz8W/preview" class="stretched-link" target="_blank"></a>
+                    <a class="stretched-link"
+                       href="https://drive.google.com/file/d/1poyMuq8YnE8UbCgla5kioz5Mj8Ckpz8W/preview" target="_blank"></a>
                 </div>
             </div>
 
@@ -822,17 +879,19 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">4</div>
                     </div>
                     <div class="video-body">
                         <h5 class="video-title" style="color:#fdc134;">Habit Stacking Secrets</h5>
-                        <p class="video-desc">Combine multiple habits for maximum efficiency and compounding results.</p>
+                        <p class="video-desc">Combine multiple habits for maximum efficiency and compounding
+                            results.</p>
                         <div class="video-duration">
                             <i class="bi bi-clock"></i> 02:23
                         </div>
                     </div>
-                    <a href="https://drive.google.com/file/d/1peYISaYDhFJn1q3YD9x0RVLIMyhbHGfn/preview" class="stretched-link" target="_blank"></a>
+                    <a class="stretched-link"
+                       href="https://drive.google.com/file/d/1peYISaYDhFJn1q3YD9x0RVLIMyhbHGfn/preview" target="_blank"></a>
                 </div>
             </div>
 
@@ -840,7 +899,7 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="video-card locked" id="locked-video">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">5</div>
                         <div class="video-lock">
                             <i class="bi bi-lock"></i>
@@ -848,7 +907,8 @@
                     </div>
                     <div class="video-body">
                         <h5 class="video-title" style="color:#fdc134;">Advanced Habit Formation</h5>
-                        <p class="video-desc">Take your habit-building skills to the next level with neuroscience-backed techniques.</p>
+                        <p class="video-desc">Take your habit-building skills to the next level with neuroscience-backed
+                            techniques.</p>
                         <div class="video-duration">
                             <i class="bi bi-clock"></i> 25:12
                         </div>
@@ -860,7 +920,7 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
                 <div class="video-card locked">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">6</div>
                         <div class="video-lock">
                             <i class="bi bi-lock"></i>
@@ -868,7 +928,8 @@
                     </div>
                     <div class="video-body">
                         <h5 class="video-title" style="color:#fdc134;">Habit Tracking Systems</h5>
-                        <p class="video-desc">Discover the most effective systems to track and maintain your habits long-term.</p>
+                        <p class="video-desc">Discover the most effective systems to track and maintain your habits
+                            long-term.</p>
                         <div class="video-duration">
                             <i class="bi bi-clock"></i> 19:45
                         </div>
@@ -880,7 +941,7 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="video-card locked">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">7</div>
                         <div class="video-lock">
                             <i class="bi bi-lock"></i>
@@ -900,7 +961,7 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="video-card locked">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">8</div>
                         <div class="video-lock">
                             <i class="bi bi-lock"></i>
@@ -908,7 +969,8 @@
                     </div>
                     <div class="video-body">
                         <h5 class="video-title" style="color:#fdc134;">Habit Resilience</h5>
-                        <p class="video-desc">How to maintain your habits even during challenging times and setbacks.</p>
+                        <p class="video-desc">How to maintain your habits even during challenging times and
+                            setbacks.</p>
                         <div class="video-duration">
                             <i class="bi bi-clock"></i> 17:55
                         </div>
@@ -920,7 +982,7 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
                 <div class="video-card locked">
                     <div class="video-thumbnail">
-                        <img src="img/ThumbnailLearnig.png" alt="Video Thumbnail">
+                        <img alt="Video Thumbnail" src="img/ThumbnailLearnig.png">
                         <div class="video-number">9</div>
                         <div class="video-lock">
                             <i class="bi bi-lock"></i>
@@ -942,7 +1004,8 @@
     <section class="pricing-section" id="subscription">
         <div class="container">
             <h2 class="section-title text-center" data-aos="fade-up" style="color: #fdc134;">Choose Your Plan</h2>
-            <p class="text-center mb-5 mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Unlock premium content and accelerate your habit transformation journey</p>
+            <p class="text-center mb-5 mx-auto" data-aos="fade-up" data-aos-delay="100" style="max-width: 700px;">Unlock
+                premium content and accelerate your habit transformation journey</p>
 
             <div class="row justify-content-center">
                 <!-- Free Plan -->
@@ -957,9 +1020,9 @@
                                 <li><i class="bi bi-check"></i> Access to 4 Learning Videos</li>
                                 <li><i class="bi bi-check"></i> Basic Habit Tracking</li>
                                 <li><i class="bi bi-check"></i> Whatsapp Group Access</li>
-                                <li><i class="bi bi-x"></i> Basic Video Content</li>
-                                <li><i class="bi bi-x"></i> Simple Analytics Dashboard</li>
-                                <li><i class="bi bi-x"></i> Group Coaching Sessions</li>
+                                <li><i class="bi bi-x"></i> Exclusive Video Content</li>
+                                <li><i class="bi bi-x"></i> Advanced Analytics Dashboard</li>
+                                <li><i class="bi bi-x"></i> Access to all Upcoming features</li>
                             </ul>
                             <button class="btn btn-outline-primary" disabled>Current Plan</button>
                         </div>
@@ -982,9 +1045,35 @@
                                 <li><i class="bi bi-check"></i> Special Habit Library</li>
                                 <li><i class="bi bi-check"></i> 1-on-1 Coaching</li>
                             </ul>
-                            <a href="subscription.html" class="btn btn-premium">Upgrade Now</a>
+                            <a class="btn btn-premium" href="subscription.html">Upgrade Now</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pro Member Exclusive Section -->
+    <section class="container my-5" id="pro-member-section" style="display: none;">
+        <div class="p-5 rounded-4 shadow-lg text-white" style="background: var(--gradient-secondary);">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2 class="fw-bold display-5">Hey, Pro Member! 🎉</h2>
+                    <p class="lead mt-3 mb-4">
+                        Welcome to the elite circle of habit transformers! As a Premium member, you now have full access
+                        to:
+                    </p>
+                    <ul class="fs-5">
+                        <li>✔️ All Learning Videos</li>
+                        <li>✔️ Advanced Habit Tracking Tools</li>
+                        <li>✔️ Premium Analytics Dashboard</li>
+                        <li>✔️ Special Habit Library & 1-on-1 Coaching</li>
+                    </ul>
+                    <p class="mt-4 fs-6">Let’s level up your transformation journey 🚀</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img alt="Pro Access" class="img-fluid rounded-circle shadow" src="img/PremiumAccess.png"
+                         style="max-width: 200px;">
                 </div>
             </div>
         </div>
@@ -996,12 +1085,13 @@
         <div class="row align-items-center">
             <div class="col-lg-8 doctor-content">
                 <h2 class="doctor-title">Transform Lives as a Certified Habit Coach</h2>
-                <p class="doctor-desc">Join our exclusive network of habit transformation experts and help others achieve their goals while building a rewarding career doing what you love.</p>
-                <a href="doctor.html" class="btn btn-doctor">Apply Now <i class="bi bi-arrow-right ms-2"></i></a>
+                <p class="doctor-desc">Join our exclusive network of habit transformation experts and help others
+                    achieve their goals while building a rewarding career doing what you love.</p>
+                <a class="btn btn-doctor" href="doctor.html">Apply Now <i class="bi bi-arrow-right ms-2"></i></a>
             </div>
             <div class="col-lg-3 d-none d-lg-block">
                 <div class="doctor-illustration" data-aos="fade-left">
-                    <img src="img/ApplyDoctor.png" alt="Doctor" class="img-fluid">
+                    <img alt="Doctor" class="img-fluid" src="img/ApplyDoctor.png">
                 </div>
             </div>
         </div>
@@ -1010,7 +1100,8 @@
     <!-- Doctor Features Section (Only for Doctors) -->
     <section class="container doctor-features" id="doctor-features">
         <h2 class="section-title text-center" data-aos="fade-up" style="color: #6c5ce7;">Your Coaching Dashboard</h2>
-        <p class="text-center mb-5 mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Powerful tools designed to help you guide your patients to success</p>
+        <p class="text-center mb-5 mx-auto" data-aos="fade-up" data-aos-delay="100" style="max-width: 700px;">Powerful
+            tools designed to help you guide your patients to success</p>
 
         <div class="row">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
@@ -1019,7 +1110,8 @@
                         <i class="bi bi-people-fill"></i>
                     </div>
                     <h3 class="feature-title" style="color: Black;">Patient Management</h3>
-                    <p class="feature-desc">Comprehensive dashboard to view and manage all your patients with detailed progress tracking and analytics.</p>
+                    <p class="feature-desc">Comprehensive dashboard to view and manage all your patients with detailed
+                        progress tracking and analytics.</p>
                 </div>
             </div>
 
@@ -1029,7 +1121,8 @@
                         <i class="bi bi-graph-up-arrow"></i>
                     </div>
                     <h3 class="feature-title" style="color: Black;">Upcoming Feature</h3>
-                    <p class="feature-desc">Visualize patient progress with interactive charts and identify areas needing special attention.</p>
+                    <p class="feature-desc">Visualize patient progress with interactive charts and identify areas
+                        needing special attention.</p>
                 </div>
             </div>
 
@@ -1039,7 +1132,8 @@
                         <i class="bi bi-chat-square-text-fill"></i>
                     </div>
                     <h3 class="feature-title" style="color: Black;">Secure Messaging</h3>
-                    <p class="feature-desc">Built-in encrypted messaging system to communicate with your patients and provide guidance.</p>
+                    <p class="feature-desc">Built-in encrypted messaging system to communicate with your patients and
+                        provide guidance.</p>
                 </div>
             </div>
         </div>
@@ -1054,7 +1148,8 @@
         <div class="social-links d-flex justify-content-center">
             <a href="https://x.com/habitupindia"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.instagram.com/habitup.india?igsh=amxoMjBhZ3UxMXRt"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/habitup-habitup-0a2ab4370?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSRGPY6S7QbqxKuhCA60kXQ%3D%3D"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/habitup-habitup-0a2ab4370?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSRGPY6S7QbqxKuhCA60kXQ%3D%3D"><i
+                    class="bi bi-linkedin"></i></a>
         </div>
         <div class="copyright">
             <span>Copyright</span> <strong class="px-1 sitename">&copy; HabitUP</strong> <span>All Rights
@@ -1224,20 +1319,30 @@
         document.getElementById('doctor-features').style.display = 'none';
       }
 
-     document.querySelectorAll('.locked').forEach(video => {
-  video.addEventListener('click', () => {
-    if (userData.subscriptionType === 'FREE') {
-      window.location.href = '#subscription';
+      // Show/hide based on subscriptionType
+        if (userData.subscriptionType === 'PREMIUM') {
+          document.getElementById('subscription').style.display = 'none';
+          document.getElementById('pro-member-section').style.display = 'block';
+        }
+        else {
+          document.getElementById('subscription').style.display = 'block';
+          document.getElementById('pro-member-section').style.display = 'none';
+        }
 
-      const pricingSection = document.getElementById('subscription');
-      pricingSection.style.animation = 'pulse 1s ease';
+         document.querySelectorAll('.locked').forEach(video => {
+          video.addEventListener('click', () => {
+          if (userData.subscriptionType === 'FREE') {
+          window.location.href = '#subscription';
 
-      setTimeout(() => {
-        pricingSection.style.animation = '';
-      }, 1000);
-    }
-  });
-});
+          const pricingSection = document.getElementById('subscription');
+          pricingSection.style.animation = 'pulse 1s ease';
+
+          setTimeout(() => {
+            pricingSection.style.animation = '';
+          }, 1000);
+        }
+      });
+    });
 
       // Logout button
       document.getElementById('logoutBtn').addEventListener('click', function() {

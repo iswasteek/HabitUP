@@ -1,16 +1,9 @@
 package com.fsf.habitup.entity;
 
 import com.fsf.habitup.Enums.DocumentStatus;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "documents")
@@ -19,58 +12,57 @@ public class Documents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String documentName;
-    private String documentType; // e.g., "Medical Degree", "License", etc.
-    private String documentUrl; // URL to access the uploaded document
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String idProof; // Base64 string of ID proof (required)
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String supportingDoc; // Base64 string of supporting doc (required)
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String optionalDoc; // Base64 string of optional doc (optional)
+
     @Enumerated(EnumType.STRING)
-    private DocumentStatus status; // PENDING, APPROVED, REJECTED
+    private DocumentStatus status;
+
+    private LocalDateTime uploadDate;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user; // The user who uploaded this document
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    /**
-     * @return Long return the id
-     */
+    // ====== Getters & Setters ======
+
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return String return the documentName
-     */
-    public String getDocumentName() {
-        return documentName;
+    public String getIdProof() {
+        return idProof;
     }
 
-    /**
-     * @param documentName the documentName to set
-     */
-    public void setDocumentName(String documentName) {
-        this.documentName = documentName;
+    public void setIdProof(String idProof) {
+        this.idProof = idProof;
     }
 
-    public String getDocumentType() {
-        return documentType;
+    public String getSupportingDoc() {
+        return supportingDoc;
     }
 
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
+    public void setSupportingDoc(String supportingDoc) {
+        this.supportingDoc = supportingDoc;
     }
 
-    public String getDocumentUrl() {
-        return documentUrl;
+    public String getOptionalDoc() {
+        return optionalDoc;
     }
 
-    public void setDocumentUrl(String documentUrl) {
-        this.documentUrl = documentUrl;
+    public void setOptionalDoc(String optionalDoc) {
+        this.optionalDoc = optionalDoc;
     }
 
     public DocumentStatus getStatus() {
@@ -81,6 +73,14 @@ public class Documents {
         this.status = status;
     }
 
+    public LocalDateTime getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(LocalDateTime uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
     public User getUser() {
         return user;
     }
@@ -88,5 +88,4 @@ public class Documents {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

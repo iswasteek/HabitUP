@@ -1,12 +1,10 @@
 package com.fsf.habitup.Controller;
 
-import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fsf.habitup.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,7 +22,6 @@ import com.fsf.habitup.DTO.LogoutResponse;
 import com.fsf.habitup.DTO.UpdateUserDTO;
 import com.fsf.habitup.DTO.UserResponseDTO;
 import com.fsf.habitup.Enums.AccountStatus;
-import com.fsf.habitup.Enums.Gender;
 import com.fsf.habitup.Service.DocumentService;
 import com.fsf.habitup.Service.UserServiceImpl;
 import com.fsf.habitup.entity.User;
@@ -33,7 +29,9 @@ import com.fsf.habitup.entity.User;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 
-import static com.fsf.habitup.Service.UserService.userRepository;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 @RestController
 @RequestMapping("/user")
@@ -49,21 +47,6 @@ public class UserController {
     public UserController(UserServiceImpl userService, UserRepository userRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
-    }
-
-    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadDocument(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam("userId") Long userId,
-            @RequestParam("type") String type) {
-
-        try {
-            documentService.uploadDocument(userId, file, type);
-            return ResponseEntity.ok("Document uploaded successfully and marked as PENDING.");
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Upload failed: " + e.getMessage());
-        }
     }
 
     @PreAuthorize("hasAuthority('MANAGE_USERS')")
@@ -182,6 +165,21 @@ public class UserController {
         return updated ? ResponseEntity.ok("Account status updated successfully.")
                 : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No change needed or user not found.");
 
+    }
+
+    @PreAuthorize("hasAuthority('30DAY_USER')")
+    @GetMapping("/user/is-older-than-30days/{userId}")
+    public ResponseEntity<Boolean> isUserOlderThan30Days(@PathVariable Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        try {
+            LocalDate joinDate = LocalDate.parse(user.getJoinDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            boolean isOlderThan30 = joinDate.isBefore(LocalDate.now().minusDays(30));
+            return ResponseEntity.ok(isOlderThan30);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(false); // or throw an error if desired
+        }
     }
 
     @PreAuthorize("isAuthenticated()")

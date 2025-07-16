@@ -73,19 +73,21 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean verifyUserForDoctor(Long userId) {
         // Fetch user by ID
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         // Check if the user is already a doctor
         if (user.getUserType() == UserType.Doctor) {
             throw new RuntimeException("User is already a doctor");
         }
 
-        // Fetch documents of the user
-        List<Documents> documents = documentsRepository.findByUser_UserId(userId);
+        // Fetch the user's document (single entry)
+        Documents document = documentsRepository.findByUser_UserId(userId)
+                .orElseThrow(() -> new RuntimeException("User has not uploaded documents"));
 
-        // Validate documents
-        if (!areDocumentsValid(documents)) {
-            throw new RuntimeException("User's documents are not fully approved");
+        // Validate document status
+        if (document.getStatus() != DocumentStatus.APPROVED) {
+            throw new RuntimeException("User's documents are not approved");
         }
 
         // Convert user to doctor
@@ -95,7 +97,6 @@ public class AdminServiceImpl implements AdminService {
         doctor.setEmail(user.getEmail());
         doctor.setPhoneNo(user.getPhoneNo());
         doctor.setGender(user.getGender());
-        doctor.setSpecialization("");
         doctor.setYearsOfExperience(0);
         doctor.setAvailabilitySchedule(new Date());
         doctor.setConsultationFee(0);
@@ -105,19 +106,12 @@ public class AdminServiceImpl implements AdminService {
         doctor.setDocumentStatus(DocumentStatus.APPROVED);
         doctor.setUser(user); // Link to user
 
-        // Save doctor entity
+        // Save doctor and update user type
         doctorRepository.save(doctor);
-
-        // Update user type to Doctor
         user.setUserType(UserType.Doctor);
         userRepository.save(user);
 
         return true;
-    }
-
-    private boolean areDocumentsValid(List<Documents> documents) {
-        return documents != null && documents.stream()
-                .allMatch(doc -> doc.getStatus() == DocumentStatus.APPROVED);
     }
 
     @Override
@@ -273,35 +267,29 @@ public class AdminServiceImpl implements AdminService {
             throw new RuntimeException("Doctor is not linked to any user");
         }
 
-        // Fetch user's documents
-        List<Documents> documents = documentsRepository.findByUser_UserId(user.getUserId());
+        // Fetch user's single document record
+        Documents document = documentsRepository.findByUser_UserId(user.getUserId())
+                .orElseThrow(() -> new RuntimeException("User's documents not found"));
 
-        // Check if documents are invalid
-        if (areDocumentsValidated(documents)) {
+        // Check if documents are already approved
+        if (document.getStatus() == DocumentStatus.APPROVED) {
             throw new RuntimeException("Doctor's documents are already approved. Cannot reject.");
         }
 
-        // Update doctor's document status to REJECTED
+        // Update doctor's document status
         doctor.setDocumentStatus(DocumentStatus.REJECTED);
         doctorRepository.save(doctor);
 
-        // Update user's userType back to default (e.g., User)
+        // Update user's userType back to default (e.g., Adult)
         user.setUserType(UserType.Adult);
         userRepository.save(user);
 
         return true;
-
-    }
-
-    // Helper method to validate documents
-    private boolean areDocumentsValidated(List<Documents> documents) {
-        return documents != null && documents.stream()
-                .allMatch(doc -> doc.getStatus() == DocumentStatus.APPROVED);
-
     }
 
     @Override
     public List<Documents> getPendingDocuments() {
+        // Returns all users' documents that are still pending approval
         return documentsRepository.findByStatus(DocumentStatus.PENDING);
     }
 
@@ -310,106 +298,34 @@ public class AdminServiceImpl implements AdminService {
         Documents document = documentsRepository.findById(documentId)
                 .orElseThrow(() -> new RuntimeException("Document not found"));
 
-        // Update document status
+        // Prevent rejecting an already approved document
+        if (document.getStatus() == DocumentStatus.APPROVED && status == DocumentStatus.REJECTED) {
+            throw new RuntimeException("Cannot reject an already approved document.");
+        }
+
+        // If status is REJECTED, clear document content
+        if (status == DocumentStatus.REJECTED) {
+            document.setIdProof(null);
+            document.setSupportingDoc(null);
+            document.setOptionalDoc(null);
+            document.setUploadDate(null);
+        }
+
+        // Update the document status
         document.setStatus(status);
         documentsRepository.save(document);
 
+        // If approved, sync doctor entity (if user is already verified)
+        if (status == DocumentStatus.APPROVED && doctorRepository.existsByUser_UserId(document.getUser().getUserId())) {
+            Doctor doctor = doctorRepository.findByUser_UserId(document.getUser().getUserId()).orElse(null);
+            if (doctor != null) {
+                doctor.setDocumentStatus(DocumentStatus.APPROVED);
+                doctorRepository.save(doctor);
+            }
+        }
+
         return true;
     }
-
-    // @Override
-    // public boolean grantPermissionToUser(Long userId, PermissionType
-    // permissionName) {
-    // User user = userRepository.findById(userId)
-    // .orElseThrow(() -> new RuntimeException("User not found"));
-    //
-    // // Fetch the permission by name using Optional
-    // Optional<com.fsf.habitup.entity.Permission> permissionOptional =
-    // Optional.ofNullable(permissionRepository.findByName(permissionName));
-    //
-    // // If the permission is not found, throw an exception
-    // com.fsf.habitup.entity.Permission permission = permissionOptional
-    // .orElseThrow(() -> new RuntimeException("Permission not found"));
-    //
-    // // Add permission to the user if not already present
-    // if (!user.getPermissions().contains(permission)) {
-    // user.getPermissions().add(permission);
-    // userRepository.save(user);
-    // return true;
-    // }
-    //
-    // return false;
-    // }
-    //
-    // @Override
-    // public boolean revokePermissionFromUser(Long userId, PermissionType
-    // permissionName) {
-    // User user = userRepository.findById(userId)
-    // .orElseThrow(() -> new RuntimeException("User not found"));
-    //
-    // // Fetch the permission by name
-    // com.fsf.habitup.entity.Permission permission =
-    // permissionRepository.findByName(permissionName);
-    // if (permission == null) {
-    // throw new RuntimeException("Permission not found");
-    // }
-    //
-    // // Remove permission from the user if present
-    // if (user.getPermissions().contains(permission)) {
-    // user.getPermissions().remove(permission);
-    // userRepository.save(user);
-    // return true;
-    // }
-    //
-    // return false;
-    // }
-    //
-    // @Override
-    // public boolean grantPermissionToDoctor(Long doctorId, PermissionType
-    // permissionName) {
-    // // Fetch doctor by ID
-    // Doctor doctor = doctorRepository.findById(doctorId)
-    // .orElseThrow(() -> new RuntimeException("Doctor not found"));
-    //
-    // // Fetch the permission by name
-    // com.fsf.habitup.entity.Permission permission =
-    // permissionRepository.findByName(permissionName);
-    // if (permission == null) {
-    // throw new RuntimeException("Permission not found");
-    // }
-    //
-    // // Add permission to the doctor if not already present
-    // if (!doctor.getPermissions().contains(permission)) {
-    // doctor.getPermissions().add(permission);
-    // doctorRepository.save(doctor);
-    // return true;
-    // }
-    //
-    // return false;
-    // }
-    //
-    // @Override
-    // public boolean revokePermissionFromDoctor(Long doctorId, PermissionType
-    // permissionName) {
-    // Doctor doctor = doctorRepository.findById(doctorId)
-    // .orElseThrow(() -> new RuntimeException("Doctor not found"));
-    //
-    // // Fetch the permission by name
-    // com.fsf.habitup.entity.Permission permission =
-    // permissionRepository.findByName(permissionName);
-    // if (permission == null) {
-    // throw new RuntimeException("Permission not found");
-    // }
-    //
-    // // Remove permission from the doctor if present
-    // if (doctor.getPermissions().contains(permission)) {
-    // doctor.getPermissions().remove(permission);
-    // doctorRepository.save(doctor);
-    // return true;
-    // }
-    //
-    // return false;
-    // }
 
     @Override
     public List<com.fsf.habitup.entity.Permission> getPermissionsForUser(Long userId) {
