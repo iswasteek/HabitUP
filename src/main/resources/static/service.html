@@ -1207,7 +1207,7 @@
 
   async function checkUserEligibility(userId) {
     try {
-      const response = await fetch(`http://localhost:8080/users/user/is-older-than-30days/${userId}`, {
+      const response = await fetch(`https://habit-up-backend.onrender.com/users/user/is-older-than-30days/${userId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -1248,7 +1248,7 @@
 
         try {
           // Join meeting
-          const joinResponse = await fetch(`http://localhost:8080/meetings/join?userId=${userId}&meetingId=${meetingId}`, {
+          const joinResponse = await fetch(`https://habit-up-backend.onrender.com/meetings/join?userId=${userId}&meetingId=${meetingId}`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -1263,7 +1263,7 @@
           console.log(joinMessage);
 
           // Get meeting details
-          const detailsResponse = await fetch(`http://localhost:8080/meetings/${meetingId}`, {
+          const detailsResponse = await fetch(`https://habit-up-backend.onrender.com/meetings/${meetingId}`, {
             method: 'GET',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`
